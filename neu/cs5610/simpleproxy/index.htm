@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+
+<!--
+    File: ~/simpleproxy/index.htm
+    
+    Copyright 2011,
+    Richard Rasala,
+    College of Computer and Information Science
+    Northeastern University, Boston, MA 02115
+    rasala@ccs.neu.edu
+-->
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SimpleProxy Docs</title>
+
+    <link rel="Stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="Stylesheet" type="text/css" href="../css/style_screen.css" media="screen" />
+    <link rel="Stylesheet" type="text/css" href="../css/enlarge.css" />
+    <link rel="Stylesheet" type="text/css" href="../expandable/expandable.css" />
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../javascript/queryparams.js"></script>
+    
+    <script type="text/javascript" src="../javascript/jQueryPrint.js"></script>
+
+    <script type="text/javascript" src="../expandable/expandable.js"></script>
+
+</head>
+<body>
+<div class="pad">
+
+<p class="h">The SimpleProxy Utility Documentation</p>
+
+<h3 class="expandable">The Purpose of the SimpleProxy Utility and How to Use It</h3>
+
+<div>
+
+<p>
+The design purpose for the SimpleProxy Utility is to provide a means
+to bring in web data from a remote site and make the data available 
+to a program.
+</p>
+
+<p>
+The SimpleProxy Utility is installed as an <code>IHttpHandler</code>
+so it may be called from any directory on this site.  The format
+needed is:
+</p>
+
+<pre class="indent1">simpleproxy.aspx?url=|...|</pre>
+
+<p>
+Here ... is an embedded URL that specifies the remote data.
+</p>
+
+<p>
+The goal is that Javascript on a client could make an AJAX call back
+to its host on the IIS server, specify a simpleproxy URL with the
+embedded URL in its query string, and then receive the data from the
+embedded URL back on the client.
+</p>
+
+<p>
+For testing purposes, it is really helpful to run the SimpleProxy
+Utility interactively.  You then manually supply the embedded URL
+and see what comes back.  Here is a link to do that:
+</p>
+
+<p class="indent1">
+<a href="simpleproxy.aspx" target="_blank">Interactive SimpleProxy</a>
+</p>
+
+<p>
+You will get an error message when you click the above link but that
+is expected since you need to manually supply the embedded URL as
+follows:
+</p>
+
+<pre class="indent1">.../simpleproxy.aspx?url=|...|</pre>
+
+<p>
+The vertical bar delimits the URL so you can have embedded query
+parameters.  You may also use single or double quotes as delimiters.
+</p>
+
+<p>
+The default content type for the data returned is
+<code>text/plain</code>.
+</p>
+
+<p>
+To specify the content type for the data returned as
+<code>text/xml</code>, use:
+</p>
+
+<pre class="indent1">.../simpleproxy.aspx?xml&url=|...|</pre>
+
+<p>
+If the xml has a stylesheet and the stylesheet does not load
+properly, then the window will be empty.  In this
+case, try to use the browser "view source" option.
+</p>
+
+<p>
+If, for testing purposes, you want the return data html encoded
+and nested in <code>pre</code> tags, use:
+</p>
+
+<pre class="indent1">.../simpleproxy.aspx?pre&url=|...|</pre>
+
+<p>
+If you want to get web data for manipulation by C# on the server,
+then there is a much simpler static call that suffices:
+</p>
+
+<pre class="indent1">string url = ...;
+string data = SimpleProxy.GetResponseContent(url);</pre>
+
+<p>
+If an empty string is returned then there was an error or there was no
+data.  You should then test using <b>Interactive SimpleProxy</b> above.
+</p>
+
+</div>
+
+<h3 class="expandable">Limitations and Bugs</h3>
+
+<div>
+
+<ul>
+  <li>
+  The SimpleProxy utility returns the content delivered from a url as is.
+  There is no attempt to inspect the content or to translate any relative
+  URL&rsquo;s that may be embedded therein.
+  </li>
+
+  <li>
+  The SimpleProxy utility implements no security.  The utility will request
+  anything from anywhere.  Further, no usernames or passwords are required.
+  </li>
+
+  <li>
+  Some valid URL&rsquo;s do not return data.  This appears to be due to
+  the fact that the remote server rejects the HTTP request as generated
+  by the Microsoft code I am using.  This requires further investigation.
+  </li>
+
+</ul>
+
+<p>
+For debugging, it may or may not help to use:
+</p>
+
+<p class="indent1">
+<a href="http://net4.ccs.neu.edu/home/rasala/web_resource/Default.aspx" target="_blank">
+Web URI and Resource Tester
+</a>
+</p>
+
+</div>
+
+<h3 class="expandable">Source</h3>
+
+<div>
+
+<p>
+Here is the source for the <b>SimpleProxy</b> <code>IHttpHandler</code>
+and the static methods directly callable in C#.
+</p>
+
+<p>
+<a href="../fileview/Default.aspx?~/app_code/handlers/SimpleProxy.cs" target="_blank">
+<code>~/app_code/handlers/SimpleProxy.cs</code></a>
+</p>
+
+</div>
+
+</div>
+</body>
+</html>
