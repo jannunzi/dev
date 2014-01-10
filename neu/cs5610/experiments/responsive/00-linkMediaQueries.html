@@ -2,17 +2,109 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="00-style0.css" />
-		<link rel="stylesheet" type="text/css" media="(min-width: 50px) and (max-width: 400px)" href="00-style1.css" />
+		<link rel="stylesheet" type="text/css" media="(min-width: 50px)  and (max-width: 400px)" href="00-style1.css" />
 		<link rel="stylesheet" type="text/css" media="(min-width: 401px) and (max-width: 800px)" href="00-style2.css" />
 		<link rel="stylesheet" type="text/css" media="(min-width: 801px)" href="00-style3.css" />
 	</head>
 	<body>
 		<div class="main">
-			Main Content
-			| <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/responsive/00-linkMediaQueries.html">HTML Source</a>
-			| <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/responsive/00-style0.css">CSS 1</a>
-			| <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/responsive/00-style1.css">CSS 2</a>
-			| <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/responsive/00-style2.css">CSS 3</a>
+
+            <h2>Link Media Queries</h2>
+
+            <p>
+                This document changes background color as you resize the browser window.
+                To achieve this we load several CSS style sheets, but make them active only at
+                different window sizes. The three style sheets are:
+                
+                <ul>
+                    <li><a href="00-style0.css" target="_blank">00-style0.css</a></li>
+                    <li><a href="00-style1.css" target="_blank">00-style1.css</a></li>
+                    <li><a href="00-style2.css" target="_blank">00-style2.css</a> and</li>
+                    <li><a href="00-style3.css" target="_blank">00-style3.css</a></li>
+                </ul>
+
+                Their content is:
+
+                <h3>00-style0.css</h3>
+                <pre>
+.main {
+    font-size:30px;
+    height : 100px;
+}
+                </pre>
+
+                <h3>00-style1.css</h3>
+                <pre>
+.main {
+    background-color : red;
+}
+                </pre>
+
+                <h3>00-style2.css</h3>
+                <pre>
+.main {
+    background-color : green;
+    height : 400px;
+}
+                </pre>
+
+                <h3>00-style3.css</h3>
+                <pre>
+.main {
+    background-color : yellow;
+}
+                </pre>
+            </p>
+
+            <h2>Media Queries</h2>
+
+            <p>
+                We load all 4 sheets at once but they don't all apply at the same time.
+                We conditionally apply the sheets by using media queries. The sheets are loaded as follows:
+            </p>
+
+            <pre>
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;00-style0.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;(min-width: 50px)  and (max-width: 400px)&quot; href=&quot;00-style1.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;(min-width: 401px) and (max-width: 800px)&quot; href=&quot;00-style2.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;(min-width: 801px)&quot; href=&quot;00-style3.css&quot; /&gt;
+            </pre>
+
+            <p>
+                The first style sheet
+                <a href="00-style0.css" target="_blank">00-style0.css</a>
+                has no conditions and is always active.
+            </p>
+
+            <p>
+                The other 3 style sheets all have media rules that govern when they are
+                active. The rules are predicates that evaluate browser attributes using
+                boolean expressions and activate the stylesheet when the expressions are true.
+            </p>
+
+            <p>
+                The second style sheet
+                <a href="00-style1.css" target="_blank">00-style1.css</a>
+                is active only when the window's width is between 50 and 400 pixels.
+            </p>
+
+            <p>
+                The third style sheet
+                <a href="00-style2.css" target="_blank">00-style2.css</a>
+                is active when the window is between 401 and 800 pixels.
+            </p>
+
+            <p>
+                The last style sheet
+                <a href="00-style3.css" target="_blank">00-style3.css</a>
+                is active when the window is at least 801 pixels wide.
+            </p>
+
+            <h2>Source for this experiment</h2>
+			  <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/responsive/00-linkMediaQueries.html">HTML Source</a>
+			| <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/responsive/00-style0.css">CSS 1</a>
+			| <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/responsive/00-style1.css">CSS 2</a>
+			| <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/responsive/00-style2.css">CSS 3</a>
 		</div>
 	</body>
 </html>
