@@ -1,0 +1,135 @@
+.multipleApps {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px; }
+
+.app {
+  /*
+  &.summary {
+    	border-color : lightgray;
+    	border-width : 4px;
+    	border-bottom-style : groove;
+    	border-right-style : groove;
+	}
+	*/
+  border: 1px black solid;
+  border-radius: 10px;
+  margin: 10px 0 10px 0;
+  padding: 10px; }
+  .app:hover {
+    background-color: lightgray; }
+  .app .icon {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px; }
+  .app .header {
+    margin-bottom: 0px; }
+  .app .priceLink {
+    padding: 3px 30px 3px 5px; }
+  .app .share {
+    width: 20px;
+    left: -27px;
+    opacity: 0.5;
+    top: -2px; }
+
+.approw {
+  border-color: lightgray;
+  border-width: 4px;
+  border-left-style: groove; }
+
+/*
+ * Text and Font
+ */
+.arial {
+  font-family: Arial; }
+
+.noTextDecoration {
+  text-decoration: none; }
+
+/*
+ * Background and Foreground Colors
+ */
+/* Foreground */
+.white {
+  color: white; }
+
+.orange {
+  color: orange; }
+
+.lightgray {
+  color: lightgray; }
+
+/* Background */
+.grayBg {
+  background-color: gray; }
+
+.lightgrayBg {
+  background-color: #eeeeee; }
+
+/*
+ * Box
+ */
+/* Size */
+.width260 {
+  width: 260px; }
+
+/* Radius */
+.radius10 {
+  border-radius: 10px; }
+
+.radiusTop10 {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px; }
+
+/* Margin */
+.noMargin {
+  margin: 0px; }
+
+.marginLeft10 {
+  margin-left: 10px; }
+
+/* Padding */
+.noPadding {
+  padding: 0px; }
+
+.padding10 {
+  padding: 10px; }
+
+/* Border */
+.borderBlack {
+  border-color: black; }
+
+.borderGray {
+  border-color: gray; }
+
+.borderLightgray {
+  border-color: lightgray; }
+
+.borderSolid {
+  border-style: solid; }
+
+.border1px {
+  border-width: 1px; }
+
+.border1pxSolidBlack {
+  border: 1px black solid; }
+
+.borderBottom1px {
+  border-width: 0px 0px 1px 0px; }
+
+/*
+ * Position and Float
+ */
+/* Position */
+.relativePosition {
+  position: relative; }
+
+/* Float */
+.floatLeft {
+  float: left; }
+
+.floatRight {
+  float: right; }
+
+.floatClear {
+  clear: both; }

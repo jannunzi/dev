@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>App Editor</title>
+</head>
+
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<script src="../js/jquery-1.10.2.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+
+<body>
+
+<header>
+	<h1>App Editor</h1>
+	<time pubdate datetime="2013-09-07"/>
+</header>
+
+    <nav>
+        <a href="0-store.html">Store</a> |
+        <a href="1-summary.0.html">Summary</a> |
+        <a href="2-summary.html">Application Rows</a> |
+        <a href="3-section.html">Section</a> |
+        <a href="4-sectionTable.html">Section Table</a> |
+        <a href="5-sectionDynamic.html">Section Dynamic</a> |
+        <a href="6-appEditor.html">App Editor</a> |
+        <a href="7-appStorage.html">App Save</a> |
+        <a href="8-appLoad.html">App Load</a> |
+    </nav>
+
+<section class="main-container">
+	<article>
+		<header>
+			<h1>App Summary Editor Form</h1>
+		</header>
+		<form class="appForm1">
+			Name: <input class="name"/><br/>
+			Price: <input type="number" class="price"/><br/>
+			Category: <select class="category">
+				<option value="utility">Utility</option>
+				<option value="productivity">Productivity</option>
+				<option value="photography">Photography</option>
+			</select><br/>
+			Stars: <input class="stars" type="range" min="0" max="5" value="3"/><br/>
+			Rating: <input class="rating" type="number"/><br/>
+			Image: <input class="image" type="file"/><br/>
+			Date added: <input class="dateAdded" type="date"/>
+		</form>
+		<button class="get-json">Get JSON</button>
+	</article>
+	<article>
+		<header>
+			<h1>Multiple Apps</h1>
+		</header>
+		<button class="add">Add App</button><button class="save">Save Apps</button><br/>
+		<ul class="multipleApps">
+			<li class="app">
+				<form>
+					Name: <input class="name"/><br/>
+					Price: <input type="number" class="price"/><br/>
+					Category: <select class="category">
+						<option value="utility">Utility</option>
+						<option value="productivity">Productivity</option>
+						<option value="photography">Photography</option>
+					</select><br/>
+					Stars: <input class="stars" type="range" min="0" max="5" value="3"/><br/>
+					Rating: <input class="rating" type="number"/><br/>
+					Image: <input class="image" type="file"/><br/>
+					Date added: <input class="dateAdded" type="date"/><br/>
+					<button class="delete">Delete This App</button><br/>
+				</form>
+			</li>
+		</ul>
+	</article>
+</section>
+<script>
+	/*
+	 * Get JSON From Single Form
+	 */
+	$(".get-json").click(getJSON);
+	
+	function getJSON() {
+		var form = $(".appForm1");
+		var appSummary = {
+			"name" : form.find(".name").val(),
+			"price" : form.find(".price").val(),
+			"category" : form.find(".category").val(),
+			"stars" : form.find(".stars").val(),
+			"rating" : form.find(".rating").val(),
+			"image" : form.find(".image").val(),
+			"dateAdded" : form.find(".dateAdded").val(),
+		}
+		console.log(appSummary)
+	}
+	
+	/*
+	 * 
+	 */
+	$(".multipleApps").sortable({"axis":"y"});
+	$(".add").click(addApp);
+	$(".save").click(saveApps);
+	$(".multipleApps").on("click", ".delete", deleteApp);
+	
+	function addApp(event, appData) {
+		var app = $(".multipleApps .app:first").clone();
+		
+		var allApps = $(".multipleApps");
+		allApps.prepend(app);
+	}
+	
+	function deleteApp(event) {
+		event.preventDefault();
+		var appCount = $(".multipleApps .app").length;
+		if(appCount == 1)
+			return;
+
+		var button = $(event.currentTarget);
+		var app = $(button.parents(".app"));
+		app.remove();
+	}
+
+	function saveApps(event) {
+		var appSummaries = [];
+		
+		$(".multipleApps .app").each(function(){
+			var app = $(this);
+			var appSummary = {
+				"name"      : app.find(".name").val(),
+				"price"     : app.find(".price").val(),
+				"category"  : app.find(".category").val(),
+				"stars"     : app.find(".stars").val(),
+				"rating"    : app.find(".rating").val(),
+				"image"     : app.find(".image").val(),
+				"dateAdded" : app.find(".dateAdded").val(),
+			}
+			appSummaries.push(appSummary);
+		});
+		
+		console.log(appSummaries);
+
+	}
+</script>
+</body>
+</html>
