@@ -3,8 +3,8 @@
 2-summary.html			Application Rows
 3-section.html			Application Section
 4-sectionTable.html		Application Section Table
-5-sectionDynamic.html	Dynamically Generate Content
+5-sectionDynamic.html		Dynamically Generate Content
 6-appEditor.html		Application Editor
 7-appStorage.html		Application Storage
 8-appLoad.html			Application Upload
-story.txt				Story Config File
+story.txt			Story Config File
