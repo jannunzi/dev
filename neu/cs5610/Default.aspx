@@ -108,13 +108,13 @@
                     <li><a href="jquery/draggable/index.html" target="_blank">Draggable</a></li>
                     <li><a href="jquery/sortable/index.html" target="_blank">Sortable Lists</a></li>
                     <li><a href="jquery/sortable/1-axis.html" target="_blank">Sortable on an Axis</a></li>
-            		    <li><a href="story/index.htm?../jquery/story.txt" target="_blank">jQuery</a></li>
-            		    <li><a href="story/index.htm?../experiments/animation/story.txt" target="_blank">Animation</a></li>
-            		    <li><a href="story/index.htm?../experiments/pageEditor/story.txt" target="_blank">Page Editor</a></li>
-            		    <li><a href="story/index.htm?../experiments/responsive/story.txt" target="_blank">Responsive Design</a></li>
-            		    <li><a href="story/index.htm?../experiments/grids/story.txt" target="_blank">Fluid Grid Systems</a></li>
-            		    <li><a href="story/index.htm?../experiments/movies/story.txt" target="_blank">Movies Restful APIs</a></li>
-            		    <li><a href="story/index.htm?../json/story.txt" target="_blank">JSON Web Services</a></li>
+            		<li><a href="story/index.htm?../jquery/story.txt" target="_blank">jQuery</a></li>
+            		<li><a href="story/index.htm?../experiments/animation/story.txt" target="_blank">Animation</a></li>
+            		<li><a href="story/index.htm?../experiments/pageEditor/story.txt" target="_blank">Page Editor</a></li>
+            		<li><a href="story/index.htm?../experiments/responsive/story.txt" target="_blank">Responsive Design</a></li>
+            		<li><a href="story/index.htm?../experiments/grids/story.txt" target="_blank">Fluid Grid Systems</a></li>
+            		<li><a href="story/index.htm?../experiments/movies/story.txt" target="_blank">Movies Restful APIs</a></li>
+            		<li><a href="story/index.htm?../json/story.txt" target="_blank">JSON Web Services</a></li>
 	                <li><a href="story/index.htm?../experiments/webservices/weather/story.txt" target="_blank">Weather Restful JSONP APIs</a></li>
                     <li><a href="story/index.htm?../experiments/phonegap/story.txt" target="_blank">Phonegap and jQuery</a></li>
                     <li><a href="http://net4.ccs.neu.edu/home/jga/experiments/phonegap/fish360/" target="_blank">Fish 360</a></li>
