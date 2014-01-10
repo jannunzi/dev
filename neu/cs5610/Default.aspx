@@ -35,6 +35,7 @@
                             <li><a tabindex="-1" href="autofile.aspx" target="_blank">AutoFile</a></li>
                             <li><a tabindex="-1" href="images/autoimage.aspx" target="_blank">Images</a></li>
                             <li><a tabindex="-1" href="blog/" target="_blank">Blog</a></li>
+                            <li><a tabindex="-1" href="http://net4.ccs.neu.edu/home/rasala/utility/TextToHTMLLite.aspx" target="_blank">HTML encoder utility</a></li>
                         </ul>
                     </li>
                 </ul>
