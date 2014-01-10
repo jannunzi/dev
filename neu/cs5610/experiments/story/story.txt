@@ -1,0 +1,3 @@
+﻿00.html		Page One
+01.html		Page Two
+story.txt	Story Config File
