@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Intro</title>
+</head>
+
+<body>
+
+<header>
+	<h1>Intro</h1>
+	<time pubdate datetime="2013-09-07"/>
+</header>
+
+<nav>
+	<a href="intro.html">Intro</a> |
+</nav>
+
+<section>
+	<article id="selectors">
+		<header>
+			<h1>Selectors and Styles</h1>
+		</header>
+		
+		<p>
+			jQuery uses CSS3 selectors to grab control of elements in the DOM.
+			This pagraph was dynamically changed to grey from jQuery by selecting
+			by tag type p (paragraph)
+		</p>
+	
+		<p class="red1">
+			This paragraph is changed to red from jQuery by selecting by class .red1
+		</p>
+	
+		<p id="blue1">
+			This paragraph is changed to blue from jQuery by selecting by id #red1
+		</p>
+	</article>
+	<article id="draggableExample">
+		<header>
+			<h1>Draggable Example</h1>
+		</header>
+		
+		<p class="draggable">Click and drag this paragraph. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+	</article>
+	
+	<article id="sortableExample">
+		<header>
+			<h1>Sortable Example</h1>
+		</header>
+		
+		<ul class="sortable">
+			<li>Item 1</li>
+			<li>Item 2</li>
+			<li>Item 3</li>
+			<li>Item 4</li>
+			<li>Item 5</li>
+		</ul>
+		
+		<ul class="sortable">
+			<li>Item A</li>
+			<li>Item B</li>
+			<li>Item C</li>
+			<li>Item D</li>
+			<li>Item E</li>
+		</ul>
+		
+	</article>
+	
+	<article id="clone">
+		<header>
+			<h1>Header</h1>
+		</header>
+		<p class="template">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+	</article>
+	
+	<article id="events">
+		<header>
+			<h1>Click Events</h1>
+		</header>
+		<p class="clickMe">Click Me</p>
+		<p class="clickMeToo">Then Click Me</p>
+	</article>
+	
+	<article id="ondemand">
+		<header>
+			<h1>Post On Demand</h1>
+		</header>
+		Enter a Post<br/>
+		<textarea class="text">Enter text here and click POST button</textarea><br/>
+		<button class="post">Post</button>
+	</article>
+</section>
+
+<script src="jquery-1.10.2.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script>
+
+	// Hello World
+	console.log("Hello World");
+
+	// Selectors and Style
+	$("#selectors p").css("background-color", "red");
+	$("#selectors p.red1").css("color", "red");
+	$("#selectors p#blue1").css("color", "blue");
+	
+	// Draggable
+	$("#draggableExample .draggable").draggable();
+	
+	// Sortable
+	$("#sortableExample .sortable").sortable({"axis" : "y"});
+
+	// Clone
+	var cloneArticle = $("#clone");
+	var template = cloneArticle.find(".template");
+	var clone = template.clone();
+	cloneArticle.append(clone);
+	
+	// Click Me
+	$("#events .clickMe").click(clickMe);
+	$("#events .clickMeToo").click(function(event){
+		alert("Thanks for clicking me too")
+		console.log(event);
+	});
+	
+	function clickMe(event) {
+		alert("Thanks for clicking me");
+		console.log("Hurray, you clicked me");
+	}
+	
+	// Adding Dynamic Content On Demand
+	
+	$("#ondemand .post").click(addPost)
+	
+	function addPost(event) {
+		var ondemand = $("#ondemand");
+		var text = $("#ondemand .text").val();
+		var html = "<p>"+text+"</p>";
+		var p = $(html).draggable();
+		ondemand.append(p);
+	}
+</script>
+
+<footer>
+	
+</footer>
+
+</body>
+</html>

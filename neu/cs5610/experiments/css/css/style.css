@@ -1,0 +1,27 @@
+.left {
+	float : left;
+}
+
+.right {
+	float : right;
+}
+
+.blueBg {
+	background-color : blue;
+}
+
+.greenBg {
+	background-color : green;
+}
+
+.app1Small.small {
+	background-image : url('../images/app1Small.png');
+}
+
+.app1Small.large {
+	background-image : url('../images/app1Large.png');
+}
+
+.noRepeat {
+	background-repeat : no-repeat;
+}
