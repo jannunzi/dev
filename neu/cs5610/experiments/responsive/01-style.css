@@ -1,0 +1,24 @@
+
+.main {
+	font-size:30px;
+	height : 100px;
+}
+
+@media (min-width: 50px) and (max-width: 400px) {
+	.main {
+		background-color : red;
+	}
+}
+
+@media (min-width: 401px) and (max-width: 800px) {
+	.main {
+		background-color : green;
+		height : 400px;
+	}
+}
+
+@media (min-width: 801px) {
+	.main {
+		background-color : yellow;
+	}
+}

@@ -1,0 +1,39 @@
+
+.fluid {
+	max-width : 100%;
+}
+
+@media (min-width: 50px) and (max-width: 600px) {
+	.wrapper {
+		width : 100%;
+		margin: 0 auto;
+	}
+	.sidebar {
+		display : none;
+	}
+	nav.small {
+		display : block;
+	}
+	nav.large {
+		display : none;
+	}
+}
+
+@media (min-width: 601px) {
+	.wrapper {
+		margin : 0px 50px;
+	}
+	.sidebar {
+		width : 200px;
+		float : right;
+	}
+	.main {
+		margin-right : 200px;
+	}
+	nav.small {
+		display : none;
+	}
+	nav.large {
+		display : block;
+	}
+}
