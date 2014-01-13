@@ -56,7 +56,7 @@
     </form>
 
     <!-- Optionally load Bootstrap's JS and jQuery (optional) -->
-    <script src="../../../javascript/jquery-2.0.3.js"></script>
+    <script src="../../../javascript/jquery-2.0.3.min.js"></script>
     <script src="../../../javascript/bootstrap.min.js"></script>
 
 </body>
