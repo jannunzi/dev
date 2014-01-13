@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Editor</title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css" type="text/css"/>
+<style>
+	.toolbar {
+		position : absolute;
+		bottom : 0px;
+	}
+	.attributes-dialog input {
+		left: 80px;
+		position: absolute;
+		right: 10px;
+		height: 21px;
+	}
+	.attributes-dialog .field {
+		margin-bottom : 10px;
+	}
+</style>
+</head>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script>
+	var editingPage = false;
+	var editingAttributes = false;
+	$(function(){
+		$(".tool").click(controller);
+		var pageEditor = JSON.parse(localStorage.getItem("pageEditor"));
+		updatePageList(pageEditor);
+		$(".attributes-dialog").dialog({"autoOpen":false});
+		$(".attributes-dialog .ok").click(setElementsAttributes);
+		$(".attributes-dialog .cancel").click(function(){$(".attributes-dialog").dialog("close")});
+	});
+	var HTML = {
+		"p" : "<p contenteditable=\"true\" class=\"content\">Paragraph</p>",
+		"h1" : "<h1 contenteditable=\"true\" class=\"content\">Header</h1>",
+		"h2" : "<h2 contenteditable=\"true\" class=\"content\">Header</h2>",
+		"ul" : "<ul contenteditable=\"true\" class=\"content\"><li>Unordered List</li></ul>",
+		"ol" : "<ol contenteditable=\"true\" class=\"content\"><li>Ordered List</li></ol>",
+		"div" : "<div contenteditable=\"true\" class=\"content\">DIV</div>"
+	};
+	function controller(event) {
+		var link = $(event.currentTarget);
+		var name = link.attr("name");
+		
+		if(name == "edit") {
+			if(editingPage == true) {
+				$(".editTool").html("edit on");
+				$(".content").draggable({"grid" : [10,10]});
+				editingPage = false;
+			} else {
+				$(".editTool").html("edit off");
+				$(".content").draggable("destroy");
+				editingPage = true;
+			}
+			return;
+		} else if(name == "attributes-dialog") {
+			if(editingAttributes == false) {
+				$(".attributesTool").html("attributes off");
+				$(".content").click(function() {
+					showAttributesDialog($(this));
+				});
+				editingAttributes = true;
+			} else {
+				$(".attributesTool").html("attributes on");
+				$(".content").unbind("click");
+				editingAttributes = false;
+			}
+			return;
+		} else if(name == "save") {
+			var pageName = $(".pageName").val();
+			if(pageName == null || pageName == "" || typeof pageName == "undefined")
+				pageName = $(".pageListTool").val();
+			if(pageName == null || pageName == "" || typeof pageName == "undefined")
+				return;
+			var content = $(".body").html();
+			var pageEditor = localStorage.getItem("pageEditor");
+			pageEditor = JSON.parse(pageEditor);
+			if(pageEditor == null)
+				pageEditor = {};
+			pageEditor.currentPage = pageName;
+			pageEditor[pageName] = content;
+			pageEditor = JSON.stringify(pageEditor);
+			localStorage.setItem("pageEditor", pageEditor);
+		} else if(name == "load") {
+			var pageName = $(".pageListTool").val();
+			if(pageName == null || pageName == "" || typeof pageName == "undefined")
+				pageName = $(".pageName").val();
+			if(pageName == null || pageName == "" || typeof pageName == "undefined")
+				return;
+			var pageEditor = localStorage.getItem("pageEditor");
+			pageEditor = JSON.parse(pageEditor);
+			if(pageEditor != null) {
+				$(".body").empty();
+				$(".body").html(pageEditor[pageName]);
+				$(".content").draggable({"grid" : [10,10]});
+			}
+		} else if(name == "clear") {
+			localStorage.removeItem("pageEditor");
+			$(".body").empty();
+		}
+		
+		var html = $(HTML[name]);
+		html
+			.css({"position" : "absolute", "top" : "100px", "left" : "100px"})
+			.draggable({"grid" : [10,10]});
+		$(".body").append(html);
+	}
+	
+	function updatePageList(pageEditor) {
+		var pageList = $(".pageListTool").empty();
+		for(var pageName in pageEditor) {
+			if(pageName == "currentPage")
+				continue;
+			console.log(pageEditor[pageName])
+			var option = $("<option>").append(pageName);
+			pageList.append(option);
+		}
+	}
+	function showAttributesDialog(element) {
+		$(".attributes-dialog")
+			.dialog("open")
+			.data("element", element);
+		$(".attributes-dialog").find(".name").val(element.attr("name"));
+		$(".attributes-dialog").find(".id").val(element.attr("id"));
+		$(".attributes-dialog").find(".class").val(element.attr("class"));
+		$(".attributes-dialog").find(".style").val(element.attr("style"));
+		$(".attributes-dialog").find(".value").val(element.attr("value"));
+		$(".attributes-dialog").find(".src").val(element.attr("src"));
+		$(".attributes-dialog").find(".href").val(element.attr("href"));
+	}
+	function setElementsAttributes() {
+		var element = $(".attributes-dialog")
+			.data("element");
+		$(".attributes-dialog").dialog("close");
+		var name = $(".attributes-dialog").find(".name").val();
+		var id = $(".attributes-dialog").find(".id").val();
+		var clazz = $(".attributes-dialog").find(".class").val();
+		var style = $(".attributes-dialog").find(".style").val();
+		var value = $(".attributes-dialog").find(".value").val();
+		var src = $(".attributes-dialog").find(".src").val();
+		var href = $(".attributes-dialog").find(".href").val();
+		element.attr("name", name);
+		element.attr("id", id);
+		element.attr("class", clazz);
+		element.attr("style", style);
+		element.attr("value", value);
+		element.attr("src", src);
+		element.attr("href", href);
+	}
+</script>
+<body>
+<section class="body">
+</section>
+<section class="toolbar">
+	<a href="#" class="pTool  tool" name="p">p</a> |
+	<a href="#" class="h1Tool tool" name="h1">h1</a> |
+	<a href="#" class="h2Tool tool" name="h2">h2</a> |
+	<a href="#" class="ulTool tool" name="ul">ul</a> |
+	<a href="#" class="olTool tool" name="ol">ol</a> |
+	<a href="#" class="divTool tool" name="div">div</a> |
+	<a href="#" class="editTool tool" name="edit">edit on</a> |
+	<input class="pageName" placeholder="Page Name"/>
+	<a href="#" class="saveTool tool" name="save">save</a> |
+	<select class="pageListTool tool">
+		<option>Page 1</option>
+	</select>
+	<a href="#" class="loadTool tool" name="load">load</a> |
+	<a href="#" class="clearTool tool" name="clear">clear</a> |
+	<a href="#" class="attributesTool tool" name="attributes-dialog">attributes on</a>
+	<div class="attributes-dialog" title="Attributes">
+		<div class="field">Name: <input class="name"/></div>
+		<div class="field">Id:   <input class="id"/></div>
+		<div class="field">Class:<input class="class"/></div>
+		<div class="field">Style:<input class="style"/></div>
+		<div class="field">Value:<input class="value"/></div>
+		<div class="field">Src:  <input class="src"/></div>
+		<div class="field">Href: <input class="href"/></div>
+		<button class="ok">Ok</button>
+		<button class="cancel">Cancel</button>
+	</div>
+</section>
+</body>
+</html>

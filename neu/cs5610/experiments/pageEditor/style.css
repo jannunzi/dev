@@ -1,0 +1,48 @@
+body {
+	padding:0px;
+}
+
+.body {
+	height:1000px;
+}
+
+.toolbar {
+	position : absolute;
+	bottom : 0px;
+}
+.attributes-dialog select,
+.attributes-dialog input,
+.attributes-dialog textarea {
+	left: 80px;
+	position: absolute;
+	right: 10px;
+}
+.attributes-dialog textarea {
+	height : 40px;
+}
+
+.attributes-dialog .field {
+	margin-bottom : 10px;
+}
+
+.height60 {
+	height: 60px;
+}
+
+.height40 {
+	height: 40px;
+}
+
+.content:hover,
+.icontent:hover {
+	box-shadow: 0px 0px 15px #888888;
+}
+
+.selected {
+	box-shadow: 0px 0px 15px #888888;
+}
+
+form.content {
+	min-height : 100px;
+	min-width : 100px;
+}

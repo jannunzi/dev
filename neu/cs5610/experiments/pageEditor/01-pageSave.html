@@ -1,0 +1,88 @@
+<!-- Copyright (C) 2013 Jose G. Annunziato - All Rights Reserved -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Editor</title>
+<style>
+	.toolbar {
+		position : absolute;
+		bottom : 0px;
+	}
+</style>
+</head>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script>
+	var editing = false;
+	$(function(){
+		$(".tool").click(controller);
+		var pageEditor = localStorage.getItem("pageEditor");
+		console.log(pageEditor);
+	});
+	var HTML = {
+		"p" : "<p contenteditable=\"true\" class=\"content\">Paragraph</p>",
+		"h1" : "<h1 contenteditable=\"true\" class=\"content\">Header</h1>",
+		"h2" : "<h2 contenteditable=\"true\" class=\"content\">Header</h2>",
+		"ul" : "<ul contenteditable=\"true\" class=\"content\"><li>Unordered List</li></ul>",
+		"ol" : "<ol contenteditable=\"true\" class=\"content\"><li>Ordered List</li></ol>",
+		"div" : "<div contenteditable=\"true\" class=\"content\">DIV</div>"
+	};
+	function controller(event) {
+		var link = $(event.currentTarget);
+		var name = link.attr("name");
+		
+		if(name == "edit") {
+			if(editing == true) {
+				$(".editTool").html("edit on");
+				$(".content").draggable({"grid" : [10,10]});
+				editing = false;
+			} else {
+				$(".editTool").html("edit off");
+				$(".content").draggable("destroy");
+				editing = true;
+			}
+			return;
+		} else if(name == "save") {
+			var pageName = $(".pageName").val();
+			if(pageName == null || pageName == "" || typeof pageName == "undefined")
+				pageName = $(".pageListTool").val();
+			if(pageName == null || pageName == "" || typeof pageName == "undefined")
+				return;
+			var content = $(".body").html();
+			var pageEditor = localStorage.getItem("pageEditor");
+			pageEditor = JSON.parse(pageEditor);
+			if(pageEditor == null)
+				pageEditor = {};
+			pageEditor.currentPage = pageName;
+			pageEditor[pageName] = content;
+			pageEditor = JSON.stringify(pageEditor);
+			console.log(pageEditor);
+			localStorage.setItem("pageEditor", pageEditor);
+		}
+		
+		var html = $(HTML[name]);
+		html
+			.css({"position" : "absolute", "top" : "100px", "left" : "100px"})
+			.draggable({"grid" : [10,10]});
+		$(".body").append(html);
+	}
+
+</script>
+<body>
+<section class="body">
+</section>
+<section class="toolbar">
+	<a href="#" class="pTool  tool" name="p">p</a> |
+	<a href="#" class="h1Tool tool" name="h1">h1</a> |
+	<a href="#" class="h2Tool tool" name="h2">h2</a> |
+	<a href="#" class="ulTool tool" name="ul">ul</a> |
+	<a href="#" class="olTool tool" name="ol">ol</a> |
+	<a href="#" class="divTool tool" name="div">div</a> |
+	<a href="#" class="editTool tool" name="edit">edit on</a> |
+	<input class="pageName" placeholder="Page Name"/>
+	<a href="#" class="saveTool tool" name="save">save</a> |
+	<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/pageEditor/01-pageSave.html">HTML Source</a> |
+</section>
+</body>
+</html>

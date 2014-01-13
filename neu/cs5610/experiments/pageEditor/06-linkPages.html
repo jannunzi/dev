@@ -1,0 +1,63 @@
+<!-- Copyright (C) 2013 Jose G. Annunziato - All Rights Reserved -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Editor</title>
+<link rel="stylesheet" href="../css/jquery-ui.css" type="text/css"/>
+<link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="pageEditor.js"></script>
+<body>
+<div class="body">
+</div>
+<div class="toolbar">
+	<a href="#" class="pTool  tool" name="p">p</a> |
+	<a href="#" class="h1Tool tool" name="h1">h1</a> |
+	<a href="#" class="h2Tool tool" name="h2">h2</a> |
+	<a href="#" class="ulTool tool" name="ul">ul</a> |
+	<a href="#" class="olTool tool" name="ol">ol</a> |
+	<a href="#" class="divTool tool" name="div">div</a> |
+	<a href="#" class="imgTool tool" name="img">img</a> |
+	<a href="#" class="formTool tool" name="form">form</a> |
+	<a href="#" class="inputTextTool tool" name="inputText">text</a> |
+	<a href="#" class="buttonTool tool" name="button">button</a> |
+	<a href="#" class="radioTool tool" name="radio">radio</a> |
+	<a href="#" class="checkTool tool" name="check">check</a> |
+	<a href="#" class="editTool tool" name="edit">edit on</a> |
+	<a href="#" class="deleteTool tool" name="delete">delete</a> |
+	<a href="#" class="copyTool tool" name="copy">copy</a> |
+	<input class="pageName" placeholder="Page Name"/>
+	<a href="#" class="saveTool tool" name="save">save</a> |
+	<select class="pageListTool tool">
+		<option>Page 1</option>
+	</select>
+	<a href="#" class="loadTool tool" name="load">load</a> |
+	<a href="#" class="clearTool tool" name="clear">clear</a> |
+	<a href="#" class="attributesTool tool" name="attributes-dialog">attributes</a> |
+	<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/pageEditor/06-linkPages.html">HTML Source</a> |
+	<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/pageEditor/pageEditor.js">Editor Source</a>
+	<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/pageEditor/pageRunner.js">Runner Source</a>
+	<div class="attributes-dialog" title="Attributes">
+		<div class="field">Name: <input class="name"/></div>
+		<div class="field">Id:   <input class="id"/></div>
+		<div class="field">Class:<input class="class"/></div>
+		<div class="field">Value:<input class="value"/></div>
+		<div class="field">Src:  <input class="src"/></div>
+		<div class="field">Href: <input class="href"/></div>
+		<div class="field height40">Style:<textarea class="style"></textarea></div>
+		<div class="field height40">Body:<textarea class="bodyField"></textarea></div>
+		<div class="field height40">Data:<textarea class="data"></textarea></div>
+		<div class="field height40">Goto:
+			<select class="pageListTool tool gotoPageOnClick">
+				<option>Page 1</option>
+			</select>
+		</div>
+		<button class="ok">Ok</button>
+		<button class="cancel">Cancel</button>
+	</div>
+</div>
+</body>
+</html>
