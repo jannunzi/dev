@@ -1,5 +1,10 @@
-﻿http://getbootstrap.com/     Get Bootstrap
+﻿00.aspx									Simple Bootstrap Template
+01.aspx									Sticky Header
+02.aspx									Navbar Links
+03.aspx									Collapsable Navbar Links
+04.aspx									Rows and Columns
+http://getbootstrap.com/				Get Bootstrap
 http://getbootstrap.com/css/#overview	Overview
 http://getbootstrap.com/css/#tables		Tables
-http://bootsnipp.com/?page=1
-http://bootswatch.com/
+http://bootswatch.com/					Bootswatch
+http://bootsnipp.com/					Bootsnipp
