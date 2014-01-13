@@ -16,6 +16,6 @@ public partial class _10_sayHelloCsharp : System.Web.UI.Page
     {
         VertexDAO dao = new VertexDAO();
         string message = messageTxt.Text;
-        outputTxt.Text = dao.sayHelloMessage(message);
+//        outputTxt.Text = dao.sayHelloMessage(message);
     }
 }

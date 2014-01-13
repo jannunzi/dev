@@ -13,6 +13,7 @@ public partial class _20_linq : System.Web.UI.Page
     }
     protected void getProducts_Click(object sender, EventArgs e)
     {
+        /*
         using (var db = new ProductsDataContext())
         {
             var products = db.Products.Take(100);
@@ -21,5 +22,6 @@ public partial class _20_linq : System.Web.UI.Page
                 resultTxt.Text += p.name + " $" + p.price + " " + p.description;
             }
         }
+         * */
     }
 }

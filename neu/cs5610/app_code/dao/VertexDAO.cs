@@ -10,6 +10,7 @@ namespace wam
 {
     public class VertexDAO
     {
+        /*
         VertexLinqDataContext db = new VertexLinqDataContext();
         public VertexDAO() {}
         public ArrayList selectAll()
@@ -111,5 +112,6 @@ namespace wam
 
             return result;
         }
+         */
     }
 }

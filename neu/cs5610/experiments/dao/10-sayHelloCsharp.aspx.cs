@@ -15,6 +15,6 @@ public partial class _10_sayHelloCsharp : System.Web.UI.Page
     protected void sayHello_Click(object sender, EventArgs e)
     {
         VertexDAO dao = new VertexDAO();
-        message.Text = dao.sayHello();
+//        message.Text = dao.sayHello();
     }
 }

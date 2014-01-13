@@ -10,11 +10,13 @@ public class ProductDAO
 {
 	public ProductDAO()
 	{
+        /*
         using (var db = new ProductsDataContext())
         {
             var products = db.Products.Take(100);
             foreach (var p in products)
                 Console.WriteLine(p.name);
         }
+         */
 	}
 }

@@ -26,12 +26,12 @@ public partial class _04_crud : System.Web.UI.Page
         string newW = widthTxt.Text;
         string newH = heightTxt.Text;
 
-        resultTxt.Text = dao.update(id, newName, newLabel, newX, newY, newH, newW);
+//        resultTxt.Text = dao.update(id, newName, newLabel, newX, newY, newH, newW);
     }
     protected void delete_Click(object sender, EventArgs e)
     {
         string id = idTxt.Text;
-        resultTxt.Text = dao.delete(id);
+//        resultTxt.Text = dao.delete(id);
     }
     protected void insert_Click(object sender, EventArgs e)
     {
@@ -42,18 +42,18 @@ public partial class _04_crud : System.Web.UI.Page
         string width = widthTxt.Text;
         string height = heightTxt.Text;
 
-        resultTxt.Text = dao.insert(name, label, x, y, width, height);
+//        resultTxt.Text = dao.insert(name, label, x, y, width, height);
     }
     protected void selectById_Click(object sender, EventArgs e)
     {
         int id = Convert.ToInt32(idTxt.Text);
-        wam.Vertex v = dao.selectById(id);
-        resultTxt.Text += v;
+//        wam.Vertex v = dao.selectById(id);
+  //      resultTxt.Text += v;
     }
 
     protected void selectAll_Click(object sender, EventArgs e)
     {
-        resultTxt.Text = dao.selectAllAsString();
+  //      resultTxt.Text = dao.selectAllAsString();
     }
 
 }
