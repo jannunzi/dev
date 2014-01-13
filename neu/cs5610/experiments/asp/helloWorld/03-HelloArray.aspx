@@ -4,10 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<title>00</title>
+<title>Hello Array</title>
 </head>
 <body>
     <h1>Hello Array</h1>
+
+    <p>
+        We can declare arrays in pages and then iterate over them
+    </p>
+
 <ol>
 <%
     string[] names = { "Name 1", "Name 2", "Name 3" };
@@ -17,8 +22,8 @@
 <%	}
 %>
 </ol>
-    <div>
-        <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/asp/helloWorld/03-HelloArray.aspx">Source</a><br/>
-    </div>
+
+    <h2>Source Code</h2>
+    <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/asp/helloWorld/03-HelloArray.aspx">Source</a><br/>
 </body>
 </html>

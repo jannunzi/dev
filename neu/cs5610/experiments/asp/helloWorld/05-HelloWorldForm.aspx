@@ -7,14 +7,21 @@
     <title></title>
 </head>
 <body>
-    <h1>Hello World Form</h1>
     <form id="form1" runat="server">
-    <div>
-    
-        Hello World !!!</div>
-    </form>
-    <div>
-        <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/asp/helloWorld/05-HelloWorldForm.aspx">Source</a><br/>
+    <div>    
+        
+        <h1>Hello World Form</h1>
+
+        <p>
+            By default ASPX Web pages declare a form to put form elements in.
+            The platform will keep track of the state of the form including
+            various bounded state values for each of the form's components.
+        </p>
+
+        <h2>Source Code</h2>
+        <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/asp/helloWorld/05-HelloWorldForm.aspx">Source</a>
+
     </div>
+    </form>
 </body>
 </html>

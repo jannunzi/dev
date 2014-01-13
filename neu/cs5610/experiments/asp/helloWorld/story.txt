@@ -5,9 +5,8 @@
 03-HelloArray.aspx				Hello Array
 04-HelloGoodByeFunction.aspx		Hello Goodbye
 05-HelloWorldForm.aspx			Hello Form
-06-HelloFromCS.aspx				Hello C#
-07-PageWithCode.aspx				Code in Page
-08-PageWithCodeFile.aspx			Code Behind
+07-PageWithCode.aspx				ASPX Labels, Buttons, and Button Event Handlers
+08-PageWithCodeFile.aspx			Handling Events in Code Behind
 09-SimpleForm.aspx				Simple Form
 10-IsPostBack.aspx				Is Post Back
 11-DataBinding.aspx				Data Binding

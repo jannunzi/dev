@@ -46,35 +46,35 @@
             </tbody>
         </table>
     
-    </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date Of Birth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <asp:Label ID="firstNameLabel" runat="server" Text="<%# firstNameInput.Text %>"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Label ID="lastNameLabel" runat="server" Text="<%# lastNameInput.Text %>"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Label ID="dobLabel" runat="server" Text="<%# dobInput.TodaysDate.ToString() %>"></asp:Label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table>
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date Of Birth</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <asp:Label ID="firstNameLabel" runat="server" Text="<%# firstNameInput.Text %>"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="lastNameLabel" runat="server" Text="<%# lastNameInput.Text %>"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="dobLabel" runat="server" Text="<%# dobInput.TodaysDate.ToString() %>"></asp:Label>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
 
     </form>
 
-        <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/asp/helloWorld/11-DataBinding.aspx">Page</a><br/>
-        <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/asp/helloWorld/11-DataBinding.aspx.cs">C#</a><br/>
+        <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/asp/helloWorld/11-DataBinding.aspx">Page</a><br/>
+        <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/asp/helloWorld/11-DataBinding.aspx.cs">C#</a><br/>
 
     </body>
 </html>

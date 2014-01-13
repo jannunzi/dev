@@ -10,7 +10,7 @@
     Hello World !!!
 
     <div>
-        <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/asp/helloWorld/00-Hello.aspx">Source</a><br/>
+        <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/asp/helloWorld/00-Hello.aspx">Source</a><br/>
     </div>
 </body>
 </html>

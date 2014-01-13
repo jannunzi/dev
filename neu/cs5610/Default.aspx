@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>CS5610 Web Development</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <style>
         div.main.container {
             margin-top : 55px;
@@ -106,6 +106,7 @@
                 <ul>
                     <li><a href="story/index.htm?../experiments/appstore/story.txt" target="_blank">App Store</a></li>
                     <li><a href="story/index.htm?../experiments/responsive/story.txt" target="_blank">Responsive Design</a></li>
+                    <li><a href="story/index.htm?../experiments/bootstrap/story.txt" target="_blank">Bootstrap</a></li>
                     <li><a href="story/index.htm?../experiments/asp/helloWorld/story.txt" target="_blank">ASP Hello World Web Pages</a></li>
                     <li><a href="story/index.htm?../experiments/asp/requestParameters/story.txt" target="_blank">ASP Parse Request Parameters</a></li>
                     <li><a href="story/index.htm?../experiments/asp/filesAndDirectories/story.txt" target="_blank">ASP Files and Directories</a></li>

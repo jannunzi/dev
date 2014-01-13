@@ -13,11 +13,11 @@
         <h1>
         <%= hello %>
         </h1>
+        <div>
+            <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/asp/helloWorld/06-HelloFromCS.aspx">Page</a><br/>
+            <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/asp/helloWorld/06-HelloFromCS.aspx.cs">C#</a><br/>
+        </div>
     </div>
     </form>
-    <div>
-        <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/asp/helloWorld/06-HelloFromCS.aspx">Page</a><br/>
-        <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/asp/helloWorld/06-HelloFromCS.aspx.cs">C#</a><br/>
-    </div>
 </body>
 </html>

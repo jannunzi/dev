@@ -46,34 +46,33 @@
             </tbody>
         </table>
     
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date Of Birth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <asp:Label ID="firstNameLabel" runat="server"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Label ID="lastNameLabel" runat="server"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Label ID="dobLabel" runat="server"></asp:Label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date Of Birth</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <asp:Label ID="firstNameLabel" runat="server"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="lastNameLabel" runat="server"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="dobLabel" runat="server"></asp:Label>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
     </form>
 
-        <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/asp/helloWorld/10-IsPostBack.aspx">Page</a><br/>
-        <a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/asp/helloWorld/10-IsPostBack.aspx.cs">C#</a><br/>
+        <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/asp/helloWorld/10-IsPostBack.aspx">Page</a><br/>
+        <a target="_blank" href="../../../fileview/Default.aspx?~/experiments/asp/helloWorld/10-IsPostBack.aspx.cs">C#</a><br/>
     </body>
 </html>
