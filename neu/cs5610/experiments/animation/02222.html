@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+    <style>
+    		.redBox {
+    			background-color : red;
+    			top : 100px;
+    			left : 100px;
+    		}
+    		.blueBox {
+    			background-color : blue;
+    			top : 200px;
+    			left : 200px;
+    		}
+    		.box {
+    			width : 100px;
+    			height : 100px;
+    			position : absolute;
+    		}
+    </style>
+  </head>
+  <body>
+	<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/animation/01.html">HTML Source</a>
+	<div class="box redBox">
+		Red Box
+	</div>
+	<div class="box blueBox">
+		Blue Box
+	</div>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script>
+    		$(init);
+    		
+    		var scriptIndex = 0;
+    		function init(){
+    			tick(null);
+    		}
+    		
+    		var scripts = {
+    			//*
+    			".redBox" : {
+    				"script" : [
+		    			{"properties":{"left":100, "top":100}, "duration" : 0},
+		    			{"properties":{"left":100, "top":100}, "duration" : 1000},
+		    			{"properties":{"left":200, "top":100}, "duration" : 2000},
+		    			{"properties":{"left":200, "top":200}, "duration" : 2000},
+		    			{"properties":{"left":100, "top":200}, "duration" : 2000},
+		    			{"properties":{"left":100, "top":100}, "duration" : 2000}
+    				],
+    				"index" : 0
+    			},
+    			//*/
+  //  			/*
+    			".blueBox" : {
+    				"script" : [
+		    			{"properties":{"left":300, "top":0},   "duration" : 0},
+		    			{"properties":{"left":400, "top":0},   "duration" : 2000},
+		    			{"properties":{"left":400, "top":100}, "duration" : 2000},
+		    			{"properties":{"left":300, "top":100}, "duration" : 2000},
+		    			{"properties":{"left":300, "top":0},   "duration" : 2000}
+    				],
+    				"index" : 0
+    			}
+//    			*/
+    		};
+
+		function animate(objectName, properties, duration) {
+    			$(objectName).animate(
+	    			properties, {"duration" : duration, "queue" : false}
+//	    			{"duration" : duration, "queue" : false, "complete" : function() { tick(objectName); }}
+	    		);
+	    		setTimeout(function() { tick(objectName); }, duration);
+		}
+		
+		function done(who) {
+			console.log("done: " + who);
+		}
+		
+    		function tick(who) {
+    			
+    			if(who == null) {
+    				console.log("ewq");
+    				for(objectName in scripts) {
+    					var object = scripts[objectName];
+    					var index = object.index;
+    					var script = object.script;
+    					var properties = script[index].properties;
+    					var duration = script[index].duration;
+    					animate(objectName, properties, duration);
+//    					object.index++;
+    				}
+				return;
+    			}
+    			console.log("===================================");
+			var object = scripts[who];
+			var index = object.index;
+			object.index++;
+			var script = object.script;
+			if(index >= script.length)
+				return;
+			var properties = script[index].properties;
+			var duration = script[index].duration;
+    			
+    			console.log(["who", who, "index", index, "script", script, "properties", properties])
+    			
+			animate(objectName, properties, duration);
+   		}
+    </script>
+  </body>
+</html>

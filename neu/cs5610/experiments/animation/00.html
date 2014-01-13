@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+    <style>
+    		.redBox {
+    			background-color : red;
+    			width : 100px;
+    			height : 100px;
+    			position : absolute;
+    			top : 100px;
+    			left : 100px;
+    		}
+    </style>
+  </head>
+  <body>
+	<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/animation/00.html">HTML Source</a>
+	<div class="redBox">
+		Red Box
+	</div>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script>
+    		$(init);
+    		
+    		function init(){
+    			var box = $(".redBox");
+    			box.animate(
+	    			{	// these are the properties that will be animated and their end value
+	    				"left" : 600,
+	    				"backgroundColor" : "blue",
+	    				"height" : 400
+	    			},
+	    			5000,	// this is the duration of the animation
+	    			done		// this function will be called when animation is over
+	    		);
+    		}
+
+    		function done() {
+    			alert("Done");
+    		}
+    </script>
+  </body>
+</html>

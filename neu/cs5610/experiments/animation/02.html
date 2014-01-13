@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+    <style>
+    		.redBox {
+    			background-color : red;
+    			top : 100px;
+    			left : 100px;
+    		}
+    		.box {
+    			width : 100px;
+    			height : 100px;
+    			position : absolute;
+    		}
+    </style>
+  </head>
+  <body>
+	<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/animation/02.html">HTML Source</a>
+	<div class="box redBox">
+		Red Box
+	</div>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script>
+    		$(init);
+    		
+    		var scriptIndex = 0;
+    		function init(){
+    			tick();
+    		}
+    		
+    		var script = [
+    			{"object":".redBox", "properties":{"left":50, "top":50,  "width" : 100}, "duration" : 0},
+    			{"object":".redBox", "properties":{"left":50, "top":50,  "width" : 400}, "duration" : 1000},
+    			{"object":".redBox", "properties":{"left":400, "top":50, "width" : 100, "background-color":"blue", "color":"white"}, "duration" : 1000},
+    			{"object":".redBox", "properties":{"left":400, "top":50, "height": 400,"background-color":"blue", "color":"black"}, "duration" : 1000},
+    			{"object":".redBox", "properties":{"left":400, "top":400,"height": 100,"background-color":"yellow", "color":"black"}, "duration" : 1000},
+    			{"object":".redBox", "properties":{"left":50, "top":400, "width":  400,"background-color":"yellow", "color":"black"}, "duration" : 1000},
+    			{"object":".redBox", "properties":{"left":50, "top":400, "width":  100,"background-color":"green", "color":"white"}, "duration" : 1000},
+    			{"object":".redBox", "properties":{"left":50, "top":50,  "height": 400,"background-color":"green", "color":"black"}, "duration" : 1000},
+    			{"object":".redBox", "properties":{"left":50, "top":50,  "height": 100,"background-color":"red", "color":"black"}, "duration" : 1000}
+    		];
+
+    		function tick() {
+    			if(scriptIndex >= script.length)
+    				return;
+    			var object     = $(script[scriptIndex].object);
+    			var properties = script[scriptIndex].properties;
+    			var duration   = script[scriptIndex].duration;
+    			scriptIndex++;
+    			object.animate(
+	    			properties,
+	    			duration,	// this is the duration of the animation
+	    			tick			// this function will be called when animation is over
+	    		);
+    		}
+    </script>
+  </body>
+</html>
