@@ -1,0 +1,11 @@
+/*
+ * SASS Mixin Arguments
+ */
+
+/* import partial with mixin */
+@import "rounded";
+
+/* include using mixing declared in imported partial */
+#navbar li { @include rounded(top, left);      }
+#footer    { @include rounded(top, left, 5px); }
+#sidebar   { @include rounded(top, left, 8px); }

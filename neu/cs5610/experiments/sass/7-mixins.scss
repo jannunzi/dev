@@ -1,0 +1,20 @@
+/*
+ * SASS Mixins Experiment
+ */
+
+/* mixin */
+@mixin rounded-top-left {
+  /* variables */
+  $vert: top;
+  $horz: left;
+  $radius: 10px;
+
+  /* interpolations */
+  border-#{$vert}-#{$horz}-radius: $radius;
+  -moz-border-radius-#{$vert}#{$horz}: $radius;
+  -webkit-border-#{$vert}-#{$horz}-radius: $radius;
+}
+
+/* include */
+#navbar li { @include rounded-top-left; }
+#footer { @include rounded-top-left; }

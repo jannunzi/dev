@@ -1,0 +1,30 @@
+/*
+ * SASS Operations and Functions Experiment
+ */
+
+#navbar {
+  /* variables */
+  $navbar-width: 800px;
+  $items: 5;
+  $navbar-color: #ce4dd6;
+
+  width: $navbar-width;
+  border-bottom: 2px solid $navbar-color;
+
+  li {
+    float: left;
+    
+    /* arithmetic operations */
+    width: $navbar-width/$items - 10px;
+
+    /* lighten() function */
+    background-color:
+      lighten($navbar-color, 20%);
+      
+    /* parent reference */
+    &:hover {
+      background-color:
+        lighten($navbar-color, 10%);
+    }
+  }
+}
