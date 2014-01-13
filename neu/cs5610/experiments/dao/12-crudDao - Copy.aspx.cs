@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+
 using wam;
 
 public partial class _04_crud : System.Web.UI.Page
@@ -25,9 +26,6 @@ public partial class _04_crud : System.Web.UI.Page
         string newW = widthTxt.Text;
         string newH = heightTxt.Text;
 
-//      Vertex newVertex = new Vertex(idInt, newName, newLabel, newXint, newYint, newWint, newHint);
-
-//      resultTxt.Text = dao.update(vertex);
         resultTxt.Text = dao.update(id, newName, newLabel, newX, newY, newH, newW);
     }
     protected void delete_Click(object sender, EventArgs e)
