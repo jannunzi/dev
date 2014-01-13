@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ashish</title>
+        <script src="../js/jquery.js"></script>
+        <script src="pure.js"></script>
+        <style>
+        	table {
+        		display : none;
+        	}
+        </style>
+        <script>
+
+			var directive = {
+			    'li.entry': {
+			        'obj<-auditLog': { // "for obj in auditLog"
+			        	'span.userName' : 'obj.userName',
+			        	'span.createDate' : function(){ return new Date(this.createDate);},
+			        	'span.note' : 'obj.note',
+			        	'table tbody tr' : {
+			        		'e<-obj.auditData' : {
+			        			'td.tab' : 'e.tab',
+			        			'td.reference' : 'e.reference',
+			        			'td.field' : 'e.fieldName',
+			        			'td.pre' : 'e.pre',
+			        			'td.post' : 'e.post'
+			        		}
+			        	}
+			        }
+			    }
+			};
+
+			$(function(){
+				$("#reload").click(function(){
+					window.location.reload();
+				});
+
+				renderAuditLog();
+			});
+			function renderAuditLog() {
+				var request = getUrlVars();
+				var auditid = request["applicationId"];
+				getAuditLog(auditid, function(log){
+					$('ul.log').render({'auditLog' : log}, directive);
+					$("#busy").hide();
+					$('table').each(function(){
+						var table = $(this);
+						if(table.find("tbody tr").length > 0)
+							table.show();
+					});
+				});
+			}
+			function getAuditLog(id, callback) {
+				var url = "../jersey/changelogger/wflog?applicationId="+id;
+				$.ajax({
+					"url" : url,
+					"success" : function(auditLog) {
+						for(var i=0; i<auditLog.length; i++) {
+							var log = auditLog[i];
+//							log.auditData = auditData;
+							var flatAuditData = flattenAuditData(log.auditData);
+							log.auditData = flatAuditData;
+//							auditLog.auditData = flattenAuditData(auditLog.auditData);
+						}
+						callback(auditLog);
+						console.log(auditLog);
+					}
+				});
+			}
+			function flattenAuditData(auditData) {
+				var flat = [];
+				var auditEntry = auditData.auditEntry;
+				for(var i=0; i<auditEntry.length; i++) {
+					var entry = auditEntry[i];
+					var tab = entry.objectName;
+					console.log(tab);
+					var reference = entry.objectDisplayName;
+					if(entry.auditEntry == null || entry.auditEntry.length == 0) {
+						inner:
+						for(var j=0; j<entry.auditField.length; j++) {
+							var fieldName = entry.auditField[j].displayName;
+							var pre = null, post = null;
+							if(entry.auditField[j].diffValue != null) {
+								pre  = entry.auditField[j].diffValue.oldValue;
+								post = entry.auditField[j].diffValue.newValue;
+							}
+							else{
+								continue inner;
+							}
+							if(pre == null) pre = "NULL";
+							if(post == null) post = "NULL";
+							flat.push({	tab:tab,
+										reference:reference,
+										fieldName:fieldName,
+										pre:pre,
+										post:post});
+						}
+					} else {
+						var tab = entry.objectName;
+	                    console.log(tab);
+						var auditEntry2 = entry.auditEntry;
+						for(var k=0; k<auditEntry2.length; k++) {
+							var entry = auditEntry2[k];
+							var reference = entry.objectDisplayName;
+							inner2:
+							for(var m=0; m<entry.auditField.length; m++) {
+								var fieldName = entry.auditField[m].displayName;
+								var pre = null, post = null;
+								if(entry.auditField[m].diffValue != null) {
+									pre  = entry.auditField[m].diffValue.oldValue;
+									post = entry.auditField[m].diffValue.newValue;
+								}
+								else{
+									continue inner2;
+								}
+								if(pre == null) pre = "NULL";
+								if(post == null) post = "NULL";
+								flat.push({	tab:tab,
+											reference:reference,
+											fieldName:fieldName,
+											pre:pre,
+											post:post});
+							}
+						}
+					}
+					/*
+					else {
+						for(var f=0; f<entry.auditEntry.length; f++) {
+							var tab1 = entry.auditEntry[f]
+							var reference1 = entry.audit
+						}
+					}
+					*/
+				}
+				return flat;
+			}
+			
+			function getUrlVars()
+			{
+			    var vars = [], hash;
+			    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			    for(var i = 0; i < hashes.length; i++)
+			    {
+			        hash = hashes[i].split('=');
+			        vars.push(hash[0]);
+			        vars[hash[0]] = hash[1];
+			    }
+			    return vars;
+			}
+        </script>
+	</head>
+	<body>
+		<button id="reload">Reload</button>
+        <img src="../images/LoadingIcon.gif" id="busy"/>
+		<ul class="log">
+			<li class="entry">
+				<ul>
+					<li>Entered: <span class="createDate">02/07/2013 04:37</span></li>
+					<li>By: <span class="userName">jonathan.igoe</span></li>
+					<li>Note: <span class="note">Tower/Ground Revision</span></li>
+				</ul>
+				<table border="1">
+					<thead>
+						<tr>
+							<th>Tab</th>
+							<th>Reference</th>
+							<th>Field</th>
+							<th>Pre</th>
+							<th>Post</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tab">Contacts</td>
+							<td class="reference">Primary</td>
+							<td class="field">Field</td>
+							<td class="pre">Pre</td>
+							<td class="post">Post</td>
+						</tr>
+					</tbody>
+				</table>
+			</li>
+		</ul>
+	</body>
+</html>
