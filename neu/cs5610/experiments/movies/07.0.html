@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css"/>
+		<script src="../js/jquery.js"></script>
+		<style>
+			form { float : left; width:350px; }
+			.response { width:600px; height:200px;}
+			input { position:absolute; left:200px; width:100px;}
+			.ui { float : left;}
+			.float { float: left; }
+			.instance { border-bottom : 1px solid black; }
+			.instance:nth-child(odd)  { background-color : lightgray; }
+			.instance:nth-child(even) { background-color : beige; }
+		</style>
+	</head>
+	<body>
+		<section>
+			<article>
+				<header><h2>Images and Links</h2></header>
+			</article>
+			<ol>
+				<li>	This example illustrates how to fetch the data using jQuery's AJAX function</li>
+				<li>Added paratemetized JSON query</li>
+				<li>Connected to form</li>
+				<li>Rendered an instance to the UI</li>
+				<li>Rendered an array property</li>
+				<li>Rendered a result set</li>
+				<li>Added images and links</li>
+			</ol>
+			<ul class="result-set">
+				<ul class="instance">
+					<li><h2 class="title">Title</h2></li>
+					<!-- new { -->
+					<li class="poster"><img class="imdb"/></li>
+					<li class="url"><a class="imdb_url" target="_blank">IMDB</a></li>
+					<li class="imdb_id">1234</li>
+					<!-- } new -->
+					<li class="rated">Rating</li>
+					<li class="rating">0.0</li>
+					<li class="year">0000</li>
+					<li class="filming_location">Location</li>
+					<li class="plot_simple">There and back again</li>
+					<li>	Actors:
+						<ul class="actors">
+							<li class="actor">Actor Name</li>
+							<li class="actor">Actor Name</li>
+						</ul>
+					</li>
+					<li>	Genres:
+						<ul class="genres">
+							<li class="genre">Genre</li>
+							<li class="genre">Genre</li>
+						</ul>
+					</li>
+				</ul>
+			</ul>
+			<form action="http://mymovieapi.com/">
+				Title: <input name="title" value="Star Wars"><br/>
+				Type: <input name="type" value="json"/>(json|jsonp|xml)<br/>
+				Plot: <input name="plot" value="simple"/>(none|simple|full)<br/>
+				episode: <input name="episode" value="1"/><br/>
+				Number of records: <input name="limit" value="3"/>(1-10)<br/>
+				Disable Year: <input name="yg" value="0"/>(1|0)<br/>
+				Rating: <input name="mt" value="none"/><br/>
+				Language: <input name="lang" value="en-US"/><br/>
+				Offset: <input name="offset" value=""/> for paging (#)<br/>
+				AKA: <input name="aka" value="simple"/> (Also Known As)<br/>
+				Release date type: <input name="release" value="simple"/> (simple|full)<br/>
+				Include business field: <input name="business" value="0"/> (1|0)<br/>
+				Include technical field: <input name="tech" value="0"/> (1|0)<br/>
+				<button class="go">Go</button>
+			</form>
+			<textarea class="response">&nbsp;</textarea>
+		</section>
+		<script>
+		
+			$(".go").click(fetchData);
+			
+			function fetchData(event) {
+				event.preventDefault();
+				var parameters = {
+					"title"		: $("input[name=title]").val(),
+					"type"		: $("input[name=type]").val(),
+					"plot"		: $("input[name=plot]").val(),
+					"episode"	: $("input[name=episode]").val(),
+					"limit" 		: $("input[name=limit]").val(),
+					"yg" 		: $("input[name=yg]").val(),
+					"mt" 		: $("input[name=mt]").val(),
+					"lang" 		: $("input[name=lang]").val(),
+					"offset" 	: $("input[name=offset]").val(),
+					"aka" 		: $("input[name=aka]").val(),
+					"release" 	: $("input[name=release]").val(),
+					"business" 	: $("input[name=business]").val(),
+					"tech" 		: $("input[name=tech]").val(),
+				}
+				$.ajax({
+					"url" : "http://mymovieapi.com",
+					"data" : parameters,
+					"success" : function(response) {
+						$(".response").val(response);
+						var json = JSON.parse(response);
+						console.log(response);
+						console.log(json);
+						renderUi(json);
+					}
+				})
+			}
+			
+			function renderUi(json) {
+				var resultSet = $(".result-set");
+				var instanceTemplate = $(".result-set .instance:first").clone();
+				var actorTemplate = $(".actors .actor:first").clone();
+				var genreTemplate = $(".genres .genre:first").clone();
+				resultSet.empty();
+				for(var i=0; i<json.length; i++) {
+					var instance = json[i];
+					var instanceDom = instanceTemplate.clone();
+					instanceDom.find(".title").html(instance.title);
+					instanceDom.find(".poster .imdb").attr("src",instance.poster.imdb);
+					instanceDom.find(".imdb_url").attr("href",instance.imdb_url);
+					instanceDom.find(".imdb_id").html(instance.imdb_id);
+					instanceDom.find(".rated").html(instance.rated);
+					instanceDom.find(".rating").html(instance.rating);
+					instanceDom.find(".year").html(instance.year);
+					instanceDom.find(".filming_location").html(instance.filming_location);
+					instanceDom.find(".plot_simple").html(instance.plot_simple);
+					var actors = instanceDom.find(".actors").empty();
+					for(var a=0; a<instance.actors.length; a++) {
+						var actorName = instance.actors[a];
+						console.log(actorName);
+						var actor = actorTemplate.clone();
+						actor.html(actorName);
+						actors.append(actor);
+					}
+					
+					var genres = instanceDom.find(".genres").empty();
+					for(var g=0; g<instance.genres.length; g++) {
+						var genreName = instance.genres[g];
+						console.log(genreName);
+						var genre = genreTemplate.clone();
+						genre.html(genreName);
+						genres.append(genre);
+					}
+					resultSet.append(instanceDom);
+				}
+			}
+		</script>
+	</body>
+</html>

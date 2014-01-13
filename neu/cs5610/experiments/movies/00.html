@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css"/>
+	</head>
+	<body>
+		<section>
+			<article>
+				<header><h2>RESTful Link and Form</h2></header>
+			</article>
+			<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/movies/00.html">Source</a>
+			<p>Here's an example API that can retrieve data from IMDB. The API can be found at <a href="http://mymovieapi.com/">http://mymovieapi.com/</a></p>
+			<p>Here's an example URL that queries about Star Wars</p>
+			<a href="http://mymovieapi.com/?title=Star+Wars&type=json&plot=simple&episode=1&limit=1&yg=0&mt=none&lang=en-US&offset=&aka=simple&release=simple&business=0&tech=0">Star Wars</a>
+		</section>
+		<form action="http://mymovieapi.com/">
+			Title: <input name="title" value="Star Wars"><br/>
+			Type: <input name="type" value="json"/>(json|jsonp|xml)<br/>
+			Plot: <input name="plot" value="simple"/>(none|simple|full)<br/>
+			episode: <input name="episode" value="1"/><br/>
+			Number of records: <input name="limit" value="1"/>(1-10)<br/>
+			Disable Year: <input name="yg" value="0"/>(1|0)<br/>
+			Rating: <input name="mt" value="none"/><br/>
+			Language: <input name="lang" value="en-US"/><br/>
+			Offset: <input name="offset" value=""/> for paging (#)<br/>
+			AKA: <input name="aka" value="simple"/> (Also Known As)<br/>
+			Release date type: <input name="release" value="simple"/> (simple|full)<br/>
+			Include business field: <input name="business" value="0"/> (1|0)<br/>
+			Include technical field: <input name="tech" value="0"/> (1|0)<br/>
+			<button class="go">Go</button>
+		</form>
+	</body>
+</html>

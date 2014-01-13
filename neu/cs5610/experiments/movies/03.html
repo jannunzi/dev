@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css"/>
+		<script src="../js/jquery.js"></script>
+		<style>
+			form { float : left; width:430px; }
+			.response { width:600px; height:200px; float : left}
+			input { position:absolute; left:200px;}
+		</style>
+	</head>
+	<body>
+		<section>
+			<article>
+				<header><h2>Connecting Form with jQuery</h2></header>
+			</article>
+			<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/movies/03.html">Source</a>
+			<ol>
+				<li>	This example illustrates how to fetch the data using jQuery's AJAX function</li>
+				<li>Added paratemetized JSON query</li>
+				<li>Connected to form</li>
+			</ol>
+			<form action="http://mymovieapi.com/">
+				Title: <input name="title" value="Star Wars"><br/>
+				Type: <input name="type" value="json"/>(json|jsonp|xml)<br/>
+				Plot: <input name="plot" value="simple"/>(none|simple|full)<br/>
+				episode: <input name="episode" value="1"/><br/>
+				Number of records: <input name="limit" value="1"/>(1-10)<br/>
+				Disable Year: <input name="yg" value="0"/>(1|0)<br/>
+				Rating: <input name="mt" value="none"/><br/>
+				Language: <input name="lang" value="en-US"/><br/>
+				Offset: <input name="offset" value=""/> for paging (#)<br/>
+				AKA: <input name="aka" value="simple"/> (Also Known As)<br/>
+				Release date type: <input name="release" value="simple"/> (simple|full)<br/>
+				Include business field: <input name="business" value="0"/> (1|0)<br/>
+				Include technical field: <input name="tech" value="0"/> (1|0)<br/>
+				<button class="go">Go</button>
+			</form>
+			<textarea class="response">&nbsp;</textarea>
+		</section>
+		<script>
+			$(".go").click(fetchData);
+			
+			function fetchData(event) {
+				event.preventDefault();
+				// changed {
+				var parameters = {
+					"title"		: $("input[name=title]").val(),
+					"type"		: $("input[name=type]").val(),
+					"plot"		: $("input[name=plot]").val(),
+					"episode"	: $("input[name=episode]").val(),
+					"limit" 		: $("input[name=limit]").val(),
+					"yg" 		: $("input[name=yg]").val(),
+					"mt" 		: $("input[name=mt]").val(),
+					"lang" 		: $("input[name=lang]").val(),
+					"offset" 	: $("input[name=offset]").val(),
+					"aka" 		: $("input[name=aka]").val(),
+					"release" 	: $("input[name=release]").val(),
+					"business" 	: $("input[name=business]").val(),
+					"tech" 		: $("input[name=tech]").val(),
+				}
+				// } changed
+				$.ajax({
+					"url" : "http://mymovieapi.com",
+					"data" : parameters,
+					"success" : function(response) {
+						$(".response").val(response);
+						var json = JSON.parse(response);
+						console.log(response);
+						console.log(json);
+					}
+				})
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css"/>
+		<script src="../js/jquery.js"></script>
+		<style>
+			.response { width:600px; height:200px;}
+			input { position:absolute; left:200px; width:100px;}
+			.float { float: left; }
+			.instance { border-bottom : 1px solid black; }
+			.instance:nth-child(odd)  { background-color : lightgray; }
+			.instance:nth-child(even) { background-color : beige; }
+		</style>
+	</head>
+	<body>
+		<section>
+			<article>
+				<header><h2>Layout</h2></header>
+			</article>
+			<a href="http://net4.ccs.neu.edu/home/jga/fileview/Default.aspx?~/experiments/movies/09.html">Source</a>
+			<ol>
+				<li>	This example illustrates how to fetch the data using jQuery's AJAX function</li>
+				<li>Added paratemetized JSON query</li>
+				<li>Connected to form</li>
+				<li>Rendered an instance to the UI</li>
+				<li>Rendered an array property</li>
+				<li>Rendered a result set</li>
+				<li>Added images and links</li>
+				<li>Offline</li>
+				<li>Layout</li>
+			</ol>
+			<ul class="result-set">
+				<!-- new { -->
+				<li class="instance">
+					<div>
+						<h2 class="title">Title</h2>
+						<div class="poster" style="float:left"><img style="width:120px" class="imdb"/></div>
+						<div style="float:left;width:400px">
+							<h3 class="title">&nsbp;</h3>
+							<span class="rated">Rating</span><br/>
+							<span class="rating">0.0</span>/10<br/>
+							<span class="url"><a class="imdb_url" target="_blank"><span class="imdb_id">1234</span></a></span><br/>
+							
+							<span class="year">0000</span>
+							<span class="filming_location">Location</span>
+						</div>
+						<div style="clear:both"></div>
+						<h3>Plot Summary</h3>
+						<p class="plot_simple">There and back again</p>
+						<div style="float:left">
+							<h3>	Actors</h3>
+							<ul class="actors">
+								<li class="actor">Actor Name</li>
+								<li class="actor">Actor Name</li>
+							</ul>
+						</div>
+						<div style="float:left">
+							<h3>	Writers</h3>
+							<ul class="writers">
+								<li class="writer">Writer 1</li>
+								<li class="writer">Writer 2</li>
+							</ul>
+							<h3>	Genres</h3>
+							<ul class="genres">
+								<li class="genre">Genre</li>
+								<li class="genre">Genre</li>
+							</ul>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+				</li>
+				<!-- } new -->
+			</ul>
+			<div class="form">
+				Title: <input name="title" value="Star Wars"><br/>
+				Type: <input name="type" value="json"/>(json|jsonp|xml)<br/>
+				Plot: <input name="plot" value="simple"/>(none|simple|full)<br/>
+				episode: <input name="episode" value="1"/><br/>
+				Number of records: <input name="limit" value="3"/>(1-10)<br/>
+				Disable Year: <input name="yg" value="0"/>(1|0)<br/>
+				Rating: <input name="mt" value="none"/><br/>
+				Language: <input name="lang" value="en-US"/><br/>
+				Offset: <input name="offset" value=""/> for paging (#)<br/>
+				AKA: <input name="aka" value="simple"/> (Also Known As)<br/>
+				Release date type: <input name="release" value="simple"/> (simple|full)<br/>
+				Include business field: <input name="business" value="0"/> (1|0)<br/>
+				Include technical field: <input name="tech" value="0"/> (1|0)<br/>
+				<button class="go">Go</button>
+			</div>
+			<textarea class="response">&nbsp;</textarea>
+		</section>
+		<script>
+		
+			var JSONSTR = '[{"rating_count": 342254, "genres": ["Action", "Adventure", "Sci-Fi"], "rated": "PG-13", "language": ["English"], "rating": 8.0, "country": ["USA", "Germany"], "release_date": 20090515, "title": "Star Trek", "year": 2009, "filming_locations": "Bakersfield, California, USA", "imdb_id": "tt0796366", "directors": ["J.J. Abrams"], "writers": ["Roberto Orci", "Alex Kurtzman"], "actors": ["Chris Pine", "Zachary Quinto", "Leonard Nimoy", "Eric Bana", "Bruce Greenwood", "Karl Urban", "Zoe Saldana", "Simon Pegg", "John Cho", "Anton Yelchin", "Ben Cross", "Winona Ryder", "Chris Hemsworth", "Jennifer Morrison", "Rachel Nichols"], "plot_simple": "The brash James T. Kirk tries to live up to his fathers legacy with Mr. Spock keeping him in check as a vengeful, time-traveling Romulan creates black holes to destroy the Federation one planet at a time.", "poster": {"imdb": "http://ia.media-imdb.com/images/M/MV5BMjE5NDQ5OTE4Ml5BMl5BanBnXkFtZTcwOTE3NDIzMw@@._V1_SX214_.jpg", "cover": "http://imdb-poster.b0.upaiyun.com/000/796/366.jpg!cover?_upt=588424361380276184"}, "runtime": ["127 min"], "type": "M", "imdb_url": "http://www.imdb.com/title/tt0796366/", "also_known_as": ["Xingji mihang"]}, {"rating_count": 151504, "genres": ["Action", "Adventure", "Sci-Fi"], "language": ["English", "Klingon"], "rating": 8.1, "country": ["USA"], "release_date": 20130516, "title": "Star Trek Into Darkness", "year": 2013, "filming_locations": "Lawrence Livermore National Laboratory - 7000 East Avenue, Livermore, California, USA", "imdb_id": "tt1408101", "directors": ["J.J. Abrams"], "writers": ["Roberto Orci", "Alex Kurtzman"], "actors": ["Chris Pine", "Zachary Quinto", "Zoe Saldana", "Karl Urban", "Simon Pegg", "John Cho", "Benedict Cumberbatch", "Anton Yelchin", "Bruce Greenwood", "Peter Weller", "Alice Eve", "Noel Clarke", "Nazneen Contractor", "Amanda Foreman", "Jay Scully"], "plot_simple": "After the crew of the Enterprise find an unstoppable force of terror from within their own organization, Captain Kirk leads a manhunt to a war-zone world to capture a one man weapon of mass destruction.", "poster": {"imdb": "http://ia.media-imdb.com/images/M/MV5BMTk2NzczOTgxNF5BMl5BanBnXkFtZTcwODQ5ODczOQ@@._V1_SX214_.jpg", "cover": "http://imdb-poster.b0.upaiyun.com/001/408/101.jpg!cover?_upt=8f60a5121380276184"}, "runtime": ["132 min"], "type": "M", "imdb_url": "http://www.imdb.com/title/tt1408101/", "also_known_as": ["Star Trek: Vers les t\u00e9n\u00e8bres"]}, {"rating_count": 74683, "genres": ["Action", "Adventure", "Sci-Fi", "Thriller"], "rated": "PG-13", "language": ["English"], "rating": 7.5, "country": ["USA"], "release_date": 19970206, "title": "Star Trek: First Contact", "year": 1996, "filming_locations": "Angeles National Forest, California, USA", "imdb_id": "tt0117731", "directors": ["Jonathan Frakes"], "writers": ["Gene Roddenberry", "Rick Berman"], "actors": ["Patrick Stewart", "Jonathan Frakes", "Brent Spiner", "LeVar Burton", "Michael Dorn", "Gates McFadden", "Marina Sirtis", "Alfre Woodard", "James Cromwell", "Alice Krige", "Michael Horton", "Neal McDonough", "Marnie McPhail", "Robert Picardo", "Dwight Schultz"], "plot_simple": "Captain Picard and his crew pursue the Borg back in time to stop them from preventing Earth from initiating first contact with alien life.", "poster": {"imdb": "http://ia.media-imdb.com/images/M/MV5BNTc1NjMzODU1MF5BMl5BanBnXkFtZTYwMjAwNjk4._V1_SY317_CR5,0,214,317_.jpg", "cover": "http://imdb-poster.b0.upaiyun.com/000/117/731.jpg!cover?_upt=2e9895fa1380276184"}, "runtime": ["111 min"], "type": "M", "imdb_url": "http://www.imdb.com/title/tt0117731/", "also_known_as": ["Star Trek: Primer contacto"]}, {"rating_count": 43049, "genres": ["Adventure", "Comedy", "Sci-Fi"], "language": ["English", "Finnish"], "rating": 7.2, "country": ["USA"], "release_date": 19861126, "title": "Star Trek IV: The Voyage Home", "year": 1986, "filming_locations": "Santa Clarita, California, USA", "imdb_id": "tt0092007", "directors": ["Leonard Nimoy"], "writers": ["Gene Roddenberry", "Leonard Nimoy"], "actors": ["William Shatner", "Leonard Nimoy", "DeForest Kelley", "James Doohan", "George Takei", "Walter Koenig", "Nichelle Nichols", "Jane Wyatt", "Catherine Hicks", "Mark Lenard", "Robin Curtis", "Robert Ellenstein", "John Schuck", "Brock Peters", "Michael Snyder"], "plot_simple": "To save Earth from an alien probe, Admiral Kirk and his fugitive crew go back in time to 20th century Earth to retrieve the only beings who can communicate with it, humpback whales.", "poster": {"imdb": "http://ia.media-imdb.com/images/M/MV5BMjEzOTk1ODU1Ml5BMl5BanBnXkFtZTcwODEwNDI4OA@@._V1_SX214_.jpg", "cover": "http://imdb-poster.b0.upaiyun.com/000/092/007.jpg!cover?_upt=0b3c7d331380276184"}, "runtime": ["119 min"], "type": "M", "imdb_url": "http://www.imdb.com/title/tt0092007/", "also_known_as": ["Star Trek IV - Retour sur Terre"]}, {"rating_count": 43631, "genres": ["Action", "Adventure", "Sci-Fi", "Thriller"], "rated": "PG", "language": ["English", "Klingon"], "rating": 6.5, "country": ["USA"], "release_date": 19941118, "title": "Star Trek: Generations", "year": 1994, "filming_locations": "465 S Grand Ave, Pasadena, California, USA", "imdb_id": "tt0111280", "directors": ["David Carson"], "writers": ["Gene Roddenberry", "Rick Berman"], "actors": ["Patrick Stewart", "Jonathan Frakes", "Brent Spiner", "LeVar Burton", "Michael Dorn", "Gates McFadden", "Marina Sirtis", "Malcolm McDowell", "James Doohan", "Walter Koenig", "William Shatner", "Alan Ruck", "Jacqueline Kim", "Jenette Goldstein", "Thomas Kopache"], "plot_simple": "Captain Picard, with the help of supposedly dead Captain Kirk, must stop a madman willing to murder on a planetary scale in order to enter a space matrix.", "poster": {"imdb": "http://ia.media-imdb.com/images/M/MV5BOTMyODkyODk1MV5BMl5BanBnXkFtZTcwNjk5MzI4OA@@._V1_SX214_.jpg", "cover": "http://imdb-poster.b0.upaiyun.com/000/111/280.jpg!cover?_upt=b86579d61380276184"}, "runtime": ["118 min"], "type": "M", "imdb_url": "http://www.imdb.com/title/tt0111280/", "also_known_as": ["Star trek: G\u00e9n\u00e9rations"]}, {"rating_count": 39867, "genres": ["Action", "Adventure", "Sci-Fi", "Thriller"], "rated": "PG", "language": ["English", "Klingon"], "rating": 7.1, "country": ["USA"], "release_date": 19911206, "title": "Star Trek VI: The Undiscovered Country", "year": 1991, "filming_locations": "Alaska, USA", "imdb_id": "tt0102975", "directors": ["Nicholas Meyer"], "writers": ["Gene Roddenberry", "Leonard Nimoy"], "actors": ["William Shatner", "Leonard Nimoy", "DeForest Kelley", "James Doohan", "Walter Koenig", "Nichelle Nichols", "George Takei", "Kim Cattrall", "Mark Lenard", "Grace Lee Whitney", "Brock Peters", "Leon Russom", "Kurtwood Smith", "Christopher Plummer", "Rosanna DeSoto"], "plot_simple": "On the eve of retirement, Kirk and McCoy are charged with assassinating the Klingon High Chancellor and imprisoned. The Enterprise crew must help them escape to thwart a conspiracy aimed at sabotaging the last best hope for peace.", "poster": {"imdb": "http://ia.media-imdb.com/images/M/MV5BMTkyODE4MDIxNV5BMl5BanBnXkFtZTcwNzYxNDI4OA@@._V1_SX214_.jpg", "cover": "http://imdb-poster.b0.upaiyun.com/000/102/975.jpg!cover?_upt=38da25dc1380276184"}, "runtime": ["113 min", "110 min (theatrical)"], "type": "M", "imdb_url": "http://www.imdb.com/title/tt0102975/", "also_known_as": ["Star Trek VI: Das unentdeckte Land"]}]';
+			var ONLINE = false;
+			
+			$(".go").click(fetchData);
+			
+			function fetchData(event) {
+				event.preventDefault();
+				var parameters = {
+					"title"		: $("input[name=title]").val(),
+					"type"		: $("input[name=type]").val(),
+					"plot"		: $("input[name=plot]").val(),
+					"episode"	: $("input[name=episode]").val(),
+					"limit" 		: $("input[name=limit]").val(),
+					"yg" 		: $("input[name=yg]").val(),
+					"mt" 		: $("input[name=mt]").val(),
+					"lang" 		: $("input[name=lang]").val(),
+					"offset" 	: $("input[name=offset]").val(),
+					"aka" 		: $("input[name=aka]").val(),
+					"release" 	: $("input[name=release]").val(),
+					"business" 	: $("input[name=business]").val(),
+					"tech" 		: $("input[name=tech]").val(),
+				}
+				if(ONLINE) {	
+					$.ajax({
+						"url" : "http://mymovieapi.com",
+						"data" : parameters,
+						"success" : function(response) {
+							$(".response").val(response);
+							var json = JSON.parse(response);
+							console.log(response);
+							console.log(json);
+							renderUi(json);
+						}
+					})
+				} else {
+					var response = JSONSTR;
+					$(".response").val(response);
+					var json = JSON.parse(response);
+					console.log(response);
+					console.log(json);
+					renderUi(json);
+				}
+			}
+			
+			function renderUi(json) {
+				var resultSet = $(".result-set");
+				var instanceTemplate = $(".result-set .instance:first").clone();
+				var actorTemplate = $(".actors .actor:first").clone();
+				var genreTemplate = $(".genres .genre:first").clone();
+				var writerTemplate = $(".writers .writer:first").clone();
+				resultSet.empty();
+				for(var i=0; i<json.length; i++) {
+					var instance = json[i];
+					var instanceDom = instanceTemplate.clone();
+					instanceDom.find(".title").html(instance.title);
+					if(ONLINE)
+						instanceDom.find(".poster .imdb").attr("src",instance.poster.imdb);
+					else
+						instanceDom.find(".poster .imdb").attr("src","img/"+i+".jpg");
+
+					instanceDom.find(".imdb_url").attr("href",instance.imdb_url);
+					instanceDom.find(".imdb_id").html(instance.imdb_id);
+					instanceDom.find(".rated").html(instance.rated);
+					instanceDom.find(".rating").html(instance.rating);
+					instanceDom.find(".year").html(instance.year);
+					instanceDom.find(".filming_location").html(instance.filming_location);
+					instanceDom.find(".plot_simple").html(instance.plot_simple);
+					var actors = instanceDom.find(".actors").empty();
+					for(var a=0; a<instance.actors.length; a++) {
+						var actorName = instance.actors[a];
+						console.log(actorName);
+						var actor = actorTemplate.clone();
+						actor.html(actorName);
+						actors.append(actor);
+					}
+					
+					var genres = instanceDom.find(".genres").empty();
+					for(var g=0; g<instance.genres.length; g++) {
+						var genreName = instance.genres[g];
+						console.log(genreName);
+						var genre = genreTemplate.clone();
+						genre.html(genreName);
+						genres.append(genre);
+					}
+					var writers = instanceDom.find(".writers").empty();
+					for(var w=0; w<instance.writers.length; w++) {
+						var writerName = instance.writers[w];
+						console.log(writerName);
+						var writer = writerTemplate.clone();
+						writer.html(writerName);
+						writers.append(writer);
+					}
+					resultSet.append(instanceDom);
+				}
+			}
+		</script>
+	</body>
+</html>
