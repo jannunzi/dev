@@ -1,0 +1,6 @@
+http://developer.worldweatheronline.com/		World Weather Online
+http://beebole.com/pure/						Pure JS
+00.aspx		JSONP
+01.aspx		JSONP Form 1
+02.aspx		JSONP Form 2
+03.aspx		JSONP Form 2
