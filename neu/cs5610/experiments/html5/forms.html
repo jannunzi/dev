@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<header>
+	<h1>Form Elements</h1>
+</header>
+
+<nav>
+	<a href="media.html">Media</a> |
+	<a href="forms.html">Forms</a> |
+	<a href="editable.html">Editable</a> |
+	<a href="semantic.html">Semantic</a>
+</nav>
+
+<section>
+	<article>
+		<header>
+			<h2>Color Picker</h2>
+		</header>
+		<form action="demo_form.asp">
+			What's your favorite color? <input type="color" name="favcolor"><input type="submit">
+		</form>
+	</article>
+	
+	<article>
+		<header>
+			<h2>Date Picker</h2>
+		</header>
+		<form action="demo_form.asp">
+			What's your birthday? <input type="date" name="bday"><input type="submit">
+		</form>
+	</article>
+
+	<article>	
+		<header>
+			<h2>Time Picker</h2>
+		</header>
+		<form action="demo_form.asp">
+			What time is it? <input type="time" name="usr_time"><input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Month Picker</h2>
+		</header>
+		<form action="demo_form.asp">
+			What month is it? <input type="month" name="bdaymonth"><input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Week Picker</h2>
+		</header>
+		<form action="demo_form.asp">
+			Select a week: <input type="week" name="week_year"><input type="submit">
+		</form>
+	</article>
+
+	<article>	
+		<header>
+			<h2>Localized Date and Time Picker</h2>
+		</header>
+		<form action="demo_form.asp">
+			Birthday (date and time): <input type="datetime-local" name="bdaytime"><input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Email</h2>
+		</header>
+		<form action="demo_form.asp">
+			E-mail: <input type="email" name="email"><input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Quantity with Range</h2>
+		</header>
+		<form action="demo_form.asp">
+			Quantity (between 1 and 5): <input type="number" name="quantity" min="1" max="5"><input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Slider</h2>
+		</header>
+		<form action="demo_form.asp">
+			Sliders: <input type="range" name="points" min="1" max="10" id="slider"><br/>
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Search Bar</h2>
+		</header>
+		<form action="demo_form.asp">
+			Search Google: <input type="search" name="googlesearch"><input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Phone</h2>
+		</header>
+		<form action="demo_form.asp">
+			Telephone: <input type="tel" name="usrtel"><input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>URL</h2>
+		</header>
+		<form action="demo_form.asp">
+			Add your homepage: <input type="url" name="homepage"><input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Datalist</h2>
+		</header>
+		<form action="demo_form.asp">
+			Favorite Browser<input list="browsers" name="browser">
+			<datalist id="browsers">
+			  <option value="Internet Explorer">
+			  <option value="Firefox">
+			  <option value="Chrome">
+			  <option value="Opera">
+			  <option value="Safari">
+			</datalist><input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Output</h2>
+		</header>
+		<form oninput="x.value=parseInt(a.value)+parseInt(b.value)">0
+			<input type="range" id="a" value="50">100 +
+			<input type="number" id="b" value="50">=
+		<output name="x" for="a b"></output>
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Autocomplete</h2>
+		</header>
+		<form action="demo_form.asp" autocomplete="on">
+		  First name:<input type="text" name="fname"><br>
+		  Last name: <input type="text" name="lname"><br>
+		  E-mail: <input type="email" name="email" autocomplete="off"><br>
+		  <input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Autofocus</h2>
+		</header>
+		First name:<input type="text" name="fname" autofocus>
+	</article>
+
+	<article>	
+		<header>
+			<h2>Fields Outside of Forms</h2>
+		</header>
+		<form action="demo_form.asp" id="form1">
+		  First name: <input type="text" name="fname"><br>
+		  <input type="submit" value="Submit">
+		</form>
+		
+		Last name: <input type="text" name="lname" form="form1">
+	</article>
+
+	<article>
+		<header>
+			<h2>Regular Expression Patterns</h2>
+		</header>
+		<form action="demo_form.asp">
+		  Country code: <input type="text" name="country_code" pattern="[A-Za-z]{3}" title="Three letter country code">
+		  <input type="submit">
+		</form>
+	</article>
+
+	<article>
+		<header>
+			<h2>Placeholder</h2>
+		</header>
+		<input type="text" name="fname" placeholder="First name">
+	</article>
+
+	<article>
+		<header>
+			<h2>Required</h2>
+		</header>
+		<form action="demo_form.asp">
+		  Username: <input type="text" name="usrname" required>
+		  <input type="submit">
+		</form>		
+	</article>
+</section>
+
+</body>
+</html>
