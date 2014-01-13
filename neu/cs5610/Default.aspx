@@ -106,7 +106,9 @@
                 <ul>
                     <li><a href="story/index.htm?../experiments/appstore/story.txt" target="_blank">App Store</a></li>
                     <li><a href="story/index.htm?../experiments/responsive/story.txt" target="_blank">Responsive Design</a></li>
-                    <li><a href="story/index.htm?../experiments/asp/story.txt" target="_blank">ASP Web Pages</a></li>
+                    <li><a href="story/index.htm?../experiments/asp/helloWorld/story.txt" target="_blank">ASP Hello World Web Pages</a></li>
+                    <li><a href="story/index.htm?../experiments/asp/requestParameters/story.txt" target="_blank">ASP Parse Request Parameters</a></li>
+                    <li><a href="story/index.htm?../experiments/asp/filesAndDirectories/story.txt" target="_blank">ASP Files and Directories</a></li>
                     <li><a href="jquery/events/clicking.html" target="_blank">Clicking</a></li>
                     <li><a href="jquery/draggable/index.html" target="_blank">Draggable</a></li>
                     <li><a href="jquery/sortable/index.html" target="_blank">Sortable Lists</a></li>
@@ -120,9 +122,6 @@
                     <li><a href="story/index.htm?../experiments/webservices/weather/story.txt" target="_blank">Weather Restful JSONP APIs</a></li>
                     <li><a href="story/index.htm?../experiments/phonegap/story.txt" target="_blank">Phonegap and jQuery</a></li>
                     <li><a href="http://net4.ccs.neu.edu/home/jga/experiments/phonegap/fish360/" target="_blank">Fish 360</a></li>
-                    <li><a href="story/index.htm?../experiments/asp/helloWorld/story.txt" target="_blank">ASP Hello World</a></li>
-                    <li><a href="story/index.htm?../experiments/asp/requestParameters/story.txt" target="_blank">ASP Parse Request Parameters</a></li>
-                    <li><a href="story/index.htm?../experiments/asp/filesAndDirectories/story.txt" target="_blank">ASP Files and Directories</a></li>
                     <li><a href="https://github.com/jannunzi/UserLoginPrefs.git" target="_blank">User Login &amp; Preferences</a></li>
                     <li><a href="story/index.htm?../experiments/dao/story.txt" target="_blank">Data Access Object</a></li>
                 </ul>
