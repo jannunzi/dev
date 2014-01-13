@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Deleteable</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		#delete {
+			display : none;
+			position : absolute;
+			top : 0px;
+			left : 0px;
+			z-index : 1;
+		}
+		.deleteable:hover, .deleteable *:hover {
+			background-color : gray;
+			color : white;
+		}
+
+	</style>
+
+	<script>
+		var deleteIcon;
+		$(function() {
+			$(".deleteable").hover(showDelete);
+			$(".ninesixty").hover(null, hideDelete);
+			
+			deleteIcon = $("#delete");
+			deleteIcon.click(deleteElement);
+		});
+		function hideDelete() {
+			deleteIcon.hide();			
+		}
+		function deleteElement() {
+			var element = deleteIcon.element;
+			element.remove();
+			deleteIcon.hide();
+		}
+		function showDelete() {
+			deleteIcon.show();
+			var element = $(this);
+			var offset = element.offset();
+			var x = offset.left;
+			var y = offset.top;
+			var w = element.width();
+			var h = element.height();
+			deleteIcon.css({left : x - 30, top : y - 5 });
+			deleteIcon.element = element;
+		}
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+	<h1>Deleteable</h1>
+
+	<img id="delete" src="../../images/delete.png" width="20px"/>
+
+	<p class="deleteable">
+		In this example we use a hover handler to display a delete icon next to the element we are hovering on.
+		For instance, hover over this paragraph, a delete icon should appear to the left. If you click on it,
+		this paragraph will be deleted. It's ok, it'll still be there if you reload the page.
+	</p>
+	
+	<p>
+		Let's try the delete icon on several other types of elements.
+	</p>
+
+	<ul class="deleteable">
+		<li>Hover over this list</li>
+		<li>And click on the top left delete icon</li>
+		<li>This verifies that we can delete entire lists</li>
+	</ul>
+
+	<ul>
+		<li class="deleteable">Now try hovering over each of these list items</li>
+		<li class="deleteable">And click on the top left delete icon</li>
+		<li class="deleteable">This verifies that we can delete individual list items</li>
+	</ul>
+	
+	<ul class="nobullets">
+		<li><input class="deleteable" type="text" value="Click X to delete"/></li>
+		<li><textarea class="deleteable">Click X to delete</textarea></li>
+		<li><select class="deleteable">
+				<option>Click X to delete</option>
+				<option>Option 1</option>
+				<option>Option 2</option>
+				<option>Option 3</option>
+			</select>
+		</li>
+		<li>
+		  	<ul class="group nobullets">
+			  	<li class="deleteable"><input id="r0" type="radio" name="radio1" value="Option 0"/><label for="r0">Click X</label></li>
+			  	<li class="deleteable"><input id="r1" type="radio" name="radio1" value="Option 1"/><label for="r1">To Delete</label></li>
+			  	<li class="deleteable"><input id="r2" type="radio" name="radio1" value="Option 2"/><label for="r2">These Options</label></li>
+		  	</ul>
+	  	</li>
+		<li>
+		  	<ul class="group nobullets">
+			  	<li class="deleteable"><input id="c1" type="checkbox" name="check1" value="Option 1"/><label for="c1">Click X</label></li>
+			  	<li class="deleteable"><input id="c2" type="checkbox" name="check1" value="Option 2"/><label for="c2">To Delete</label></li>
+			  	<li class="deleteable"><input id="c3" type="checkbox" name="check1" value="Option 3"/><label for="c3">These Options</label></li>
+		  	</ul>
+	  	</li>
+	</ul>
+
+	<p>
+		The delete icon is implemented as an image tag initially hidden. The image is dynamically moved,
+		hidden or shown next to the element hovering over.
+	</p>
+
+	<pre>
+	&lt;img id=&quot;delete&quot; src=&quot;../../images/delete.png&quot; width=&quot;20px&quot;/&gt;
+	</pre>
+
+	<p>
+		The following script grabs the deleteable elements and binds hover handlers to show and hide
+		the delete image. Clicking on the delete image invokes the deleteElement() method
+	</p>
+
+	<pre>
+	var deleteIcon;
+	$(function() {
+		$(&quot;.deleteable&quot;).hover(showDelete);
+		$(&quot;.ninesixty&quot;).hover(null, hideDelete);
+		
+		deleteIcon = $(&quot;#delete&quot;);
+		deleteIcon.click(deleteElement);
+	});
+	</pre>
+
+	<p>
+		The image is shown to the left of the element. The position is based on the element's top and left
+		offset. The element is stored as a property if the image so we can use it later when we delete
+		the element
+	</p>
+	
+	<pre>
+	function showDelete() {
+		deleteIcon.show();
+		var element = $(this);
+		var offset = element.offset();
+		var x = offset.left;
+		var y = offset.top;
+		deleteIcon.css({left : x - 30, top : y - 5 });
+		deleteIcon.element = element;
+	}
+	</pre>
+
+	<p>
+		The deleteElement() method is invoked when the delete icon is clicked. The method retrieves the
+		original element from the deleteIcon itself, and then removes the element from the DOM.
+	</p>
+
+	<pre>
+		function deleteElement() {
+			var element = deleteIcon.element;
+			element.remove();
+			deleteIcon.hide();
+		}
+	</pre>
+
+	<a href="../../fileview/Default.aspx?~/jquery/hover/2-deletable.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

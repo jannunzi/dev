@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Editable</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		#editlinks, #editpanel {
+			display : none;
+			position : absolute;
+			top : 0px;
+			left : 0px;
+			z-index : 1;
+			background-color: white;
+			border : 1px solid black;
+		}
+		.editable:hover, .editable *:hover {
+			background-color : gray;
+			color : white;
+		}
+	</style>
+
+	<script>
+		// links and panel we will reposition next to and below the elements editing
+		var editLinks;
+		var editPanel;
+		$(function() {
+			editLinks  = $("#editlinks");
+			editPanel  = $("#editpanel");
+			
+			// click events
+			$("#deletelink").click(deleteElement);
+			$("#editlink")	.click(showEditPanel);
+			$("#apply")		.click(applyEdit);
+
+			// hover events
+			$(".editable") .hover(showEditLinks);		// show edit links on hover
+			$(".ninesixty").hover(null, hideEditLinks);	// hide links when hover on background
+		});
+		
+		// on hover we show edit links to the right of the element and we remember element
+		function showEditLinks() {
+			var element = $(this);
+			var offset = element.offset();
+			var x = offset.left;
+			var y = offset.top;
+			var w = element.width();
+			var h = element.height();
+			editLinks.css({left : x + w, top : y - 5 });
+			editLinks.show();
+			
+			// we remember element so we can delete it if we click on delete link
+			editLinks.element = element;
+		}
+		function hideEditLinks() {
+			editLinks.hide();			
+		}
+		// on delete link click, we delete the element we originally hovered over
+		function deleteElement() {
+			var element = editLinks.element;
+			element.remove();
+			editLinks.hide();
+		}
+		// on edit link click, we show the edit panel below the element we are editing
+		function showEditPanel() {
+			editLinks.hide();
+			
+			var link = $(this);
+			var element = editLinks.element;
+			var offset = element.offset();
+			var x = offset.left;
+			var y = offset.top;
+			var w = element.width();
+			var h = element.height();
+			editPanel.css({left : x, top : y+h });
+			editPanel.show();
+			
+			// we remember element we are editing so we can apply changes to it when we click apply
+			// we store it here and dont rely on the element stored in editLinks because user can
+			// still hover elsewhere
+			editPanel.element = element;
+		}
+		function hideEditPanel() {
+			editPanel.hide();
+		}
+		// on apply link click, we get the values from the edit panel and apply changes to element
+		function applyEdit() {
+			hideEditPanel();
+			var bgColor = $("#bgcolor").val();
+			var fgColor = $("#fgcolor").val();
+			var element = editPanel.element;
+			element.css({
+				"background-color" : bgColor,
+				"color" : fgColor
+			});
+		}
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+	<!-- edit links that will appear next to element hovering over -->
+	<div id="editlinks">
+		<a id="deletelink" href="#">delete</a>
+		<a id="editlink" href="#">edit</a>
+	</div>
+
+	<!-- edit panel that will appear when we click on edit link above -->	
+	<div id="editpanel">
+		Background Color: <input id="bgcolor"/><br/>
+		Foreground Color: <input id="fgcolor"/><br/>
+		<button id="apply">Apply</button>
+	</div>
+	
+	<h1>Editable</h1>
+
+	<p class="editable">
+		This example illustrates how to add a dynamic edit panel when you hover over an HTML element.
+		The panel provides delete and edit links to delete the element or further configure some aspects
+		of the HTML element hovering over. For instance, hover over this paragraph. A set of links should
+		appear at the top right corner. Click delete to delete this paragraph. Don't worry, it'll still
+		be here when you reload the page.
+	</p>
+	
+	<p class="editable">
+		Now try hovering over this paragraph and clicking on the edit link. A form should appear under
+		the paragraph to allow you changing the background and foreground color. Click Apply to apply
+		the changes to the paragraph. Verify that the background and foreground colors change.
+	</p>
+	
+	<p>
+		Below are several tests to make sure the panel works for various types of HTML elements such as
+		lists and form elements.		
+	</p>
+
+	<ul class="editable">
+		<li>Hover over this list</li>
+		<li>And click on the top right delete or edit link</li>
+		<li>This verifies that we can delete/edit entire lists</li>
+	</ul>
+
+	<ul>
+		<!-- we apply editable to span instead of li because li's width is too wide -->
+		<li><span class="editable">Now try hovering over each of these list items</span></li>
+		<li><span class="editable">And click on the top right delete/edit link</span></li>
+		<li><span class="editable">This verifies that we can delete/edit individual list items</span></li>
+	</ul>
+	
+	<ul class="nobullets">
+		<li><input class="editable" type="text" value="Click X to delete"/></li>
+		<li><textarea class="editable">Click X to delete</textarea></li>
+		<li><select class="editable">
+				<option>Click X to delete</option>
+				<option>Option 1</option>
+				<option>Option 2</option>
+				<option>Option 3</option>
+			</select>
+		</li>
+		<li>
+		  	<ul class="group nobullets">
+			  	<li><span class="editable"><input id="r0" type="radio" name="radio1" value="Option 0"/><label for="r0">Click X</label></span></li>
+			  	<li><span class="editable"><input id="r1" type="radio" name="radio1" value="Option 1"/><label for="r1">To Delete</label></span></li>
+			  	<li><span class="editable"><input id="r2" type="radio" name="radio1" value="Option 2"/><label for="r2">These Options</label></span></li>
+		  	</ul>
+	  	</li>
+		<li>
+		  	<ul class="group nobullets">
+			  	<li><span class="editable"><input id="c1" type="checkbox" name="check1" value="Option 1"/><label for="c1">Click X</label></span></li>
+			  	<li><span class="editable"><input id="c2" type="checkbox" name="check1" value="Option 2"/><label for="c2">To Delete</label></span></li>
+			  	<li><span class="editable"><input id="c3" type="checkbox" name="check1" value="Option 3"/><label for="c3">Click X</label></span></li>
+		  	</ul>
+	  	</li>
+	</ul>
+
+	<p>
+		To accomplish this, the script below declares the link and edit panels and binds several event
+		listeners to the 
+	</p>
+	
+	<pre>
+	var editLinks;	// delete and edit links
+	var editPanel;	// form to change colors
+	$(function() {
+		editLinks  = $(&quot;#editlinks&quot;);
+		editPanel  = $(&quot;#editpanel&quot;);
+		
+		// click events
+		$(&quot;#deletelink&quot;)	.click(deleteElement);
+		$(&quot;#editlink&quot;)	.click(showEditPanel);
+		$(&quot;#apply&quot;)		.click(applyEdit);
+
+		// hover events
+		$(&quot;.editable&quot;) .hover(showEditLinks);		// show edit links on hover
+		$(&quot;.ninesixty&quot;).hover(null, hideEditLinks);	// hide links when hover on background
+	});
+	</pre>
+	
+	<p>
+		The delete and edit links are shown at the top right corner of the element we hover over
+		and hidden when we hover over the background.
+	</p>
+	
+	<pre>
+	// on hover we show edit links to the right of the element and we remember element
+	function showEditLinks() {
+		var element = $(this);
+		var offset = element.offset();
+		var x = offset.left;
+		var y = offset.top;
+		var w = element.width();
+		var h = element.height();
+		editLinks.css({left : x + w, top : y - 5 });
+		editLinks.show();
+		
+		// we remember element so we can delete it if we click on delete link
+		editLinks.element = element;
+	}
+	function hideEditLinks() {
+		editLinks.hide();			
+	}
+	</pre>
+
+	<p>
+		When the edit link is clicked, we show a simple form below the element we are editing.
+		The form consists of just 2 input fields where we capture the background and foreground colors.
+		Below is the HTML definition
+	</p>
+	
+	<pre>
+	&lt;!-- edit panel that will appear when we click on edit link above --&gt;	
+	&lt;div id=&quot;editpanel&quot;&gt;
+		Background Color: &lt;input id=&quot;bgcolor&quot;/&gt;&lt;br/&gt;
+		Foreground Color: &lt;input id=&quot;fgcolor&quot;/&gt;&lt;br/&gt;
+		&lt;button id=&quot;apply&quot;&gt;Apply&lt;/button&gt;
+	&lt;/div&gt;
+	</pre>
+
+	<p>
+		And here is the code that positions the panel below the element. The method is invoked when
+		the user clicks on the edit link that appears when they hover over an editable element.
+	</p>
+	
+	<pre>
+	// on edit link click, we show the edit panel below the element we are editing
+	function showEditPanel() {
+		editLinks.hide();
+		
+		var link = $(this);
+		var element = editLinks.element;
+		var offset = element.offset();
+		var x = offset.left;
+		var y = offset.top;
+		var w = element.width();
+		var h = element.height();
+		editPanel.css({left : x, top : y+h });
+		editPanel.show();
+		
+		// we remember element we are editing so we can apply changes to it when we click apply
+		// we store it here and dont rely on the element stored in editLinks because user can
+		// still hover elsewhere
+		editPanel.element = element;
+	}
+	</pre>
+
+	<a href="../../fileview/Default.aspx?~/jquery/hover/3-editable.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

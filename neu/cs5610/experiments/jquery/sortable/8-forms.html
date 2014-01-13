@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		#palette {
+			width : 200px;
+			border-top : 20px solid white;
+		}
+		#palette > li {
+			height : 33px;
+		}
+		#palette input.label {
+			display : none;
+		}
+		#palette ul.group > li {
+			display: inline;
+			list-style-type: none;
+		}
+		#palette textarea {
+			height: 25px;
+		}
+
+		.sortable > li {
+			background-color : beige;
+			margin-bottom : 5px;
+			margin-right: 5px;
+		}
+		.form {
+			width : 400px;
+			border-top : 20px solid beige;
+		}
+		.form textarea {
+			height: 100px;
+			width : 300px;
+		}
+		.form .group input {
+			border : none;
+		}
+		.form > li {
+			height : auto;
+		}
+		.label, .section-label {
+			background-color : beige;
+			border : none;
+		}
+        #canvas {
+			margin-left : 10px;
+            float : left;
+		}
+	</style>
+
+	<script>
+	    var formTemplate;
+	    var canvas;
+	    $(function () {
+	        formTemplate = $(".form").clone();
+	        canvas = $("#canvas");
+
+	        $("#add").click(addForm);
+	    });
+	    function connectPaletteToForm(element) {
+	        $(".form, .group").sortable({
+	                "axis": "y"
+	        });
+	        $("#palette > li").draggable({
+	            connectToSortable: ".form",
+	            helper: "clone"
+	        });
+	        element
+                .draggable({ snap: true })
+                .show();
+	    }
+	    function addForm() {
+	        var form = formTemplate.clone();
+	        canvas.append(form);
+	        var top = $(window).height() / 2 + "px";
+	        var left = $(window).width() / 2 + "px";
+	        form.css({
+	            "position": "absolute",
+	            "top": top,
+	            "left": left
+	        });
+	        connectPaletteToForm(form);
+	    }
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+		<h1>Forms</h1>
+		
+        <button id="add">Add Form</button>
+
+        <div class="clear"></div>
+
+		<ul id="palette" class="nobullets fleft sortable">
+			<li><input type="text" class="section-label" value="Label"/></li>
+			<li><input type="text" value="Input Field"/></li>
+			<li><textarea>Text Area</textarea></li>
+			<li><button>Button</button></li>
+			<li><select>
+					<option>Option 1</option>
+					<option>Option 2</option>
+					<option>Option 3</option>
+				</select>
+			</li>
+			<li><ul class="group nobullets">
+				  	<li><input id="r1" type="radio" name="radio1" value="Option 1"/><input type="text" class="label" value="Option 1"/></li>
+				  	<li><input id="r2" type="radio" name="radio1" value="Option 2"/><input type="text" class="label" value="Option 2"/></li>
+				  	<li><input id="r3" type="radio" name="radio1" value="Option 3"/><input type="text" class="label" value="Option 3"/></li>
+			  	</ul>
+		  	</li>
+			<li><ul class="group nobullets">
+				  	<li><input id="c1" type="checkbox" name="check1" value="Option 1"/><input type="text" class="label" value="Option 1"/></li>
+				  	<li><input id="c2" type="checkbox" name="check1" value="Option 2"/><input type="text" class="label" value="Option 2"/></li>
+				  	<li><input id="c3" type="checkbox" name="check1" value="Option 3"/><input type="text" class="label" value="Option 3"/></li>
+			  	</ul>
+		  	</li>
+		</ul>
+
+		<div id="canvas" class="fleft">
+		    <ul class="form nobullets fleft sortable hidden">
+		      <li><input type="text" value="Form Name"/></li>
+		      <li><button>Submit</button></li>
+		    </ul>
+        </div>
+
+		<div class="clear"></div>
+
+	<a href="../../fileview/Default.aspx?~/jquery/sortable/4-forms.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

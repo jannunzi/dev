@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Add Another Draggable</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $("#add").click(addAnotherBlock);            
+        });
+        
+        function addAnotherBlock() {
+        	$("<div class='h100 w100 redbg fleft'>")
+        		.draggable()
+        		.appendTo("#canvas");
+        }
+    </script>
+</head>
+<body>
+    <div class="ninesixty">
+	    <h1>Adding Draggables on Demand</h1>
+	    <p>This example shows how to use jQuery's to add draggable blocks on demand. Consider the link below:</p>
+    	<a href="#" id="add">Add Another Block</a>
+    	<div id="canvas" class="borderblack">&nbsp;</div>
+    	<div class="clear">&nbsp;</div>
+    	<p>	Click on the Add Another Block link above and notice how it adds more and more blocks from top to bottom and left to right.
+    		Try dragging the new blocks. Cool huh? The link's html is as you would expect. We are giving it the id 'add' so we can grab it with jQuery:
+    	</p>
+    	<pre>
+	    	&lt;a href=&quot;#&quot; id=&quot;add&quot;&gt;Add Another Block&lt;/a&gt;    		
+    	</pre>
+    	<p>	We grab the link from its ID and assign it a click handler as follows:</p>
+    	<pre>
+	        $(function () {
+	            $("#add").click(addAnotherBlock);            
+	        });    		
+    	</pre>
+    	<p>	The event handler dynamically creates a DIV block content, makes draggable, and adds it to a DIV called canvas
+    	</p>
+    	<pre>
+    		function addAnotherBlock() {
+        		$(&quot;&lt;div class=&#39;h100 w100 redbg fleft&#39;&gt;&quot;)
+	        		.draggable()
+	        		.appendTo(&quot;#canvas&quot;);
+        	}
+    	</pre>
+    	
+    	<a href="../../fileview/Default.aspx?~/jquery/draggable/1-adding.html" target="_blank">View Source</a>
+    </div>
+</body>
+</html>

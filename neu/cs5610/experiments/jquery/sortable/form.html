@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sortable on an Axis</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $(".sortable.y-axis").sortable({"axis" : "y"});
+        });
+    </script>
+</head>
+<body>
+    <div class="ninesixty">
+
+    <h1>Sortable on an Axis</h1>
+    
+	<ul class="sortable y-axis">
+		<li><span class="move">|||</span><input type="checkbox" class="label"><input type="text"/><select class="select"><option value="value0">Label 0</option></select><a href="#" class="edit">edit</a><a href="#" class="delete">delete</a></li>
+		<li><span class="move">|||</span><input type="checkbox" class="label"><input type="text"/><select class="select"><option value="value0">Label 0</option></select><a href="#" class="edit">edit</a><a href="#" class="delete">delete</a></li>
+		<li><span class="move">|||</span><input type="checkbox" class="label"><input type="text"/><select class="select"><option value="value0">Label 0</option></select><a href="#" class="edit">edit</a><a href="#" class="delete">delete</a></li>
+		<li><span class="move">|||</span><input type="checkbox" class="label"><input type="text"/><select class="select"><option value="value0">Label 0</option></select><a href="#" class="edit">edit</a><a href="#" class="delete">delete</a></li>
+	</ul>
+
+    </div>
+</body>
+</html>

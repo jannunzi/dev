@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Draggable Images</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            for(var i=1; i<=15; i++) {
+            	var imageFile = "../../images/stjohn/"+i+".JPG";
+            	addImageToCanvas(imageFile);
+            }
+            $(".picture").on("mouseover", bringToFront);
+        });
+        
+        function addImageToCanvas(imageFile) {
+        	var $image = $("<img class='w200' src='"+imageFile+"'/>")
+        	$("<div class='whitebg fleft blackborder picture'>")
+        		.append($image)
+        		.draggable()
+        		.appendTo("#canvas");
+        }
+        
+        var zIndex = 0;
+        function bringToFront() {
+        	var clickedDiv = $(this);
+        	clickedDiv.css("z-index", ++zIndex);
+        }
+        
+    </script>
+</head>
+<body>
+    <div class="ninesixty">
+	    <h1>Draggable Images</h1>
+	    
+	    <p>
+	    	This experiment shows how to create
+	    	draggable images. There are 15 images
+	    	on the server file system. Shortly after
+	    	this document loads, jQuery creates
+	    	15 draggable DIVs that contain image
+	    	tags that refer to the images on the
+	    	server. Try dragging the images around.
+	    	If you hover over an image that is behind
+	    	another image, it will come forward. 
+	    </p>
+
+    	<div id="canvas" class="borderblack">&nbsp;</div>
+    	<div class="clear">&nbsp;</div>	    
+	    
+	    <p>
+			Here is the code that iterates over the image files and adds them to the canvas.
+			The <code>addImageToCanvas()</code> method creates an image tag
+			referencing the image file, and appends it to a draggable DIV.
+			The DIV is then appended to a canvas DIV.
+	    </p>
+	    
+	    <pre>
+        $(function () {
+            for(var i=1; i&lt;=15; i++) {
+            	var imageFile = &quot;../../images/stjohn/&quot;+i+&quot;.JPG&quot;;
+            	addImageToCanvas(imageFile);
+            }
+            $(&quot;.picture&quot;).on(&quot;mouseover&quot;, bringToFront);
+        });
+        
+        function addImageToCanvas(imageFile) {
+        	var $image = $(&quot;&lt;img class=&#39;w200&#39; src=&#39;&quot;+imageFile+&quot;&#39;/&gt;&quot;)
+        	$(&quot;&lt;div class=&#39;whitebg fleft blackborder picture&#39;&gt;&quot;)
+        		.append($image)
+        		.draggable()
+        		.appendTo(&quot;#canvas&quot;);
+        }
+		</pre>
+
+		<p>
+			Note that a <code>mouseover</code> event is bound to all picture DIVs using jQuery's
+			<code>on</code> method. The event is configured to invoke the <code>bringToFront()</code>
+			method shown below. The method increments the picture DIV's z-index to bring it
+			on top of all other DIVs 
+		</p>
+		
+		<pre>
+        var zIndex = 0;
+        function bringToFront() {
+        	var clickedDiv = $(this);
+        	clickedDiv.css(&quot;z-index&quot;, ++zIndex);
+        }			
+		</pre>
+
+    	<a href="../../fileview/Default.aspx?~/jquery/draggable/3-stjohn.html" target="_blank">View Source</a>
+
+    </div>
+</body>
+</html>

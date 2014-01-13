@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hover</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		
+	</style>
+
+	<script>
+		$(function() {
+			$(".hover").hover(makeBlue, makeRed);
+		});
+		function makeBlue() {
+			var element = $(this);
+			element
+				.css({
+					"background-color" : "blue",
+					"color" : "white"
+				});
+		}
+		function makeRed() {
+			var element = $(this);
+			element
+				.css({
+					"background-color" : "red",
+					"color" : "white"
+				});
+		}
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+	<h1>Hover</h1>
+
+	<p class="hover">
+		Use hover event handlers to handle hover gestures. To define hover handlers, use the hover()
+		method on the element of interest. Provide methods to be invoked when the element is hovered
+		on or hovered off. Hover on and off this text paragraph to change it's background color.
+	</p>
+
+	<p class="hover">
+		The script below binds a hover event on elements with the hover class, e.g., this and the
+		paragraph above. The hover method takes 2 callbacks. The first is called when the element
+		is hovered on, and the second is called when the element is hovered off.
+	</p>
+
+	<pre class="hover">
+	$(function() {
+		$(&quot;.hover&quot;).hover(makeBlue, makeRed);
+	});
+	</pre>
+
+	<p class="hover">
+		In this case callback methods makeBlue() and makeRed() do what their names imply, they
+		turn the element to blue or red. Below is their implementation.
+	</p>
+
+	<pre class="hover">
+	function makeBlue() {
+		var element = $(this);
+		element
+			.css({
+				&quot;background-color&quot; : &quot;blue&quot;,
+				&quot;color&quot; : &quot;white&quot;
+			});
+	}
+	function makeRed() {
+		var element = $(this);
+		element
+			.css({
+				&quot;background-color&quot; : &quot;red&quot;,
+				&quot;color&quot; : &quot;white&quot;
+			});
+	}	</pre>
+	<a href="../../fileview/Default.aspx?~/jquery/hover/1-hover.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conneting Draggable to Several Sortable</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		.draggable li,
+		.sortable li {
+			height : 50px;
+			margin-bottom : 5px;
+			margin-right: 5px;
+			font-weight : bold;
+			color : white;
+		}
+		.draggable {
+			width : 70px;
+		}
+		.sortable {
+			width : 200px;
+		}
+
+	</style>
+
+	<script>
+		$(function() {
+			$(".draggable > li").draggable({
+				connectToSortable : ".sortable",
+				helper:"clone"
+			});
+			$(".sortable").sortable({
+				"axis" : "y"
+			});
+		});
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+		<h1>Conneting Draggable to Several Sortable</h1>
+
+		<p>
+			Let's go back to our simpler example where we connected a generic palette on the left
+			to a sortable list on the right. We want to be able to handle not just one form,
+			but several forms on the same page. We should then be able to drag from the same palette
+			onto various forms. The example below illustrates this functionality. Drag from the blue
+			palette on the left onto any of the three sortable lists on the right. After placing the
+			item into the lists, try rearranging them within the list.
+		</p>
+
+		<ul class="nobullets fleft draggable">
+		  <li class="bluebg">Item A</li>
+		  <li class="bluebg">Item B</li>
+		  <li class="bluebg">Item C</li>
+		  <li class="bluebg">Item D</li>
+		  <li class="bluebg">Item E</li>
+		</ul>
+		 
+		<ul class="nobullets fleft sortable">
+		  <li class="redbg">Item 1</li>
+		  <li class="redbg">Item 2</li>
+		  <li class="redbg">Item 3</li>
+		  <li class="redbg">Item 4</li>
+		  <li class="redbg">Item 5</li>
+		</ul>
+		
+		<ul class="nobullets fleft sortable">
+		  <li class="redbg">Item 11</li>
+		  <li class="redbg">Item 22</li>
+		  <li class="redbg">Item 33</li>
+		  <li class="redbg">Item 44</li>
+		  <li class="redbg">Item 55</li>
+		  <li class="redbg">Item 66</li>
+		</ul>
+		
+		<ul class="nobullets fleft sortable">
+		  <li class="redbg">Item 111</li>
+		  <li class="redbg">Item 222</li>
+		  <li class="redbg">Item 333</li>
+		  <li class="redbg">Item 444</li>
+		</ul>
+		
+		<div class="clear"></div>
+		
+		<p>
+			The only manjor difference between one sortable list or many sortable lists is that I am
+			using classes instead of IDs to refer to the lists. That is, we don't have a single list
+			now with ID #sortable. We now have several lists that belong to the same class .sortable.
+			Below is the new script that connects the palette to the lists. Notice how #draggable and
+			#sortable have been changed to .draggable and .sortable.
+		</p>
+
+		<pre>
+	$(function() {
+		$(&quot;.draggable &gt; li&quot;).draggable({
+			connectToSortable : &quot;.sortable&quot;,
+			helper:&quot;clone&quot;
+		});
+		$(&quot;.sortable&quot;).sortable({
+			&quot;axis&quot; : &quot;y&quot;
+		});
+	});
+		</pre>
+		
+		<a href="../../fileview/Default.aspx?~/jquery/sortable/5-connectDraggableToManySortable.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

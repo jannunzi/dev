@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Draggable</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $(".draggable").draggable();
+        });
+    </script>
+</head>
+<body>
+    <div class="ninesixty">
+
+    <h1>Draggable</h1>
+    <p>This example shows you how to use jQuery's draggable functionality. Consider the two DIVs below</p>
+    <div class="blue w100 h100 draggable"></div>
+    <br/>
+    <div class="red w100 h100 draggable"></div>
+    <p>These have been declared as follows:</p>
+    <pre>
+        &lt;div class=&quot;blue w100 h100 draggable&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;red w100 h100 draggable&quot;&gt;&lt;/div&gt;
+    </pre>
+    <p>Using jQuery, we can grab the DIVs by their class as follows:</p>
+    <pre>
+        $(function () {
+            $(".draggable").draggable();
+        });
+    </pre>
+    <p>We add the draggable functionality to the element by envoking .draggable() on it. Note that the class "draggable"
+        is not what makes the DIVs draggable. These classes are merely used to be referenced by jQuery in $(".draggable").
+        Once we have the DIVs in the jQuery context, we can invoke any of a multitude of functions declared by jQuery.
+        The draggable() function adds the ability to drag the DIVs.
+    </p>
+    	<a href="../../fileview/Default.aspx?~/jquery/draggable/index.html" target="_blank">View Source</a>
+        </div>
+</body>
+</html>
