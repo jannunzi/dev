@@ -9,9 +9,9 @@
 
     <!-- TODO: move this style tag to ~css/style.css -->
     <style>
-        .main.container {
-            /* push main container down to make room for sticky nav bar */
-            margin-top : 50px;
+        body {
+            /* pad body to make room for sticky nav bar */
+            padding-top : 45px;
         }
     </style>
 
