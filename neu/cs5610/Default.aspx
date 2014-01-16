@@ -48,14 +48,14 @@
     <div class="main container"><!-- main container -->
 
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-sm-8">
                 <h2>Welcome</h2>
                 
                 <img src="images/gaitas.jpg" style="float:left; margin-right:20px; max-width:30%"/>
             <p>
                 Hi everyone, welcome to CS 5610 Web Development.
-                My name is Jose Annunziato and together we will be learning lots of cool Web technology.
-                We will be looking behind the scenes of all those cool Web pages.
+                My name is Jose Annunziato and together we will be learning lots of cool Web technologies.
+                We will be looking behind the scenes of all those cool Web sites.
                 We'll learn about generating dynamic Web content, responsive design, HTML 5, jQuery,
                 and lots of the hottest Web technologies relevant in the current job market.
                 We will disect Web applications that use advanced techniques while applying industry
@@ -82,31 +82,51 @@
                 including financial, medical, defense, education, manufacturing, retail, and telecommunication.
             </p>
             </div><!-- col -->
-            <div class="col-lg-6">
-                <h2>Examples</h2>
+            <div class="col-sm-4">
+                <h2>Experiments</h2>
+                <h3>Responsive Design</h3>
                 <ul>
-                    <li><a href="story/index.htm?../experiments/appstore/story.txt" target="_blank">App Store</a></li>
-                    <li><a href="story/index.htm?../experiments/responsive/story.txt" target="_blank">Responsive Design</a></li>
                     <li><a href="story/index.htm?../experiments/bootstrap/story.txt" target="_blank">Bootstrap</a></li>
-                    <li><a href="story/index.htm?../experiments/asp/helloWorld/story.txt" target="_blank">ASP Hello World Web Pages</a></li>
-                    <li><a href="story/index.htm?../experiments/asp/requestParameters/story.txt" target="_blank">ASP Parse Request Parameters</a></li>
-                    <li><a href="story/index.htm?../experiments/asp/filesAndDirectories/story.txt" target="_blank">ASP Files and Directories</a></li>
-                    <li><a href="jquery/events/clicking.html" target="_blank">Clicking</a></li>
+                    <li><a href="story/index.htm?../experiments/grids/story.txt" target="_blank">Fluid Grid Systems</a></li>
+                    <li><a href="story/index.htm?../experiments/responsive/story.txt" target="_blank">Responsive Design</a></li>
+                </ul>
+                <h3>jQuery</h3>
+                <ul>
+                    <li><a href="story/index.htm?../jquery/story.txt" target="_blank">jQuery Story</a></li>
+                    <li><a href="jquery/events/clicking.html" target="_blank">Event Handling</a></li>
                     <li><a href="jquery/draggable/index.html" target="_blank">Draggable</a></li>
                     <li><a href="jquery/sortable/index.html" target="_blank">Sortable Lists</a></li>
                     <li><a href="jquery/sortable/1-axis.html" target="_blank">Sortable on an Axis</a></li>
-                    <li><a href="story/index.htm?../jquery/story.txt" target="_blank">jQuery</a></li>
                     <li><a href="story/index.htm?../experiments/animation/story.txt" target="_blank">Animation</a></li>
-                    <li><a href="story/index.htm?../experiments/pageEditor/story.txt" target="_blank">Page Editor</a></li>
-                    <li><a href="story/index.htm?../experiments/grids/story.txt" target="_blank">Fluid Grid Systems</a></li>
+                </ul>
+                <h3>Web Services</h3>
+                <ul>
                     <li><a href="story/index.htm?../experiments/movies/story.txt" target="_blank">Movies Restful APIs</a></li>
                     <li><a href="story/index.htm?../json/story.txt" target="_blank">JSON Web Services</a></li>
                     <li><a href="story/index.htm?../experiments/webservices/weather/story.txt" target="_blank">Weather Restful JSONP APIs</a></li>
+                </ul>
+                <h3>ASPX.NET</h3>
+                <ul>
+                    <li><a href="story/index.htm?../experiments/asp/helloWorld/story.txt" target="_blank">ASP Hello World Web Pages</a></li>
+                    <li><a href="story/index.htm?../experiments/asp/filesAndDirectories/story.txt" target="_blank">ASP Files and Directories</a></li>
+                    <li><a href="story/index.htm?../experiments/asp/requestParameters/story.txt" target="_blank">ASP Parse Request Parameters</a></li>
+                </ul>
+                <h3>Mobile Web Applications</h3>
+                <ul>
                     <li><a href="story/index.htm?../experiments/phonegap/story.txt" target="_blank">Phonegap and jQuery</a></li>
                     <li><a href="http://net4.ccs.neu.edu/home/jga/experiments/phonegap/fish360/" target="_blank">Fish 360</a></li>
+                </ul>
+                <h3>Project</h3>
+                <ul>
+                    <li><a href="story/index.htm?../experiments/pageEditor/story.txt" target="_blank">Page Editor</a></li>
+                    <li><a href="story/index.htm?../experiments/appstore/story.txt" target="_blank">App Store</a></li>
+                </ul>
+                <!--
+                <h3>Databases</h3>
+                <ul>
                     <li><a href="https://github.com/jannunzi/UserLoginPrefs.git" target="_blank">User Login &amp; Preferences</a></li>
                     <li><a href="story/index.htm?../experiments/dao/story.txt" target="_blank">Data Access Object</a></li>
-                </ul>
+                </ul>-->
             </div><!-- col -->
         </div><!-- row -->
     </div><!-- main container -->
