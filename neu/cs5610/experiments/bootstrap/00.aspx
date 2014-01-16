@@ -7,7 +7,7 @@
     <title>Welcome to Bootstrap</title>
 
     <!-- Link Bootstrap's CSS -->
-    <link type="text/css" rel="stylesheet" href="../../../css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">

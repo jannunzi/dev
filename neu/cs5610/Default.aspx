@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <style>
-        div.main.container {
-            margin-top : 55px;
+        body {
+            padding-top : 55px;
         }
     </style>
 </head>
@@ -36,6 +36,8 @@
                             <li><a tabindex="-1" href="images/autoimage.aspx" target="_blank">Images</a></li>
                             <li><a tabindex="-1" href="blog/" target="_blank">Blog</a></li>
                             <li><a tabindex="-1" href="http://net4.ccs.neu.edu/home/rasala/utility/TextToHTMLLite.aspx" target="_blank">HTML encoder utility</a></li>
+                            <li><a tabindex="-1" href="story/index.htm" target="_blank">Story Utility</a></li>
+                            <li><a tabindex="-1" href="http://www.northeastern.edu/rasala/webstories.htm" target="_blank">Web Development Stories</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -47,59 +49,38 @@
 
         <div class="row">
             <div class="col-lg-6">
-                <h2>Essential Files</h2>
-                <p>
-                    <b>
-                        This demo page shows the navigation links that should appear
-                        on the home page.
-                    </b>
-                    It is not necessary that these links be at the top of the page
-                    but they should be displayed nicely and be easy to find.  You
-                    may alter the CSS on the page to change the placement and the
-                    size of the links.
-                </p>
-
-                <hr />
-
-                <p>
-                    The home page may show some interesting content but its main
-                    purpose should be to <i>provide navigation</i> to other pages
-                    on your site.
-                </p>
-
-                <hr />
-
-                <p>
-                    It would be helpful if your home page shows your name and a
-                    photo of yourself.  This will help us to get to know you.
-                </p>
-
-                <hr />
-
-                <p>
-                    Here is a link to the
-                    <a href="story/index.htm" target="_blank">Story Utility</a>
-                    on this site so that you may explore this tool.
-                </p>
-
-                <p>
-                    Here is a link to the
-                    <a href="http://www.northeastern.edu/rasala/webstories.htm"
-                       target="_blank">Web Development Stories</a>
-                    so that you may see a good collection of online documentation.
-                </p>
-
-                <p>
-                    This provides a model for using stories for documentation and
-                    for collections of experiments.
-                </p>
-
-                <hr />
-
-                <p>
-                    None of the hints given above needs to be on your home page
-                    downstream but it is convenient to have them here at startup.
-                </p>
+                <h2>Welcome</h2>
+                
+                <img src="images/gaitas.jpg" style="float:left; margin-right:20px; max-width:30%"/>
+            <p>
+                Hi everyone, welcome to CS 5610 Web Development.
+                My name is Jose Annunziato and together we will be learning lots of cool Web technology.
+                We will be looking behind the scenes of all those cool Web pages.
+                We'll learn about generating dynamic Web content, responsive design, HTML 5, jQuery,
+                and lots of the hottest Web technologies relevant in the current job market.
+                We will disect Web applications that use advanced techniques while applying industry
+                best practices and software engineering principles.
+            </p>
+            <p>
+                While the course is full of exciting topics, the success of the course is entirely in your hands.
+                Throughout the course you need to proactively participate in your own success.
+                We will help you through the technical details and general direction and guidelines,
+                but it is your constant dedication to the course that will really make it a success.
+                The course has lots of useful examples, references and plenty of instructors and assistants to help you be successful.
+                Please make use of all these resources to demonstrate your constant progress towards a successful semester.
+            </p>
+            <p>
+                A little about my self. I am currently working as a principle software engineer at <a href="http://americantower.com" target="_blank">American Tower</a>.
+                They own some 40,000+ telecommunication towers world wide and lease space on these towers to broadcasters,
+                cell phone providers, and the government, among others. I'm currently building a Web based GIS application
+                to help clients locate and plan tower locations across the US. It's a very exciting project using lots
+                of mapping Web services, back end databases, and rich, dynamic interfaces. Before that I worked for
+                <a href="http://percussion.com/" target="_blank">Percussion Software</a> for a couple of years developing
+                <a href="http://percussion.com/products/cm1/video-demo/index" target="_blank">CM1</a>, their flagship Web based Content Management
+                System (CMS). Also a very dynamic Web application with lots of sophisticated user interfaces.
+                For the last 15 years I've had the luck of working on a diverse number of projects in a variety of industries
+                including financial, medical, defense, education, manufacturing, retail, and telecommunication.
+            </p>
             </div><!-- col -->
             <div class="col-lg-6">
                 <h2>Examples</h2>
