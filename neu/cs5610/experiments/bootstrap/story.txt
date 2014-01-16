@@ -11,7 +11,12 @@
 10.aspx									Mobile, Tablets, and Desktops
 11.aspx									Wells, Labels and Badges
 12.aspx									Navigation
-13.aspx									Forms
+13.html									Forms
+14.html									Buttons
+15.html									Buttons
+16.html									Buttons
+17.html									Buttons
+18.html									Buttons
 http://getbootstrap.com/				Get Bootstrap
 http://getbootstrap.com/css/#overview	Overview
 http://getbootstrap.com/css/#tables		Tables
