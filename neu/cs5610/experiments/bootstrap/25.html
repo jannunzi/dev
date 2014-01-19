@@ -1,0 +1,168 @@
+﻿
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Profile Page</title>
+    <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
+
+    <!-- TODO: move this style tag to ~css/style.css -->
+    <style>
+        body {
+            padding-top : 65px;
+        }
+        .table.bigger-last-column td:last-child {
+            font-size: 20px;
+            padding-top: 3px;
+            padding-bottom: 0px;
+        }
+
+        table.wam-highlight-rows tr:hover {
+            background: #f3f3f3;
+        }
+
+        .glyphicon {
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+
+        small {
+            display: block;
+            line-height: 1.428571429;
+            color: #999;
+        }
+
+        .orange {
+            color : orange;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WAM</a>
+            </div> <!-- navbar-header -->
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">Profile</a></li>
+                    <li><a href="#contact">Apps</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Links <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes">
+                            <li><a tabindex="-1" href="http://getbootstrap.com/" target="_blank">Get Bootsrap</a></li>
+                            <li><a tabindex="-1" href="http://bootswatch.com/" target="_blank">Bootswatch</a></li>
+                            <li><a tabindex="-1" href="http://bootsnipp.com/" target="_blank">Bootsnip</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div> <!-- container -->
+    </div>
+
+    <div class="main container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        </div>
+                        <div class="col-md-8">
+                            <h4>
+                                John Doe
+                            </h4>
+                            <small>
+                                <cite title="San Francisco, USA">
+                                    San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                                    </i>
+                                </cite>
+                            </small>
+                            <p>
+                                <i class="glyphicon glyphicon-envelope"></i>email@example.com
+                                <br />
+                                <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
+                                <br />
+                                <i class="glyphicon glyphicon-gift"></i>June 02, 1988
+                            </p>
+                            <!-- Split button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    Social
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span><span class="sr-only">Social</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Twitter</a></li>
+                                    <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+                                    <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Github</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Applications</h3>
+                <table class="table table-striped bigger-last-column">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <th>Name</th>
+                            <th>Created</th>
+                            <th>Rating</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <td><a href="#">Contact List</a></td>
+                            <td>1/2/2014</td>
+                            <td><span class="orange">&#9733;&#9733;</span>&#9733;</td>
+                            <td>$9.99</td>
+                            <td>Productivity</td>
+                            <td>&#10006;&#9658;&#9999;</td>
+                        </tr>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <td><a href="#">Calendar</a></td>
+                            <td>1/2/2014</td>
+                            <td><span class="orange">&#9733;&#9733;</span>&#9733;</td>
+                            <td>$9.99</td>
+                            <td>Productivity</td>
+                            <td>&#10006;&#9658;&#9999;</td>
+                        </tr>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <td><a href="#">Word Processor</a></td>
+                            <td>1/2/2014</td>
+                            <td><span class="orange">&#9733;&#9733;</span>&#9733;</td>
+                            <td>$9.99</td>
+                            <td>Productivity</td>
+                            <td>&#10006;&#9658;&#9999;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> <!-- .main.container -->
+
+    <script src="../../../javascript/jquery-2.0.3.min.js"></script>
+    <script src="../../../javascript/bootstrap.min.js"></script>
+
+</body>
+</html>
