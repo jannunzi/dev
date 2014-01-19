@@ -1,0 +1,18 @@
+Visual Studio
+Tools
+Connect to Database
+Microsoft SQL Server Database File
+Continue
+Database file name
+Browse
+db.mdf
+Use Windows Authentication
+Would you like to create it? Yes
+Server Explorer, Data Connections, db.mdf
+
+Tables
+Right click
+Add New Table
+
+(Update)
+(Update Database)
