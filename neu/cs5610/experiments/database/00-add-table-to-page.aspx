@@ -11,6 +11,9 @@
     <form id="form1" runat="server">
     <div class="container">
         <h1>Adding Database Table to ASPX</h1>
+
+        <h2>Applications</h2>
+
         <p>
             <asp:GridView CssClass="table" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" EmptyDataText="There are no data records to display.">
                 <Columns>

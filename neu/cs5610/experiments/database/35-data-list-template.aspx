@@ -11,6 +11,9 @@
     <form id="form1" runat="server">
     <div class="container">
         <h1>Data List Templates </h1>
+
+        <h2>Applications</h2>
+
         <p>
             <asp:DataList CssClass="table table-striped" ID="DataList1" runat="server" DataKeyField="Id" DataSourceID="SqlDataSource1">
                 <ItemTemplate>

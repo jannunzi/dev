@@ -11,6 +11,9 @@
     <form id="form1" runat="server">
     <div class="container">
         <h1>Details View</h1>
+
+        <h2>Applications</h2>
+
         <p>
             <asp:DetailsView CssClass="table" ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="50px" Width="125px">
                 <Fields>

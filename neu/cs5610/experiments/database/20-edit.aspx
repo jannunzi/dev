@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="15-delete.aspx.cs" Inherits="experiments_database_00" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="20-edit.aspx.cs" Inherits="experiments_database_00" %>
 
 <!DOCTYPE html>
 
@@ -10,19 +10,21 @@
 <body>
     <form id="form1" runat="server">
     <div class="container">
-        <h1>Delete Row</h1>
+        <h1>Edit Row</h1>
 
         <h2>Applications</h2>
 
         <p>
-            <asp:GridView CssClass="table" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" EmptyDataText="There are no data records to display." AllowSorting="True" AllowPaging="True" PageSize="5">
+            <asp:GridView CssClass="table table-striped" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" EmptyDataText="There are no data records to display." AllowSorting="True" AllowPaging="True" PageSize="5">
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" />
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
                     <asp:BoundField DataField="Downloads" HeaderText="Downloads" SortExpression="Downloads" />
                     <asp:BoundField DataField="Category" HeaderText="Category" SortExpression="Category" />
-                    <asp:CommandField ButtonType="Button" DeleteText="&times;" ShowDeleteButton="True" ControlStyle-CssClass="btn btn-danger btn-xs" />
+                    <asp:CommandField ButtonType="Button" DeleteText="&times;" ShowDeleteButton="True" ShowEditButton="True" >
+                        <ControlStyle CssClass="btn btn-primary btn-xs"></ControlStyle>
+                    </asp:CommandField>
                 </Columns>
                 <PagerSettings Mode="NumericFirstLast" />
             </asp:GridView>

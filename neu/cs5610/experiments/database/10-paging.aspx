@@ -10,7 +10,10 @@
 <body>
     <form id="form1" runat="server">
     <div class="container">
-        <h1>Sorting Grid Views</h1>
+        <h1>Paging</h1>
+
+        <h2>Applications</h2>
+
         <p>
             <asp:GridView CssClass="table" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" EmptyDataText="There are no data records to display." AllowSorting="True" AllowPaging="True" PageSize="5">
                 <Columns>

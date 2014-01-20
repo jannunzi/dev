@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="45-details-paging.aspx.cs" Inherits="experiments_database_00" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="61-details-insert.aspx.cs" Inherits="experiments_database_00" %>
 
 <!DOCTYPE html>
 
@@ -6,16 +6,21 @@
 <head runat="server">
     <title></title>
     <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <style type="text/css">
+        .auto-style1 {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div class="container">
-        <h1>Details View with Pagination</h1>
+        <h1>Details View Insert</h1>
 
         <h2>Applications</h2>
 
         <p>
-            <asp:DetailsView CssClass="table" ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="50px" Width="125px" AllowPaging="True">
+            <asp:DetailsView CssClass="table" ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="50px" Width="125px" AllowPaging="True" DefaultMode="Insert" OnItemInserted="DetailView_ItemInsert" OnItemCommand="DetailView_ItemCommand">
                 <Fields>
                     <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name">
@@ -27,6 +32,7 @@
                     <asp:BoundField DataField="Created" HeaderText="Created" SortExpression="Created">
                     <ItemStyle Wrap="False" />
                     </asp:BoundField>
+                    <asp:CommandField ShowInsertButton="True" />
                 </Fields>
                 <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NextPreviousFirstLast" NextPageText="Next" PreviousPageText="Prev" />
             </asp:DetailsView>
@@ -51,8 +57,48 @@
                 </UpdateParameters>
             </asp:SqlDataSource>
         </p>
-        <p>
+        <h2>Documentation</h2>
+        <ul>
+            <li>Change default mode to Insert
+                <pre>
+&lt;asp:DetailsView CssClass=&quot;table&quot; ID=&quot;DetailsView1&quot; runat=&quot;server&quot;
+     AutoGenerateRows=&quot;False&quot; DataKeyNames=&quot;Id&quot; DataSourceID=&quot;SqlDataSource1&quot;
+     Height=&quot;50px&quot; Width=&quot;125px&quot; AllowPaging=&quot;True&quot;
+<strong style="color:red">     <span class="auto-style1">DefaultMode=&quot;Insert&quot;</span></strong>&gt;</pre>
+            </li>
+            <li>Create event handler for insert and cancel to redirect to grid
+                <pre>
+protected void <span class="auto-style1"><strong style="color:red">DetailView_ItemInsert</strong></span>(object sender,
+    DetailsViewInsertedEventArgs e)
+{
+    if (e.AffectedRows == 1)
+    {
+        Response.Redirect("60-link-to-details-insert.aspx");
+    }
+}</pre>
+            </li>
+            <li>Add OnItemInserted attribute to DetailsView tag
 
+                <pre>
+&lt;asp:DetailsView CssClass=&quot;table&quot; ID=&quot;DetailsView1&quot; runat=&quot;server&quot;
+     AutoGenerateRows=&quot;False&quot; DataKeyNames=&quot;Id&quot; DataSourceID=&quot;SqlDataSource1&quot;
+     Height=&quot;50px&quot; Width=&quot;125px&quot; AllowPaging=&quot;True&quot;
+     <strong style="color:red"><span class="auto-style1">DefaultMode=&quot;Insert&quot;</span>
+     <span class="auto-style1">OnItemInserted=&quot;DetailView_ItemInsert&quot;</span></strong>&gt;</pre>
+
+            </li>
+            <li>Add OnItemCommand attribute to DetailsView tag
+
+                <pre>
+&lt;asp:DetailsView CssClass=&quot;table&quot; ID=&quot;DetailsView1&quot; runat=&quot;server&quot;
+     AutoGenerateRows=&quot;False&quot; DataKeyNames=&quot;Id&quot; DataSourceID=&quot;SqlDataSource1&quot;
+     Height=&quot;50px&quot; Width=&quot;125px&quot; AllowPaging=&quot;True&quot;
+     <strong style="color:red"><span class="auto-style1">DefaultMode=&quot;Insert&quot;</span>
+</strong>     <strong style="color:red"><span class="auto-style1">OnItemInserted=&quot;DetailView_ItemInsert&quot;</span>
+</strong>     <span class="auto-style1"><strong style="color:red">OnItemCommand=&quot;DetailView_ItemCommand&quot;</strong></span>&gt;</pre>
+
+            </li>
+        </ul>
     </div>
     </form>
 </body>

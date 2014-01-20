@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="30-data-list.aspx.cs" Inherits="experiments_database_00" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="60-link-to-details-insert.aspx.cs" Inherits="experiments_database_00" %>
 
 <!DOCTYPE html>
 
@@ -10,31 +10,25 @@
 <body>
     <form id="form1" runat="server">
     <div class="container">
-        <h1>Data List</h1>
+        <h1>Create New Application</h1>
 
         <h2>Applications</h2>
 
         <p>
-            <asp:DataList CssClass="table" ID="DataList1" runat="server" DataKeyField="Id" DataSourceID="SqlDataSource1">
-                <ItemTemplate>
-                    Id:
-                    <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
-                    <br />
-                    Name:
-                    <asp:Label ID="NameLabel" runat="server" Text='<%# Eval("Name") %>' />
-                    <br />
-                    Price:
-                    <asp:Label ID="PriceLabel" runat="server" Text='<%# Eval("Price") %>' />
-                    <br />
-                    Downloads:
-                    <asp:Label ID="DownloadsLabel" runat="server" Text='<%# Eval("Downloads") %>' />
-                    <br />
-                    Category:
-                    <asp:Label ID="CategoryLabel" runat="server" Text='<%# Eval("Category") %>' />
-                    <br />
-<br />
-                </ItemTemplate>
-            </asp:DataList>
+        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-primary" NavigateUrl="60-details-insert.aspx">Create New Application</asp:HyperLink>
+            <asp:GridView CssClass="table table-striped" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" EmptyDataText="There are no data records to display." AllowSorting="True" AllowPaging="True" PageSize="5">
+                <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" />
+                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                    <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                    <asp:BoundField DataField="Downloads" HeaderText="Downloads" SortExpression="Downloads" />
+                    <asp:BoundField DataField="Category" HeaderText="Category" SortExpression="Category" ReadOnly="True" />
+                    <asp:CommandField ButtonType="Button" ShowDeleteButton="True" ShowEditButton="True" >
+                        <ControlStyle CssClass="btn btn-primary btn-xs"></ControlStyle>
+                    </asp:CommandField>
+                </Columns>
+                <PagerSettings Mode="NumericFirstLast" />
+            </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnectionString1 %>" DeleteCommand="DELETE FROM [Application] WHERE [Id] = @Id" InsertCommand="INSERT INTO [Application] ([Name], [Price], [Downloads], [Category]) VALUES (@Name, @Price, @Downloads, @Category)" ProviderName="<%$ ConnectionStrings:dbConnectionString1.ProviderName %>" SelectCommand="SELECT [Id], [Name], [Price], [Downloads], [Category] FROM [Application]" UpdateCommand="UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads WHERE [Id] = @Id">
                 <DeleteParameters>
                     <asp:Parameter Name="Id" Type="Int32" />
@@ -54,8 +48,6 @@
                 </UpdateParameters>
             </asp:SqlDataSource>
         </p>
-        <p>
-
     </div>
     </form>
 </body>

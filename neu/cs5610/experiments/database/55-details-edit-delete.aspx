@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="51-details-edit-delete.aspx.cs" Inherits="experiments_database_00" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="55-details-edit-delete.aspx.cs" Inherits="experiments_database_00" %>
 
 <!DOCTYPE html>
 
@@ -11,6 +11,9 @@
     <form id="form1" runat="server">
     <div class="container">
         <h1>Details Edit and Delete</h1>
+
+        <h2>Applications</h2>
+
         <p>
             <asp:DetailsView CssClass="table" ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="50px" Width="125px" AllowPaging="True">
                 <Fields>
@@ -49,7 +52,6 @@
                 </UpdateParameters>
             </asp:SqlDataSource>
         </p>
-        <p>
 
     </div>
     </form>
