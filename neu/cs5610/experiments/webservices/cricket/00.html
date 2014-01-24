@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../javascript/jquery-min.js"></script>
+</head>
+<body>
+    <script>
+        $(function () {
+            $.ajax({
+                url: '../../../simpleproxy.aspx?url=%22http://cricscore-api.appspot.com/csa%22',
+                success: function (data) {
+                    console.log("List all available matches.");
+                    console.log(data);
+                    console.log(JSON.parse(data));
+                }
+            });
+            $.ajax({
+                url: '../../../simpleproxy.aspx?url=%22http://cricscore-api.appspot.com/csa?id=677725%22',
+                success: function (data) {
+                    console.log("Get/Update score for single match.");
+                    console.log(JSON.parse(data));
+                }
+            });
+            $.ajax({
+                url: '../../../simpleproxy.aspx?url=%22http://cricscore-api.appspot.com/csa?id=677725+696729%22',
+                success: function (data) {
+                    console.log("Get/Update scores for multiple matches.");
+                    console.log(JSON.parse(data));
+                }
+            });
+        });
+    </script>
+</body>
+</html>

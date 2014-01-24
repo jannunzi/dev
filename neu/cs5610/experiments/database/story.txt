@@ -1,0 +1,14 @@
+﻿00.aspx		Adding Database Table to ASPX
+05.aspx		Sorting Grid Views
+10.aspx		Paging Grid Views
+15.aspx		Delete Rows
+20.aspx		Inline Editing Rows
+25.aspx		Readonly Fields
+30.aspx		Data Lists
+35.aspx		Data List Templates
+40.aspx		DetailsView
+45.aspx		DetailsView Paging
+50.aspx		DetailsView Inserting
+55.aspx		DetailsView Editing and Deleting
+60.aspx		Linking GridView Page to DetailsView Inserting Oage
+70.aspx		Linking GridView Page to Update and Inserting Pages and Back Again

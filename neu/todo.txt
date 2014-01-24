@@ -1,0 +1,6 @@
+login.ccs.neu.edu
+MSSQL2005.development.ccs.neu.edu
+bitvise tunnelier
+http://www.bitvise.com/tunnelier
+http://www.bitvise.com/ssh-client-download
+http://dl.bitvise.com/BvSshClient-Inst.exe

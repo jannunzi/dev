@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../javascript/jquery-min.js"></script>
+</head>
+<body>
+    <script>
+    $(function(){
+        $.ajax({
+            url: "'../../../simpleproxy.aspx?url=%22http://cricscore-api.appspot.com/csa%22",
+            success: function (data) {
+                var json = JSON.parse(data);
+//                console.log(json);
+                var ul = $("<ul>");
+                for (var i = 0; i < json.length; i++) {
+                    var li = $("<li>");
+                    var a = $("<a>").attr("href","#");
+                    a.append(json[i].t1 + " vs " + json[i].t2);
+                    li.append(a);
+                    ul.append(li);
+                    console.log(json[i].t1 + " vs " + json[i].t2);
+                }
+                $("body").append(ul);
+            }
+        });
+    });
+    </script>
+</body>
+</html>
