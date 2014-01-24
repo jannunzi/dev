@@ -99,6 +99,14 @@
                     <li><a href="jquery/sortable/1-axis.html" target="_blank">Sortable on an Axis</a></li>
                     <li><a href="story/index.htm?../experiments/animation/story.txt" target="_blank">Animation</a></li>
                 </ul>
+                <h3>Databases</h3>
+                <ul>
+                    <li><a href="story/index.htm?../experiments/database/story.txt" target="_blank">DataGrids and DetailsView Components</a></li>
+                <!--
+                    <li><a href="https://github.com/jannunzi/UserLoginPrefs.git" target="_blank">User Login &amp; Preferences</a></li>
+                    <li><a href="story/index.htm?../experiments/dao/story.txt" target="_blank">Data Access Object</a></li>
+                -->
+                </ul>
                 <h3>Web Services</h3>
                 <ul>
                     <li><a href="story/index.htm?../experiments/movies/story.txt" target="_blank">Movies Restful APIs</a></li>
@@ -121,12 +129,6 @@
                     <li><a href="story/index.htm?../experiments/pageEditor/story.txt" target="_blank">Page Editor</a></li>
                     <li><a href="story/index.htm?../experiments/appstore/story.txt" target="_blank">App Store</a></li>
                 </ul>
-                <!--
-                <h3>Databases</h3>
-                <ul>
-                    <li><a href="https://github.com/jannunzi/UserLoginPrefs.git" target="_blank">User Login &amp; Preferences</a></li>
-                    <li><a href="story/index.htm?../experiments/dao/story.txt" target="_blank">Data Access Object</a></li>
-                </ul>-->
             </div><!-- col -->
         </div><!-- row -->
     </div><!-- main container -->
