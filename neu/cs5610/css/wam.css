@@ -1,0 +1,240 @@
+﻿body {
+}
+
+/*
+    Borders
+*/
+
+.wam-border {
+    border-style : solid;
+    border-color : black;
+}
+
+.wam-border-all {
+/*    border-style : solid;*/
+    border : 1px solid black;
+}
+
+.wam-border-xs {
+    border-width : 1px;
+}
+
+.wam-border-sm {
+    border-width : 2px;
+}
+
+.wam-border-md {
+    border-width : 4px;
+}
+
+.wam-border-lg {
+    border-width : 8px;
+}
+
+.wam-border-top {
+    border-top-style : solid;
+    border-top-color : black;
+}
+
+.wam-border-bottom {
+    border-bottom-style : solid;
+    border-bottom-color : black;
+}
+
+.wam-border-left {
+    border-left-style : solid;
+    border-left-color : black;
+}
+
+.wam-border-right {
+    border-right-style : solid;
+    border-right-color : black;
+}
+
+.wam-border-no-right {
+    border-top-style : solid;
+    border-top-color : black;
+    border-left-style : solid;
+    border-left-color : black;
+    border-bottom-style : solid;
+    border-bottom-color : black;
+}
+
+.wam-border-no-left {
+    border-top-style : solid;
+    border-top-color : black;
+    border-right-style : solid;
+    border-right-color : black;
+    border-bottom-style : solid;
+    border-bottom-color : black;
+}
+
+.wam-border-no-top {
+    border-left-style: solid;
+    border-left-color: black;
+    border-right-style: solid;
+    border-right-color: black;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+}
+
+.wam-border-no-bottom {
+    border-left-style: solid;
+    border-left-color: black;
+    border-right-style: solid;
+    border-right-color: black;
+    border-top-style: solid;
+    border-top-color: black;
+}
+
+/*
+    Sizes
+*/
+.wam-height-100 {
+    height:100px;
+}
+
+.wam-height-50 {
+    height:50px;
+}
+
+.wam-width-100 {
+    width:100px;
+}
+
+.wam-width-50 {
+    width:50px;
+}
+
+/*
+    Position
+*/
+
+.wam-position-absolute {
+    position : absolute;
+}
+
+.wam-float-left {
+    float : left;
+}
+
+.wam-float-right {
+    float : right;
+}
+
+.wam-bottom-0 {
+    position:absolute;
+    bottom:0px;
+}
+
+.wam-connected-box, .wam-cb {
+    border : 1px solid black;
+    border-width : 4px;
+    position : relative;
+    background-color : white;
+    padding : 10px;
+}
+
+.wam-cb .wam-left {
+    position: absolute;
+    left: -20px;
+    top: 50%;
+}
+
+.wam-cb .wam-right {
+    position: absolute;
+    top: 50%;
+    right: -20px;
+}
+
+.wam-cb .wam-top {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+}
+
+.wam-cb .wam-bottom {
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+}
+
+.wam-cb .wam-bottom .wam-arrow {
+    position: relative;
+    left: -8px;
+    font-size: 20px;
+}
+
+.wam-cb .wam-left .wam-arrow {
+    position: relative;
+    top: -13px;
+    font-size: 20px;
+}
+
+.wam-cb .wam-top .wam-arrow {
+    position: relative;
+    left: -11px;
+    font-size: 20px;
+}
+
+.wam-cb .wam-right .wam-arrow {
+    position: relative;
+    top: -13px;
+    font-size: 20px;
+}
+
+.wam-margin-20 {
+    margin-left : 20px;
+}
+
+.wam-cb.wam-top .wam-left,
+.wam-cb.wam-top .wam-right,
+.wam-cb.wam-top .wam-bottom {
+    display : none;
+}
+
+.wam-cb.wam-bottom .wam-left,
+.wam-cb.wam-bottom .wam-right,
+.wam-cb.wam-bottom .wam-top {
+    display : none;
+}
+
+.wam-cb.wam-left .wam-bottom,
+.wam-cb.wam-left .wam-right,
+.wam-cb.wam-left .wam-top {
+    display : none;
+}
+
+.wam-cb.wam-right .wam-bottom,
+.wam-cb.wam-right .wam-left,
+.wam-cb.wam-right .wam-top {
+    display : none;
+}
+
+.wam-cb.wam-right .wam-right {
+    display : block;
+}
+
+.wam-cb.wam-left .wam-left {
+    display : block;
+}
+
+.wam-cb.wam-top .wam-top {
+    display : block;
+}
+
+.wam-cb.wam-bottom .wam-bottom {
+    display : block;
+}
+
+.wam-cb .wam-top,
+.wam-cb .wam-bottom,
+.wam-cb .wam-right,
+.wam-cb .wam-left {
+    display : none;
+}
+
+.wam-line-vertical-middle {
+    width : 50%;
+    border-right : 2px solid black;
+}

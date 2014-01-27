@@ -17,25 +17,18 @@
         <p>
             <asp:DataList CssClass="table" ID="DataList1" runat="server" DataKeyField="Id" DataSourceID="SqlDataSource1">
                 <ItemTemplate>
-                    Id:
-                    <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
-                    <br />
                     Name:
                     <asp:Label ID="NameLabel" runat="server" Text='<%# Eval("Name") %>' />
-                    <br />
                     Price:
-                    <asp:Label ID="PriceLabel" runat="server" Text='<%# Eval("Price") %>' />
-                    <br />
-                    Downloads:
-                    <asp:Label ID="DownloadsLabel" runat="server" Text='<%# Eval("Downloads") %>' />
+                    $<asp:Label ID="PriceLabel" runat="server" Text='<%# Eval("Price") %>' />
+                    (Downloads:
+                    <asp:Label ID="DownloadsLabel" runat="server" Text='<%# Eval("Downloads") %>' />)
                     <br />
                     Category:
                     <asp:Label ID="CategoryLabel" runat="server" Text='<%# Eval("Category") %>' />
-                    <br />
-<br />
                 </ItemTemplate>
             </asp:DataList>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:jgaCS %>" DeleteCommand="DELETE FROM [Application] WHERE [Id] = @Id" InsertCommand="INSERT INTO [Application] ([Name], [Price], [Downloads], [Category]) VALUES (@Name, @Price, @Downloads, @Category)" ProviderName="<%$ ConnectionStrings:jgaCS.ProviderName %>" SelectCommand="SELECT [Id], [Name], [Price], [Downloads], [Category] FROM [Application]" UpdateCommand="UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads WHERE [Id] = @Id">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnectionString1 %>" DeleteCommand="DELETE FROM [Application] WHERE [Id] = @Id" InsertCommand="INSERT INTO [Application] ([Name], [Price], [Downloads], [Category]) VALUES (@Name, @Price, @Downloads, @Category)" ProviderName="<%$ ConnectionStrings:dbConnectionString1.ProviderName %>" SelectCommand="SELECT [Id], [Name], [Price], [Downloads], [Category] FROM [Application]" UpdateCommand="UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads WHERE [Id] = @Id">
                 <DeleteParameters>
                     <asp:Parameter Name="Id" Type="Int32" />
                 </DeleteParameters>

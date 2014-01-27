@@ -39,15 +39,15 @@
                 <asp:SqlDataSource
                     ID="SqlDataSource1"
                     runat="server"
-                    ConnectionString="<%$ ConnectionStrings:jgaCS %>"
+                    ConnectionString="<%$ ConnectionStrings:dbConnectionString1 %>"
                     DeleteCommand="DELETE FROM [Application] WHERE [Id] = @Id"
                     InsertCommand="INSERT INTO [Application] ([Name], [Price], [Downloads], [Category], [Created]) VALUES (@Name, @Price, @Downloads, @Category, @Created)"
-                    ProviderName="<%$ ConnectionStrings:jgaCS.ProviderName %>"
-                    SelectCommand="SELECT [Id], [Name], [Price], [Downloads], [Category], [Created] FROM [Application] WHERE [Id] = @id"
+                    ProviderName="<%$ ConnectionStrings:dbConnectionString1.ProviderName %>"
+                    SelectCommand="SELECT [Id], [Name], [Price], [Downloads], [Category], [Created] FROM [Application] WHERE [Id] = @param_id"
                     UpdateCommand="UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads, [Category] = @Category, [Created] = @Created WHERE [Id] = @Id">
                     <SelectParameters>
                         <asp:QueryStringParameter
-                            Name="id"
+                            Name="param_id"
                             Type="Int32"
                             QueryStringField="id" />
                     </SelectParameters>

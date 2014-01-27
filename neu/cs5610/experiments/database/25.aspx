@@ -28,7 +28,12 @@
                 </Columns>
                 <PagerSettings Mode="NumericFirstLast" />
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:jgaCS %>" DeleteCommand="DELETE FROM [Application] WHERE [Id] = @Id" InsertCommand="INSERT INTO [Application] ([Name], [Price], [Downloads], [Category]) VALUES (@Name, @Price, @Downloads, @Category)" ProviderName="<%$ ConnectionStrings:jgaCS.ProviderName %>" SelectCommand="SELECT [Id], [Name], [Price], [Downloads], [Category] FROM [Application]" UpdateCommand="UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads WHERE [Id] = @Id">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbConnectionString1 %>" 
+                DeleteCommand="DELETE FROM [Application] WHERE [Id] = @Id"
+                InsertCommand="INSERT INTO [Application] ([Name], [Price], [Downloads], [Category]) VALUES (@Name, @Price, @Downloads, @Category)" 
+                ProviderName="<%$ ConnectionStrings:dbConnectionString1.ProviderName %>" 
+                SelectCommand="SELECT [Id], [Name], [Price], [Downloads], [Category] FROM [Application]" 
+                UpdateCommand="UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads WHERE [Id] = @Id">
                 <DeleteParameters>
                     <asp:Parameter Name="Id" Type="Int32" />
                 </DeleteParameters>
@@ -51,11 +56,11 @@
             We need to remove the readonly field from the Update SQL statement, otherwise it will be deleted</p>
 
         <pre>
-&lt;asp:SqlDataSource ID=&quot;SqlDataSource1&quot; runat=&quot;server&quot; ConnectionString=&quot;&lt;%$ ConnectionStrings:jgaCS %&gt;&quot; DeleteCommand=&quot;DELETE FROM [Application] WHERE [Id] = @Id&quot; InsertCommand=&quot;INSERT INTO [Application] ([Name], [Price], [Downloads], [Category]) VALUES (@Name, @Price, @Downloads, @Category)&quot; ProviderName=&quot;&lt;%$ ConnectionStrings:jgaCS.ProviderName %&gt;&quot; SelectCommand=&quot;SELECT [Id], [Name], [Price], [Downloads], [Category] FROM [Application]&quot; UpdateCommand=&quot;UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads , [Category] = @Category WHERE [Id] = @Id&quot;&gt;</pre>
+&lt;asp:SqlDataSource ID=&quot;SqlDataSource1&quot; runat=&quot;server&quot; ConnectionString=&quot;&lt;%$ ConnectionStrings:dbConnectionString1 %&gt;&quot; DeleteCommand=&quot;DELETE FROM [Application] WHERE [Id] = @Id&quot; InsertCommand=&quot;INSERT INTO [Application] ([Name], [Price], [Downloads], [Category]) VALUES (@Name, @Price, @Downloads, @Category)&quot; ProviderName=&quot;&lt;%$ ConnectionStrings:dbConnectionString1.ProviderName %&gt;&quot; SelectCommand=&quot;SELECT [Id], [Name], [Price], [Downloads], [Category] FROM [Application]&quot; UpdateCommand=&quot;UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads , [Category] = @Category WHERE [Id] = @Id&quot;&gt;</pre>
 
 
         <pre>
-&lt;asp:SqlDataSource ID=&quot;SqlDataSource1&quot; runat=&quot;server&quot; ConnectionString=&quot;&lt;%$ ConnectionStrings:jgaCS %&gt;&quot; DeleteCommand=&quot;DELETE FROM [Application] WHERE [Id] = @Id&quot; InsertCommand=&quot;INSERT INTO [Application] ([Name], [Price], [Downloads], [Category]) VALUES (@Name, @Price, @Downloads, @Category)&quot; ProviderName=&quot;&lt;%$ ConnectionStrings:jgaCS.ProviderName %&gt;&quot; SelectCommand=&quot;SELECT [Id], [Name], [Price], [Downloads], [Category] FROM [Application]&quot; UpdateCommand=&quot;UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads WHERE [Id] = @Id&quot;&gt;</pre>
+&lt;asp:SqlDataSource ID=&quot;SqlDataSource1&quot; runat=&quot;server&quot; ConnectionString=&quot;&lt;%$ ConnectionStrings:dbConnectionString1 %&gt;&quot; DeleteCommand=&quot;DELETE FROM [Application] WHERE [Id] = @Id&quot; InsertCommand=&quot;INSERT INTO [Application] ([Name], [Price], [Downloads], [Category]) VALUES (@Name, @Price, @Downloads, @Category)&quot; ProviderName=&quot;&lt;%$ ConnectionStrings:dbConnectionString1.ProviderName %&gt;&quot; SelectCommand=&quot;SELECT [Id], [Name], [Price], [Downloads], [Category] FROM [Application]&quot; UpdateCommand=&quot;UPDATE [Application] SET [Name] = @Name, [Price] = @Price, [Downloads] = @Downloads WHERE [Id] = @Id&quot;&gt;</pre>
 
         <h2>Source</h2>
        	<a target="_blank" href="../../fileview/Default.aspx?~/experiments/database/25.aspx">ASPX</a><br/>
