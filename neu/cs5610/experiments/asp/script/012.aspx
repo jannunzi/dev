@@ -2,18 +2,10 @@
 
 <!DOCTYPE html>
 
-<script runat="server">
-    protected void Page_Load(object sender, EventArgs e)
-    {
-    }
-</script>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Experiment</title>
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
-    <script src="../../../javascript/jquery-min.js"></script>
-    <script src="../../../javascript/jquery-ui.min.js"></script>
     <style>
         td {
             padding-right : 25px;
@@ -25,7 +17,7 @@
     <div class="container">
         <h1>Entities</h1>
 
-        <h2>8000-8999</h2>
+        <h2>9000-9999</h2>
         <table>
             <thead>
                 <tr>
@@ -34,7 +26,7 @@
             </thead>
             <tbody>
                 <%
-                    string eight = "&#8";
+                    string nine = "&#9";
                     int count = 0;
                     string zeros = "";
                     for (int row = 0; row < 100; row++)
@@ -51,9 +43,9 @@
                             {
                                 zeros = "00";
                             }
-                            string entity = eight + zeros + count;
+                            string entity = nine + zeros + count;
                             count++;
-                    %>      <td><%= entity %> &amp;#8<%= zeros + count %></td>
+                    %>      <td><%= entity %> &amp;#9<%= zeros + count %></td>
                     <%
                         }
                 %>      </tr>
@@ -66,10 +58,5 @@
         <rasala:FileView ID="fileView" runat="server" />
     </div>
     </form>
-    <script>
-        $(function () {
-
-        });
-    </script>
 </body>
 </html>

@@ -2,18 +2,10 @@
 
 <!DOCTYPE html>
 
-<script runat="server">
-    protected void Page_Load(object sender, EventArgs e)
-    {
-    }
-</script>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Experiment</title>
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
-    <script src="../../../javascript/jquery-min.js"></script>
-    <script src="../../../javascript/jquery-ui.min.js"></script>
     <style>
         td {
             padding : 12px;
@@ -84,10 +76,5 @@
         <rasala:FileView ID="fileView" runat="server" />
     </div>
     </form>
-    <script>
-        $(function () {
-
-        });
-    </script>
 </body>
 </html>

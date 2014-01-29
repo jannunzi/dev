@@ -115,6 +115,7 @@
                 </ul>
                 <h3>ASPX.NET</h3>
                 <ul>
+                    <li><a href="story/index.htm?../experiments/asp/script/story.txt" target="_blank">Script Editor <span class="label label-danger">New</span></a></li>
                     <li><a href="story/index.htm?../experiments/asp/helloWorld/story.txt" target="_blank">ASP Hello World Web Pages</a></li>
                     <li><a href="story/index.htm?../experiments/asp/filesAndDirectories/story.txt" target="_blank">ASP Files and Directories</a></li>
                     <li><a href="story/index.htm?../experiments/asp/requestParameters/story.txt" target="_blank">ASP Parse Request Parameters</a></li>

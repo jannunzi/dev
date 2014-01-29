@@ -2,8 +2,24 @@
 }
 
 /*
-    Borders
+    Borders, Paddings, and Margins
 */
+
+.wam-shadow-border:hover {
+    box-shadow : 0px 0px 15px #888888;
+}
+
+.wam-margin-10 {
+    margin : 10px;
+}
+
+.wam-margin-20 {
+    margin : 20px;
+}
+
+.wam-no-borders {
+    border : none;
+}
 
 .wam-border {
     border-style : solid;
@@ -11,7 +27,6 @@
 }
 
 .wam-border-all {
-/*    border-style : solid;*/
     border : 1px solid black;
 }
 
@@ -90,6 +105,15 @@
 /*
     Sizes
 */
+
+.wam-width-90-pct {
+    width : 90%;
+}
+
+.wam-width-70-pct {
+    width : 70%;
+}
+
 .wam-height-100 {
     height:100px;
 }
@@ -100,6 +124,10 @@
 
 .wam-width-100 {
     width:100px;
+}
+
+.wam-width-200 {
+    width:200px;
 }
 
 .wam-width-50 {
@@ -237,4 +265,8 @@
 .wam-line-vertical-middle {
     width : 50%;
     border-right : 2px solid black;
+}
+
+.wam-no-bullets {
+    list-style-type: none;
 }

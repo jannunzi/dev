@@ -2,27 +2,21 @@
 
 <!DOCTYPE html>
 
-<script runat="server">
-    protected void Page_Load(object sender, EventArgs e)
-    {
-    }
-</script>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Experiment</title>
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/wam.css" />
-    <script src="../../../javascript/jquery-min.js"></script>
-    <script src="../../../javascript/jquery-ui.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div class="container">
+
         <h1>Vertically Connected Boxes</h1>
 
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-xs-3">
+
                 <h2>Top Connection</h2>
 
                 <div class="wam-cb">
@@ -71,6 +65,40 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
                     </div>
                 </div>
             </div>
+            <div class="col-xs-9">
+                <h2>HTML</h2>
+                <pre>
+&lt;div class=&quot;wam-cb&quot;&gt;
+    &lt;div class=&quot;wam-left&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9658;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;wam-bottom&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9650&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;wam-top&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9660;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;wam-right&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9668;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;wam-content&quot;&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;wam-line-vertical-middle wam-height-50&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;wam-cb wam-top&quot;&gt;
+    &lt;div class=&quot;wam-left&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9658;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;wam-bottom&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9650&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;wam-top&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9660;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;wam-right&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9668;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;wam-content&quot;&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+                
+                <h2>CSS</h2>
+
+                <pre>
+.wam-line-vertical-middle {
+    width : 50%;
+    border-right : 2px solid black;
+}</pre>
+
+            </div>
         </div>
 
         <br />
@@ -79,10 +107,5 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
     </div>
     </form>
-    <script>
-        $(function () {
-
-        });
-    </script>
 </body>
 </html>
