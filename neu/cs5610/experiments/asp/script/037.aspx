@@ -92,6 +92,13 @@
 
                 <h2>Request Parameters</h2>
 
+                <p> In this experiment we filter out all request parameters except
+                    the ones we care about. We have pre-pended
+                    <b class="wam-highlight">wam-</b> to all our parameters. The
+                    <a href="#wam-script">ASP script</a> iterates over all the parameters,
+                    but only displays the ones beginning with <b class="wam-highlight">wam</b>
+                </p>
+
                 <ul>
                 <%
                 foreach (object param in Request.Params)
@@ -114,20 +121,18 @@
 
         <div class="row">
             <div class="col-sm-6">
+                <a name="wam-script"></a>
                 <h2>Displaying My Parameters</h2>
                 <pre>
 &lt;ul&gt;
 &lt;%
 foreach (object param in Request.Params)
 {
-    var parameterName
-        = param.ToString();
+    var parameterName = param.ToString();
     if (!parameterName.StartsWith(&quot;wam&quot;))
         continue;
-    var parameterValue
-        = Request.Params[parameterName];%&gt;
-    &lt;li&gt;&lt;%= parameterName %&gt;
-        = &lt;%= parameterValue %&gt;&lt;/li&gt;
+    var parameterValue = Request.Params[parameterName];%&gt;
+    &lt;li&gt;&lt;%= parameterName %&gt; = &lt;%= parameterValue %&gt;&lt;/li&gt;
 &lt;%
 }%&gt;
 &lt;/ul&gt;</pre>

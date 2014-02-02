@@ -26,7 +26,7 @@
         <h1>Connected Boxes Editor</h1>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h2>Editor</h2>
 
 <ul class="wam-no-bullets wam-script">
@@ -71,8 +71,13 @@ foreach(object param in Request.Params) {
 </ul>
             </div>
 
-            <div class="col-md-9">
-                <h2>Source Code</h2>
+            <div class="col-md-8">
+                <h2>Documentation</h2>
+
+                <p> In this experiment we just decorate the previous experiment with
+                    the connected box classes and add a vertical arrow.
+                </p>
+
                 <pre>
 &lt;ul class=&quot;wam-no-bullets wam-script&quot;&gt;
 &lt;%
@@ -83,35 +88,36 @@ foreach(object param in Request.Params) {
     if (value == &quot;&quot; || value.Length == 0)
       continue;
 %&gt;  &lt;li&gt;
-      &lt;div class=&quot;wam-cb wam-top&quot; id=&quot;&lt;%= counter %&gt;&quot;&gt;
-        &lt;div class=&quot;wam-left&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9658;&lt;/span&gt;&lt;/div&gt;
-        &lt;div class=&quot;wam-bottom&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9650&lt;/span&gt;&lt;/div&gt;
-        &lt;div class=&quot;wam-top&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9660;&lt;/span&gt;&lt;/div&gt;
-        &lt;div class=&quot;wam-right&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9668;&lt;/span&gt;&lt;/div&gt;
-        &lt;div class=&quot;wam-content&quot;&gt;
-          &lt;%= counter %&gt;
+                    
+      <b class="wam-highlight">&lt;div class=&quot;wam-cb wam-top&quot; id=&quot;&lt;%= counter %&gt;&quot;&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-left&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9658;&lt;/span&gt;&lt;/div&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-bottom&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9650&lt;/span&gt;&lt;/div&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-top&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9660;&lt;/span&gt;&lt;/div&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-right&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9668;&lt;/span&gt;&lt;/div&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-content&quot;&gt;</b>
+          <b class="wam-highlight">&lt;%= counter %&gt;</b>
           &lt;input class=&quot;wam-width-200 wam-shadow-border wam-no-borders&quot;
                  type=&quot;text&quot; name=&quot;wam-&lt;%= counter %&gt;&quot; value=&quot;&lt;%= value %&gt;&quot;/&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+        <b class="wam-highlight">&lt;/div&gt;</b>
+      <b class="wam-highlight">&lt;/div&gt;</b>
 
-      &lt;div class=&quot;wam-line-vertical-middle wam-height-50&quot;&gt;&lt;/div&gt;
+      <b class="wam-highlight">&lt;div class=&quot;wam-line-vertical-middle wam-height-50&quot;&gt;&lt;/div&gt;</b>
     &lt;/li&gt;
 &lt;%  counter++;
   }
 }%&gt;
   &lt;li&gt;
-    &lt;div class=&quot;wam-cb wam-top&quot; id=&quot;new&quot;&gt;
-      &lt;div class=&quot;wam-left&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9658;&lt;/span&gt;&lt;/div&gt;
-      &lt;div class=&quot;wam-bottom&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9650&lt;/span&gt;&lt;/div&gt;
-      &lt;div class=&quot;wam-top&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9660;&lt;/span&gt;&lt;/div&gt;
-      &lt;div class=&quot;wam-right&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9668;&lt;/span&gt;&lt;/div&gt;
-      &lt;div class=&quot;wam-content&quot;&gt;
+      <b class="wam-highlight">&lt;div class=&quot;wam-cb wam-top&quot; id=&quot;&lt;%= counter %&gt;&quot;&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-left&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9658;&lt;/span&gt;&lt;/div&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-bottom&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9650&lt;/span&gt;&lt;/div&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-top&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9660;&lt;/span&gt;&lt;/div&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-right&quot;&gt;&lt;span class=&quot;wam-arrow&quot;&gt;&amp;#9668;&lt;/span&gt;&lt;/div&gt;</b>
+        <b class="wam-highlight">&lt;div class=&quot;wam-content&quot;&gt;</b>
         &lt;input type=&quot;text&quot; name=&quot;wam-new-line&quot; autofocus=&quot;autofocus&quot;
                class=&quot;wam-no-borders wam-shadow-border&quot; /&gt;
         &lt;button class=&quot;btn btn-success btn-sm pull-right&quot;&gt;&amp;plus;&lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <b class="wam-highlight">&lt;/div&gt;</b>
+      <b class="wam-highlight">&lt;/div&gt;</b>
   &lt;/li&gt;
 &lt;/ul&gt;</pre>
 

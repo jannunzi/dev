@@ -270,3 +270,41 @@
 .wam-no-bullets {
     list-style-type: none;
 }
+
+.wam-no-padding {
+    padding : 0px;
+}
+
+
+.wam-highlight {
+    font-weight : bold;
+    color : red;
+    text-decoration : underline;
+}
+
+.wam-sticky-bottom {
+    position : absolute;
+    bottom : 0px;
+}
+
+.wam-page-centered {
+    margin-left : auto;
+    margin-right : auto;
+    width : 600px;
+}
+
+.wam-black {
+    color : black;
+}
+
+.wam-margin-left.wam-sm {
+    margin-left : 10px;
+}
+
+.wam-margin-right.wam-md {
+    margin-right: 20px;
+}
+
+.wam-margin-right.wam-sm {
+    margin-right: 10px;
+}

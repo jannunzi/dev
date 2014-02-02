@@ -15,7 +15,7 @@
             padding : 0px;
         }
         ul.wam-script input[type=text] {
-            width: 58%;
+            width: 75%;
             height: 30px;
         }
     </style>
@@ -24,10 +24,11 @@
     <form id="form1" runat="server">
     <div class="container">
 
-        <h1>Run Script</h1>
 
         <div class="row">
             <div class="col-sm-4">
+    
+            <h1>Run Script</h1>
            <ul class="wam-no-bullets wam-script">
         <% int counter = 0;
            ArrayList gotoFrom = new ArrayList();
@@ -90,7 +91,25 @@
             </div>
 
             <div class="col-sm-8">
+                
+                <h1>Documentation</h1>
 
+                <h2>HTML</h2>
+                <p> In this experiment we write the script to the page
+                    and execute it when we click on a Run button.
+                    To accomplish this, we add a new button labeled
+                    <b class="wam-highlight">Run</b> with the name <b class="wam-highlight">wam-run</b>.
+                </p>
+                <pre>
+&lt;button type=&quot;submit&quot; class=&quot;btn btn-success pull-right&quot; name=&quot;wam-run&quot;&gt;Run&lt;/button&gt;</pre>
+
+                <h2>ASP</h2>
+                <p> If the Run button is clicked, it will submit the form
+                    and add the wam-run query parameter to the query string.
+                    We can check for this in ASP and write out the stements
+                    inside a script tag. When the browser receives the
+                    rendered page, it will execute the script.
+                </p>
                 <pre>
 &lt;script&gt;
 &lt;%

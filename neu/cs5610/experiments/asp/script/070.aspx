@@ -15,7 +15,7 @@
             padding : 0px;
         }
         ul.wam-script input[type=text] {
-            width: 58%;
+            width: 75%;
             height: 30px;
         }
     </style>
@@ -24,10 +24,10 @@
     <form id="form1" runat="server">
     <div class="container">
 
-        <h1>Run Script</h1>
 
         <div class="row">
-           <div class="col-sm-6">
+            <div class="col-sm-4">
+                <h1>Reorder Script</h1>
            <!-- @new Added wam-sortable -->
            <ul class="wam-no-bullets wam-script wam-sortable">
         <% int counter = 0;
@@ -90,29 +90,39 @@
                 <button type="submit" class="btn btn-success pull-right" name="wam-run">Run</button>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-8">
 
+                <h1>Documentation</h1>
+
+                <p> In this experiment we add the ability
+                    of reordering the script statements.</p>
+
+                <h2>HTML</h2>
                 <pre>
-&lt;script&gt;
-&lt;%
-counter = 0;
-foreach(object param in Request.Params) {
-    if (param.ToString().StartsWith(&quot;wam&quot;)) {
-        string value = Request.Params[param.ToString()];
-        if (value == &quot;&quot; || value.Length == 0)
-            continue;
-        if ((counter + &quot;&quot;) != delete) {%&gt;
-        &lt;%= value %&gt;
-&lt;%          counter++;
-        }
-        else
-        {
-            delete = &quot;&quot;;
-        }
-    }
-}
-%&gt;&lt;/script&gt;</pre>
+&lt;ul class=&quot;wam-no-bullets wam-script <b class="wam-highlight">wam-sortable</b>&quot;&gt;
+    ...
+&lt;/ul&gt;</pre>
 
+                <h2>JavaScript</h2>
+                <pre>
+$(&quot;.wam-sortable&quot;).sortable({
+    axis : &quot;y&quot;
+});</pre>
+
+                <h2>Try It</h2>
+
+                <p>Try writing the following simple script:</p>
+                <ol>
+                    <li>alert("Hello");</li>
+                    <li>alert("Goodbye");</li>
+                </ol>
+
+                <p>Run the script and verify that 2 alerts popup one after the other
+                    with messages Hello and Goodbye, in that order.</p>
+
+                <p>Now drag Goodbye so it's above Hello and try running the script again.
+                    Verify that the alerts appear in the new order.
+                </p>
             </div>
 
         </div>

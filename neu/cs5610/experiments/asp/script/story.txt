@@ -16,5 +16,7 @@
 050.aspx			Delete Connected Boxes
 055.aspx			Goto Renderer
 060.aspx			Edit Connected Box
-~/css/wam.css		wam.css
+065.aspx			Run the Script
+070.aspx			Reorder Script
+../../../css/wam.css		wam.css
 story.txt			Story Config File

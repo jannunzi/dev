@@ -30,10 +30,12 @@
 <body>
     <form id="form1" runat="server">
     <div class="container">
-        <h1>Delete</h1>
 
         <div class="row">
             <div class="col-sm-4">
+
+            <h1>Adding Delete Button</h1>
+
            <ul class="wam-no-bullets wam-script">
         <% int counter = 0;
            string delete = Request.Params["delete"];
@@ -81,6 +83,18 @@
                 </li>
            </ul>
             </div>
+
+            <div class="col-sm-8">
+                <h1>Documentation</h1>
+                <h2>HTML</h2>
+                <pre>
+&lt;%= counter %&gt;
+&lt;input class=&quot;...&quot; name=&quot;wam-&lt;%= counter %&gt;&quot; value=&quot;&lt;%= value %&gt;&quot;/&gt;
+<b class="wam-highlight">&lt;button name=&quot;delete&quot; value=&quot;&lt;%= counter %&gt;&quot; class=&quot;btn btn-danger btn-sm pull-right&quot;&gt;</b>
+    <b class="wam-highlight">&amp;times;</b>
+<b class="wam-highlight">&lt;/button&gt;</b></pre>
+            </div>
+
         </div>
 
         <rasala:FileView ID="fileView" runat="server" />

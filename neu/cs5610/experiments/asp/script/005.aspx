@@ -123,8 +123,8 @@
                 <h3>CSS</h3>
                 <pre>
 .wam-border-bottom {
-    border-bottom-style : solid;
-    border-bottom-color : black;
+  border-bottom-style : solid;
+  border-bottom-color : black;
 }</pre>
             </div>
             <div class="col-sm-3">
@@ -141,8 +141,8 @@
                 <h3>CSS</h3>
                 <pre>
 .wam-border-right {
-    border-right-style : solid;
-    border-right-color : black;
+  border-right-style : solid;
+  border-right-color : black;
 }</pre>
             </div>
             <div class="col-sm-3">

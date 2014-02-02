@@ -31,10 +31,10 @@
     <form id="form1" runat="server">
     <div class="container">
 
-        <h1>Edit Connected Box</h1>
 
         <div class="row">
             <div class="col-sm-4">
+        <h1>Edit Connected Box</h1>
            <ul class="wam-no-bullets wam-script">
         <% int counter = 0;
            ArrayList gotoFrom = new ArrayList();
@@ -68,7 +68,8 @@
                         int gotoIndex = value.IndexOf("goto");
                         int parenOpenIndex = value.IndexOf("(", gotoIndex);
                         int parenCloseIndex = value.IndexOf(")", gotoIndex);
-                        string gotoParam = value.Substring(parenOpenIndex+1, parenCloseIndex - parenOpenIndex - 1);
+                        string gotoParam = value.Substring(parenOpenIndex+1,
+                            parenCloseIndex - parenOpenIndex - 1);
                         gotoFrom.Add(counter + "");
                         gotoTo.Add(gotoParam);
                     }
@@ -93,6 +94,26 @@
                         </div>
                 </li>
            </ul>
+            </div>
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-7">
+                <h1>Documentation</h1>
+
+                <p> In this experiment we add the ability of editing individual script statements.
+                    We'll add an update button to each of the statements that will resubmit the form
+                    with any updates we might have made to the statements.
+                </p>
+
+                <h2>HTML</h2>
+
+                <pre>
+&lt;button
+    name=&quot;update&quot;
+    value=&quot;&lt;%= counter %&gt;&quot;
+    class=&quot;btn btn-primary btn-sm pull-right&quot;&gt;&amp;#10004;
+&lt;/button&gt;</pre>
             </div>
         </div>
 

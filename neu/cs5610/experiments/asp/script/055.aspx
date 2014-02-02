@@ -31,10 +31,12 @@
     <form id="form1" runat="server">
     <div class="container">
 
-        <h1>Goto</h1>
 
         <div class="row">
             <div class="col-sm-4">
+
+            <h1>Goto</h1>
+
            <ul class="wam-no-bullets wam-script">
         <% int counter = 0;
            ArrayList gotoFrom = new ArrayList();
@@ -92,6 +94,62 @@
                         </div>
                 </li>
            </ul>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-7">
+
+                <h1>Documentation</h1>
+
+                <h2>ASP</h2>
+
+                <p> Using ASP we iterate over the parameters looking for goto commands.
+                    If we find one we parse the goto label and store it in a gotoTo array list.
+                    We also store the current line where we found the goto command in the
+                    gotoFrom array list.
+                </p>
+
+                <pre>
+ArrayList gotoFrom = new ArrayList();
+ArrayList gotoTo   = new ArrayList();
+foreach(object param in Request.Params) {
+    if (param.ToString().StartsWith("wam")) {
+        string value = Request.Params[param.ToString()];
+        ...
+        if (value.Contains("goto"))
+        {
+            int gotoIndex = value.IndexOf("goto");
+            int parenOpenIndex = value.IndexOf("(", gotoIndex);
+            int parenCloseIndex = value.IndexOf(")", gotoIndex);
+            string gotoParam = value.Substring(parenOpenIndex+1,
+                    parenCloseIndex - parenOpenIndex - 1);
+            gotoFrom.Add(counter + "");
+            gotoTo.Add(gotoParam);
+        }
+    }
+}</pre>
+
+                <h2>JavaScript</h2>
+
+                <p> Now that we know what gotos we need to render, we'll iterate over
+                    them and render each one at a time. We will use the JavaScript
+                    we used earlier to draw the gotos
+                </p>
+
+                <pre>
+&lt;script&gt;
+    $(function () {
+        &lt;%
+    for (int i = 0; i &lt; gotoFrom.Count; i++ )
+    {
+        string from = gotoFrom[i].ToString();
+        string to = gotoTo[i].ToString();
+    %&gt;
+        gotoRenderer(&lt;%= from %&gt;, &lt;%= to %&gt;);
+    &lt;%
+    }
+    %&gt;
+    });
+&lt;/script&gt;</pre>
             </div>
         </div>
 

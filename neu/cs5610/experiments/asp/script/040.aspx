@@ -21,10 +21,11 @@
 <body>
     <form id="form1" runat="server">
     <div class="container">
-        <h1>Script Editor</h1>
 
         <div class="row">
             <div class="col-md-4">
+
+           <h1>Script Editor</h1>
 
            <ul class="wam-no-bullets wam-script">
         <% int counter = 0;
@@ -43,6 +44,36 @@
 
             </div>
             <div class="col-md-8">
+
+                <h1>Documentation</h1>
+
+                <p> This experiment builds on the previous ones. Here we add the
+                    ability to dynamically add content by submitting a form and
+                    re-rendering the page with what the user has submitted so far.
+                    This way the page is able to maintain state information right
+                    on the page without the need of back end resources such as
+                    classes, files, or databases.
+                </p>
+
+                <p> We use an empty imput field to start adding content. The content
+                    is eventually intended to represent script statements. For now
+                    they can be any arbitrary string. Clicking the button submits the
+                    form with all the form elements.
+                </p>
+
+                <pre>
+&lt;input
+    type=&quot;text&quot;
+    id=&quot;0&quot;
+    name=&quot;wam-new-line&quot;
+    autofocus=&quot;autofocus&quot;
+    class=&quot;wam-width-200 wam-no-borders wam-margin-10 wam-shadow-border&quot; /&gt;
+&lt;button class=&quot;btn btn-success btn-sm&quot;&gt;&amp;plus;&lt;/button&gt;</pre>
+
+                <p> The page responds with more input form elements whose values
+                    are derived from previous submits. This way the page maintains
+                    state information across submits.
+                </p>
 
                 <pre>
 &lt;ul class=&quot;wam-no-bullets wam-script&quot;&gt;

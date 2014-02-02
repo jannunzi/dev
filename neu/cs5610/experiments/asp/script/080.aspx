@@ -13,7 +13,37 @@
 <body>
     <form id="form1" runat="server">
     <div class="container">
-        <h1>Template</h1>
+        <h1>Refactoring Script with Gotos</h1>
+
+        <pre>
+        $(function () {
+            var state = 0;
+            var tot = 0;
+            var count = 0;
+            var value = 0;
+            var average = 0;
+            var loop = true;
+            while (loop) {
+                switch (state) {
+                    case 0:
+                        value = prompt("Value: ");
+                        value = parseFloat(value);
+                        count++;
+                        tot = tot + value;
+                        if (value != "0") state = 0;
+                        else state = 1;
+                        break;
+                    case 1:
+                        average = tot / count;
+                        alert(average);
+                        state = 2;
+                        break;
+                    case 2:
+                        loop = false;
+                        break;
+                }
+            }
+        });</pre>
 
         <rasala:FileView ID="fileView" runat="server" />
     </div>
@@ -21,14 +51,29 @@
     <script>
         $(function () {
             var state = 0;
-            while (true) {
+            var tot = 0;
+            var count = 0;
+            var value = 0;
+            var average = 0;
+            var loop = true;
+            while (loop) {
                 switch (state) {
-                    case 0 :
-                        var i = 1;
-                        alert(i);
-                        if (i > 10) state = 1;
+                    case 0:
+                        value = prompt("Value: ");
+                        value = parseFloat(value);
+                        count++;
+                        tot = tot + value;
+                        if (value != "0") state = 0;
+                        else state = 1;
+                        break;
                     case 1:
-
+                        average = tot / count;
+                        alert(average);
+                        state = 2;
+                        break;
+                    case 2:
+                        loop = false;
+                        break;
                 }
             }
         });

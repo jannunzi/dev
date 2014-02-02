@@ -51,7 +51,7 @@ function gotoRenderer(from, to) {
             position: "absolute",
             top: fromTop > toTop ? toTop + toHeight / 2 : fromTop + fromHeight / 2,
             left: fromLeft + fromWidth / 2,
-            height: Math.abs(fromTop - toTop),
+            height: Math.abs(fromTop - toTop) + 3,
             width: fromWidth > toWidth ? fromWidth / 2 + state.level * 50 : toWidth / 2 + state.level * 50,
             zIndex: -1
         }).addClass("wam-border-no-left");
@@ -62,4 +62,11 @@ function gotoRenderer(from, to) {
 
     state.level++;
     $(this).data("gotoRendererState", state);
+}
+
+$(wamInit);
+
+function wamInit() {
+    $(".wam-draggable").draggable();
+    $(".wam-resizable").resizable();
 }
