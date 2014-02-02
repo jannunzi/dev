@@ -1,0 +1,27 @@
+Rotten Tomatoes REST API
+
+Register
+http://developer.rottentomatoes.com/member/register
+
+Key
+umgs9aw92awmyuw6qvmgqkgv
+
+Documentation
+http://developer.rottentomatoes.com/docs
+JSON Docs
+http://developer.rottentomatoes.com/docs/read/JSON
+
+Top Level
+http://api.rottentomatoes.com/api/public/v1.0.json?apikey=[your_api_key]
+
+Search Movies
+http://developer.rottentomatoes.com/docs/json/v10/Movies_Search
+http://developer.rottentomatoes.com/docs/json/v10/Movie_Info
+http://developer.rottentomatoes.com/docs/json/v10/Movie_Reviews
+
+
+Avatar:	665118753
+Star Wars 3: 9
+Star Wars 2: 10009
+Star Wars 4: 11292
+Star Trek: 770673029
