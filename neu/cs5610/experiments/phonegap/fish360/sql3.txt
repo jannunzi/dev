@@ -1,0 +1,26 @@
+Count Fish Grouped by Their Trip
+
+select count(nid) AS count, t.field_fishing_trip_nid TripId
+from content_type_fish_type t
+group by field_fishing_trip_nid
+order by count desc
+
+count	TripId
+20		NULL
+12		25
+5			88
+4			5
+3			213
+3			265
+3			398
+2			185
+2			456
+1			306
+1			79
+1			102
+1			104
+1			120
+1			224
+1			184
+1			310
+1			29

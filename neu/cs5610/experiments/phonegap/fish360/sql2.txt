@@ -1,0 +1,43 @@
+select nt.title AS Trip, nf.title AS Fish
+from
+	node nt,
+	node nf,
+	content_type_fishing_trip_type t,
+	content_type_fish_type f
+where
+	nt.nid = t.nid	AND
+	nf.nid = f.nid AND
+	f.field_fishing_trip_nid = t.nid
+order by fish
+
+Trip	Fish
+Cuttyhunk Trip	16 lb keepah bitch slaped Salty Danny
+New Fishing Trip	AAAAAAAAA
+Bug 15 FT 111	Bug 15 Fish 1
+Bug 15 FT 2	Bug 15 FT 2 Fish 1
+Test Fishing Trip Clone Clone of Test FT Pics	clone fish 1
+Test Fishing Trip Clone Clone of Test FT Pics	Clone of clone fish 2
+Cutty Hunk Island  10-July-2010	Cutty Hunk Island  10-July-2010 Striped Bass
+Cutty Hunk Island  12-June-2009	Cutty Hunk Island  12-June-2009 Striped Bass
+Cutty Hunk Island  12-June-2009	Cutty Hunk Island  12-June-2009 Striped Bass
+Cutty Hunk Island  12-June-2009	Cutty Hunk Island  12-June-2009 Striped Bass
+[field_hot_zone-title]  02-May-2013	dffffff
+[field_hot_zone-title]  02-May-2013	eeee
+Ferry Beach  05-September-2009	Ferry Beach  05-September-2009 Striped Bass
+Test add fish link 2	Fish - test Node Reference URL Widget
+test Fish pics	Fish 1
+Fishing Trip 123	Fish 123
+Fishing Trip 123	Fish 234
+Fishing Trip 123	Fish 345
+Fishing Trip 123	Fish 456
+Fishing Trip 123	Fish 567
+Fishing Trip 123	Fish 678
+Fishing Trip 123	Fish 789
+Fishing Trip 123	Fish 890
+Fishing Trip 123	Fish 900
+Fishing Trip 123	Fish 910
+Fishing Trip 123	Fish 920
+Fishing Trip 123	Fish 930
+Test add fish link 2	Fish L1
+Test add fish link 2	Fish L2
+Test add fish link 2	Fish L3
