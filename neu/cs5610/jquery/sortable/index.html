@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Draggable</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $(".sortable").sortable();
+        });
+    </script>
+</head>
+<body>
+    <div class="ninesixty">
+
+    <h1>Sortable</h1>
+    <p>This example shows you how to use jQuery's sortable functionality. Consider the following list:</p>
+    
+	<ul class="sortable">
+		<li class="red">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</li>
+		<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+		<li class="blue">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</li>
+	</ul>
+    
+    <p>Now, try dragging the list items and repositioning them between other members of the list.
+    	Note how the other members move away to make space for the list item you are dragging.
+    	When you drop the list item, it inserts itself in the new position. Isn't that cool!?</p>
+    
+    <p>The HTML has been declared as follows:</p>
+    <pre>
+	&lt;ul class=&quot;sortable&quot;&gt;
+		&lt;li class=&quot;red&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua&lt;/li&gt;
+		&lt;li&gt;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat&lt;/li&gt;
+		&lt;li class=&quot;blue&quot;&gt;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur&lt;/li&gt;
+	&lt;/ul&gt;
+    </pre>
+    <p>Using jQuery, we can grab the list by its class as follows:</p>
+    <pre>
+        $(function () {
+            $(".sortable").sortable();
+        });
+    </pre>
+    <p>We add the sortable functionality to the list by envoking .sortable() on it. Note that the class "sortable"
+        is not what makes the DIVs sortable. These classes are merely used to be referenced by jQuery in $(".sortable").
+        Once we have the DIVs in the jQuery context, we can invoke any of a multitude of functions declared by jQuery.
+        The sortable() function adds the ability to drag the list items in the list.
+    </p>
+        </div>
+</body>
+</html>

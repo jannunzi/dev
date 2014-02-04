@@ -1,4 +1,5 @@
-﻿000.aspx			Template
+﻿../../../story/whatisnext.htm?../experiments/asp/script/					What is Next?
+000.aspx			Template
 005.aspx			DIV Borders
 010.aspx			Triangle Entities and Arrows
 011.aspx			Entities from 8000 to 8999

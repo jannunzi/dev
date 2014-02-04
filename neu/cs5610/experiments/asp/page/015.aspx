@@ -77,6 +77,8 @@
     <form id="form1" runat="server">
     <div class="container">
 
+        <h1>Rendering Widget Instances with Style</h1>
+
         <%  foreach (Widget w in home.widgets)
             {%>
                 <div style="<%= w.style %>">

@@ -62,7 +62,7 @@
             var movieTitle = $(".wam-movie-title").val();
             if (movieTitle === "" || movieTitle === null || typeof movieTitle === "undefined")
                 return;
-            cs5610.rottenTomatoes.search(movieTitle, renderResults);
+            cs5610.rottenTomatoes.searchMovieTitle(movieTitle, renderResults);
         }
 
         function renderResults(response) {

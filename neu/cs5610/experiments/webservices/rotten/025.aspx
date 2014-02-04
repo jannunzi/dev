@@ -38,6 +38,26 @@
                 </table>
 
             </div>
+            <div class="col-sm-6">
+                <img class="wam-poster" src="#" />
+                <ul>
+                    <li class="wam-title"></li>
+                    <li class="wam-rating"></li>
+                </ul>
+                <table class="wam-reviews table">
+                    <thead>
+                        <tr>
+                            <th>Critic</th>
+                            <th>Date</th>
+                            <th>Freshness</th>
+                            <th>Publication</th>
+                            <th>Quote</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <rasala:FileView ID="fileView" runat="server" />
@@ -50,13 +70,50 @@
     <script>
         $(function () {
             $(".wam-go").click(searchForMovies);
+            $("body").on("click", ".wam-details", handleDetailsLink);
         });
+
+        function handleDetailsLink() {
+            var link = $(this);
+            var id = link.attr("id");
+//            cs5610.rottenTomatoes.search({ id: id, callback: renderDetails });
+            cs5610.rottenTomatoes.reviews({ id: id, callback: renderReviews });
+        }
+
+        function renderReviews(movie) {
+            var html = '<tr style="vertical-align: top;">' +
+                            '<td class="wam-critic"></td>' +
+                            '<td class="wam-date"></td>' +
+                            '<td class="wam-freshness"></td>' +
+                            '<td>' +
+                                '<a target="_blank" href="#" class="wam-publication"></a>' +
+                            '</td>' +
+                            '<td class="wam-quote">' +
+                            '</td>' +
+                        '</tr>';
+
+            console.log("renderReviews");
+            console.log(movie);
+            var tbody = $(".wam-reviews tbody");
+            tbody.empty();
+            for (var i in movie.reviews) {
+                var dom = $(html);
+                dom.find(".wam-critic").html(movie.reviews[i].critic);
+                dom.find(".wam-date").html(movie.reviews[i].date);
+                dom.find(".wam-freshness").html(movie.reviews[i].freshness);
+                dom.find(".wam-publication")
+                    .html(movie.reviews[i].publication)
+                    .attr("href", movie.reviews[i].links.review);
+                dom.find(".wam-quote").html(movie.reviews[i].quote);
+                tbody.append(dom);
+            }
+        }
 
         function searchForMovies() {
             var movieTitle = $(".wam-movie-title").val();
             if (movieTitle === "" || movieTitle === null || typeof movieTitle === "undefined")
                 return;
-            cs5610.rottenTomatoes.search(movieTitle, renderResults);
+            cs5610.rottenTomatoes.searchMovieTitle(movieTitle, renderResults);
         }
 
         function renderResults(response) {
@@ -69,6 +126,7 @@
                 var movie = movies[i];
 
                 var title = movie.title;
+                var id = movie.id;
                 var year = movie.year;
                 var thumb = movie.posters.thumbnail;
                 var audience = movie.ratings.audience_score;
@@ -76,8 +134,12 @@
 
                 var tr = $("<tr>");
 
+                var titleLink = $("<a href='#' class='wam-details'>");
+                titleLink.append(title);
+                titleLink.attr("id", id);
+
                 var td = $("<td>");
-                td.append(title);
+                td.append(titleLink);
                 tr.append(td);
 
                 td = $("<td>");

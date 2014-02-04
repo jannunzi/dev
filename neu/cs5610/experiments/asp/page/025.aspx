@@ -32,7 +32,8 @@
 <body>
     <form id="form1" runat="server">
     <div class="container">
-        <h1>DataList</h1>
+
+        <h1>Iterate Over ArrayList of Widgets with Repeater Control</h1>
 
         <h2>Raw</h2>
         <asp:repeater  id="Repeater1" runat="server">

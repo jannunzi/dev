@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Select Editors</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <style>
+    	.hidden {
+    		display : none;
+    	}
+    	.fieldlist > li {
+    		margin 	: 10px;
+    		border 	: 1px black solid;
+    		padding : 20px;
+    		width 	: 540px;
+    	}
+    	.edit, .move, .delete {
+    		margin-left : 5px;
+    	}
+
+    	.fieldlist > li:nth-child(even), .options > li:nth-child(even) { background: beige; }
+    	.fieldlist > li:nth-child(odd), .options > li:nth-child(odd) { background: lightgray; }
+    	.collapsable { display : none; }
+		.showonhover {
+			display : none;
+			float : right;
+		}
+        ul.options {
+            border: 1px solid black;
+        }
+    </style>
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../js/jquery-ui.min.js" type="text/javascript"></script>
+    <script>
+    	var counter = 1;
+    	var selectEditorTemplate;
+    	var fieldList;
+        $(function () {
+	    	fieldList = $(".fieldlist");
+	    	selectEditorTemplate = $(".select-editor.template").clone();
+	    	selectEditorTemplate.removeClass("template");
+	    	
+            $(".sortable.y-axis").sortable({"axis" : "y"});
+            
+			$(".form").on("mouseenter",'.select-editor', function() {
+				$(this).find(".showonhover").show();
+			});
+			$(".form").on("mouseleave",'.select-editor', function() {
+				$(this).find(".showonhover").hide();
+			});
+
+            $(".form").on("click", ".edit", function(){
+            	var editLink = $(this);
+            	var collapsableDiv = $(editLink.parents(".select-editor")[0]).find(".collapsable");
+            	collapsableDiv.toggle(500);
+            });
+            $(".form").on("click", ".add", function(){
+            	var addLink = $(this);
+            	var optionsList = addLink.siblings(".options");
+            	var lastLi = optionsList.find("li:last");
+            	var newLi = lastLi.clone();
+            	optionsList.append(newLi);
+            });
+            $(".form").on("click", ".add-editor", function(){
+      			var newLi = $("<li>");
+      			var newSelectEditor = selectEditorTemplate.clone().removeClass("hidden");
+      			newLi.append(newSelectEditor);
+      			
+            	counter++;
+            	var newName = "default"+counter;
+            	newLi.find(".default").attr("name", newName);
+            	newLi.find(".sortable.y-axis").sortable({"axis" : "y"});
+
+            	fieldList.append(newLi);
+            });
+            $(".form").on("click",".delete",function(){
+            	var deleteLink = $(this);
+            	var parentLi = deleteLink.parents("li")[0];
+            	var parentUl = deleteLink.parents("ul")[0];
+            	var countLis = parentUl.children.length;
+            	if(countLis == 1) {
+            		alert("Can not remove this element since you need at least one element in the list.");
+            		return;
+            	}
+            	parentLi.remove();
+            });
+            $(".field-label-editor").change(function(){
+            	var fieldLabelEditor = $(this);
+            	var labelValue = fieldLabelEditor.val();
+            	var labelField = fieldLabelEditor.parents(".select-editor").find(".field-label");
+            	labelField.val(labelValue);
+            });
+            $(".field-id-editor").change(function(){
+            	var fieldIdEditor = $(this);
+            	var idValue = fieldIdEditor.val();
+            	var field = fieldIdEditor.parents(".field-editor").find(".field");
+            	field.attr("id", idValue);
+            });
+            $(".field-name-editor").change(function(){
+            	var fieldNameEditor = $(this);
+            	var nameValue = fieldNameEditor.val();
+            	var field = fieldNameEditor.parents(".field-editor").find(".field");
+            	field.attr("name", nameValue);
+            });
+            $(".field-class-editor").change(function(){
+            	var fieldClassEditor = $(this);
+            	var classValue = fieldClassEditor.val();
+            	var field = fieldClassEditor.parents(".field-editor").find(".field");
+            	field.addClass(classValue);
+            });
+            $(".form").on("click", ".apply", applyChanges);
+        });
+        function applyChanges() {
+            var link = $(this);
+            var editor = link.parents(".select-editor");
+            var label    = editor.find(".field-label-editor").val();
+            var location = editor.find(".field-label-location").val();
+            var id       = editor.find(".field-id-editor").val();
+            var name     = editor.find(".field-name-editor").val();
+            var classs   = editor.find(".field-class-editor").val();
+
+            var select = editor.find(".select");
+            select.attr("id", id);
+            select.addClass(classs);
+            select.attr("name", name);
+            select.empty();
+
+            var options = editor.find(".options li");
+            options.each(function () {
+                var li = $(this);
+                var label   = li.find(".option-label").val();
+                var value   = li.find(".option-value").val();
+                var checked = li.find(".default:checked");
+                var option = $("<option>")
+                    .attr("value", value)
+                    .append(label);
+                if (checked.length > 0)
+                    option.attr("selected", "selected");
+                select.append(option);
+            });
+            console.log([label, location, id, name, classs]);
+        }
+    </script>
+</head>
+<body>
+    <div class="ninesixty">
+
+	    <h1>Select Editors (Work in progress)</h1>
+	
+		<div class="form">
+		<ul class="sortable y-axis nobullets fieldlist">
+		    <li>
+			    <div class="select-editor field-editor">
+				    <input class="transparentbg field-label w150 noborder" value="Label"/><select class="w150 select field"><option value="value1">Options</option></select>
+				    	<div class="showonhover"><a href="#" class="edit">edit</a><span  class="move">move</span><a href="#" class="delete">delete</a></div>
+				    <div class="collapsable">
+                        <br />
+					    <ul class="nobullets">
+							<li><div class="bold w150 left">Label:</div>	<input class="transparentbg w150 field-label-editor noborder" value="Label"/></li>
+							<li><div class="bold w150 left">Location:</div>
+																	<select class="field-label-location">
+																		<option value="none">None</option>
+																		<option value="left">Left</option>
+																		<option value="above">Above</option>
+																		<option value="below">Below</option>
+																		<option value="right">Right</option>
+																	</select></li>
+							<li><div class="bold w150 left">ID:</div>	<input class="field-id-editor transparentbg w150 field-id noborder" value="id"/></li>
+							<li><div class="bold w150 left">Name:</div>	<input class="field-name-editor transparentbg w150 field-name noborder" value="name"/></li>
+							<li><div class="bold w150 left">Class:</div><input class="field-class-editor transparentbg w150 field-class noborder" value="class"/></li>
+					    </ul>
+                        <br />
+						<div class="w150 left bold">Label</div>
+						<div class="w150 left bold">Value</div>
+						<div class="w150 left bold">Selected</div><div class="clear"></div>
+						<ul class="sortable y-axis nobullets options">
+							<li><input class="transparentbg w150 option-label noborder" value="Option 1"/><input class="transparentbg w150 option-value noborder" value="Value 1"/><input name="default1" type="radio" class="default" checked="checked"/>
+								<a href="#" class="delete fright">delete</a><span  class="move fright">move</span></li>
+							<li><input class="transparentbg w150 option-label noborder" value="Option 2"/><input class="transparentbg w150 option-value noborder" value="Value 2"/><input name="default1" type="radio" class="default"/>
+								<a href="#" class="delete fright">delete</a><span  class="move fright">move</span></li>
+							<li><input class="transparentbg w150 option-label noborder" value="Option 3"/><input class="transparentbg w150 option-value noborder" value="Value 3"/><input name="default1" type="radio" class="default"/>
+								<a href="#" class="delete fright">delete</a><span  class="move fright">move</span></li>
+						</ul>
+						<a class="add" href="#">add</a>
+						<a class="apply fright" href="#">apply</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<a class="add-editor" href="#">add</a>
+		</div>
+	</div>
+	
+	
+<div class="select-editor field-editor hidden template">
+    <input class="transparentbg field-label w150 noborder" value="Label"/><select class="w150 select field"><option value="value1">Options</option></select>
+    	<div class="showonhover"><a href="#" class="edit">edit</a><span  class="move">move</span><a href="#" class="delete">delete</a></div>
+    <div class="collapsable">
+        <br />
+	    <ul class="nobullets">
+			<li><div class="bold w150 left">Label:</div>	<input class="transparentbg w150 field-label-editor noborder" value="Label"/></li>
+			<li><div class="bold w150 left">Location:</div>
+													<select class="field-label-location">
+														<option value="none">None</option>
+														<option value="left">Left</option>
+														<option value="above">Above</option>
+														<option value="below">Below</option>
+														<option value="right">Right</option>
+													</select></li>
+			<li><div class="bold w150 left">ID:</div>	<input class="field-id-editor transparentbg w150 field-id noborder" value="id"/></li>
+			<li><div class="bold w150 left">Name:</div>	<input class="field-name-editor transparentbg w150 field-name noborder" value="name"/></li>
+			<li><div class="bold w150 left">Class:</div><input class="field-class-editor transparentbg w150 field-class noborder" value="class"/></li>
+	    </ul>
+        <br />
+		<div class="w150 left bold">Label</div>
+		<div class="w150 left bold">Value</div>
+		<div class="w150 left bold">Selected</div><div class="clear"></div>
+		<ul class="sortable y-axis nobullets options">
+			<li><input class="transparentbg w150 option-label noborder" value="Option 1"/><input class="transparentbg w150 option-value noborder" value="Value 1"/><input name="default1" type="radio" class="default" checked="checked"/>
+				<a href="#" class="delete fright">delete</a><span  class="move fright">move</span></li>
+			<li><input class="transparentbg w150 option-label noborder" value="Option 2"/><input class="transparentbg w150 option-value noborder" value="Value 2"/><input name="default1" type="radio" class="default"/>
+				<a href="#" class="delete fright">delete</a><span  class="move fright">move</span></li>
+			<li><input class="transparentbg w150 option-label noborder" value="Option 3"/><input class="transparentbg w150 option-value noborder" value="Value 3"/><input name="default1" type="radio" class="default"/>
+				<a href="#" class="delete fright">delete</a><span  class="move fright">move</span></li>
+		</ul>
+		<a class="add" href="#">add</a>
+		<a class="apply fright" href="#">apply</a>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sortable on an Axis</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		.sortable li {
+			height : 50px;
+			margin-bottom : 5px;
+			margin-right: 5px;
+		}
+		.sortable li {
+			font-weight : bold;
+			color : white;
+		}
+		#sortable1 {
+			width : 70px;
+		}
+		#sortable2 {
+			width : 200px;
+		}
+	</style>
+	
+	<script>
+		$(function() {
+			$( "#sortable1" ).sortable({
+//				connectWith: "#sortable2",
+				"helper" : "clone"
+			});
+			$( "#sortable2" ).sortable({
+				axis : "y"
+			});
+		});
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+    	
+    	<h1>Connected Sortable Lists</h1>
+    	
+    	<p>
+    		Sortable lists can be connected to one another so that items can be sorted between them.
+    		The two sortable lists below are connected. Try dragging elements from one onto the other.
+    		You can drag both ways.
+    	</p>
+ 
+		<ul id="sortable1" class="nobullets fleft sortable">
+		  <li class="bluebg">Item A</li>
+		  <li class="bluebg">Item B</li>
+		  <li class="bluebg">Item C</li>
+		  <li class="bluebg">Item D</li>
+		  <li class="bluebg">Item E</li>
+		</ul>
+		 
+		<ul id="sortable2" class="nobullets fleft sortable">
+		  <li class="redbg">Item 1</li>
+		  <li class="redbg">Item 2</li>
+		  <li class="redbg">Item 3</li>
+		  <li class="redbg">Item 4</li>
+		  <li class="redbg">Item 5</li>
+		</ul>
+		
+		<div class="clear"></div>
+		
+		<p>
+			The lists are implemented as simple un-ordered lists styled with no bullets and floated left
+			so that they show side by side
+		</p>
+
+		<pre>
+	&lt;ul id=&quot;sortable1&quot; class=&quot;nobullets fleft sortable&quot;&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item A&lt;/li&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item B&lt;/li&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item C&lt;/li&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item D&lt;/li&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item E&lt;/li&gt;
+	&lt;/ul&gt;
+	 
+	&lt;ul id=&quot;sortable2&quot; class=&quot;nobullets fleft sortable&quot;&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 1&lt;/li&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 2&lt;/li&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 3&lt;/li&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 4&lt;/li&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 5&lt;/li&gt;
+	&lt;/ul&gt;
+		</pre>
+		
+		<p>
+			To connect the lists, just use the <code>connectedWith</code> option of the <code>sortable</code>
+			jQuery plugin as shown below. Here, both lists are connected to the other.
+		</p>
+
+		<pre>
+	$(function() {
+		$( &quot;#sortable1&quot; ).sortable({
+			connectWith: &quot;.sortable&quot;
+		});
+		$( &quot;#sortable2&quot; ).sortable({
+			connectWith: &quot;.sortable&quot;
+		});
+	});			
+		</pre>
+
+    	<a href="../../fileview/Default.aspx?~/jquery/sortable/2-connectedLists.html" target="_blank">View Source</a>
+		
+	</div>
+</body>
+</html>

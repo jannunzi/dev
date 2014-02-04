@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		.palette {
+			width : 200px;
+		}
+		.palette > li {
+			height : 33px;
+		}
+		.palette input.label {
+			display : none;
+		}
+		.palette ul.group > li {
+			display: inline;
+			list-style-type: none;
+		}
+		.palette textarea {
+			height: 25px;
+		}
+
+		.sortable > li {
+			background-color : beige;
+			margin-bottom : 5px;
+			margin-right: 5px;
+		}
+		.form {
+			width : 400px;
+		}
+		.form textarea {
+			height: 100px;
+			width : 300px;
+		}
+		#form .group input {
+			border : none;
+		}
+		#form > li {
+			height : auto;
+		}
+		.label, .section-label {
+			background-color : beige;
+			border : none;
+		}
+	</style>
+
+	<script>
+		$(function() {
+			$("#palette > li").draggable({
+				connectToSortable : "#form",
+				helper:"clone"
+			});
+			$("#form, .group").sortable({
+				"axis" : "y"
+			});
+		});
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+		<h1>Forms</h1>
+		
+		<p>
+			We can use connected lists to implement palettes and canvases where you can drag items
+			from a palette onto a canvas to add the items to the canvas. Consider the example below
+			with a palette of form elements on the left and a canvas on the right. This is an examped
+			version of an earlier example illustrating connecting draggable and sortable lists. Here
+			they implement a simple form building app where you can add form elements from the palette
+			onto a form. The form items can then be repositioned. 
+		</p>
+
+		<ul id="palette" class="nobullets fleft sortable">
+			<li>
+				<input type="text" class="section-label" value="Label"/>
+			<li>
+				<input type="text" value="Input Field"/>
+			</li>
+			<li>
+				<textarea>Text Area</textarea>
+			<li><button>Button</button></li>
+			<li>
+				<select>
+					<option>Option 1</option>
+					<option>Option 2</option>
+					<option>Option 3</option>
+				</select>
+			</li>
+			<li>
+			  	<ul class="group nobullets">
+				  	<li><input id="r1" type="radio" name="radio1" value="Option 1"/><input type="text" class="label" value="Option 1"/></li>
+				  	<li><input id="r2" type="radio" name="radio1" value="Option 2"/><input type="text" class="label" value="Option 2"/></li>
+				  	<li><input id="r3" type="radio" name="radio1" value="Option 3"/><input type="text" class="label" value="Option 3"/></li>
+			  	</ul>
+		  	</li>
+			<li>
+			  	<ul class="group nobullets">
+				  	<li><input id="c1" type="checkbox" name="check1" value="Option 1"/><input type="text" class="label" value="Option 1"/></li>
+				  	<li><input id="c2" type="checkbox" name="check1" value="Option 2"/><input type="text" class="label" value="Option 2"/></li>
+				  	<li><input id="c3" type="checkbox" name="check1" value="Option 3"/><input type="text" class="label" value="Option 3"/></li>
+			  	</ul>
+		  	</li>
+		</ul>
+		 
+		<ul id="form" class="nobullets fleft sortable">
+		  <li><input type="text" value="Form Name"/></li>
+		  <li><button>Submit</button></li>
+		</ul>
+		
+		<div class="clear"></div>
+
+		<p>
+			The script for connecting the draggable elements to the sortable elements stayed exactly the same.
+			No added complexity. What did change was the actual elements being dragged, dropped, and sorted.
+			These are now sets of related form elements that together can build any type of form.
+		</p>
+
+	<pre>
+	$(function() {
+		$(&quot;#palette &gt; li&quot;).draggable({
+			connectToSortable : &quot;#form&quot;,
+			helper:&quot;clone&quot;
+		});
+		$(&quot;#form&quot;).sortable({
+			&quot;axis&quot; : &quot;y&quot;
+		});
+	});
+	</pre>
+
+	<p>
+		The list of draggable items now defines a palette of web form elements such as input fields, textareas,
+		radio buttons, checkboxes, and buttons. Styling is used to hide label input fields on the palette,
+		and to display components more compactly.
+	</p>
+
+		<pre>
+	&lt;ul id=&quot;palette&quot; class=&quot;nobullets fleft sortable&quot;&gt;
+		&lt;li&gt;
+			&lt;ul class=&quot;nobullets&quot;&gt;
+				&lt;li&gt;&lt;input class=&quot;label&quot; type=&quot;text&quot; value=&quot;Label&quot;/&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;input type=&quot;text&quot; value=&quot;Input Field&quot;/&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;ul class=&quot;nobullets&quot;&gt;
+				&lt;li&gt;&lt;input class=&quot;label&quot; type=&quot;text&quot; value=&quot;Label&quot;/&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;textarea&gt;Text Area&lt;/textarea&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;li&gt;&lt;button&gt;Button&lt;/button&gt;&lt;/li&gt;
+		&lt;li&gt;
+			&lt;ul class=&quot;nobullets&quot;&gt;
+				&lt;li&gt;&lt;input class=&quot;label&quot; type=&quot;text&quot; value=&quot;Label&quot;/&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;select&gt;&lt;option&gt;Select&lt;/option&gt;&lt;/select&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+		  	&lt;ul class=&quot;group nobullets&quot;&gt;
+			  	&lt;li&gt;&lt;input type=&quot;text&quot; class=&quot;label&quot; value=&quot;Radio Group Label&quot;/&gt;&lt;/li&gt;
+			  	&lt;li&gt;&lt;input id=&quot;r1&quot; type=&quot;radio&quot; name=&quot;radio1&quot; value=&quot;Option 1&quot;/&gt;&lt;input type=&quot;text&quot; class=&quot;label&quot; value=&quot;Option 1&quot;/&gt;&lt;/li&gt;
+			  	&lt;li&gt;&lt;input id=&quot;r2&quot; type=&quot;radio&quot; name=&quot;radio1&quot; value=&quot;Option 2&quot;/&gt;&lt;input type=&quot;text&quot; class=&quot;label&quot; value=&quot;Option 2&quot;/&gt;&lt;/li&gt;
+			  	&lt;li&gt;&lt;input id=&quot;r3&quot; type=&quot;radio&quot; name=&quot;radio1&quot; value=&quot;Option 3&quot;/&gt;&lt;input type=&quot;text&quot; class=&quot;label&quot; value=&quot;Option 3&quot;/&gt;&lt;/li&gt;
+		  	&lt;/ul&gt;
+	  	&lt;/li&gt;
+		&lt;li&gt;
+		  	&lt;ul class=&quot;group nobullets&quot;&gt;
+			  	&lt;li&gt;&lt;input type=&quot;text&quot; class=&quot;label&quot; value=&quot;Checkbox Group Label&quot;/&gt;&lt;/li&gt;
+			  	&lt;li&gt;&lt;input id=&quot;c1&quot; type=&quot;checkbox&quot; name=&quot;check1&quot; value=&quot;Option 1&quot;/&gt;&lt;input type=&quot;text&quot; class=&quot;label&quot; value=&quot;Option 1&quot;/&gt;&lt;/li&gt;
+			  	&lt;li&gt;&lt;input id=&quot;c2&quot; type=&quot;checkbox&quot; name=&quot;check1&quot; value=&quot;Option 2&quot;/&gt;&lt;input type=&quot;text&quot; class=&quot;label&quot; value=&quot;Option 2&quot;/&gt;&lt;/li&gt;
+			  	&lt;li&gt;&lt;input id=&quot;c3&quot; type=&quot;checkbox&quot; name=&quot;check1&quot; value=&quot;Option 3&quot;/&gt;&lt;input type=&quot;text&quot; class=&quot;label&quot; value=&quot;Option 3&quot;/&gt;&lt;/li&gt;
+		  	&lt;/ul&gt;
+	  	&lt;/li&gt;
+	&lt;/ul&gt;
+		</pre>
+
+	<p>
+		The sortable list on the right is just a simple list waiting to be filled in with the items on the left.
+	</p>
+
+		<pre>
+	&lt;ul id=&quot;form&quot; class=&quot;nobullets fleft sortable&quot;&gt;
+	  &lt;li&gt;&lt;input type=&quot;text&quot; value=&quot;Form Name&quot;/&gt;&lt;/li&gt;
+	  &lt;li&gt;&lt;button&gt;Submit&lt;/button&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+		</pre>
+
+	<a href="../../fileview/Default.aspx?~/jquery/sortable/4-forms.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

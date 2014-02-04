@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Show on Mousemove</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+        	$(".tool").draggable({
+        		"helper" : "clone",
+        		"stop" : function(event){
+        			console.log(event);
+        			var x = event.screenX;
+        			var y = event.screenY;
+        			console.log([x, y]);
+        			addNewDraggable(x, y);
+        		}
+        	});
+        });
+        
+        function addNewDraggable(x, y) {
+        	$("<div>");
+        }
+        
+    </script>
+</head>
+<body>
+    <div class="ninesixty root">
+	    <h1>Palette</h1>
+	    <div class="palette stickToBottom">
+	    	<ul class="nobullets horizontal">
+	    		<li><div class="tool fleft w100 h100 bluebg">&nbsp;</div></li>
+	    		<li><div class="tool fleft w100 h100 redbg">&nbsp;</div></li>
+	    		<li><div class="tool fleft w100 h100 yellowbg">&nbsp;</div></li>
+	    		<li><div class="tool fleft w100 h100 greenbg">&nbsp;</div></li>
+	    	</ul>
+	    </div>
+    </div>
+</body>
+</html>

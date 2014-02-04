@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sortable on an Axis</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+
+	<script>
+		$(function() {
+			$( "#sortable1" ).sortable({
+				connectWith: ".connectedSortable",
+				helper:"clone"
+			}).disableSelection();
+			$( "#sortable2" ).sortable({
+				receive : function(event, ui) {
+					var ul = $(this);
+					var li = ui.item.clone();
+					console.log("received");
+					console.log([event, ui, ui.helper, ui.item]);
+					ul.append(li);
+					$("#sortable1").sortable("cancel");
+				}
+			}).disableSelection();
+			
+			
+			$( "#list1" ).sortable({
+				    helper: 'clone',
+				    connectWith: "#list2",
+				    scroll: false,
+				    tolerance: 'intersect',
+				stop: function(){
+				    var order = $("#list2").sortable('toArray');
+				    alert( order );
+				}
+				
+				}).disableSelection();
+				
+				$( "#list2" ).sortable().disableSelection();
+		});
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+ 
+		<ul id="sortable1" class="connectedSortable nobullets fleft">
+		  <li class="ui-state-default">Blue</li>
+		  <li class="ui-state-default">Red</li>
+		  <li class="ui-state-default">White</li>
+		  <li class="ui-state-default">Yellow</li>
+		  <li class="ui-state-default">Green</li>
+		</ul>
+		 
+		<ul id="sortable2" class="connectedSortable nobullets fleft">
+		  <li class="ui-state-highlight">Item 1</li>
+		  <li class="ui-state-highlight">Item 2</li>
+		  <li class="ui-state-highlight">Item 3</li>
+		  <li class="ui-state-highlight">Item 4</li>
+		  <li class="ui-state-highlight">Item 5</li>
+		</ul>
+		
+		<div class="clear"></div>
+		
+		<ul id="list1">
+		    <li id="ul_item_1">item-1</li>
+		    <li id="ul_item_2">item-2</li>
+		    <li id="ul_item_3">item-3</li>
+		</ul>
+		<br>
+		<br>
+		<ul id="list2">
+		    <li id="ul_item_4">item-4</li>
+		    <li id="ul_item_5">item-5</li>
+		    <li id="ul_item_6">item-6</li>
+		</ul>
+	</div>
+</body>
+</html>

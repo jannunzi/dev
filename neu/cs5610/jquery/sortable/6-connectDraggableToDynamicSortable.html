@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conneting Draggable to Dynamic Sortable</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		.draggable li,
+		.sortable li {
+			height : 50px;
+			margin-bottom : 5px;
+			margin-right: 5px;
+			font-weight : bold;
+			color : white;
+		}
+		.draggable {
+			width : 70px;
+		}
+		.sortable {
+			width : 200px;
+		}
+
+	</style>
+
+	<script>
+		var sortableTemplate;
+		var canvas;
+		$(function() {
+			connectPaletteToSortable($(".sortable"));
+			
+			sortableTemplate = $(".sortable").clone();
+			canvas = $("#canvas");
+
+			$("#add").click(addSortable);			
+		});
+		
+		function addSortable() {
+			var sortable = sortableTemplate.clone();
+			canvas.append(sortable);
+			connectPaletteToSortable(sortable)
+		}
+		
+		function connectPaletteToSortable(element) {
+			element.sortable({
+				"axis" : "y"
+			});
+			$(".draggable > li").draggable({
+				connectToSortable : ".sortable",
+				helper:"clone"
+			});
+		}
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+		<h1>Conneting Draggable to Dynamic Sortable</h1>
+
+		<p>
+			The previous exercise demonstrated how to connect a palette to several sortable lists.
+			But say we want a dynamic number of sortable lists. We would like to add additional lists
+			at will and have the palette connected to the new lists. The example below illustrates this
+			functionality. Click on the Add Sortable button to add additional lists and then drag
+			the blue items from the palette onto the lists, and then verify that they can be sorted
+			within the lists.
+		</p>
+
+		<button id="add">Add Sortable</button>
+		
+		<div class="clear"></div>
+		
+		<ul class="nobullets fleft draggable">
+		  <li class="bluebg">Item A</li>
+		  <li class="bluebg">Item B</li>
+		  <li class="bluebg">Item C</li>
+		  <li class="bluebg">Item D</li>
+		  <li class="bluebg">Item E</li>
+		</ul>
+
+		<div id="canvas" class="fleft">
+			<ul class="nobullets fleft sortable">
+			  <li class="redbg">Item 1</li>
+			  <li class="redbg">Item 2</li>
+			  <li class="redbg">Item 3</li>
+			  <li class="redbg">Item 4</li>
+			  <li class="redbg">Item 5</li>
+			</ul>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<p>
+			There are several challenges here. One is that the new lists need to be connected to
+			the palette dynamically, when we create them. And the second challenge is that we want
+			to avoid having to generate HTML from within code. Especially when we already have
+			perfectly good HTML code we could use as a template. Let's tackle the first challenge.
+		</p>
+		
+		<p>
+			In previous examples, we wrote code that connected a static palette to a static set of
+			sortable lists. We want to reuse this technique on every new sortable list we add dynamically.
+			To that end, we will encapsulate those steps into a function we can call every time
+			we add a brand new list. We call the method on startup to connect the already existing
+			static palette and list.
+		</p>
+		
+		<pre>
+	$(function() {
+		connectPaletteToSortable($(".sortable"));
+		// ...
+	});
+
+	function connectPaletteToSortable(element) {
+		element.sortable({
+			"axis" : "y"
+		});
+		$(".draggable > li").draggable({
+			connectToSortable : ".sortable",
+			helper:"clone"
+		});
+	}
+		</pre>
+
+		<p>
+			We can now call the connectPaletteToSortable() method every time we create a new list.
+			Now let's see how we can add those lists. Note that we already have HTML that defines the
+			kind of list we would like to add, that is, the static sortable list already there. What
+			we can do is to dynamically grab that HTML and use it to copy and paste it into the DOM
+			as many times as we want. So, onload we are going to grab the list HTML and keep it in
+			a variable for later use. We will use the HTML as template. We are also going to bind a
+			click event on the button to invoke the function that actually adds the new lists. 
+		</p>
+
+		<pre>
+	var sortableTemplate;
+	var canvas;
+	$(function() {
+		connectPaletteToSortable($(".sortable"));
+		
+		sortableTemplate = $(".sortable").clone();
+		canvas = $("#canvas");
+
+		$("#add").click(addSortable);			
+	});
+		</pre>
+		
+		<p>
+			Onload we grab the lonely sortable list and clone the HTML using the clone() method.
+			We also grab a reference to the canvas so that we can add the new lists onto the canvas.
+			When we click on the #add button, the function addSortable() is called and it performs
+			the task of creating the new list from the template and then adding it to the canvas.
+			The other thing that it does is that it calls connectPaletteToSortable() to connect
+			the palette to the new list.
+		</p>
+		
+		<pre>
+	function addSortable() {
+		var sortable = sortableTemplate.clone();
+		canvas.append(sortable);
+		connectPaletteToSortable(sortable)
+	}
+		</pre>
+		
+		<a href="../../fileview/Default.aspx?~/jquery/sortable/6-connectDraggableToDynamicSortable.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

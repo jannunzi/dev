@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conneting Draggable to Draggable Sortable Lists</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		.palette li,
+		.draggable li,
+		.sortable li {
+			height : 50px;
+			margin-bottom : 5px;
+/*			margin-right: 5px;*/
+			font-weight : bold;
+			color : white;
+		}
+		.sortable {
+			border-top : 20px solid beige;
+		}
+		.palette {
+			width : 70px;
+			border-top : 20px solid white;
+		}
+		.sortable {
+			min-width : 200px;
+		}
+		#canvas {
+			margin-left : 10px;
+		}
+
+	</style>
+
+	<script>
+		var sortableTemplate;
+		var canvas;
+		$(function() {
+			connectPaletteToSortable($(".sortable"));
+			
+			sortableTemplate = $(".sortable").clone();
+			canvas = $("#canvas");
+			
+			$("#add").click(addSortable);
+		});
+		
+		function addSortable() {
+			var sortable = sortableTemplate.clone();
+			canvas.append(sortable);
+			var top  = $(window).height() / 2 + "px";
+			var left = $(window).width()  / 2 + "px";
+			console.log([left, top]);
+			sortable.css({
+				"position" : "absolute",
+				"top" : top,
+				"left" : left
+			});
+			connectPaletteToSortable(sortable);
+		}
+		
+		function connectPaletteToSortable(element) {
+			element.sortable({
+				"axis" : "y"
+			});
+			$(".palette > li").draggable({
+				connectToSortable : ".sortable",
+				helper:"clone"
+			});
+			element.draggable({snap : true});
+		}
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+		<h1>Conneting Draggable to Draggable Sortable Lists</h1>
+
+		<p>
+			The previous example demonstrated how to dynamically add new elements and add
+			behavious to them on creation. This example adds the simple enhancement of being
+			able to drag the all the sortable lists on the canvas. The example below illustrates
+			this functionality. Try dragging the top of the exiting red sortable list on the right.
+			Now try clicking on the Add Sortable on the palette on the left. New lists are added to
+			the center of the screen and you can then drag them and position them wherever you like.
+			You can still drag the blue items from the palette on any of the red sortable/draggable
+			lists.
+		</p>
+
+		<button id="add">Add Sortable</button>
+		
+		<div class="clear"></div>
+		
+		<ul class="nobullets fleft palette">
+		  <li class="bluebg">Item A</li>
+		  <li class="bluebg">Item B</li>
+		  <li class="bluebg">Item C</li>
+		  <li class="bluebg">Item D</li>
+		  <li class="bluebg">Item E</li>
+		</ul>
+
+		<div id="canvas" class="fleft">
+			<ul class="nobullets fleft sortable draggable">
+			  <li class="redbg">Item 1</li>
+			  <li class="redbg">Item 2</li>
+			  <li class="redbg">Item 3</li>
+			  <li class="redbg">Item 4</li>
+			  <li class="redbg">Item 5</li>
+			</ul>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<p>
+			To accomplish this we just add an addional call to the draggable() plugin on the new lists.
+			To make it easier to layout several lists side by side, we turn on snap mode. This will
+			cause draggable elements to snap to other draggable elements so they can be aligned.
+			They can snap on the edges and corners. Try it out.
+		</p>
+		
+		<pre>
+	function connectPaletteToSortable(element) {
+		element.sortable({
+			"axis" : "y"
+		});
+		$(".palette > li").draggable({
+			connectToSortable : ".sortable",
+			helper:"clone"
+		});
+		element.draggable({snap : true});
+	}
+		</pre>
+		
+		<p>
+			To add the new element to the center of the window, we query the height and width of the
+			window, divide by two on both directions, and then set the initial absolute position of
+			the new list.
+		</p>
+		
+		<pre>
+	function addSortable() {
+		var sortable = sortableTemplate.clone();
+		canvas.append(sortable);
+		var top  = $(window).height() / 2 + "px";
+		var left = $(window).width()  / 2 + "px";
+		console.log([left, top]);
+		sortable.css({
+			"position" : "absolute",
+			"top" : top,
+			"left" : left
+		});
+		connectPaletteToSortable(sortable);
+	}
+		</pre>
+		
+		<a href="../../fileview/Default.aspx?~/jquery/sortable/7-connectDraggableToDraggableSortable.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

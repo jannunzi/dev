@@ -1,0 +1,19 @@
+﻿../../../story/whatisnext.htm?../experiments/asp/page/					What is Next?
+000.aspx			Template
+005.aspx			Rendering HTML From Class
+010.aspx			Rendering Widget Intances
+015.aspx			Rendering Widget Instances with Style
+020.aspx			Iterate Over ArrayList of Widgets with DataList Control
+025.aspx			Iterate Over ArrayList of Widgets with Repeater Control
+030.aspx			
+035.aspx			
+040.aspx			
+045.aspx			
+050.aspx			
+052.aspx			
+055.aspx			
+060.aspx			
+065.aspx			
+070.aspx			
+075.aspx			
+story.txt			Story Config File

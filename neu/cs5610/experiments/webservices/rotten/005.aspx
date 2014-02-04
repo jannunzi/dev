@@ -15,6 +15,7 @@
 
         <div class="row">
             <div class="col-sm-6">
+
                 <h2>Search for Avatar</h2>
 
                 <p>

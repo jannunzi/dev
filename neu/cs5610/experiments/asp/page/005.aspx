@@ -26,6 +26,8 @@
     <form id="form1" runat="server">
     <div class="container">
 
+        <h1>Rendering HTML From Class</h1>
+
         <%= home.html %>
 
         <rasala:FileView ID="fileView" runat="server" />

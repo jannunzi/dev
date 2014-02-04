@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sortable on an Axis</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		.sortable li {
+			height : 50px;
+			margin-bottom : 5px;
+			margin-right: 5px;
+		}
+		.sortable li {
+			font-weight : bold;
+			color : white;
+		}
+		#draggable {
+			width : 70px;
+		}
+		#sortable {
+			width : 200px;
+		}
+
+	</style>
+
+	<script>
+		$(function() {
+			$("#draggable > li").draggable({
+				connectToSortable : "#sortable",
+				helper:"clone"
+			});
+			$("#sortable").sortable({
+				"axis" : "y"
+			});
+		});
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+		<h1>Conneting Draggable to Sortable</h1>
+
+		<p>
+    		Draggable items can be connected to Sortable lists so that we can use some of the behavior
+    		of draggables. The left list below contains draggable items. The list on the right is sortable.
+    		Try dragging the items on the left onto the list on the right. Notice how the original draggable
+    		items do not move. A "helper" draggable item is created as it is dragged onto the right list.
+		</p>
+
+		<ul id="draggable" class="nobullets fleft sortable">
+		  <li class="bluebg">Item A</li>
+		  <li class="bluebg">Item B</li>
+		  <li class="bluebg">Item C</li>
+		  <li class="bluebg">Item D</li>
+		  <li class="bluebg">Item E</li>
+		</ul>
+		 
+		<ul id="sortable" class="nobullets fleft sortable">
+		  <li class="redbg">Item 1</li>
+		  <li class="redbg">Item 2</li>
+		  <li class="redbg">Item 3</li>
+		  <li class="redbg">Item 4</li>
+		  <li class="redbg">Item 5</li>
+		</ul>
+		
+		<div class="clear"></div>
+		
+		<p>
+			Both draggable and sortable are implemented as list as shown below: 
+		</p>
+
+		<pre>
+	&lt;ul id=&quot;draggable&quot; class=&quot;nobullets fleft sortable&quot;&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item A&lt;/li&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item B&lt;/li&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item C&lt;/li&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item D&lt;/li&gt;
+	  &lt;li class=&quot;bluebg&quot;&gt;Item E&lt;/li&gt;
+	&lt;/ul&gt;
+	 
+	&lt;ul id=&quot;sortable&quot; class=&quot;nobullets fleft sortable&quot;&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 1&lt;/li&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 2&lt;/li&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 3&lt;/li&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 4&lt;/li&gt;
+	  &lt;li class=&quot;redbg&quot;&gt;Item 5&lt;/li&gt;
+	&lt;/ul&gt;
+		</pre>
+		<p>
+			The script below configures the list items of the left list as draggable
+			and the list on the right is configured as sortable. The draggables on the
+			left are connected to the sortable list, and they use a cloned copy of the
+			draggable items instead of the original list item.			
+		</p>
+
+	<pre>
+	$(function() {
+		$(&quot;#draggable &gt; li&quot;).draggable({
+			connectToSortable : &quot;#sortable&quot;,
+			helper:&quot;clone&quot;
+		});
+		$(&quot;#sortable&quot;).sortable({
+			&quot;axis&quot; : &quot;y&quot;
+		});
+	});
+	</pre>
+
+	<a href="../../fileview/Default.aspx?~/jquery/sortable/3-connectDraggableToSortable.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sortable on an Axis</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $(".sortable").sortable();
+            $(".sortable.y-axis").sortable({"axis" : "y"});
+        });
+    </script>
+</head>
+<body>
+    <div class="ninesixty">
+
+    <h1>Sortable on an Axis</h1>
+    <p>By default, <a href="http://jqueryui.com/sortable/" target="_blank">sortable list</a> items can be dragged in any direction. Consider the following list:</p>
+    
+	<ul class="sortable">
+		<li class="red">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</li>
+		<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+		<li class="blue">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</li>
+	</ul>
+
+	<p>
+	But if we are sorting elements that are displayed vertically, it looks better if we restrict dragging
+	in the Y axis only. Here's the same list, but list elements can only be dragged vertically:
+    </p>
+        
+	<ul class="sortable y-axis">
+		<li class="red">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</li>
+		<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+		<li class="blue">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</li>
+	</ul>
+
+    <p>The HTML of the lists is as follows:</p>
+    <pre>
+	&lt;ul class=&quot;sortable&quot;&gt;
+		&lt;li class=&quot;red&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua&lt;/li&gt;
+		&lt;li&gt;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat&lt;/li&gt;
+		&lt;li class=&quot;blue&quot;&gt;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur&lt;/li&gt;
+	&lt;/ul&gt;
+
+	&lt;ul class=&quot;sortable y-axis&quot;&gt;
+		&lt;li class=&quot;red&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua&lt;/li&gt;
+		&lt;li&gt;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat&lt;/li&gt;
+		&lt;li class=&quot;blue&quot;&gt;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur&lt;/li&gt;
+	&lt;/ul&gt;
+    </pre>
+    <p>Using jQuery, we can grab the lists by their classes as follows:</p>
+    <pre>
+        $(function () {
+            $(".sortable").sortable();
+            $(".sortable.y-axis").sortable({"axis" : "y"});
+        });
+    </pre>
+    <p> We add the sortable functionality to the lists by envoking .sortable() on them.
+    	The first sortable() call takes no arguments and the list sorts in its default behavior.
+    	The second sortable() takes a JavaScript object that configures the behavior of the sort.
+    	There are <a href="http://api.jqueryui.com/sortable/" target="_blank">many other configurations</a> you can explore here. 
+    </p>
+        </div>
+</body>
+</html>

@@ -28,6 +28,8 @@
     <div class="container">
         <h1>DataList</h1>
 
+        <h1>Iterate Over ArrayList of Widgets with DataList Control</h1>
+
         <asp:datalist  id="widgetsDataList" runat="server">
             <itemtemplate>
                 <%# Container.DataItem %>

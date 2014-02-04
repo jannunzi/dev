@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/smoothness/jquery-ui.min.css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+	<style>
+		#editlinks, #editpanel {
+			display : none;
+			position : absolute;
+			top : 0px;
+			left : 0px;
+			z-index : 1;
+			background-color: white;
+			border : 1px solid black;
+		}
+		#palette {
+			width : 200px;
+			border-top : 20px solid white;
+		}
+		#palette > li {
+			height : 33px;
+		}
+		#palette input.label {
+			display : none;
+		}
+		#palette ul.group > li {
+			display: inline;
+			list-style-type: none;
+		}
+		#palette textarea {
+			height: 25px;
+		}
+
+		.sortable > li {
+			background-color : beige;
+			margin-bottom : 5px;
+			margin-right: 5px;
+		}
+		.form {
+			width : 400px;
+			border : 20px solid lightgray;
+		}
+		.form textarea {
+			height: 100px;
+			width : 300px;
+		}
+		.form .group input {
+			border : none;
+		}
+		.form > li {
+			height : auto;
+		}
+		.label, .section-label {
+			background-color : beige;
+			border : none;
+		}
+        #canvas {
+			margin-left : 10px;
+            float : left;
+		}
+	</style>
+
+	<script>
+	    var editLinks;
+	    var editPanel;
+	    var formTemplate;
+	    var canvas;
+	    $(function () {
+	        formTemplate = $(".form").clone();
+	        canvas = $("#canvas");
+
+	        $("#add").click(addForm);
+
+	        editLinks = $("#editlinks");
+	        editPanel = $("#editpanel");
+
+	        // click events
+	        $("#deletelink").click(deleteElement);
+	        $("#copylink").click(copyElement);
+	        $("#editlink").click(showEditPanel);
+	        $("#apply").click(applyEdit);
+
+	        $("body").on("mouseenter", ".editable", showEditLinks);		// show edit links on hover
+	        $(".ninesixty").hover(null, hideEditLinks);	// hide links when hover on background
+	    });
+	    function connectPaletteToForm(element) {
+	        $(".form, .group").sortable({
+	                "axis": "y"
+	        });
+	        $("#palette > li").draggable({
+	            connectToSortable: ".form",
+	            helper: "clone"
+	        });
+	        element
+                .draggable({ snap: true })
+                .show();
+	    }
+	    function addForm() {
+	        var form = formTemplate.clone();
+	        canvas.append(form);
+	        var top = $(window).height() / 2 + "px";
+	        var left = $(window).width() / 2 + "px";
+	        form.css({
+	            "position": "absolute",
+	            "top": top,
+	            "left": left
+	        });
+	        connectPaletteToForm(form);
+	    }
+	    // on hover we show edit links to the right of the element and we remember element
+	    function showEditLinks() {
+	        var element = $(this);
+	        var offset = element.offset();
+	        var x = offset.left;
+	        var y = offset.top;
+	        var w = element.width();
+	        var h = element.height();
+	        editLinks.css({ left: x + w, top: y - 5 });
+	        editLinks.show();
+
+	        // we remember element so we can delete it if we click on delete link
+	        editLinks.element = element;
+	    }
+	    function hideEditLinks() {
+	        editLinks.hide();
+	    }
+	    // on delete link click, we delete the element we originally hovered over
+	    function deleteElement() {
+	        var element = editLinks.element;
+	        element.remove();
+	        editLinks.hide();
+	    }
+	    // on copy link click, we clone the element we originally hovered over and append it to the parent
+	    function copyElement() {
+	        var element = editLinks.element;
+	        var copy = element.clone();
+	        var parent = element.parent();
+	        parent.append(copy);
+	        editLinks.hide();
+	    }
+	    // on edit link click, we show the edit panel below the element we are editing
+	    function showEditPanel() {
+	        editLinks.hide();
+
+	        var link = $(this);
+	        var element = editLinks.element;
+	        var offset = element.offset();
+	        var x = offset.left;
+	        var y = offset.top;
+	        var w = element.width();
+	        var h = element.height();
+	        editPanel.css({ left: x, top: y + h });
+	        editPanel.show();
+
+	        // we remember element we are editing so we can apply changes to it when we click apply
+	        // we store it here and dont rely on the element stored in editLinks because user can
+	        // still hover elsewhere
+	        editPanel.element = element;
+	    }
+	    function hideEditPanel() {
+	        editPanel.hide();
+	    }
+	    // on apply link click, we get the values from the edit panel and apply changes to element
+	    function applyEdit() {
+	        hideEditPanel();
+	        var bgColor = $("#bgcolor").val();
+	        var fgColor = $("#fgcolor").val();
+	        var element = editPanel.element;
+	        element.css({
+	            "background-color": bgColor,
+	            "color": fgColor
+	        });
+	    }
+	</script>
+  
+</head>
+<body>
+    <div class="ninesixty">
+
+        		<!-- edit links that will appear next to element hovering over -->
+		<div id="editlinks">
+			<a id="deletelink" href="#">delete</a>
+			<a id="copylink" href="#">copy</a>
+			<a id="editlink" href="#">edit</a>
+		</div>
+	
+		<!-- edit panel that will appear when we click on edit link above -->	
+		<div id="editpanel">
+			ID: <input id="id"/><br/>
+			Class: <input id="class"/><br/>
+			Style: <input id="style"/><br/>
+			Value: <input id="value"/><br/>
+			Body:  <textarea id="body"></textarea><br/>
+			Background Color: <input id="bgcolor"/><br/>
+			Foreground Color: <input id="fgcolor"/><br/>
+			<button id="apply">Apply</button>
+		</div>	
+
+		<h1>Forms</h1>
+		
+        <button id="add">Add Form</button>
+
+        <div class="clear"></div>
+
+		<ul id="palette" class="nobullets fleft sortable">
+			<li class="editable"><input type="text" class="section-label" value="Label"/></li>
+			<li class="editable"><input type="text" value="Input Field"/></li>
+			<li class="editable"><textarea>Text Area</textarea></li>
+			<li class="editable"><button>Button</button></li>
+			<li class="editable"><select>
+					<option>Option 1</option>
+					<option>Option 2</option>
+					<option>Option 3</option>
+				</select>
+			</li>
+			<li class="editable"><ul class="group nobullets">
+				  	<li><input id="r1" type="radio" name="radio1" value="Option 1"/><input type="text" class="label" value="Option 1"/></li>
+				  	<li><input id="r2" type="radio" name="radio1" value="Option 2"/><input type="text" class="label" value="Option 2"/></li>
+				  	<li><input id="r3" type="radio" name="radio1" value="Option 3"/><input type="text" class="label" value="Option 3"/></li>
+			  	</ul>
+		  	</li>
+			<li class="editable"><ul class="group nobullets">
+				  	<li><input id="c1" type="checkbox" name="check1" value="Option 1"/><input type="text" class="label" value="Option 1"/></li>
+				  	<li><input id="c2" type="checkbox" name="check1" value="Option 2"/><input type="text" class="label" value="Option 2"/></li>
+				  	<li><input id="c3" type="checkbox" name="check1" value="Option 3"/><input type="text" class="label" value="Option 3"/></li>
+			  	</ul>
+		  	</li>
+		</ul>
+
+		<div id="canvas" class="fleft">
+		    <ul class="form nobullets fleft sortable hidden editable">
+		      <li class="editable"><input type="text" value="Form Name"/></li>
+		      <li class="editable"><button>Submit</button></li>
+		    </ul>
+        </div>
+
+		<div class="clear"></div>
+
+	<a href="../../fileview/Default.aspx?~/jquery/sortable/4-forms.html" target="_blank">View Source</a>
+
+	</div>
+</body>
+</html>

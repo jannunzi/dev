@@ -1,0 +1,105 @@
+<link rel="stylesheet" type="text/css" href="looper/css/looper.css" />
+<style>
+	.bulletLooper a {
+		text-decoration: none;
+	}
+	div.item img {
+		margin-left:auto;
+		margin-right:auto;
+	}
+	
+	a.looper-control {
+		top : 100px;
+	}
+</style>
+<script src="../js/jquery.js"></script>
+<script src="looper/src/looper.js"></script>
+
+<script>
+	var images = [
+		"../../images/stjohn/1.JPG",
+		"../../images/stjohn/2.JPG",
+/*		"../../images/stjohn/3.JPG",
+		"../../images/stjohn/4.JPG",
+		"../../images/stjohn/5.JPG",
+		"../../images/stjohn/6.JPG",
+		"../../images/stjohn/7.JPG",
+		"../../images/stjohn/8.JPG",
+		"../../images/stjohn/9.JPG",
+		"../../images/stjohn/10.JPG",
+		"../../images/stjohn/11.JPG",
+		"../../images/stjohn/12.JPG",
+		"../../images/stjohn/13.JPG",
+*/		"../../images/stjohn/14.JPG",
+		"../../images/stjohn/15.JPG",
+		];
+
+    jQuery(function($){
+    	
+		var looperInner = $(".looper-inner");
+		var looperItem  = $(".looper-inner > .item").clone();
+//		var looperImage = $(".looper-inner > .item > img");
+		looperInner.empty();
+
+		var looperNav      = $(".looper-nav");
+		var looperNavItem  = $(".looper-nav > li").clone();
+//		var looperNavLinks = $(".looper-nav > li > a");
+    	looperNav.empty();
+    	
+    	for(var i=1; i<=images.length; i++) {
+    		console.log(i);
+    		var li = looperNavItem.clone();
+    		li.find("a").attr("data-args", i);
+    		looperNav.append(li);
+    		
+    		var src = images[i-1];//"../../images/stjohn/"+i+".JPG";
+    		var div = looperItem.clone();
+    		div.find("img").attr("src", src);
+    		looperInner.append(div);
+    	}
+    	
+        $('#bulletLooper').on('shown', function(e){
+            $('.looper-nav > li', this)
+                    .removeClass('active')
+                    .eq(e.relatedIndex)
+                        .addClass('active');
+        });
+    });
+</script>
+
+
+
+<div id="bulletLooper" data-looper="go" class="looper slide" style="width:400px">
+    <nav>
+        <a class="looper-control" data-looper="prev" href="#bulletLooper">
+            <i class="icon-chevron-left"></i>
+        </a>
+        <a class="looper-control right" data-looper="next" href="#bulletLooper">
+            <i class="icon-chevron-right"></i>
+        </a>
+        <ul class="looper-nav">
+            <li><a href="#bulletLooper" data-looper="to" data-args="1">&bull;</a></li>
+            <!--li><a href="#bulletLooper" data-looper="to" data-args="2">&bull;</a></li>
+            <li><a href="#bulletLooper" data-looper="to" data-args="3">&bull;</a></li>
+            <li><a href="#bulletLooper" data-looper="to" data-args="4">&bull;</a></li>
+            <li><a href="#bulletLooper" data-looper="to" data-args="5">&bull;</a></li-->
+        </ul>
+    </nav>
+    <div class="looper-inner">
+        <div class="item">
+            <img src="../../images/stjohn/1.JPG" alt="">
+        </div>
+        <!--div class="item">
+            <img src="../../images/stjohn/2.JPG" alt="">
+        </div>
+        <div class="item">
+            <img src="../../images/stjohn/3.JPG" alt="">
+        </div>
+        <div class="item">
+            <img src="../../images/stjohn/4.JPG" alt="">
+        </div>
+        <div class="item">
+            <img src="../../images/stjohn/5.JPG" alt="">
+        </div-->
+    </div>
+</div>
