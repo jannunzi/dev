@@ -25,7 +25,6 @@
 	} else {
 		header('Content-type: application/json');
 	}
-	echo '{"u" : "'.$u.'", "trip":';
 	
 	while($row = mysql_fetch_array($results)) {
 		echo json_encode($row);
@@ -38,9 +37,7 @@
 	if($count == 0)
 		echo "[]";
 
-	echo "}";
-	
-	if(isset($_REQUEST['callback'])){
+  if(isset($_REQUEST['callback'])){
 		echo ")";
 	}	
 ?>
