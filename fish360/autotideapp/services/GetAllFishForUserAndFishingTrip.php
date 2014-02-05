@@ -39,7 +39,7 @@
 	} else {
 		header('Content-type: application/json');
 	}
-	echo "{'fish' : [\n";
+	echo "[\n";
 	
 	while($row = mysql_fetch_array($results)) {
 		echo json_encode($row);
@@ -49,7 +49,7 @@
 	}
 	closeDB();
 
-	echo "\n]}";
+	echo "\n]";
 	if(isset($_REQUEST['callback'])){
 		echo ")";
 	}
