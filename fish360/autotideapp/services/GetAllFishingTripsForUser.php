@@ -34,7 +34,7 @@
 	} else {
 		header('Content-type: application/json');
 	}
-	echo '{"username":"'.$username.'","trips":[';
+	echo '[';
 	while($row = mysql_fetch_array($results)) {
 		echo json_encode($row);
 		if($count < $num_rows - 1)
@@ -43,7 +43,7 @@
 	}
 	closeDB();
 
-	echo "]}";
+	echo "]";
 	
 	if(isset($_REQUEST['callback'])){
 		echo ")";
