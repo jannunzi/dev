@@ -16,7 +16,9 @@
 
         <div class="row">
             <div class="col-xs-8">
+
                 <h2>Get All Fish for Username and Node Id</h2>
+
                 <a  href="http://dev.fish360.net/autotideapp/services/GetAllFishForUserAndFishingTrip.php?fishingTripNodeId=79&username=jsilva"
                     target="_blank">http://dev.fish360.net/autotideapp/services/GetAllFishForUserAndFishingTrip.php?fishingTripNodeId=79&username=jsilva</a>
 
