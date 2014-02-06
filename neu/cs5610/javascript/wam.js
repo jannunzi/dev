@@ -70,3 +70,120 @@ function wamInit() {
     $(".wam-draggable").draggable();
     $(".wam-resizable").resizable();
 }
+
+function renderObject(options) {
+    for (var key in options.object) {
+        var selector = "." + key;
+        options.dom.find(selector).val(options.object[key]);
+    }
+}
+
+/**
+ *  @deprecated
+ *
+ *  Renders a collection into a DOM container
+ *  @param options.collection is an array of objects
+ *  @param options.template   jQuery element to be used a template.
+ *                            can include classes for selecting and
+ *                            populating copies of the template filled
+ *                            with the data from the objects in the collection
+ *  @param options.container  jQuery element that contains the copies of the template
+ */
+function renderResultSet(options) {
+    options.container.empty();
+    if (typeof options.mapping === "undefined") {
+        options.mapping = {};
+    }
+    for (var i = 0; i < options.collection.length; i++) {
+        var template = options.template.clone();
+        for (var key in options.collection[i]) {
+            var selector = "." + key;
+            if (template.hasClass(key)) {
+                if (options.mapping[key] === "value") {
+                    template.val(options.collection[i][key]);
+                } else if (options.mapping[key] === "id") {
+                    template.attr("id", options.collection[i][key]);
+                } else if (options.mapping[key] === "html") {
+                    template.html(options.collection[i][key]);
+                } else {
+                    template
+                        .html(options.collection[i][key])
+                        .val(options.collection[i][key]);
+                }
+            }
+            if (options.mapping[key] === "value") {
+                template.find(selector)
+                    .val(options.collection[i][key]);
+            } else if (options.mapping[key] === "html") {
+                template.find(selector)
+                    .html(options.collection[i][key]);
+            } else if (options.mapping[key] === "id") {
+                template.find(selector)
+                    .attr("id", options.collection[i][key]);
+            } else {
+                template.find(selector)
+                    .html(options.collection[i][key])
+                    .val(options.collection[i][key]);
+            }
+
+        }
+        options.container.append(template);
+    }
+}
+
+/**
+ *  Renders a collection into a DOM container
+ *  @param options.collection is an array of objects
+ *  @param options.template   jQuery element to be used a template.
+ *                            can include classes for selecting and
+ *                            populating copies of the template filled
+ *                            with the data from the objects in the collection
+ *  @param options.container  jQuery element that contains the copies of the template
+ */
+function renderCollection(options) {
+    options.container.empty();
+    if (typeof options.mapping === "undefined") {
+        options.mapping = {};
+    }
+    for (var i = 0; i < options.collection.length; i++) {
+        var template = options.template.clone();
+        for (var key in options.collection[i]) {
+            var selector = "." + key;
+            if (template.hasClass(key)) {
+                if (options.mapping[key] === "value") {
+                    template.val(options.collection[i][key]);
+                } else if (options.mapping[key] === "id") {
+                    template.attr("id", options.collection[i][key]);
+                } else if (options.mapping[key] === "html") {
+                    template.html(options.collection[i][key]);
+                } else {
+                    template
+                        .html(options.collection[i][key])
+                        .val(options.collection[i][key]);
+                }
+            }
+            if (options.mapping[key] === "value") {
+                template.find(selector)
+                    .val(options.collection[i][key]);
+            } else if (options.mapping[key] === "html") {
+                template.find(selector)
+                    .html(options.collection[i][key]);
+            } else if (options.mapping[key] === "id") {
+                template.find(selector)
+                    .attr("id", options.collection[i][key]);
+            } else {
+                template.find(selector)
+                    .html(options.collection[i][key])
+                    .val(options.collection[i][key]);
+            }
+
+        }
+        options.container.append(template);
+    }
+}
+
+function stripOutTime(dateTime) {
+    if (dateTime === null || dateTime.indexOf(" ") === -1)
+        return dateTime;
+    return dateTime.substring(0, dateTime.indexOf(" "));
+}

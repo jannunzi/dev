@@ -308,3 +308,11 @@
 .wam-margin-right.wam-sm {
     margin-right: 10px;
 }
+
+.wam-templates {
+    display : none;
+}
+
+.wam-overflow-y-scroll {
+    overflow-y : scroll;
+}
