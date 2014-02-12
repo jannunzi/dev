@@ -2,12 +2,6 @@
 
 <!DOCTYPE html>
 
-<script runat="server">
-    protected void Page_Load(object sender, EventArgs e)
-    {
-    }
-</script>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Experiment</title>
@@ -15,10 +9,76 @@
     <link rel="stylesheet" type="text/css" href="~/css/wam.css" />
 </head>
 <body>
+
+    <div class="container">
+
+        <h2>Render Response JSON</h2>
+        <input type="text" class="form-control wam-movie-field-1" placeholder="Type Movie Name" value="Star Wars" />
+        <button class="btn btn-primary wam-go-btn-1">Get Movie</button>
+        <ul class="wam-results-1 list-unstyled wam-no-padding">
+        </ul>
+
+        <h2>Iterate over response JSON</h2>
+        <input type="text" class="form-control wam-movie-field" placeholder="Type Movie Name" value="Star Wars" />
+        <button class="btn btn-primary wam-go-btn">Get Movie</button>
+
+        <h2>Get Movie from input field</h2>
+        <input type="text" class="form-control wam-movie-from-field" placeholder="Type Movie Name" value="Star Wars" />
+        <button class="btn btn-primary wam-movie-from-field-btn">Get Movie</button>
+
+        <h2>Get Star Trek programmatically</h2>
+
+        <button class="btn btn-primary wam-get-star-trek">Get Star Trek</button>
+
+        <h2>Get it from a link</h2>
+        <a href="http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=umgs9aw92awmyuw6qvmgqkgv&q=Star%20Trek&page_limit=5" target="_blank">
+            Get Start Trek
+        </a>
+    </div>
+
+    <div class="wam-templates">
+        <ul class="wam-li-template">
+            <li class="wam-get-details">
+                <div>
+                    <span class="wam-id">1234</span>
+                    <span class="wam-title">Star Wars</span>
+                    <span class="wam-year">1977</span>
+                    <img height="100" style="float:left" src="http://images.rottentomatoescdn.com/images/redesign/poster_default.gif" class="wam-thumbnail"/>
+                </div>
+                <div style="clear:both"></div>
+            </li>
+            <li>
+                <div>
+                    <span class="wam-id">1234</span>
+                    <span class="wam-title">Star Wars</span>
+                    <span class="wam-year">1977</span>
+                    <img height="100" style="float:left" src="http://images.rottentomatoescdn.com/images/redesign/poster_default.gif" class="wam-thumbnail"/>
+                </div>
+                <div style="clear:both"></div>
+            </li>
+            <li>
+                <div>
+                    <span class="wam-id">1234</span>
+                    <span class="wam-title">Star Wars</span>
+                    <span class="wam-year">1977</span>
+                    <img height="100" style="float:left" src="http://images.rottentomatoescdn.com/images/redesign/poster_default.gif" class="wam-thumbnail"/>
+                </div>
+                <div style="clear:both"></div>
+            </li>
+            <li>
+                <div>
+                    <span class="wam-id">1234</span>
+                    <span class="wam-title">Star Wars</span>
+                    <span class="wam-year">1977</span>
+                    <img height="100" style="float:left" src="http://images.rottentomatoescdn.com/images/redesign/poster_default.gif" class="wam-thumbnail"/>
+                </div>
+                <div style="clear:both"></div>
+            </li>
+        </ul>
+    </div>
+
     <form id="form1" runat="server">
     <div class="container">
-        <h1>Template</h1>
-
         <rasala:FileView ID="fileView" runat="server" />
     </div>
     </form>
@@ -26,9 +86,122 @@
     <script src="../../../javascript/jquery-ui.min.js"></script>
     <script src="../../../javascript/wam.js"></script>
     <script>
-        $(function () {
 
+        $(function () {
+            $(".wam-go-btn-1").click(renderJSONResponse);
+            $(".wam-go-btn").click(iterateOverJSON);
+            $(".wam-movie-from-field-btn").click(getMovieFromFieldHandler);
+            $(".wam-get-star-trek").click(getSTEventHandler);
+
+            $(".wam-results-1").on("click", ".wam-get-details", getDetails);
         });
+
+        function getDetails() {
+            var id = $(this).attr("id");
+
+            var params = {
+                apikey: "umgs9aw92awmyuw6qvmgqkgv"
+            };
+            
+
+            $.ajax({
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies/"+id+".json",
+                dataType: "jsonp",
+                data: params,
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function renderJSONResponse() {
+            var movieName = $(".wam-movie-field-1").val();
+            var params = {
+                apikey: "umgs9aw92awmyuw6qvmgqkgv",
+                q: movieName
+            };
+            $.ajax({
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                dataType: "jsonp",
+                data: params,
+                success: function (response) {
+                    var template = $(".wam-li-template li:first");
+                    var ul = $(".wam-results-1");
+                    ul.empty();
+                    for (var i = 0; i < response.movies.length; i++) {
+                        var movie = response.movies[i];
+                        var id = movie.id;
+                        var title = movie.title;
+                        var year = movie.year;
+                        var thumbnail = movie.posters.thumbnail;
+
+                        var instance = template.clone();
+
+                        instance.attr("id", id);
+                        instance.find(".wam-id").html(id);
+                        instance.find(".wam-title").html(title);
+                        instance.find(".wam-year").html(year);
+                        instance.find(".wam-thumbnail").attr("src", thumbnail);
+
+                        ul.append(instance);
+                    }
+                }
+            });
+        }
+
+        function iterateOverJSON() {
+            var movieName = $(".wam-movie-field").val();
+            var params = {
+                apikey: "umgs9aw92awmyuw6qvmgqkgv",
+                q: movieName
+            };
+            $.ajax({
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                dataType: "jsonp",
+                data: params,
+                success: function (response) {
+                    for (var i = 0; i < response.movies.length; i++) {
+                        var movie = response.movies[i];
+                        var id = movie.id;
+                        var title = movie.title;
+                        var year = movie.year;
+                        var thumbnail = movie.posters.thumbnail;
+                        console.log([id, title, year, thumbnail]);
+                    }
+                }
+            });
+        }
+
+        function getMovieFromFieldHandler() {
+            var movieName = $(".wam-movie-from-field").val();
+            var params = {
+                apikey: "umgs9aw92awmyuw6qvmgqkgv",
+                q: movieName
+            };
+            $.ajax({
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                dataType: "jsonp",
+                data: params,
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+        function getSTEventHandler() {
+            var params = {
+                apikey : "umgs9aw92awmyuw6qvmgqkgv",
+                q:"Nightmare before christmas",
+                page_limit : 5
+            };
+            $.ajax({
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                dataType: "jsonp",
+                data: params,
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
     </script>
 </body>
 </html>

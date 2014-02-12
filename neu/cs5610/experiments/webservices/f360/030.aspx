@@ -45,7 +45,6 @@
 
                 <div class="wam-trip-details form-horizontal" role="form">
             
-                    <!-- @new -->
                     <input type="hidden" class="nid wam-trip-id" />
                     
                     <div class="form-group">
@@ -84,6 +83,19 @@
                 <ul style="height:200px;" class="wam-fish list-unstyled wam-overflow-y-scroll"></ul>
 
             </div>
+
+            <div class="col-xs-6">
+                <h2>Fish Details</h2>
+                <input type="hidden" class="nid wam-fish-id" />
+                    
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control title" placeholder="Fish Name"/>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 
@@ -117,7 +129,6 @@
             jqCache.tripTemplate = $(".wam-trips-template li");
             jqCache.tripDetails = $(".wam-trip-details");
 
-            // @new
             jqCache.tripId = $(".wam-trip-id");
             jqCache.fish = $(".wam-fish");
             jqCache.fishTemplate = $(".wam-fish-template li");
@@ -127,6 +138,8 @@
             $(".wam-trips").on("click", "a", selectTripHandler);
 
             // @new
+            $(".wam-fish").on("click", "a", selectFishHandler);
+
             $(".wam-get-fish").click(getFishEventHandler);
 
             function getTripsEventHandler() {
@@ -166,6 +179,25 @@
             }
 
             // @new
+            function selectFishHandler() {
+                var a = $(this);
+                var id = a.attr("id");
+                alert(id);
+                $.ajax({
+                    url: "http://dev.fish360.net/autotideapp/services/GetFishingTripForNodeId.php",
+                    data: { fishingTripNodeId: id },
+                    dataType: "jsonp",
+                    success: function (response) {
+                        response.field_start_value = stripOutTime(response.field_start_value);
+                        response.field_stop_value = stripOutTime(response.field_stop_value);
+                        renderObject({
+                            object: response,
+                            dom: jqCache.tripDetails
+                        })
+                    }
+                })
+            }
+
             function getFishEventHandler() {
                 id = jqCache.tripId.val();
                 $.ajax({
