@@ -98,6 +98,8 @@
 
         </div>
 
+    </div>
+
 
     <div class="wam-templates">
         <ul class="wam-trips-template">
