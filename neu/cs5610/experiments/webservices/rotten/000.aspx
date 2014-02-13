@@ -7,16 +7,49 @@
     <title>Experiment</title>
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/wam.css" />
+    <style>
+        .wam-results-1 {
+            height: 340px;
+            overflow-y: scroll;
+        }
+        .wam-details-poster {
+            height : 200px;
+        }
+    </style>
 </head>
 <body>
 
     <div class="container">
 
-        <h2>Render Response JSON</h2>
-        <input type="text" class="form-control wam-movie-field-1" placeholder="Type Movie Name" value="Star Wars" />
-        <button class="btn btn-primary wam-go-btn-1">Get Movie</button>
-        <ul class="wam-results-1 list-unstyled wam-no-padding">
-        </ul>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Render Response JSON</h2>
+                <input type="text" class="form-control wam-movie-field-1" placeholder="Type Movie Name" value="Star Wars" />
+                <button class="btn btn-primary wam-go-btn-1">Get Movie</button>
+                <ul class="wam-results-1 list-unstyled wam-no-padding">
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <h2 class="wam-details-movie-title">Details</h2>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img class="wam-details-poster" src="#" />
+                    </div>
+                    <div class="col-xs-8">
+                        <ul class="wam-no-bullets wam-no-padding">
+                            <li class="wam-details-movie-title"></li>
+                            <li class="wam-details-movie-date"></li>
+                            <li class="wam-details-rating"></li>
+                            <li class="wam-critics_consensus"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <h2>Actors</h2>
+                    <table class="wam-details-actors table"></table>
+                </div>
+            </div>
+        </div>
 
         <h2>Iterate over response JSON</h2>
         <input type="text" class="form-control wam-movie-field" placeholder="Type Movie Name" value="Star Wars" />
@@ -37,6 +70,13 @@
     </div>
 
     <div class="wam-templates">
+        <table class="actor-template table">
+            <tr class="actor">
+                <td class="id"></td>
+                <td class="name"></td>
+                <td class="characters"></td>
+            </tr>
+        </table>
         <ul class="wam-li-template">
             <li class="wam-get-details">
                 <div>
@@ -87,12 +127,23 @@
     <script src="../../../javascript/wam.js"></script>
     <script>
 
+        var jq = {};
+
         $(function () {
+            jq.detailActorList = $(".wam-details-actors");
+            jq.detailsActorTemplate = $(".actor-template .actor");
+            jq.detailMovieTitle = $(".wam-details-movie-title");
+            jq.detailPoster = $(".wam-details-poster");
+            jq.detailDate = $(".wam-details-movie-date");
+            jq.detailRating = $(".wam-details-rating");
+            jq.detailCritics_concensus = $(".wam-critics_consensus");
+            
             $(".wam-go-btn-1").click(renderJSONResponse);
             $(".wam-go-btn").click(iterateOverJSON);
             $(".wam-movie-from-field-btn").click(getMovieFromFieldHandler);
             $(".wam-get-star-trek").click(getSTEventHandler);
 
+//            $(".wam-get-details").click(getDetails);
             $(".wam-results-1").on("click", ".wam-get-details", getDetails);
         });
 
@@ -110,6 +161,27 @@
                 data: params,
                 success: function (response) {
                     console.log(response);
+                    jq.detailMovieTitle.html(response.title);
+                    jq.detailPoster.attr("src", response.posters.original);
+                    jq.detailDate.html(response.year);
+                    jq.detailRating.html(response.mpaa_rating);
+                    jq.detailCritics_concensus.html(response.critics_consensus);
+
+                    jq.detailActorList.empty();
+
+                    for (var a = 0; a < response.abridged_cast.length; a++) {
+                        var actor = response.abridged_cast[a];
+                        console.log(actor);
+
+                        var actorDom = jq.detailsActorTemplate.clone();
+                        for (var key in actor) {
+                            var val = actor[key];
+                            console.log(key + " = " + val);
+                            var clazz = "." + key;
+                            actorDom.find(clazz).html(val);
+                            jq.detailActorList.append(actorDom);
+                        }
+                    }
                 }
             });
         }
