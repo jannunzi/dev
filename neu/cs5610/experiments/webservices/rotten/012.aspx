@@ -19,7 +19,7 @@
                 <h2>Details in a Dialog</h2>
 
                 <div class="input-group">
-                  <input type="text" class="form-control wam-movie-title" placeholder="Movie Title" value="Avatar"/>
+                  <input type="text" class="form-control wam-movie-title" placeholder="Movie Title" value="Star Trek"/>
                   <span class="input-group-btn">
                     <button class="btn btn-default wam-go" type="button">Go</button>
                   </span>

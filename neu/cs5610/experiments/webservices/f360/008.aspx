@@ -11,7 +11,7 @@
 <body>
     <div class="container">
 
-        <h1>Fish Web Service</h1>
+        <h1>Fishing Trip Web Service</h1>
 
         <div class="row">
             <div class="col-xs-8">

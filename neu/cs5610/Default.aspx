@@ -109,9 +109,11 @@
                 </ul>
                 <h3>Web Services</h3>
                 <ul>
-                    <li><a href="story/index.htm?../experiments/movies/story.txt" target="_blank">Movies Restful APIs</a></li>
+                    <li><a href="story/index.htm?../experiments/webservices/rotten/story.txt" target="_blank">Rotten Tomaties RESTful JSONP API <span class="label label-danger">New</span></a></li>
+                    <li><a href="story/index.htm?../experiments/webservices/f360/story.txt" target="_blank">Fish360 RESTful JSONP API <span class="label label-danger">New</span></a></li>
+                    <li><a href="story/index.htm?../experiments/movies/story.txt" target="_blank">Movies RESTful APIs</a></li>
                     <li><a href="story/index.htm?../json/story.txt" target="_blank">JSON Web Services</a></li>
-                    <li><a href="story/index.htm?../experiments/webservices/weather/story.txt" target="_blank">Weather Restful JSONP APIs</a></li>
+                    <li><a href="story/index.htm?../experiments/webservices/weather/story.txt" target="_blank">Weather RESTful JSONP API</a></li>
                 </ul>
                 <h3>ASPX.NET</h3>
                 <ul>

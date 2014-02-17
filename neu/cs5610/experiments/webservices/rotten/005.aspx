@@ -13,13 +13,17 @@
     <div class="container">
         <h1>Rotten Tomatoes Movie REST API</h1>
 
+        Rotten Tomatoes API can be found
+
+        <a target="_blank" href="http://developer.rottentomatoes.com/docs/read/JSON">here</a>
+
         <div class="row">
             <div class="col-sm-6">
 
                 <h2>Search for Avatar</h2>
 
                 <p>
-                    <a href="http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=umgs9aw92awmyuw6qvmgqkgv&q=Avatar&page_limit=1" target="_blank">Avatar</a>
+                    <a href="http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=umgs9aw92awmyuw6qvmgqkgv&q=Avatar&page_limit=1" target="_blank">Click to get Avatar JSON response</a>
                 </p>
                 <pre>
 &lt;a href=&quot;http://api.rottentomatoes.com/api/public/v1.0/movies.json?
@@ -51,7 +55,7 @@
                 <h2>Search for Any Movie</h2>
 
                 <div class="input-group">
-                  <input type="text" class="form-control wam-movie-title" placeholder="Movie Title"/>
+                  <input type="text" class="form-control wam-movie-title" placeholder="Movie Title" value="Star Trek"/>
                   <span class="input-group-btn">
                     <button class="btn btn-default wam-go" type="button">Go</button>
                   </span>

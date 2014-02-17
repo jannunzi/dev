@@ -14,14 +14,19 @@
         <h1>Rotten Tomatoes Movie REST API</h1>
 
         <div class="row">
-            <div class="col-sm-6">
-
+            <div class="col-sm-12">
                 <div class="input-group">
-                  <input type="text" class="form-control wam-movie-title" placeholder="Search Movie" value="Avatar"/>
+                  <input type="text" class="form-control wam-movie-title" placeholder="Search Movie" value="Star Trek"/>
                   <span class="input-group-btn">
                     <button class="btn btn-default wam-go" type="button">Go</button>
                   </span>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Search Results</h2>
                 <table class="table">
                     <thead>
                         <tr>
@@ -39,11 +44,7 @@
 
             </div>
             <div class="col-sm-6">
-                <img class="wam-poster" src="#" />
-                <ul>
-                    <li class="wam-title"></li>
-                    <li class="wam-rating"></li>
-                </ul>
+                <h2>Reviews</h2>
                 <table class="wam-reviews table">
                     <thead>
                         <tr>
@@ -51,7 +52,6 @@
                             <th>Date</th>
                             <th>Freshness</th>
                             <th>Publication</th>
-                            <th>Quote</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -88,9 +88,8 @@
                             '<td>' +
                                 '<a target="_blank" href="#" class="wam-publication"></a>' +
                             '</td>' +
-                            '<td class="wam-quote">' +
-                            '</td>' +
                         '</tr>';
+            html += '<tr style="vertical-align: top;"><td class="wam-quote" colspan=4></td></tr>';
 
             console.log("renderReviews");
             console.log(movie);
@@ -104,7 +103,7 @@
                 dom.find(".wam-publication")
                     .html(movie.reviews[i].publication)
                     .attr("href", movie.reviews[i].links.review);
-                dom.find(".wam-quote").html(movie.reviews[i].quote);
+                dom.find(".wam-quote").html("Quote: "+movie.reviews[i].quote);
                 tbody.append(dom);
             }
         }
