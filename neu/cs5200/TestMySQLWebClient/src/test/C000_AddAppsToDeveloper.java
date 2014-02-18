@@ -7,11 +7,13 @@ import sun.font.CreatedFontTracker;
 public class C000_AddAppsToDeveloper {
 
 	public static void main(String[] args) {
+
+		Connection conn = null;
 		try {
 			
 			String url = "jdbc:mysql://localhost/wam";
 			Class.forName ("com.mysql.jdbc.Driver").newInstance();
-			Connection conn = DriverManager.getConnection (url, "root", null);
+			conn = DriverManager.getConnection (url, "root", null);
 			
 			// @new
 			String addApplicationToAliceSql = "UPDATE APPLICATION SET DEVELOPERID=2 WHERE ID=1 ;";
@@ -30,6 +32,12 @@ public class C000_AddAppsToDeveloper {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

@@ -1,16 +1,17 @@
 package test;
 
 import java.sql.*;
-import java.sql.DriverManager;
 
 public class A015_ListAllDevelopers {
 
 	public static void main(String[] args) {
+
+		Connection conn = null;
 		try {
 			
 			String url = "jdbc:mysql://localhost/wam";
 			Class.forName ("com.mysql.jdbc.Driver").newInstance();
-			Connection conn = DriverManager.getConnection (url, "root", null);
+			conn = DriverManager.getConnection (url, "root", null);
 
 			// @new
 			String selectAllDevelopers = "SELECT * FROM DEVELOPER";
@@ -27,6 +28,12 @@ public class A015_ListAllDevelopers {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

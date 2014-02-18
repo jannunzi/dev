@@ -5,11 +5,13 @@ import java.sql.*;
 public class A020_ListOneDeveloper {
 
 	public static void main(String[] args) {
+
+		Connection conn = null;
 		try {
 			
 			String url = "jdbc:mysql://localhost/wam";
 			Class.forName ("com.mysql.jdbc.Driver").newInstance();
-			Connection conn = DriverManager.getConnection (url, "root", null);
+			conn = DriverManager.getConnection (url, "root", null);
 			
 			// @new
 			String selectOneDeveloper = "SELECT * FROM DEVELOPER WHERE ID=2";
@@ -27,6 +29,12 @@ public class A020_ListOneDeveloper {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

@@ -1,16 +1,17 @@
 package test;
 
 import java.sql.*;
-import java.sql.DriverManager;
 
 public class A025_DeleteOneDeveloper {
 
 	public static void main(String[] args) {
+
+		Connection conn = null;
 		try {
 			
 			String url = "jdbc:mysql://localhost/wam";
 			Class.forName ("com.mysql.jdbc.Driver").newInstance();
-			Connection conn = DriverManager.getConnection (url, "root", null);
+			conn = DriverManager.getConnection (url, "root", null);
 			
 			// @new
 			String deleteOneDeveloper = "DELETE FROM DEVELOPER WHERE ID=6";
@@ -19,6 +20,12 @@ public class A025_DeleteOneDeveloper {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

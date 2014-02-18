@@ -7,11 +7,13 @@ import sun.font.CreatedFontTracker;
 public class B000_InsertApplications {
 
 	public static void main(String[] args) {
+
+		Connection conn = null;
 		try {
 			
 			String url = "jdbc:mysql://localhost/wam";
 			Class.forName ("com.mysql.jdbc.Driver").newInstance();
-			Connection conn = DriverManager.getConnection (url, "root", null);
+			conn = DriverManager.getConnection (url, "root", null);
 			
 			// @new
 			String insertApplicationSql = "INSERT INTO APPLICATION VALUES (null, 'Keynote', null);";
@@ -26,6 +28,12 @@ public class B000_InsertApplications {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
