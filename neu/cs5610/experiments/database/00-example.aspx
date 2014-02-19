@@ -11,11 +11,11 @@
     <form id="form1" runat="server">
     <div class="container">
 
-        <h1>Pages and Widgets</h1>
-
         <div class="row">
             <div class="col-sm-6">
                 <h2>Web Pages</h2>
+        <h1>Pages and Widgets</h1>
+
                 <p>
                     <asp:GridView CssClass="table" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" EmptyDataText="There are no data records to display.">
                         <Columns>
