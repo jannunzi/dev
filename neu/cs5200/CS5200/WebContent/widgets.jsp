@@ -9,8 +9,11 @@
 </head>
 <body>
 
-<form action="widgets.jsp">
+<form action="widgets.jsp" method="get">
 <div class="container">
+
+<h1>Widget Manager</h1>
+
 <table class="table">
 	<tr>
 		<th>ID</th>
@@ -61,7 +64,7 @@ try {
 	} else if("edit".equals(action)) {
 		editingId = Integer.parseInt(request.getParameter("id"));
 	} else if("update".equals(action)) {
-		id = Integer.parseInt(request.getParameter("id"));
+		id = Integer.parseInt(request.getParameter("idUpdate"));
 		name = request.getParameter("nameUpdate");
 		content = request.getParameter("contentUpdate");
 		pstatement = connection.prepareStatement(updateWidgetForId);
@@ -85,7 +88,7 @@ try {
 			<td><input value="<%= content %>" name="contentUpdate" class="form-control"/></td>
 			<td>
 				<button name="action" value="update" class="btn btn-primary btn-block">Update</button>
-				<input type="hidden" name="id" value="<%= id %>"/>
+				<input type="hidden" name="idUpdate" value="<%= id %>"/>
 			</td>
 		</tr>
 <%		} else {%>
