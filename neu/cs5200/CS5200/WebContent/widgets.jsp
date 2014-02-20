@@ -32,9 +32,10 @@ int id, editingId = -1;
 String name, content;
 String action;
 
-String selectAllWidgets = "SELECT * FROM WIDGET;";
-String insertNewWidget  = "INSERT INTO WIDGET VALUES (NULL, ?, ?)";
+String selectAllWidgets  = "SELECT * FROM WIDGET;";
+String insertNewWidget   = "INSERT INTO WIDGET VALUES (NULL, ?, ?)";
 String deleteWidgetForId = "DELETE FROM WIDGET WHERE ID=?";
+String updateWidgetForId = "UPDATE WIDGET SET NAME=?, CONTENT=? WHERE ID=?";
 
 Connection connection = null;
 PreparedStatement pstatement = null;
@@ -59,6 +60,15 @@ try {
 		pstatement.executeUpdate();
 	} else if("edit".equals(action)) {
 		editingId = Integer.parseInt(request.getParameter("id"));
+	} else if("update".equals(action)) {
+		id = Integer.parseInt(request.getParameter("id"));
+		name = request.getParameter("nameUpdate");
+		content = request.getParameter("contentUpdate");
+		pstatement = connection.prepareStatement(updateWidgetForId);
+		pstatement.setString(1, name);
+		pstatement.setString(2, content);
+		pstatement.setInt(3, id);
+		pstatement.executeUpdate();
 	}
 	
 	// select all
@@ -71,10 +81,11 @@ try {
 		if(id == editingId) {%>
 		<tr>
 			<td><%= id %></td>
-			<td><input value="<%= name %>" name="name" class="form-control"/></td>
-			<td><input value="<%= content %>" name="content" class="form-control"/></td>
+			<td><input value="<%= name %>" name="nameUpdate" class="form-control"/></td>
+			<td><input value="<%= content %>" name="contentUpdate" class="form-control"/></td>
 			<td>
-				<a href="widgets.jsp?action=update&id=<%= id %>" class="btn btn-primary btn-block">Update</a>
+				<button name="action" value="update" class="btn btn-primary btn-block">Update</button>
+				<input type="hidden" name="id" value="<%= id %>"/>
 			</td>
 		</tr>
 <%		} else {%>
