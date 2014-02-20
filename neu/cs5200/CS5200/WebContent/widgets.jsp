@@ -19,12 +19,13 @@
 		<th>ID</th>
 		<th>Name</th>
 		<th>Content</th>
+		<th>Actions</th>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
 		<td><input name="name" class="form-control"/></td>
 		<td><input name="content" class="form-control"/></td>
-		<td><button type="submit" name="action" value="add" class="btn btn-primary btn-block">Add Widget</button></td>
+		<td><button type="submit" name="action" value="add" class="btn btn-success btn-block">Add Widget</button></td>
 	</tr>
 <%
 
@@ -87,7 +88,8 @@ try {
 			<td><input value="<%= name %>" name="nameUpdate" class="form-control"/></td>
 			<td><input value="<%= content %>" name="contentUpdate" class="form-control"/></td>
 			<td>
-				<button name="action" value="update" class="btn btn-primary btn-block">Update</button>
+				<button name="action" value="update" class="btn btn-success">Update</button>
+				<a href="widgets.jsp" class="btn btn-danger">Cancel</a>
 				<input type="hidden" name="idUpdate" value="<%= id %>"/>
 			</td>
 		</tr>
@@ -97,8 +99,8 @@ try {
 			<td><%= name %></td>
 			<td><%= content %></td>
 			<td>
-				<a href="widgets.jsp?action=delete&id=<%= id %>">Delete</a>
-				<a href="widgets.jsp?action=edit&id=<%= id %>">Edit</a>
+				<a href="widgets.jsp?action=delete&id=<%= id %>" class="btn btn-danger btn-xs">Delete</a>
+				<a href="widgets.jsp?action=edit&id=<%= id %>" class="btn btn-warning btn-xs">Edit</a>
 			</td>
 		</tr>
 <%		}
