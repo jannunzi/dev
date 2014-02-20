@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<title>Widget Manager</title>
 </head>
 <body>
 
 <form action="widgets.jsp">
-<table>
+<div class="container">
+<table class="table">
 	<tr>
 		<th>ID</th>
 		<th>Name</th>
@@ -17,14 +19,14 @@
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
-		<td><input name="name"/></td>
-		<td><input name="content"/></td>
-		<td><button type="submit" name="action" value="add">Add Widget</button></td>
+		<td><input name="name" class="form-control"/></td>
+		<td><input name="content" class="form-control"/></td>
+		<td><button type="submit" name="action" value="add" class="btn btn-primary">Add Widget</button></td>
 	</tr>
 <%
 
 String driver = "com.mysql.jdbc.Driver";
-String url = "jdbc:mysql://localhost/cs5200";
+String url    = "jdbc:mysql://localhost/cs5200";
 
 int id;
 String name, content;
@@ -86,6 +88,7 @@ try {
 
 %>
 </table>
+</div>
 </form>
 </body>
 </html>
