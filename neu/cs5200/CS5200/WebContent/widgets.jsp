@@ -21,14 +21,14 @@
 		<td>&nbsp;</td>
 		<td><input name="name" class="form-control"/></td>
 		<td><input name="content" class="form-control"/></td>
-		<td><button type="submit" name="action" value="add" class="btn btn-primary">Add Widget</button></td>
+		<td><button type="submit" name="action" value="add" class="btn btn-primary btn-block">Add Widget</button></td>
 	</tr>
 <%
 
 String driver = "com.mysql.jdbc.Driver";
 String url    = "jdbc:mysql://localhost/cs5200";
 
-int id;
+int id, editingId = -1;
 String name, content;
 String action;
 
@@ -57,6 +57,8 @@ try {
 		pstatement = connection.prepareStatement(deleteWidgetForId);
 		pstatement.setInt(1, id);
 		pstatement.executeUpdate();
+	} else if("edit".equals(action)) {
+		editingId = Integer.parseInt(request.getParameter("id"));
 	}
 	
 	// select all
@@ -65,7 +67,17 @@ try {
 	while(results.next()) {
 		id = results.getInt("id");
 		name = results.getString("name");
-		content = results.getString("content");%>
+		content = results.getString("content");
+		if(id == editingId) {%>
+		<tr>
+			<td><%= id %></td>
+			<td><input value="<%= name %>" name="name" class="form-control"/></td>
+			<td><input value="<%= content %>" name="content" class="form-control"/></td>
+			<td>
+				<a href="widgets.jsp?action=update&id=<%= id %>" class="btn btn-primary btn-block">Update</a>
+			</td>
+		</tr>
+<%		} else {%>
 		<tr>
 			<td><%= id %></td>
 			<td><%= name %></td>
@@ -75,7 +87,8 @@ try {
 				<a href="widgets.jsp?action=edit&id=<%= id %>">Edit</a>
 			</td>
 		</tr>
-<%	}	
+<%		}
+	}
 } catch(Exception e) {
 	e.printStackTrace();
 } finally {
