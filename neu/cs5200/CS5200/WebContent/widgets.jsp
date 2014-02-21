@@ -19,12 +19,14 @@
 		<th>ID</th>
 		<th>Name</th>
 		<th>Content</th>
+		<th>Page</th>
 		<th>Actions</th>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
 		<td><input name="name" class="form-control"/></td>
 		<td><input name="content" class="form-control"/></td>
+		<td><input name="page" type="number" class="form-control"/></td>
 		<td><button type="submit" name="action" value="add" class="btn btn-success btn-block">Add Widget</button></td>
 	</tr>
 <%
@@ -35,8 +37,11 @@ String url    = "jdbc:mysql://localhost/cs5200";
 int id, editingId = -1;
 String name, content;
 String action;
+int pageId;
 
 String selectAllWidgets  = "SELECT * FROM WIDGET;";
+String selectWidgetForId  = "SELECT * FROM WIDGET WHERE ID=?;";
+String selectWidgetsForPageId  = "SELECT * FROM WIDGET, PAGE WHERE PAGEID=?;";
 String insertNewWidget   = "INSERT INTO WIDGET VALUES (NULL, ?, ?)";
 String deleteWidgetForId = "DELETE FROM WIDGET WHERE ID=?";
 String updateWidgetForId = "UPDATE WIDGET SET NAME=?, CONTENT=? WHERE ID=?";
@@ -82,11 +87,13 @@ try {
 		id = results.getInt("id");
 		name = results.getString("name");
 		content = results.getString("content");
+		pageId = results.getInt("pageId");
 		if(id == editingId) {%>
 		<tr>
 			<td><%= id %></td>
 			<td><input value="<%= name %>" name="nameUpdate" class="form-control"/></td>
 			<td><input value="<%= content %>" name="contentUpdate" class="form-control"/></td>
+			<td><input value="<%= pageId %>" name="pageId" class="form-control"/></td>
 			<td>
 				<button name="action" value="update" class="btn btn-success">Update</button>
 				<a href="widgets.jsp" class="btn btn-danger">Cancel</a>
@@ -98,6 +105,7 @@ try {
 			<td><%= id %></td>
 			<td><%= name %></td>
 			<td><%= content %></td>
+			<td><%= pageId %></td>
 			<td>
 				<a href="widgets.jsp?action=delete&id=<%= id %>" class="btn btn-danger btn-xs">Delete</a>
 				<a href="widgets.jsp?action=edit&id=<%= id %>" class="btn btn-warning btn-xs">Edit</a>

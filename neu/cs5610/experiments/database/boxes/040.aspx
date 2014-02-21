@@ -8,6 +8,13 @@
     {
         SqlDataSource1.Update();
     }
+
+    // @new
+    protected void BoxDelete(object sender, EventArgs e)
+    {
+        SqlDataSource1.Delete();
+    }
+
 </script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,6 +39,16 @@
             left:100px;
             background-color:yellow;
         }
+
+        /* @new */
+        .boxdelete {
+            cursor : pointer;
+            z-index : 1;
+            float : right;
+            position:relative;
+            right:5px;
+        }
+
     </style>
 </head>
 <body>
@@ -39,47 +56,46 @@
     <form id="form1" runat="server">
     <div class="container">
 
-        <h1>Encode HTML For Server</h1>
+        <h1>Save Content</h1>
 
-        <div class="wam-hiddenf">
-            <asp:TextBox ID="boxid"     runat="server" CssClass="boxid"/>
-            <asp:TextBox ID="boxtop"    runat="server" CssClass="boxtop"/>
-            <asp:TextBox ID="boxleft"   runat="server" CssClass="boxleft"/>
-            <asp:TextBox ID="boxwidth"  runat="server" CssClass="boxwidth"/>
-            <asp:TextBox ID="boxheight" runat="server" CssClass="boxheight"/>
+        <div class="wam-hidden">
+            <asp:TextBox ID="boxid"      runat="server" CssClass="boxid"/>
+            <asp:TextBox ID="boxtop"     runat="server" CssClass="boxtop"/>
+            <asp:TextBox ID="boxleft"    runat="server" CssClass="boxleft"/>
+            <asp:TextBox ID="boxwidth"   runat="server" CssClass="boxwidth"/>
+            <asp:TextBox ID="boxheight"  runat="server" CssClass="boxheight"/>
             <asp:TextBox ID="boxcontent" runat="server" CssClass="boxcontent"/>
 
             <asp:Button  ID="boxsave" runat="server" CssClass="boxsave" Text="save" OnClick="boxsave_Click" />
+
+            <!-- @new -->
+            <asp:Button  ID="boxdelete" runat="server" CssClass="boxdeleteBtn" Text="delete" OnClick="BoxDelete" />
 
         </div>
 
         <asp:Repeater ID="DataList1" runat="server" DataSourceID="SqlDataSource1">
             <ItemTemplate>
-                <div class="box" id="<%# Eval("Id") %>"
+                <div contenteditable="true" class="box" id="<%# Eval("Id") %>"
                     style='width:<%# Eval("width") %>px;height:<%# Eval("height") %>px;position:absolute;top:<%# Eval("top") %>px;left:<%# Eval("left") %>px;background-color:<%# Eval("bgColor") %>;color:<%# Eval("fgColor") %>;'>
-                    <div contenteditable="true" class="actualcontent">
-                        <%# Eval("content") %>
-                    </div>
+                    <%# Eval("content") %>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
 
+        <!-- @new delete x -->
+        <div class="boxdelete wam-hidden">&times;</div>
 
         <rasala:FileView ID="fileView" runat="server" />
 
     </div>
 
     <script>
+
+        // @new
+        var box = null;
+
         var textBefore = null;
         $(function () {
-
-            // @new
-            $(".box .actualcontent").each(function () {
-                var box = $(this);
-                var txt = box.html();
-                txt = htmlDecode(txt)
-                box.html(txt);
-            });
 
             $(".box").draggable({
                 stop: updateDatabase
@@ -87,20 +103,42 @@
                 stop: updateDatabase
             });
 
-            $(".box .actualcontent").hover(makeEditable, makeUneditable);
-            function makeEditable(event) {
-                textBefore = $(this).html();
-
-                $(this).focus();
+            // @new
+            boxdelete = $(".boxdelete");
+            $("body").on("click", ".boxdelete", deleteBox);
+            boxdelete = $(".boxdelete");
+            function deleteBox() {
+                boxdelete
+                    .appendTo("body")
+                    .hide();
+                var id = box.attr("id");
+                box.remove();
+                $(".boxdeleteBtn")
+                    .val(id)
+                    .click();
             }
-            function makeUneditable(event) {
-                $(this).blur();
-                var textAfter = $(this).html();
+
+            $(".box").hover(makeEditable, makeUneditable);
+            function makeEditable(event) {
+                box = $(this)
+                textBefore = box.text().trim();
+                box.focus();
 
                 // @new
-                var text = htmlEncode(textAfter);
+                boxdelete
+                    .prependTo(box)
+                    .show();
+            }
+            function makeUneditable(event) {
 
-                $(".boxcontent").val(text);
+                // @new
+                boxdelete
+                    .prependTo("body")
+                    .hide();
+
+                box.blur();
+                var textAfter = box.text().trim();
+                $(".boxcontent").val(textAfter);
 
                 if (textBefore != textAfter) {
                     updateDatabase(event);
@@ -123,24 +161,17 @@
                 $(".boxwidth").val(box.width());
                 $(".boxheight").val(box.height());
 
-                var text = box.find(".actualcontent").html();
-
                 // @new
-                text = htmlEncode(text);
+                boxdelete
+                    .prependTo("body")
+                    .hide();
 
+                var text = box.text().trim();
                 $(".boxcontent").val(text);
 
                 $(".boxsave").click();
             }
         });
-
-        // @new http://jsbin.com/ejuru
-        function htmlEncode(value) {
-            return $('<div/>').text(value).html();
-        }
-        function htmlDecode(value) {
-            return $('<div/>').html(value).text();
-        }
     </script>
 
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:wamConnectionString1 %>"
@@ -150,7 +181,7 @@
             SelectCommand="SELECT [Id], [width], [height], [top], [left], [bgColor], [fgColor], [content] FROM [Box]"
             UpdateCommand="UPDATE [Box] SET [top] = @top, [left] = @left, [width]=@width, [height]=@height, [content]=@content WHERE [Id] = @Id">
             <DeleteParameters>
-                <asp:Parameter Name="Id" Type="Int32" />
+                <asp:FormParameter FormField="boxdelete" Name="Id" Type="Int32" />
             </DeleteParameters>
             <InsertParameters>
                 <asp:Parameter Name="width" Type="Int32" />
