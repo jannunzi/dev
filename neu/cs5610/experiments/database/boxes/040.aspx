@@ -56,7 +56,7 @@
     <form id="form1" runat="server">
     <div class="container">
 
-        <h1>Save Content</h1>
+        <h1>Delete Box</h1>
 
         <div class="wam-hidden">
             <asp:TextBox ID="boxid"      runat="server" CssClass="boxid"/>
