@@ -48,7 +48,7 @@
         <div role="form">
           <div class="form-group">
             <label for="f360-username">Username</label>
-            <input type="text" class="form-control" id="f360-username" placeholder="Username" value="jsilva"/>
+            <input type="text" class="form-control" id="f360-username" placeholder="Username" value="jose"/>
           </div>
           <div class="form-group">
             <label for="f360-password">Password</label>

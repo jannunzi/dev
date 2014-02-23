@@ -28,6 +28,17 @@ AND		users.name='jsilva'
 ORDER BY	node.title ASC
 LIMIT		0, 100
 
+(*) Get All Fishing Frips For JOSE
+
+SELECT	node.nid, node.type, node.title, node.uid, 
+		trip.field_start_value, trip.field_stop_value
+FROM 	node, content_type_fishing_trip_type trip, users
+WHERE 	node.nid = trip.nid
+AND		users.uid = node.uid
+AND		users.name='jose'
+ORDER BY	node.title ASC
+LIMIT		0, 100
+
 (*) Select Fishing Trips With NULL start date
 
 SELECT	trip.field_start_value, trip.field_stop_value

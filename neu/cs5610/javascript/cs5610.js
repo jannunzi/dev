@@ -1,4 +1,5 @@
 ﻿var cs5610 = {
+    // http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=umgs9aw92awmyuw6qvmgqkgv&q=Star Wars
     rottenTomatoes: {
         searchMovieTitle : function (movieTitle, callback) {
             $.ajax({
