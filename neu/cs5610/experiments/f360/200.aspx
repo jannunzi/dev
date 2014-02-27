@@ -58,6 +58,10 @@
           <button class="btn btn-primary btn-block f360-register">Register</button>
         </div>
 
+        <p>
+            Added Registration Page
+        </p>
+
     </div>
 
     <div class="container f360-page f360-register">
