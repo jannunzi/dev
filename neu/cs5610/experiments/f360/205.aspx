@@ -455,7 +455,7 @@
 
         function registerService(username, password1, password2, successCallback) {
             $.ajax({
-                url: "http://localhost:62600/F360Service.asmx/HelloWorld",
+                url: "http://localhost:62600/F360Service.asmx/CreateNewUserTest",
                 type : "post",
                 contentType : "application/json",
                 success : successCallback

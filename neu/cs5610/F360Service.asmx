@@ -15,5 +15,19 @@ public class F360Service  : System.Web.Services.WebService {
     public string HelloWorld() {
         return "Hello World";
     }
+
+    [WebMethod]
+    public string CreateNewUserTest()
+    {
+        using (f360.F360Entities db = new f360.F360Entities())
+        {
+            f360.User newUser = new f360.User();
+            newUser.username = "test1";
+            newUser.password = "password123";
+            db.Users.Add(newUser);
+            db.SaveChanges();
+        }
+        return "Hello World";
+    }
     
 }
