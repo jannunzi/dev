@@ -55,11 +55,28 @@
             <input type="password" class="form-control" id="f360-password" placeholder="Password"/>
           </div>
           <button class="btn btn-primary btn-block f360-login">Login</button>
+          <a class="btn btn-primary btn-block f360-register">Register</a>
         </div>
 
-        <p>
-            Delete Trip
-        </p>
+    </div>
+
+    <div class="container f360-page f360-register">
+
+        <div role="form">
+          <div class="form-group">
+            <label for="f360-username-register">Username</label>
+            <input type="text" class="form-control" id="f360-username-register" placeholder="Username" value="jose"/>
+          </div>
+          <div class="form-group">
+            <label for="f360-password-1-register">Password</label>
+            <input type="password" class="form-control" id="f360-password-1-register" placeholder="Password"/>
+          </div>
+          <div class="form-group">
+            <label for="f360-password-2-register">Type Password Again</label>
+            <input type="password" class="form-control" id="f360-password-2-register" placeholder="Password"/>
+          </div>
+          <button class="btn btn-primary btn-block f360-login">Register</button>
+        </div>
 
     </div>
 
