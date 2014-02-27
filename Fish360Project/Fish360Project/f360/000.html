@@ -79,6 +79,7 @@
                 <input type="password" class="form-control" id="f360-password-2-register" placeholder="Password" />
             </div>
             <button class="btn btn-primary btn-block f360-register">Register</button>
+            <button class="btn btn-primary btn-block f360-cancel">Cancel</button>
         </div>
 
     </div>
@@ -353,28 +354,15 @@
         </div>
     </div>
 
-    <form id="form1" runat="server">
-        <br />
-        <div class="container">
-            <rasala:FileView ID="fileView" runat="server" />
-        </div>
-    </form>
     <script src="../Scripts/jquery-1.10.2.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/f360.js"></script>
     <script>
 
-//        var f360 = {};
         f360.state = {};
         f360.state.currentView = "login";
 
         $(function () {
-
-            f360.services.user.hello.test();
-            //            f360.services.user.validate('user1','password1');
-//            f360.services.user.create('user123', 'password123');
-            //            f360.services.user.validate('user123', 'password123');
-            
 
             $('.nav a').on('click', function () {
                 $(".navbar-toggle").click();
@@ -390,10 +378,11 @@
                 $(".navbar-brand").html(title);
             });
 
-            // transition
+            // transition / navigation
             $(".f360-page.f360-login button.f360-login").click(loginAction);
             $(".f360-page.f360-login button.f360-register").click(startRegisterAction);
             $(".f360-page.f360-register button.f360-register").click(registerAction);
+            $(".f360-page.f360-register button.f360-cancel").click(registerCancelAction);
             $(".f360-page.f360-trips").on("click", "li", selectTripAction);
             $(".f360-page.f360-trip button.f360-fish").click(showFishAction);
             $(".f360-page.f360-fish.f360-list").on("click", "li", selectFishAction);
@@ -449,6 +438,14 @@
 
         function startRegisterAction() {
             showRegister();
+        }
+
+        function registerCancelAction() {
+            $("#f360-username-register").val("");
+            $("#f360-password-1-register").val("");
+            $("#f360-password-2-register").val("");
+
+            showLogin();
         }
 
         function registerAction() {
