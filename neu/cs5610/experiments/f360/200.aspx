@@ -75,7 +75,7 @@
             <label for="f360-password-2-register">Type Password Again</label>
             <input type="password" class="form-control" id="f360-password-2-register" placeholder="Password"/>
           </div>
-          <button class="btn btn-primary btn-block f360-login">Register</button>
+          <button class="btn btn-primary btn-block f360-register">Register</button>
         </div>
 
     </div>
@@ -384,6 +384,7 @@
             // transition
             $(".f360-page.f360-login button.f360-login").click(loginAction);
             $(".f360-page.f360-login button.f360-register").click(startRegisterAction);
+            $(".f360-page.f360-register button.f360-register").click(registerAction);
             $(".f360-page.f360-trips").on("click", "li", selectTripAction);
             $(".f360-page.f360-trip button.f360-fish").click(showFishAction);
             $(".f360-page.f360-fish.f360-list").on("click", "li", selectFishAction);
@@ -438,8 +439,11 @@
         }
 
         function startRegisterAction() {
-            setTitle('Register');
             showRegister();
+        }
+
+        function registerAction() {
+            showLogin();
         }
 
         function loginAction() {
@@ -507,6 +511,7 @@
         }
 
         function showLogin() {
+            setTitle('login');
 
             f360.state.currentView = "login";
 
@@ -516,6 +521,7 @@
         }
 
         function showRegister() {
+            setTitle('Register');
 
             f360.state.currentView = "register";
 
