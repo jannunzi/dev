@@ -52,5 +52,23 @@ namespace Fish360Project
         {
             return "Hello World";
         }
+
+        [WebMethod]
+        public string GetAllUsers()
+        {
+            return "Hello World";
+        }
+
+        [WebMethod]
+        public string GetUserById(int id)
+        {
+            return "Hello World";
+        }
+
+        [WebMethod]
+        public string GetUserByUsername(string username)
+        {
+            return "Hello World";
+        }
     }
 }
