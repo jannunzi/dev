@@ -1,4 +1,7 @@
 ﻿var f360 = {
+    state : {
+        login : {}
+    },
     environment : "prod",
     constants: {
         dev: {
@@ -26,6 +29,15 @@
         },
         user: {
             name: 'UserService',
+            login: function (username, password, callback) {
+                var data = {
+                    user: {
+                        username: username,
+                        password: password
+                    }
+                };
+                f360.services.ajax({ url: this.name + '.asmx/LoginUser', data: data, callback: callback });
+            },
             create:function(username, password, callback) {
                 var data = {
                     user: {

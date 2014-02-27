@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="f360Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="f360Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Fish">
           <Key>
             <PropertyRef Name="id" />
@@ -40,6 +40,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="token" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK__Fish__species__33D4B598">
           <End Role="Species" Type="Self.Species" Multiplicity="0..1" />
@@ -97,8 +98,7 @@
             <End Role="Fish" EntitySet="Fish" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="f360Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -143,6 +143,7 @@
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Trips" Relationship="Self.FK__Trips__userId__2F10007B" FromRole="Users" ToRole="Trips" />
+          <Property Name="token" Type="Guid" />
         </EntityType>
         <Association Name="FK__Fish__species__33D4B598">
           <End Role="Species" Type="Self.Species" Multiplicity="0..1" />
@@ -240,6 +241,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="f360Model.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="token" ColumnName="token" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />

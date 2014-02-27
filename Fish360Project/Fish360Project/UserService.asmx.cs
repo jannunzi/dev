@@ -69,9 +69,28 @@ namespace Fish360Project
         }
 
         [WebMethod]
-        public string LoginUser()
+        public string LoginUser(UserTO user)
         {
-            return "Hello World";
+            string validation = ValidateUser(user);
+            Guid guid;
+            if (validation == "user validated")
+            {
+                using (var db = new Fish360Project.f360Entities())
+                {
+                    var users = (from t in db.Users
+                                 where t.username == user.username
+                                 && t.password == user.password
+                                 select t).FirstOrDefault();
+
+                    guid = Guid.NewGuid();
+
+                    users.token = guid;
+
+                    db.SaveChanges();
+                }
+                return guid.ToString();
+            }
+            return "unable to login";
         }
 
         [WebMethod]

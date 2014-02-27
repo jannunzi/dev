@@ -359,7 +359,6 @@
     <script src="../Scripts/f360.js"></script>
     <script>
 
-        f360.state = {};
         f360.state.currentView = "login";
 
         $(function () {
@@ -471,14 +470,24 @@
         function loginAction() {
 
             var username = $("#f360-username").val();
+            var password = $("#f360-password").val();
 
             f360.state.username = username;
 
-            getAllTripsService(username, showTripList);
+            f360.services.user.login(username, password, function (response) {
+                if (typeof response === 'object') {
+                    if (response.d !== 'unable to login') {
+                        f360.state.login.guid = response.d;
+                        showTripList();
+                        return;
+                    }
+                }
+                f360.state.login.guid = null;
+                alert("Wrong Username or Password");
+                console.log(f360.state.login.guid);
+            })
 
-            setTitle('Trips');
             $('.btn').show();
-
         }
 
         var tripTemplate = null;
@@ -553,6 +562,8 @@
         }
 
         function showTripList() {
+
+            setTitle('Trips');
 
             f360.state.currentView = "tripList";
 
