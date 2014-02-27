@@ -55,7 +55,7 @@
             <input type="password" class="form-control" id="f360-password" placeholder="Password"/>
           </div>
           <button class="btn btn-primary btn-block f360-login">Login</button>
-          <a class="btn btn-primary btn-block f360-register">Register</a>
+          <button class="btn btn-primary btn-block f360-register">Register</button>
         </div>
 
     </div>
@@ -383,6 +383,7 @@
 
             // transition
             $(".f360-page.f360-login button.f360-login").click(loginAction);
+            $(".f360-page.f360-login button.f360-register").click(startRegisterAction);
             $(".f360-page.f360-trips").on("click", "li", selectTripAction);
             $(".f360-page.f360-trip button.f360-fish").click(showFishAction);
             $(".f360-page.f360-fish.f360-list").on("click", "li", selectFishAction);
@@ -434,6 +435,11 @@
                     }
                 }
             })
+        }
+
+        function startRegisterAction() {
+            setTitle('Register');
+            showRegister();
         }
 
         function loginAction() {
@@ -507,6 +513,15 @@
             scrollToTop();
             $('.f360-page').hide();
             $('.f360-page.f360-login').show();
+        }
+
+        function showRegister() {
+
+            f360.state.currentView = "register";
+
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-register').show();
         }
 
         function showTripList() {
