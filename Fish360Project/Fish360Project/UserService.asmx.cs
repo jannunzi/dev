@@ -22,5 +22,35 @@ namespace Fish360Project
         {
             return "Hello World";
         }
+
+        [WebMethod]
+        public string CreateUser()
+        {
+            return "Hello World";
+        }
+
+        [WebMethod]
+        public string LoginUser()
+        {
+            return "Hello World";
+        }
+
+        [WebMethod]
+        public string LogoutUser()
+        {
+            return "Hello World";
+        }
+
+        [WebMethod]
+        public string ChangePassword()
+        {
+            return "Hello World";
+        }
+
+        [WebMethod]
+        public string ValidateUser()
+        {
+            return "Hello World";
+        }
     }
 }
