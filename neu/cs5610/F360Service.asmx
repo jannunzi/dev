@@ -23,6 +23,7 @@ public class F360Service  : System.Web.Services.WebService {
         {
             return "error";
         }
+
         using (f360.F360Entities db = new f360.F360Entities())
         {
             f360.User newUser = new f360.User();
