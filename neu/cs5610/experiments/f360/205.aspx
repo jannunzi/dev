@@ -447,16 +447,24 @@
         }
 
         function registerAction() {
-            var username = $("#f360-username-register");
-            var password1 = $("#f360-password-1-register");
-            var password2 = $("#f360-password-2-register");
+            var username = $("#f360-username-register").val();
+            var password1 = $("#f360-password-1-register").val();
+            var password2 = $("#f360-password-2-register").val();
             registerService(username, password1, password2, showLogin);
         }
 
         function registerService(username, password1, password2, successCallback) {
+            var d1 = {
+                username: username,
+                password: password1,
+                passwordValidation : password2
+            };
+
             $.ajax({
                 url: "http://localhost:62600/F360Service.asmx/CreateNewUserTest",
-                type : "post",
+                type: "post",
+
+                data: JSON.stringify({ user: d1 }),
                 contentType : "application/json",
                 success : successCallback
             })

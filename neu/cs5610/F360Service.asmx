@@ -17,17 +17,21 @@ public class F360Service  : System.Web.Services.WebService {
     }
 
     [WebMethod]
-    public string CreateNewUserTest()
+    public string CreateNewUserTest(UserTO user)
     {
+        if (user.password != user.passwordValidation)
+        {
+            return "error";
+        }
         using (f360.F360Entities db = new f360.F360Entities())
         {
             f360.User newUser = new f360.User();
-            newUser.username = "test1";
-            newUser.password = "password123";
+            newUser.username = user.username;
+            newUser.password = user.password;
             db.Users.Add(newUser);
             db.SaveChanges();
         }
-        return "Hello World";
+        return "success";
     }
     
 }
