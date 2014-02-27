@@ -45,7 +45,7 @@
         <div role="form">
             <div class="form-group">
                 <label for="f360-username">Username</label>
-                <input type="text" class="form-control" id="f360-username" placeholder="Username" value="jose" />
+                <input type="text" class="form-control" id="f360-username" placeholder="Username" />
             </div>
             <div class="form-group">
                 <label for="f360-password">Password</label>
@@ -54,11 +54,11 @@
             <button class="btn btn-primary btn-block f360-login">Login</button>
             <button class="btn btn-primary btn-block f360-register">Register</button>
 
-            <a href="#" id="test-user-service-create" class="btn btn-xs btn-warning btn-block">Create User</a>
+            <!--a href="#" id="test-user-service-create" class="btn btn-xs btn-warning btn-block">Create User</!--a>
             <a href="#" id="test-user-service-login" class="btn btn-xs btn-warning btn-block">Login User</a>
             <a href="#" id="test-user-service-get-by-id" class="btn btn-xs btn-warning btn-block">Get User by Id</a>
             <a href="#" id="test-user-service-get-all" class="btn btn-xs btn-warning btn-block">Get All Users</a>
-            <a href="#" id="test-user-service-remove-by-id" class="btn btn-xs btn-warning btn-block">Remove User by Id</a>
+            <a href="#" id="test-user-service-remove-by-id" class="btn btn-xs btn-warning btn-block">Remove User by Id</a-->
 
         </div>
     </div>
@@ -68,7 +68,7 @@
         <div role="form">
             <div class="form-group">
                 <label for="f360-username-register">Username</label>
-                <input type="text" class="form-control" id="f360-username-register" placeholder="Username" value="jose" />
+                <input type="text" class="form-control" id="f360-username-register" placeholder="Username" />
             </div>
             <div class="form-group">
                 <label for="f360-password-1-register">Password</label>
@@ -460,8 +460,10 @@
                 return;
             }
             f360.services.user.validateUsername(username, function (response) {
-                if (response.d === "username does not exist")
+                if (response.d === "username does not exist") {
+                    $("#f360-username").val(username);
                     f360.services.user.create(username, password1, showLogin);
+                }
                 else if (response.d === "username exists")
                     alert("User Already Exists");
                 else
@@ -534,7 +536,7 @@
         }
 
         function showLogin() {
-            setTitle('login');
+            setTitle('Login');
 
             f360.state.currentView = "login";
 

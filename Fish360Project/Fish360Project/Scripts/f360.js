@@ -1,5 +1,5 @@
 ﻿var f360 = {
-    environment : "dev",
+    environment : "prod",
     constants: {
         dev: {
             baseUrl: "http://localhost:50465/"
