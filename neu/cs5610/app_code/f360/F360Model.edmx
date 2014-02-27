@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="F360Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Fish">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tripId" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="weight" Type="float" />
+          <Property Name="length" Type="float" />
+          <Property Name="caughtDate" Type="datetime" />
+          <Property Name="species" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SecurityTokens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="token" Type="uniqueidentifier" />
+          <Property Name="userId" Type="int" />
+        </EntityType>
+        <EntityType Name="Trip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="userId" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Fish__tripId__182C9B23">
+          <End Role="Trip" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="Fish" Type="Self.Fish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fish">
+              <PropertyRef Name="tripId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SecurityT__userI__4BAC3F29">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="SecurityTokens" Type="Self.SecurityTokens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecurityTokens">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Trip__userId__4AB81AF0">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Trip" Type="Self.Trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trip">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="F360ModelStoreContainer">
+          <EntitySet Name="Fish" EntityType="Self.Fish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecurityTokens" EntityType="Self.SecurityTokens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trip" EntityType="Self.Trip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Fish__tripId__182C9B23" Association="Self.FK__Fish__tripId__182C9B23">
+            <End Role="Trip" EntitySet="Trip" />
+            <End Role="Fish" EntitySet="Fish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SecurityT__userI__4BAC3F29" Association="Self.FK__SecurityT__userI__4BAC3F29">
+            <End Role="User" EntitySet="User" />
+            <End Role="SecurityTokens" EntitySet="SecurityTokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Trip__userId__4AB81AF0" Association="Self.FK__Trip__userId__4AB81AF0">
+            <End Role="User" EntitySet="User" />
+            <End Role="Trip" EntitySet="Trip" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="F360Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Fish">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tripId" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="weight" Type="Double" />
+          <Property Name="length" Type="Double" />
+          <Property Name="caughtDate" Type="DateTime" Precision="3" />
+          <Property Name="species" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK__Fish__tripId__182C9B23" FromRole="Fish" ToRole="Trip" />
+        </EntityType>
+        <EntityType Name="SecurityToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="token" Type="Guid" />
+          <Property Name="userId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="F360Model.FK__SecurityT__userI__4BAC3F29" FromRole="SecurityToken" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Trip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Fish" Relationship="Self.FK__Fish__tripId__182C9B23" FromRole="Trip" ToRole="Fish" />
+          <NavigationProperty Name="User" Relationship="F360Model.FK__Trip__userId__4AB81AF0" FromRole="Trip" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Trips" Relationship="F360Model.FK__Trip__userId__4AB81AF0" FromRole="User" ToRole="Trip" />
+          <NavigationProperty Name="SecurityTokens" Relationship="F360Model.FK__SecurityT__userI__4BAC3F29" FromRole="User" ToRole="SecurityToken" />
+        </EntityType>
+        <Association Name="FK__Fish__tripId__182C9B23">
+          <End Role="Trip" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="Fish" Type="Self.Fish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fish">
+              <PropertyRef Name="tripId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="F360Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fish" EntityType="Self.Fish" />
+          <EntitySet Name="SecurityTokens" EntityType="Self.SecurityToken" />
+          <EntitySet Name="Trips" EntityType="Self.Trip" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Fish__tripId__182C9B23" Association="Self.FK__Fish__tripId__182C9B23">
+            <End Role="Trip" EntitySet="Trips" />
+            <End Role="Fish" EntitySet="Fish" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Trip__userId__4AB81AF0" Association="F360Model.FK__Trip__userId__4AB81AF0">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Trip" EntitySet="Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SecurityT__userI__4BAC3F29" Association="F360Model.FK__SecurityT__userI__4BAC3F29">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SecurityToken" EntitySet="SecurityTokens" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__Trip__userId__4AB81AF0">
+          <End Type="F360Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="F360Model.Trip" Role="Trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trip">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SecurityT__userI__4BAC3F29">
+          <End Type="F360Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="F360Model.SecurityToken" Role="SecurityToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecurityToken">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="F360ModelStoreContainer" CdmEntityContainer="F360Entities">
+          <EntitySetMapping Name="Fish">
+            <EntityTypeMapping TypeName="F360Model.Fish">
+              <MappingFragment StoreEntitySet="Fish">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="tripId" ColumnName="tripId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="caughtDate" ColumnName="caughtDate" />
+                <ScalarProperty Name="species" ColumnName="species" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityTokens">
+            <EntityTypeMapping TypeName="F360Model.SecurityToken">
+              <MappingFragment StoreEntitySet="SecurityTokens">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="token" ColumnName="token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trips">
+            <EntityTypeMapping TypeName="F360Model.Trip">
+              <MappingFragment StoreEntitySet="Trip">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="F360Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

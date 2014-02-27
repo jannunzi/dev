@@ -6,7 +6,7 @@
 
     protected void BoxUpdate(object sender, EventArgs e)
     {
-        SqlDataSource1.Update();
+//        SqlDataSource1.Update();
     }
 
     protected void BoxDelete(object sender, EventArgs e)
