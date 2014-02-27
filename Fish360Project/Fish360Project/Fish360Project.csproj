@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -164,6 +166,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <EntityDeploy Include="F360Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>F360Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="F360Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>F360Model.edmx</DependentUpon>
+      <LastGenOutput>F360Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="F360Model.edmx.diagram">
+      <DependentUpon>F360Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="F360Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>F360Model.edmx</DependentUpon>
+      <LastGenOutput>F360Model.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\fish360.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -274,6 +293,24 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F360Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>F360Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="F360Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>F360Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="F360Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>F360Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Fish.cs">
+      <DependentUpon>F360Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -293,11 +330,21 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Species.cs">
+      <DependentUpon>F360Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Trips.cs">
+      <DependentUpon>F360Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>F360Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserService.asmx.cs">
       <DependentUpon>UserService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UserTO.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -308,6 +355,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

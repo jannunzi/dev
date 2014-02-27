@@ -61,11 +61,6 @@
             <a href="#" id="test-user-service-remove-by-id" class="btn btn-xs btn-warning btn-block">Remove User by Id</a>
 
         </div>
-
-        <p>
-            Reject existing usernames
-        </p>
-
     </div>
 
     <div class="container f360-page f360-register">
@@ -376,7 +371,10 @@
         $(function () {
 
             f360.services.user.hello.test();
-            f360.services.user.validate('user1','password1');
+            //            f360.services.user.validate('user1','password1');
+//            f360.services.user.create('user123', 'password123');
+            //            f360.services.user.validate('user123', 'password123');
+            
 
             $('.nav a').on('click', function () {
                 $(".navbar-toggle").click();
@@ -457,24 +455,18 @@
             var username = $("#f360-username-register").val();
             var password1 = $("#f360-password-1-register").val();
             var password2 = $("#f360-password-2-register").val();
-            registerService(username, password1, password2, showLogin);
-        }
-
-        function registerService(username, password1, password2, successCallback) {
-            var d1 = {
-                username: username,
-                password: password1,
-                passwordValidation: password2
-            };
-
-            $.ajax({
-                url: "http://localhost:62600/F360Service.asmx/CreateNewUserTest",
-                type: "post",
-
-                data: JSON.stringify({ user: d1 }),
-                contentType: "application/json",
-                success: successCallback
-            })
+            if (password1 != password2) {
+                alert("Passwords Must Match");
+                return;
+            }
+            f360.services.user.validateUsername(username, function (response) {
+                if (response.d === "username does not exist")
+                    f360.services.user.create(username, password1, showLogin);
+                else if (response.d === "username exists")
+                    alert("User Already Exists");
+                else
+                    alert("Error Creating User");
+            });
         }
 
         function loginAction() {

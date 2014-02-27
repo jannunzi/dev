@@ -1,5 +1,5 @@
 ﻿var f360 = {
-    environment : "prod",
+    environment : "dev",
     constants: {
         dev: {
             baseUrl: "http://localhost:50465/"
@@ -25,16 +25,34 @@
             $.ajax(parameters);
         },
         user: {
-            name : 'UserService',
-            validate: function (username, password, callback) {
-                var url = this.name;
+            name: 'UserService',
+            create:function(username, password, callback) {
                 var data = {
-                    userTo: {
+                    user: {
                         username: username,
                         password: password
                     }
                 };
-                f360.services.ajax({ url: url, data: data, callback: callback });
+                f360.services.ajax({ url: this.name + '.asmx/CreateUser', data: data, callback:callback });
+            },
+            validateUser: function (username, password, callback) {
+                var url = this.name;
+                var data = {
+                    user: {
+                        username: username,
+                        password: password
+                    }
+                };
+                f360.services.ajax({ url: this.name + '.asmx/ValidateUser', data: data, callback: callback });
+            },
+            validateUsername: function (username, callback) {
+                var url = this.name;
+                var data = {
+                    user: {
+                        username: username
+                    }
+                };
+                f360.services.ajax({ url: this.name + '.asmx/ValidateUsername', data: data, callback: callback });
             },
             hello: {
                 name: 'HelloWorld',

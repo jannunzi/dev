@@ -24,9 +24,48 @@ namespace Fish360Project
         }
 
         [WebMethod]
-        public string CreateUser()
+        public string ValidateUser(UserTO user)
         {
-            return "Hello World";
+            using (var db = new Fish360Project.f360Entities())
+            {
+                var users = (from t in db.Users
+                             where t.username == user.username
+                             && t.password == user.password
+                             select t).FirstOrDefault();
+
+                if (users == null)
+                    return "unknown user";
+            }
+            return "user validated";
+        }
+
+        [WebMethod]
+        public string ValidateUsername(UserTO user)
+        {
+            using (var db = new Fish360Project.f360Entities())
+            {
+                var users = (from t in db.Users
+                             where t.username == user.username
+                             select t).FirstOrDefault();
+
+                if (users == null)
+                    return "username does not exist";
+            }
+            return "username exists";
+        }
+
+        [WebMethod]
+        public string CreateUser(UserTO user)
+        {
+            using (var db = new Fish360Project.f360Entities())
+            {
+                Users newUser = new Users();
+                newUser.username = user.username;
+                newUser.password = user.password;
+                db.Users.Add(newUser);
+                db.SaveChanges();
+            }
+            return "success";
         }
 
         [WebMethod]
@@ -43,12 +82,6 @@ namespace Fish360Project
 
         [WebMethod]
         public string ChangePassword()
-        {
-            return "Hello World";
-        }
-
-        [WebMethod]
-        public string ValidateUser()
         {
             return "Hello World";
         }
