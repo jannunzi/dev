@@ -170,18 +170,18 @@
         <div role="form">
             <div class="form-group">
                 <label for="f360-trip-name">Trip Name</label>
-                <input type="text" class="form-control" id="f360-trip-name" name="title" placeholder="Trip Name" />
+                <input type="text" class="form-control" id="f360-trip-name" name="name" placeholder="Trip Name" />
             </div>
             <div class="form-group">
                 <label for="f360-trip-start-date">Start Date</label>
-                <input type="date" class="form-control" id="f360-trip-start-date" name="field_start_value" />
+                <input type="date" class="form-control" id="f360-trip-start-date" name="startDate" />
             </div>
             <div class="form-group">
                 <label for="f360-trip-end-date">End Date</label>
-                <input type="date" class="form-control" id="f360-trip-end-date" name="field_stop_value" />
+                <input type="date" class="form-control" id="f360-trip-end-date" name="endDate" />
             </div>
             <div class="form-group">
-                <input type="hidden" class="form-control" name="nid" id="f360-trip-nid" />
+                <input type="hidden" class="form-control" name="id" id="f360-trip-nid" />
             </div>
             <button class="btn btn-warning btn-block f360-fish">Show Fish for this Trip</button>
             <button class="btn btn-success btn-block f360-save">Save Changes</button>
@@ -403,9 +403,11 @@
         });
 
         function selectTripAction() {
-
+            // jga
             var id = $(this).attr("id");
-            getTrip(id, showTripDetails);
+
+            f360.services.trip.GetTripForId(id, renderTripDetails);
+            // getTrip(id, showTripDetails);
 
             setTitle('Trip');
             $('.btn').show();
@@ -413,28 +415,15 @@
         }
 
         function renderTripDetails(trip) {
+            trip = trip.d;
             for (var key in trip) {
                 var selector = "[name=" + key + "]";
                 var val = trip[key];
                 if (val === null)
                     continue;
-                val = val.replace(" 00:00:00", "");
                 $(selector).val(val);
             }
-        }
-
-        function getTrip(id, callback) {
-            $.ajax({
-                url: "http://dev.fish360.net/autotideapp/services/GetFishingTripForNodeId.php",
-                data: { fishingTripNodeId: id },
-                dataType: "jsonp",
-                success: function (response) {
-                    renderTripDetails(response);
-                    if (typeof callback === "function") {
-                        callback(response);
-                    }
-                }
-            })
+            showTripDetails();
         }
 
         function startRegisterAction() {
@@ -590,7 +579,7 @@
             $('.f360-page').hide();
             $('.f360-page.f360-fish.f360-details').show();
         }
-        function showTripDetails() {
+        function showTripDetails(trip) {
 
             f360.state.currentView = "tripDetails";
 

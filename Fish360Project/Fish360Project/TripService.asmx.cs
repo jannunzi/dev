@@ -34,6 +34,33 @@ namespace Fish360Project
         }
 
         [WebMethod]
+        public TripTO GetTripForId(int id, string token)
+        {
+            using (var db = new Fish360Project.f360Entities())
+            {
+                var guid = new Guid(token);
+                var query = (from trip in db.Trips
+                             join user in db.Users
+                             on trip.userId.Value
+                             equals user.id
+                             where user.token == guid
+                             && trip.id == id
+                             select trip).FirstOrDefault();
+                if (query == null)
+                    return null;
+
+                TripTO tripTO = new TripTO();
+                
+                tripTO.id = query.id;
+                tripTO.name = query.name;
+                tripTO.startDate = ((DateTime)query.startDate).ToString("yyyy-MM-dd");
+                tripTO.endDate = ((DateTime)query.endDate).ToString("yyyy-MM-dd");
+
+                return tripTO;
+            }
+        }
+
+        [WebMethod]
         public List<TripTO> GetAllTrips(UserTO userTO)
         {
             using (var db = new Fish360Project.f360Entities())

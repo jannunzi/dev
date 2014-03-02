@@ -8,7 +8,7 @@
             guid : null
         }
     },
-    environment : "prod",
+    environment : "dev",
     constants: {
         dev: {
             baseUrl: "http://localhost:50465/"
@@ -33,7 +33,18 @@
 
             $.ajax(parameters);
         },
-        trip : {
+        trip: {
+            GetTripForId : function(id, callback) {
+                var data = {
+                    id: id,
+                    token : f360.state.login.guid
+                };
+                f360.services.ajax({
+                    url: "TripService.asmx/GetTripForId",
+                    data: data,
+                    callback: callback
+                });
+            },
             GetAllTrips: function (token, callback) {
                 var data = {
                     userTO: {
