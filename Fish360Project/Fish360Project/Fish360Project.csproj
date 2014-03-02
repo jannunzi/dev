@@ -219,6 +219,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="TripService.asmx" />
     <Content Include="UserService.asmx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -311,6 +312,7 @@
     <Compile Include="Fish.cs">
       <DependentUpon>F360Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="FishTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -337,6 +339,11 @@
     <Compile Include="Trips.cs">
       <DependentUpon>F360Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="TripService.asmx.cs">
+      <DependentUpon>TripService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TripTO.cs" />
     <Compile Include="Users.cs">
       <DependentUpon>F360Model.tt</DependentUpon>
     </Compile>

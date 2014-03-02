@@ -6,21 +6,32 @@ using System.Web.Services;
 
 namespace Fish360Project
 {
-    /// <summary>
-    /// Summary description for UserService
-    /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
-    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     [System.Web.Script.Services.ScriptService]
     public class UserService : System.Web.Services.WebService
     {
-
         [WebMethod]
-        public string HelloWorld()
+        public UserTO FindUserForToken(string token)
         {
-            return "Hello World";
+            using (var db = new Fish360Project.f360Entities())
+            {
+                Guid guid = new Guid(token);
+                var users = (from u in db.Users
+                             where u.token == guid
+                             select u).FirstOrDefault();
+                if (users != null)
+                {
+                    UserTO user = new UserTO();
+                    user.username = users.username;
+                    user.password = users.password;
+                    user.id = users.id;
+                    user.token = users.token.ToString();
+                    return user;
+                }
+            }
+            return null;
         }
 
         [WebMethod]
@@ -35,6 +46,13 @@ namespace Fish360Project
 
                 if (users == null)
                     return "unknown user";
+
+                if (users.token != null)
+                    user.token = users.token.ToString();
+                else
+                    user.token = null;
+
+                user.id = users.id;
             }
             return "user validated";
         }
@@ -47,6 +65,10 @@ namespace Fish360Project
                 var users = (from t in db.Users
                              where t.username == user.username
                              select t).FirstOrDefault();
+                if (users == null)
+                    return "username does not exist";
+                user.id = users.id;
+                user.token = users.token.ToString();
 
                 if (users == null)
                     return "username does not exist";
@@ -94,31 +116,7 @@ namespace Fish360Project
         }
 
         [WebMethod]
-        public string LogoutUser()
-        {
-            return "Hello World";
-        }
-
-        [WebMethod]
-        public string ChangePassword()
-        {
-            return "Hello World";
-        }
-
-        [WebMethod]
-        public string GetAllUsers()
-        {
-            return "Hello World";
-        }
-
-        [WebMethod]
-        public string GetUserById(int id)
-        {
-            return "Hello World";
-        }
-
-        [WebMethod]
-        public string GetUserByUsername(string username)
+        public string HelloWorld()
         {
             return "Hello World";
         }

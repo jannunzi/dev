@@ -1,6 +1,12 @@
 ﻿var f360 = {
+    templates: {
+        trips: null,
+        fish : null
+    },
     state : {
-        login : {}
+        login: {
+            guid : null
+        }
     },
     environment : "prod",
     constants: {
@@ -26,6 +32,32 @@
                 parameters.data = JSON.stringify(parameters.data);
 
             $.ajax(parameters);
+        },
+        trip : {
+            GetAllTrips: function (token, callback) {
+                var data = {
+                    userTO: {
+                        token: token
+                    }
+                };
+                f360.services.ajax({ url: "TripService.asmx/GetAllTrips", data: data, callback: callback });
+            },
+            create: function (name, startDate, endDate, callback) {
+                // jga
+                var data = {
+                    tripTO: {
+                        name: name,
+                        startDate: startDate,
+                        endDate: endDate
+                    },
+                    token: f360.state.login.guid
+                };
+                f360.services.ajax({
+                    url: "TripService.asmx/CreateTrip",
+                    data: data,
+                    callback: callback
+                });
+            }
         },
         user: {
             name: 'UserService',
@@ -74,6 +106,22 @@
                 }
             }
         },
+    },
+    utils: {
+        dateToYYYYMMDD: function (date) {
+            var mm = date.getMonth() + 1;
+            var dd = date.getDate();
+            var yyyy = date.getFullYear();
+            if (mm < 10)
+                mm = "0" + mm;
+            if (dd < 10)
+                dd = "0" + dd;
+            return yyyy + "-" + mm + "-" + dd;
+        },
+        jsDateToAsmx: function (jsDate) {
+//            return '\\\/Date(' + jsDate + ')\\\/';
+            return '/Date(' + jsDate + ')/';
+        }
     }
 }
 f360.baseUrl = f360.constants[f360.environment].baseUrl;

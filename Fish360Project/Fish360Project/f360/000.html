@@ -93,7 +93,7 @@
         <ul class="list-unstyled">
             <li>
                 <a href="#">
-                    <span class="title">Trip 1</span>
+                    <span class="name">Trip 1</span>
                     <span class="pull-right">&#9654;</span>
                 </a>
             </li>
@@ -363,6 +363,8 @@
 
         $(function () {
 
+//          console.log(f360.utils.dateToYYYYMMDD(new Date()));
+
             $('.nav a').on('click', function () {
                 $(".navbar-toggle").click();
 
@@ -478,7 +480,7 @@
                 if (typeof response === 'object') {
                     if (response.d !== 'unable to login') {
                         f360.state.login.guid = response.d;
-                        showTripList();
+                        f360.services.trip.GetAllTrips(f360.state.login.guid, renderTrips);
                         return;
                     }
                 }
@@ -490,24 +492,25 @@
             $('.btn').show();
         }
 
-        var tripTemplate = null;
         function renderTrips(trips) {
-            if (tripTemplate === null) {
-                tripTemplate = $(".f360-page.f360-trips ul li:first");
+            trips = trips.d;
+            if (f360.templates.trips === null) {
+                f360.templates.trips = $(".f360-page.f360-trips ul li:first");
             }
             var ul = $(".f360-page.f360-trips ul");
             ul.empty();
             for (var t = 0; t < trips.length; t++) {
-                var instance = tripTemplate.clone();
-                instance.attr("id", trips[t]["nid"]);
+                var instance = f360.templates.trips.clone();
+                instance.attr("id", trips[t]["id"]);
                 for (var key in trips[t]) {
                     var selector = "." + key;
                     instance.find(selector).html(trips[t][key]);
                 }
                 ul.append(instance);
             }
+            showTripList()
         }
-
+/*
         function getAllTripsService(username, callback) {
             $.ajax({
                 url: "http://dev.fish360.net/autotideapp/services/FishingTrip_FindForUsername.php",
@@ -521,7 +524,7 @@
                 }
             });
         }
-
+        */
         function backAction(event) {
             event.preventDefault();
 
@@ -600,26 +603,14 @@
         }
 
         function saveTripAction() {
-
-            var nid = $("#f360-trip-nid").val();;
-            var title = $("#f360-trip-name").val();
+            var name = $("#f360-trip-name").val();
             var startDate = $("#f360-trip-start-date").val();
             var endDate = $("#f360-trip-end-date").val();
-            var data = {
-                nid: nid,
-                title: title,
-                startDate: startDate,
-                endDate: endDate
-            };
-            $.ajax({
-                url: "http://dev.fish360.net/autotideapp/services/FishingTrip_Update.php",
-                data: data,
-                dataType: "jsonp",
-                success: function () {
-                    getAllTripsService(f360.state.username, showTripList);
-                }
+            f360.services.trip.create(name, startDate, endDate, function (response) {
+                f360.services.trip.GetAllTrips(f360.state.login.guid, function (trips) {
+                    renderTrips(trips);
+                });
             });
-
         }
         function saveFishAction() {
             showFishList()
@@ -631,6 +622,10 @@
             showFishList()
         }
         function addTripAction() {
+            $("#f360-trip-name").html("");
+            var now = new Date();
+            $("#f360-trip-start-date").val(f360.utils.dateToYYYYMMDD(now));
+            $("#f360-trip-end-date").val(f360.utils.dateToYYYYMMDD(now));
             showTripDetails();
 
             $('.f360-page.f360-trip .f360-delete').hide();

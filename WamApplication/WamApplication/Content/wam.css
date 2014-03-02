@@ -1,0 +1,20 @@
+﻿body {
+}
+
+.wam-hide,
+.wam-section
+{
+    display : none;
+}
+
+.wam-bottom-stick
+{
+    position : absolute;
+    bottom:0px;
+}
+
+.wam-show-on-hover
+{
+    height : 5px;
+    overflow:hidden;
+}
