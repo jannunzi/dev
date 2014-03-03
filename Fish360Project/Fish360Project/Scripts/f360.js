@@ -1,23 +1,43 @@
 ﻿var f360 = {
-    templates: {
-        trips: null,
-        fish : null
-    },
-    state : {
-        login: {
-            guid : null
+    environment: "prod",
+    fish: {
+        template: {
+            list: {
+                container: {
+                    selector: ".f360-page.f360-fish.f360-list ul.f360-list",
+                    dom: null
+                },
+                item: {
+                    selector: ".f360-page.f360-fish.f360-list ul.f360-list li.f360-fish",
+                    dom: null
+                }
+            }
+        },
+        render: {
+            list: function (fishList) {
+                if(typeof fishList !== "object" || fishList.length ===0)
+                    return;
+
+                if(f360.fish.template.list.container.dom == null) {
+                    f360.fish.template.list.container.dom =
+                        $(f360.fish.template.list.container.selector);
+                    f360.fish.template.list.item.dom =
+                        $(f360.fish.template.list.item.selector).clone();
+                }
+                var container = f360.fish.template.list.container.dom;
+                var item = f360.fish.template.list.item.dom;
+
+                container.empty();
+                for(var f in fishList) {
+                    var fish = fishList[f];
+                    var instance = item.clone();
+                    instance.find(".f360-name").html(fish.name);
+                    instance.find(".f360-id").attr("id", fish.id);
+                    container.append(instance);
+                }
+            }
         }
     },
-    environment : "dev",
-    constants: {
-        dev: {
-            baseUrl: "http://localhost:50465/"
-        },
-        prod: {
-            baseUrl: "http://fish360.azurewebsites.net/"
-        },
-    },
-    model : {},
     services: {
         ajax: function (parameters) {
             if (typeof parameters.url === "string")
@@ -33,8 +53,82 @@
 
             $.ajax(parameters);
         },
+        fish: {
+            GetFishForId: function(fishId, callback) {
+                var data = {
+                    fishId: fishId,
+                    token: f360.state.login.guid
+                };
+                f360.services.ajax({
+                    url: "FishService.asmx/GetFishForId",
+                    data: data,
+                    callback: callback
+                });
+            },
+            DeleteFishForId: function (fishId, callback) {
+                var data = {
+                    fishId: fishId,
+                    token: f360.state.login.guid
+                };
+                f360.services.ajax({
+                    url: "FishService.asmx/DeleteFishForId",
+                    data: data,
+                    callback: callback
+                });
+            },
+            CreateFish: function (fishTO, callback) {
+                var data = {
+                    fishTO : fishTO,
+                    token: f360.state.login.guid
+                };
+                f360.services.ajax({
+                    url: "FishService.asmx/CreateFish",
+                    data: data,
+                    callback: callback
+                });
+            },
+            GetAllFishForTripId: function (tripId, callback) {
+                var data = {
+                    tripId: tripId,
+                    token: f360.state.login.guid
+                };
+                f360.services.ajax({
+                    url: "FishService.asmx/GetAllFishForTripId",
+                    data: data,
+                    callback: callback
+                });
+            }
+        },
         trip: {
-            GetTripForId : function(id, callback) {
+            UpdateTrip: function (id, name, startDate, endDate, callback) {
+                var tripTO = {
+                    id : id,
+                    name: name,
+                    startDate: startDate,
+                    endDate: endDate
+                };
+                var data = {
+                    tripTO : tripTO,
+                    token: f360.state.login.guid
+                };
+                f360.services.ajax({
+                    url: "TripService.asmx/UpdateTrip",
+                    data: data,
+                    callback: callback
+                });
+            },
+            DeleteTripForId: function (id, callback) {
+                var data = {
+                    id: id,
+                    token: f360.state.login.guid
+                };
+                f360.services.ajax({
+                    url: "TripService.asmx/DeleteTripForId",
+                    data: data,
+                    callback: callback
+                });
+            },
+            GetTripForId: function (id, callback) {
                 var data = {
                     id: id,
                     token : f360.state.login.guid
@@ -133,6 +227,24 @@
 //            return '\\\/Date(' + jsDate + ')\\\/';
             return '/Date(' + jsDate + ')/';
         }
-    }
+    },
+    templates: {
+        trips: null,
+        fish : null
+    },
+    state : {
+            login: {
+                guid : null
+            }
+    },
+    constants: {
+        dev: {
+            baseUrl: "http://localhost:50465/"
+        },
+        prod: {
+                baseUrl: "http://fish360.azurewebsites.net/"
+        },
+    },
+    model : {}
 }
 f360.baseUrl = f360.constants[f360.environment].baseUrl;

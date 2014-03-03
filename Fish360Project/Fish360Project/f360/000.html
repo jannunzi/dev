@@ -109,60 +109,7 @@
                     <span class="pull-right">&#9654;</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <span>Trip 4</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Trip 5</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Trip 6</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Trip 7</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Trip 8</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Trip 9</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Trip 10</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Trip 11</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Trip 12</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
+
         </ul>
     </div>
 
@@ -183,9 +130,9 @@
             <div class="form-group">
                 <input type="hidden" class="form-control" name="id" id="f360-trip-nid" />
             </div>
-            <button class="btn btn-warning btn-block f360-fish">Show Fish for this Trip</button>
-            <button class="btn btn-success btn-block f360-save">Save Changes</button>
-            <button class="btn btn-danger btn-block f360-delete">Delete this Trip</button>
+            <button class="btn btn-warning btn-block f360-fish">Fish</button>
+            <button class="btn btn-success btn-block f360-save">Save</button>
+            <button class="btn btn-danger btn-block f360-delete">Delete</button>
         </div>
     </div>
 
@@ -195,76 +142,16 @@
             <button class="btn btn-primary btn-block f360-add">Add Fish</button>
         </div>
 
-        <ul class="list-unstyled">
-            <li>
-                <a href="#">
-                    <span>Fish 1</span>
+        <ul class="list-unstyled f360-list">
+            <li class="f360-fish">
+                <a href="#" class="f360-id">
+                    <span class="f360-name">Fish 1.1</span>
                     <span class="pull-right">&#9654;</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <span>Fish 2</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 3</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 4</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 5</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 6</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 7</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 8</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 9</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 10</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 11</span>
-                    <span class="pull-right">&#9654;</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span>Fish 12</span>
                     <span class="pull-right">&#9654;</span>
                 </a>
             </li>
@@ -275,73 +162,28 @@
         <div role="form">
             <div class="form-group">
                 <label for="f360-fish-name">Fish Name</label>
-                <input type="text" class="form-control" id="f360-fish-name" name="title" placeholder="Fish Name" />
+                <input type="text" class="form-control" id="f360-fish-name" placeholder="Fish Name" />
             </div>
             <div class="form-group">
-                <label>ID</label>
-                <input type="number" class="form-control" name="nid" />
+                <input type="hidden" class="form-control" id="f360-fish-id" />
             </div>
             <div class="form-group">
                 <label>Date</label>
-                <input type="date" class="form-control" name="field_time_value" />
+                <input type="date" class="form-control" id="f360-fish-date" />
             </div>
             <div class="form-group">
                 <label>Weight</label>
-                <input type="number" class="form-control" name="field_weight_lbs_value" />
+                <input type="number" class="form-control" id="f360-fish-weight" placeholder="Weight" />
             </div>
             <div class="form-group">
-                <label>Sky</label>
-                <input type="text" class="form-control" name="field_sky_value" />
-            </div>
-            <div class="form-group">
-                <label>Wind</label>
-                <input type="text" class="form-control" name="field_wind_value" />
-            </div>
-            <div class="form-group">
-                <label>Clarity</label>
-                <input type="text" class="form-control" name="field_clarity_value" />
-            </div>
-            <div class="form-group">
-                <label>Rod</label>
-                <input type="text" class="form-control" name="field_rod_value" />
-            </div>
-            <div class="form-group">
-                <label>Reel</label>
-                <input type="text" class="form-control" name="field_reel_value" />
-            </div>
-            <div class="form-group">
-                <label>Leader</label>
-                <input type="text" class="form-control" name="field_leader_value" />
-            </div>
-            <div class="form-group">
-                <label>Rig</label>
-                <input type="text" class="form-control" name="field_rig_value" />
+                <label>Length</label>
+                <input type="number" class="form-control" id="f360-fish-length" placeholder="Length"/>
             </div>
             <div class="form-group">
                 <label>Species</label>
-                <input type="text" class="form-control" name="field_species_value" />
+                <input type="text" class="form-control" id="f360-fish-species" placeholder="Species" />
             </div>
-            <div class="form-group">
-                <label>Bait</label>
-                <input type="text" class="form-control" name="field_bait_value" />
-            </div>
-            <div class="form-group">
-                <label>Girth</label>
-                <input type="number" class="form-control" name="field_girth_value" />
-            </div>
-            <div class="form-group">
-                <label>Depth</label>
-                <input type="number" class="form-control" name="field_depth_value" />
-            </div>
-            <div class="form-group">
-                <label>Temperature</label>
-                <input type="number" class="form-control" name="field_temperature_value" />
-            </div>
-            <div class="form-group">
-                <label>Pressure</label>
-                <input type="number" class="form-control" name="field_pressure_value" />
-            </div>
-            <button class="btn btn-success btn-block f360-save">Save Changes</button>
+            <button class="btn btn-success btn-block f360-save">Save</button>
             <button class="btn btn-danger btn-block f360-delete">Delete this Fish</button>
         </div>
     </div>
@@ -403,7 +245,6 @@
         });
 
         function selectTripAction() {
-            // jga
             var id = $(this).attr("id");
 
             f360.services.trip.GetTripForId(id, renderTripDetails);
@@ -521,9 +362,13 @@
                 showLogin();
             } else if (f360.state.currentView === "tripDetails") {
                 showTripList();
+            } else if (f360.state.currentView === "newTrip") {
+                showTripList();
             } else if (f360.state.currentView === "fishList") {
                 showTripDetails();
             } else if (f360.state.currentView === "fishDetails") {
+                showFishList();
+            } else if (f360.state.currentView === "newFish") {
                 showFishList();
             }
 
@@ -571,13 +416,24 @@
             $('.f360-page').hide();
             $('.f360-page.f360-fish.f360-list').show();
         }
+        function showNewFish() {
+            f360.state.currentView = "newFish";
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-fish.f360-details').show();
+        }
         function showFishDetails() {
-
             f360.state.currentView = "fishDetails";
 
             scrollToTop();
             $('.f360-page').hide();
             $('.f360-page.f360-fish.f360-details').show();
+        }
+        function showNewTrip() {
+            f360.state.currentView = "newTrip";
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-trip.f360-details').show();
         }
         function showTripDetails(trip) {
 
@@ -595,45 +451,122 @@
             var name = $("#f360-trip-name").val();
             var startDate = $("#f360-trip-start-date").val();
             var endDate = $("#f360-trip-end-date").val();
-            f360.services.trip.create(name, startDate, endDate, function (response) {
+            var id = $("#f360-trip-nid").val();
+
+            if (f360.state.currentView == "tripDetails") {
+                f360.services.trip.UpdateTrip(id, name, startDate, endDate, function (response) {
+                    f360.services.trip.GetAllTrips(f360.state.login.guid, function (trips) {
+                        renderTrips(trips);
+                    });
+                });
+            } else if (f360.state.currentView == "newTrip") {
+                f360.services.trip.create(name, startDate, endDate, function (response) {
+                    f360.services.trip.GetAllTrips(f360.state.login.guid, function (trips) {
+                        renderTrips(trips);
+                    });
+                });
+            }
+        }
+        function saveFishAction() {
+
+            var id = $("#f360-fish-id").val();
+            var tripId = $("#f360-trip-nid").val();
+            var name = $("#f360-fish-name").val();
+            var date = $("#f360-fish-date").val();
+            var weight = $("#f360-fish-weight").val();
+            var length = $("#f360-fish-length").val();
+            var species = $("#f360-fish-species").val();
+
+            console.log([id, name, date, weight, length, species, tripId]);
+
+            var fishTO = {
+                id: id,
+                tripId : tripId,
+                name: name,
+                caughtDate: date,
+                weight: weight,
+                length: length,
+                species: species
+            };
+
+            if (f360.state.currentView === "newFish") {
+                fishTO.id = 0;
+                f360.services.fish.CreateFish(fishTO, function () {
+                    f360.services.fish.GetAllFishForTripId(tripId, function(fishList){
+                        setTitle('Fish');
+                        f360.fish.render.list(fishList.d);
+                        showFishList();
+                    });
+                });
+            } else if (f360.state.currentView === "fishDetails ") {
+
+            }
+        }
+        function deleteTripAction() {
+            var id = $("#f360-trip-nid").val();
+            f360.services.trip.DeleteTripForId(id, function (response) {
                 f360.services.trip.GetAllTrips(f360.state.login.guid, function (trips) {
                     renderTrips(trips);
                 });
             });
         }
-        function saveFishAction() {
-            showFishList()
-        }
-        function deleteTripAction() {
-            showTripList()
-        }
         function deleteFishAction() {
-            showFishList()
+            var fishId = $("#f360-fish-id").val();
+            var tripId = $("#f360-trip-nid").val();
+            f360.services.fish.DeleteFishForId(fishId, function (response) {
+                f360.services.fish.GetAllFishForTripId(tripId, function (fishList) {
+                    f360.fish.render.list(fishList.d);
+                    showFishList();
+                });
+            });
         }
         function addTripAction() {
             $("#f360-trip-name").html("");
             var now = new Date();
             $("#f360-trip-start-date").val(f360.utils.dateToYYYYMMDD(now));
             $("#f360-trip-end-date").val(f360.utils.dateToYYYYMMDD(now));
-            showTripDetails();
+            showNewTrip();
 
             $('.f360-page.f360-trip .f360-delete').hide();
             $('.f360-page.f360-trip .f360-fish').hide();
         }
         function addFishAction() {
-            showFishDetails();
+            $(".f360-page.f360-fish.f360-details input").val("").html("");
+            var now = new Date();
+            $("#f360-fish-date").val(f360.utils.dateToYYYYMMDD(now));
 
+            showNewFish();
+
+//            showFishDetails();
+            // jga
             $('.f360-page.f360-fish .f360-delete').hide();
         }
-        function selectFishAction() {
-            showFishDetails();
+        function selectFishAction(event) {
+
+            var fishId = $(event.currentTarget).find(".f360-id").attr("id");
+
+            f360.services.fish.GetFishForId(fishId, function (fishTO) {
+                fishTO = fishTO.d;
+                $("#f360-fish-name").val(fishTO.name);
+                $("#f360-fish-id").val(fishTO.id);
+                $("#f360-fish-date").val(fishTO.caughtDate);
+                $("#f360-fish-weight").val(fishTO.weight);
+                $("#f360-fish-length").val(fishTO.length);
+                $("#f360-fish-species").val(fishTO.species);
+
+                showFishDetails();
+            });
 
             $('.navbar-brand').html('Fish');
             $('.btn').show();
         }
         function showFishAction() {
-            showFishList();
-            setTitle('Fish');
+            var tripId = $("#f360-trip-nid").val();
+            f360.services.fish.GetAllFishForTripId(tripId, function(fishList){
+                setTitle('Fish');
+                f360.fish.render.list(fishList.d);
+                showFishList();
+            });
 
             $('.btn').show();
         }

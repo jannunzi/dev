@@ -160,6 +160,7 @@
     <Content Include="Content\f360.css" />
     <Content Include="Content\Site.css" />
     <Content Include="f360\000.html" />
+    <Content Include="FishService.asmx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -311,6 +312,10 @@
     </Compile>
     <Compile Include="Fish.cs">
       <DependentUpon>F360Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FishService.asmx.cs">
+      <DependentUpon>FishService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="FishTO.cs" />
     <Compile Include="Global.asax.cs">

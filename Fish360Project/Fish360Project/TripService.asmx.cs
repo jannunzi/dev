@@ -33,6 +33,58 @@ namespace Fish360Project
             return null;
         }
 
+        private DateTime parseDateTimeExactFromString(string date)
+        {
+            return DateTime.ParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+        }
+
+        [WebMethod]
+        public string UpdateTrip(TripTO tripTO, string token)
+        {
+            using (var db = new Fish360Project.f360Entities())
+            {
+                var guid = new Guid(token);
+                var tripDB = (from trip in db.Trips
+                             join user in db.Users
+                             on trip.userId.Value
+                             equals user.id
+                             where user.token == guid
+                             && trip.id == tripTO.id
+                             select trip).FirstOrDefault();
+                if (tripDB == null)
+                    return null;
+
+                tripDB.name = tripTO.name;
+                tripDB.startDate = parseDateTimeExactFromString(tripTO.startDate);
+                tripDB.endDate = parseDateTimeExactFromString(tripTO.endDate);
+                db.SaveChanges();
+            }
+            return tripTO.name;
+        }
+
+        [WebMethod]
+        public string DeleteTripForId(int id, string token)
+        {
+            using (var db = new Fish360Project.f360Entities())
+            {
+                var guid = new Guid(token);
+                var query = (from trip in db.Trips
+                             join user in db.Users
+                             on trip.userId.Value
+                             equals user.id
+                             where user.token == guid
+                             && trip.id == id
+                             select trip).FirstOrDefault();
+                if (query == null)
+                    return null;
+
+                db.Trips.Attach(query);
+                db.Trips.Remove(query);
+                db.SaveChanges();
+            }
+            return null;
+        }
+
         [WebMethod]
         public TripTO GetTripForId(int id, string token)
         {
