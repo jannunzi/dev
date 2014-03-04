@@ -511,8 +511,14 @@
                         showFishList();
                     });
                 });
-            } else if (f360.state.currentView === "fishDetails ") {
-
+            } else if (f360.state.currentView === "fishDetails") {
+                f360.services.fish.UpdateFish(fishTO, function () {
+                    f360.services.fish.GetAllFishForTripId(tripId, function (fishList) {
+                        setTitle('Fish');
+                        f360.fish.render.list(fishList.d);
+                        showFishList();
+                    });
+                });
             }
         }
         function deleteTripAction() {

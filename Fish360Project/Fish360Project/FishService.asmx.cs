@@ -62,6 +62,31 @@ namespace Fish360Project
         }
 
         [WebMethod]
+        public string UpdateFish(FishTO fishTO, string token)
+        {
+            using (var db = new Fish360Project.f360Entities())
+            {
+                var guid = new Guid(token);
+                var fishDB = (from fish in db.Fish
+                             where fish.id == fishTO.id
+                             select fish).FirstOrDefault();
+                if (fishDB == null)
+                    return null;
+
+                db.Fish.Attach(fishDB);
+
+                fishDB.name = fishTO.name;
+                fishDB.species = fishTO.species;
+                fishDB.length = fishTO.length;
+                fishDB.weight = fishTO.weight;
+                fishDB.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                db.SaveChanges();
+            }
+            return null;
+        }
+
+        [WebMethod]
         public string CreateFish(FishTO fishTO, string token)
         {
             using (var db = new Fish360Project.f360Entities())

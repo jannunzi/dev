@@ -1,5 +1,5 @@
 ﻿var f360 = {
-    environment: "dev",
+    environment: "prod",
     fish: {
         template: {
             list: {
@@ -78,11 +78,22 @@
             },
             CreateFish: function (fishTO, callback) {
                 var data = {
-                    fishTO : fishTO,
+                    fishTO: fishTO,
                     token: f360.state.login.guid
                 };
                 f360.services.ajax({
                     url: "FishService.asmx/CreateFish",
+                    data: data,
+                    callback: callback
+                });
+            },
+            UpdateFish: function (fishTO, callback) {
+                var data = {
+                    fishTO: fishTO,
+                    token: f360.state.login.guid
+                };
+                f360.services.ajax({
+                    url: "FishService.asmx/UpdateFish",
                     data: data,
                     callback: callback
                 });
