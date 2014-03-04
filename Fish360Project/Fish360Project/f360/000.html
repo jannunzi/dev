@@ -490,7 +490,8 @@
             var length = $("#f360-fish-length").val();
             var species = $("#f360-fish-species").val();
 
-            console.log([id, name, date, weight, length, species, tripId]);
+            if (weight === "") weight = 0;
+            if (length === "") length = 0;
 
             var fishTO = {
                 id: id,
