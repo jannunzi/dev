@@ -1,10 +1,32 @@
 ﻿wam.application = {
-    dom : {},
     init: function () {
-        this.dom.listWrapper
-            = $(".wam-profile .wam-application.wam-list tbody");
-        this.dom.listItemTemplate
-            = $(".wam-profile .wam-application.wam-list tbody tr").clone();
+    },
+    dom: {
+        list: {
+            container: null,
+            item: null,
+            render: function (applications) 
+            { 
+            }
+        },
+        details:{
+            render: function (application) {
+
+            }
+        },
+        init: function () {
+            wam.application.dom.listContainer = $("");
+            wam.application.dom.listItemTemplate
+                = $(".wam-profile .wam-application.wam-list tbody tr").clone();
+        }
+    },
+    controllers: {
+        init: function () {
+
+        }
+    },
+    state:{
+
     },
     services: {
         findAll: function (username, callback) {

@@ -158,6 +158,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\wam.css" />
     <Content Include="Scripts\wam-application.js" />
+    <Content Include="Scripts\wam-profile.js" />
     <Content Include="Scripts\wam-user.js" />
     <Content Include="Scripts\wam.js" />
     <Content Include="packages.config" />
