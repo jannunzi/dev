@@ -9,20 +9,21 @@
 
     <script>
 
-        // get all trips
+        // get all fish
         $(function () {
             $.ajax({
-                url: "http://fish360.azurewebsites.net/api/trip",
+//                url: "http://localhost:50465/api/fish",
+                url: "http://fish360.azurewebsites.net/api/fish",
                 success: function (response) {
                     console.log(response);
                 }
             })
         });
 
-        // get trip where id = 1
+        // get fish where id = 1
         $(function () {
             $.ajax({
-                url: "http://fish360.azurewebsites.net/api/trip/1",
+                url: "http://fish360.azurewebsites.net/api/fish/1",
                 success: function (response) {
                     console.log(response);
                 }
@@ -32,53 +33,59 @@
         // get trip for user.id = 1
         $(function () {
             $.ajax({
-                url: "http://fish360.azurewebsites.net/api/user/1/trip/",
+                url: "http://fish360.azurewebsites.net/api/trip/1/fish/",
                 success: function (response) {
                     console.log(response);
                 }
             })
         });
 
-        var tripTO = {
-            endDate: "2014-07-11",
+        /*
+        */
+
+        var fishTO = {
+            caughtDate: "2014-07-11",
             id: 1,
-            name: "trip1DDDD",
-            startDate: "2014-12-31"
+            name: "fish1EEEE",
+            length: 123,
+            weight: 234,
+            species: "Bass",
+            tripId : 1
         };
         /*
-        // update trip for trip.id = 1
+        // update fish for fish.id = 1
         $(function () {
             $.ajax({
-                url: "http://fish360.azurewebsites.net/api/trip/",
+                url: "http://fish360.azurewebsites.net/api/fish/",
                 type: "put",
                 dataType: "json",
-                data: tripTO,
+                data: fishTO,
                 success: function (response) {
                     console.log(response);
                 }
             })
         });
+        fishTO.name = "new fish 345";
+        fishTO.tripId = 1;
 
-        tripTO.name = "new trip 345";
-        tripTO.userId = 1;
-
-        // create new trip
+        // create new fish
         $(function () {
             $.ajax({
-                url: "http://fish360.azurewebsites.net/api/trip/",
+                url: "http://fish360.azurewebsites.net/api/fish/",
                 type: "post",
                 dataType: "json",
-                data: tripTO,
+                data: fishTO,
                 success: function (response) {
                     console.log(response);
                 }
             })
         });
-*/
-        // get trip for trip.id = 1031
+        */
+
+        // delete fish for id = 1014
         $(function () {
             $.ajax({
-                url: "http://fish360.azurewebsites.net/api/trip/1031",
+                url: "http://fish360.azurewebsites.net/api/fish/1014",
                 type : "delete",
                 success: function (response) {
                     console.log(response);

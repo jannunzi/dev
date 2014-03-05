@@ -178,7 +178,9 @@
     <Content Include="Content\bootstrap.min.flatly.css" />
     <Content Include="Content\f360.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="f360\200.html" />
     <Content Include="f360\000.html" />
+    <Content Include="f360\120.html" />
     <Content Include="f360\110.html" />
     <Content Include="f360\100.html" />
     <Content Include="FishService.asmx" />
