@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Text;
+using System.Web.Script.Serialization;
 
 namespace Fish360Project
 {
@@ -124,9 +126,6 @@ namespace Fish360Project
                              equals user.id
                              where user.token == guid
                              select trip);
-//                var query = from trip in db.Trips
-  //                          where trip.userId == userTO.id
-    //                        select trip;
 
                 List<TripTO> trips = new List<TripTO>();
 
@@ -171,6 +170,43 @@ namespace Fish360Project
         public string HelloWorld()
         {
             return "Hello World";
+        }
+
+
+        [WebMethod]
+        public void GetAllTripsJsonp(string callback)
+        {
+            using (var db = new Fish360Project.f360Entities())
+            {
+                var query = (from trip in db.Trips
+                             select trip);
+
+                List<TripTO> trips = new List<TripTO>();
+
+                foreach (var t in query)
+                {
+                    TripTO trip = new TripTO();
+                    trip.id = t.id;
+                    trip.name = t.name;
+                    if (t.startDate != null)
+                        trip.startDate = ((DateTime)t.startDate).ToString("yyyy-MM-dd");
+                    if (t.endDate != null)
+                        trip.endDate = ((DateTime)t.endDate).ToString("yyyy-MM-dd");
+                    trips.Add(trip);
+                }
+
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append(callback + "(");
+                sb.Append(serializer.Serialize(trips)); // indentation is just for ease of reading while testing
+                sb.Append(");");
+
+                Context.Response.Clear();
+                Context.Response.ContentType = "text/javascript";// "application/json";
+                Context.Response.Write(sb.ToString());
+                Context.Response.End();
+            }
         }
     }
 }

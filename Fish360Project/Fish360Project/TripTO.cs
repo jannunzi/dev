@@ -8,6 +8,7 @@ namespace Fish360Project
     public class TripTO
     {
         public int id { set; get; }
+        public int userId { set; get; }
         public string name { set; get; }
         public string startDate { set; get; }
         public string endDate { set; get; }

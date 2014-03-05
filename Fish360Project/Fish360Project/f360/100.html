@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Content/bootstrap.css" type="text/css" rel="stylesheet" />
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+    <script>
+        $(function () {
+            $.ajax({
+                url: "http://fish360.azurewebsites.net/api/values",
+                //url: "http://localhost:50465/api/values",
+                //                type: "GET",
+  //              dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+    </script>
+
+</body>
+</html>

@@ -209,14 +209,29 @@
         </div>
     </div>
 
-    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/f360.js"></script>
     <script>
 
         f360.state.currentView = "login";
 
+        function ewq(response) { console.log(response); };
+
         $(function () {
+            data = { callback: "ewq" };
+            $.ajax({
+                url: "http://localhost:50465/TripService.asmx/GetAllTripsJsonp",
+                type: "post",
+                data: JSON.stringify(data),
+                crossDomain: true,
+//                contentType: "application/json; charset=utf-8",
+//                contentType: "application/json; charset=utf-8",
+                dataType: "jsonp",
+                success: function (response) {
+                    console.log(response);
+                }
+            });
 
 //          console.log(f360.utils.dateToYYYYMMDD(new Date()));
 
@@ -449,6 +464,7 @@
             $('.f360-page.f360-trip.f360-details').show();
         }
         function showTripDetails(trip) {
+            setTitle("Trip");
 
             f360.state.currentView = "tripDetails";
 
@@ -523,6 +539,9 @@
             }
         }
         function deleteTripAction() {
+            var sure = confirm("Confirm Delete Trip");
+            if (!sure)
+                return;
             var id = $("#f360-trip-nid").val();
             f360.services.trip.DeleteTripForId(id, function (response) {
                 f360.services.trip.GetAllTrips(f360.state.login.guid, function (trips) {
@@ -531,6 +550,9 @@
             });
         }
         function deleteFishAction() {
+            var sure = confirm("Confirm Delete Fish");
+            if (!sure)
+                return;
             var fishId = $("#f360-fish-id").val();
             var tripId = $("#f360-trip-nid").val();
             f360.services.fish.DeleteFishForId(fishId, function (response) {
@@ -541,10 +563,14 @@
             });
         }
         function addTripAction() {
-            $("#f360-trip-name").html("");
+            $("#f360-trip-name").val("");
+
             var now = new Date();
+            var nowPlus3 = new Date();
+            nowPlus3.setDate(now.getDate() + 3);
+
             $("#f360-trip-start-date").val(f360.utils.dateToYYYYMMDD(now));
-            $("#f360-trip-end-date").val(f360.utils.dateToYYYYMMDD(now));
+            $("#f360-trip-end-date").val(f360.utils.dateToYYYYMMDD(nowPlus3));
             showNewTrip();
 
             $('.f360-page.f360-trip .f360-delete').hide();

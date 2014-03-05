@@ -15,9 +15,6 @@
         },
         render: {
             list: function (fishList) {
-                if(typeof fishList !== "object" || fishList.length ===0)
-                    return;
-
                 if(f360.fish.template.list.container.dom == null) {
                     f360.fish.template.list.container.dom =
                         $(f360.fish.template.list.container.selector);
@@ -28,6 +25,10 @@
                 var item = f360.fish.template.list.item.dom;
 
                 container.empty();
+
+                if (typeof fishList !== "object" || fishList.length === 0)
+                    return;
+
                 for(var f in fishList) {
                     var fish = fishList[f];
                     var instance = item.clone();

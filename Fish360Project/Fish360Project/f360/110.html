@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Content/bootstrap.css" type="text/css" rel="stylesheet" />
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+    <script>
+
+        // get all trips
+        $(function () {
+            $.ajax({
+                url: "http://fish360.azurewebsites.net/api/trip",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+
+        // get trip where id = 1
+        $(function () {
+            $.ajax({
+                url: "http://fish360.azurewebsites.net/api/trip/1",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+
+        // get trip for user.id = 1
+        $(function () {
+            $.ajax({
+                url: "http://fish360.azurewebsites.net/api/user/1/trip/",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+
+        var tripTO = {
+            endDate: "2014-07-11",
+            id: 1,
+            name: "trip1DDDD",
+            startDate: "2014-12-31"
+        };
+        /*
+        // update trip for trip.id = 1
+        $(function () {
+            $.ajax({
+                url: "http://fish360.azurewebsites.net/api/trip/",
+                type: "put",
+                dataType: "json",
+                data: tripTO,
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+
+        tripTO.name = "new trip 345";
+        tripTO.userId = 1;
+
+        // create new trip
+        $(function () {
+            $.ajax({
+                url: "http://fish360.azurewebsites.net/api/trip/",
+                type: "post",
+                dataType: "json",
+                data: tripTO,
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+*/
+        // get trip for trip.id = 1031
+        $(function () {
+            $.ajax({
+                url: "http://fish360.azurewebsites.net/api/trip/1031",
+                type : "delete",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+
+
+    </script>
+
+</body>
+</html>

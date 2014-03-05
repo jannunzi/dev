@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../Scripts/jquery-1.10.2.js"></script></head>
+<body>
+    <script>
+        $(function () {
+            $.ajax({
+                url: "/api/values",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+    </script>
+</body>
+</html>
