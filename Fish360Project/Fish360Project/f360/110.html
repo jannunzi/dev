@@ -7,6 +7,8 @@
 </head>
 <body>
 
+    <h1>Trips</h1>
+
     <script>
 
         // get all trips
@@ -32,7 +34,17 @@
         // get trip for user.id = 1
         $(function () {
             $.ajax({
-                url: "http://fish360.azurewebsites.net/api/user/1/trip/",
+                url: "http://fish360.azurewebsites.net/api/tripsForUser/1",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+
+        // get trip for user.name = user1
+        $(function () {
+            $.ajax({
+                url: "http://fish360.azurewebsites.net/api/tripsForUsername/user1",
                 success: function (response) {
                     console.log(response);
                 }
@@ -74,7 +86,6 @@
                 }
             })
         });
-*/
         // delete trip for trip.id = 1031
         $(function () {
             $.ajax({
@@ -85,6 +96,7 @@
                 }
             })
         });
+*/
 
 
     </script>

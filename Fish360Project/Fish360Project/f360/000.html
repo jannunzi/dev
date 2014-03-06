@@ -216,24 +216,7 @@
 
         f360.state.currentView = "login";
 
-        function ewq(response) { console.log(response); };
-
         $(function () {
-            data = { callback: "ewq" };
-            $.ajax({
-                url: "http://localhost:50465/TripService.asmx/GetAllTripsJsonp",
-                type: "post",
-                data: JSON.stringify(data),
-                crossDomain: true,
-//                contentType: "application/json; charset=utf-8",
-//                contentType: "application/json; charset=utf-8",
-                dataType: "jsonp",
-                success: function (response) {
-                    console.log(response);
-                }
-            });
-
-//          console.log(f360.utils.dateToYYYYMMDD(new Date()));
 
             $('.nav a').on('click', function () {
                 $(".navbar-toggle").click();

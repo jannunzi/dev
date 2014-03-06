@@ -267,7 +267,7 @@
         }
 
         function renderTripDetails(trip) {
-            trip = trip.d;
+            trip = trip;
             for (var key in trip) {
                 var selector = "[name=" + key + "]";
                 var val = trip[key];
@@ -299,11 +299,11 @@
                 return;
             }
             f360.services.user.validateUsername(username, function (response) {
-                if (response.d === "username does not exist") {
+                if (response === "username does not exist") {
                     $("#f360-username").val(username);
                     f360.services.user.create(username, password1, showLogin);
                 }
-                else if (response.d === "username exists")
+                else if (response === "username exists")
                     alert("User Already Exists");
                 else
                     alert("Error Creating User");
@@ -319,9 +319,10 @@
 
             f360.services.user.login(username, password, function (response) {
                 if (typeof response === 'object') {
-                    if (response.d !== 'unable to login') {
-                        f360.state.login.guid = response.d;
-                        f360.services.trip.GetAllTrips(f360.state.login.guid, renderTrips);
+                    if (response !== 'unable to login') {
+                        f360.state.login.guid = response;
+//                        f360.services.trip.GetAllTrips(f360.state.login.guid, renderTrips);
+                        f360.services.trip.GetAllTrips(username, renderTrips);
                         return;
                     }
                 }
@@ -334,7 +335,6 @@
         }
 
         function renderTrips(trips) {
-            trips = trips.d;
             if (f360.templates.trips === null) {
                 f360.templates.trips = $(".f360-page.f360-trips ul li:first");
             }
@@ -507,7 +507,7 @@
                 f360.services.fish.CreateFish(fishTO, function () {
                     f360.services.fish.GetAllFishForTripId(tripId, function(fishList){
                         setTitle('Fish');
-                        f360.fish.render.list(fishList.d);
+                        f360.fish.render.list(fishList);
                         showFishList();
                     });
                 });
@@ -515,7 +515,7 @@
                 f360.services.fish.UpdateFish(fishTO, function () {
                     f360.services.fish.GetAllFishForTripId(tripId, function (fishList) {
                         setTitle('Fish');
-                        f360.fish.render.list(fishList.d);
+                        f360.fish.render.list(fishList);
                         showFishList();
                     });
                 });
@@ -540,7 +540,7 @@
             var tripId = $("#f360-trip-nid").val();
             f360.services.fish.DeleteFishForId(fishId, function (response) {
                 f360.services.fish.GetAllFishForTripId(tripId, function (fishList) {
-                    f360.fish.render.list(fishList.d);
+                    f360.fish.render.list(fishList);
                     showFishList();
                 });
             });
@@ -575,7 +575,7 @@
             var fishId = $(event.currentTarget).find(".f360-id").attr("id");
 
             f360.services.fish.GetFishForId(fishId, function (fishTO) {
-                fishTO = fishTO.d;
+                fishTO = fishTO;
                 $("#f360-fish-name").val(fishTO.name);
                 $("#f360-fish-id").val(fishTO.id);
                 $("#f360-fish-date").val(fishTO.caughtDate);
@@ -593,7 +593,7 @@
             var tripId = $("#f360-trip-nid").val();
             f360.services.fish.GetAllFishForTripId(tripId, function(fishList){
                 setTitle('Fish');
-                f360.fish.render.list(fishList.d);
+                f360.fish.render.list(fishList);
                 showFishList();
             });
 

@@ -45,69 +45,44 @@
                 parameters.url = f360.baseUrl + parameters.url;
             else
                 return;
-            parameters.type = 'post';
-            parameters.contentType = 'application/json';
-            if (typeof parameters.callback === 'function')
-                parameters.success = parameters.callback
-            if (typeof parameters.data === 'object')
-                parameters.data = JSON.stringify(parameters.data);
 
             $.ajax(parameters);
         },
         fish: {
             GetFishForId: function(fishId, callback) {
-                var data = {
-                    fishId: fishId,
-                    token: f360.state.login.guid
-                };
                 f360.services.ajax({
-                    url: "FishService.asmx/GetFishForId",
-                    data: data,
-                    callback: callback
+                    url: "../api/fish/"+fishId,
+                    success: callback
                 });
             },
             DeleteFishForId: function (fishId, callback) {
-                var data = {
-                    fishId: fishId,
-                    token: f360.state.login.guid
-                };
                 f360.services.ajax({
-                    url: "FishService.asmx/DeleteFishForId",
-                    data: data,
-                    callback: callback
+                    url: "../api/fish/" + fishId,
+                    type: "delete",
+                    success: callback
                 });
             },
             CreateFish: function (fishTO, callback) {
-                var data = {
-                    fishTO: fishTO,
-                    token: f360.state.login.guid
-                };
                 f360.services.ajax({
-                    url: "FishService.asmx/CreateFish",
-                    data: data,
-                    callback: callback
+                    url: "../api/fish/",
+                    type: "post",
+                    data: fishTO,
+                    success: callback
                 });
             },
             UpdateFish: function (fishTO, callback) {
-                var data = {
-                    fishTO: fishTO,
-                    token: f360.state.login.guid
-                };
                 f360.services.ajax({
-                    url: "FishService.asmx/UpdateFish",
-                    data: data,
-                    callback: callback
+                    url: "../api/fish/",
+                    type: "put",
+                    dataType: "json",
+                    data: fishTO,
+                    success: callback
                 });
             },
             GetAllFishForTripId: function (tripId, callback) {
-                var data = {
-                    tripId: tripId,
-                    token: f360.state.login.guid
-                };
                 f360.services.ajax({
-                    url: "FishService.asmx/GetAllFishForTripId",
-                    data: data,
-                    callback: callback
+                    url: "../api/trip/"+tripId+"/fish/",
+                    success: callback
                 });
             }
         },
@@ -119,82 +94,72 @@
                     startDate: startDate,
                     endDate: endDate
                 };
-                var data = {
-                    tripTO : tripTO,
-                    token: f360.state.login.guid
-                };
                 f360.services.ajax({
-                    url: "TripService.asmx/UpdateTrip",
-                    data: data,
-                    callback: callback
+                    url: "../api/trip",
+                    data: tripTO,
+                    type: "put",
+                    success: callback
                 });
             },
             DeleteTripForId: function (id, callback) {
-                var data = {
-                    id: id,
-                    token: f360.state.login.guid
-                };
                 f360.services.ajax({
-                    url: "TripService.asmx/DeleteTripForId",
-                    data: data,
-                    callback: callback
+                    url: "../api/trip/"+id,
+                    type: "delete",
+                    success: callback
                 });
             },
             GetTripForId: function (id, callback) {
-                var data = {
-                    id: id,
-                    token : f360.state.login.guid
-                };
                 f360.services.ajax({
-                    url: "TripService.asmx/GetTripForId",
-                    data: data,
-                    callback: callback
+                    url: "../api/trip/"+id,
+                    success: callback
                 });
             },
-            GetAllTrips: function (token, callback) {
-                var data = {
-                    userTO: {
-                        token: token
-                    }
-                };
-                f360.services.ajax({ url: "TripService.asmx/GetAllTrips", data: data, callback: callback });
+            GetAllTrips: function (username, callback) {
+                f360.services.ajax({
+//                    url: "/api/user/" + userId + "/trip/",
+                    url: "../api/tripsForUsername/"+username,
+                    success: callback
+                });
             },
             create: function (name, startDate, endDate, callback) {
                 // jga
-                var data = {
-                    tripTO: {
-                        name: name,
-                        startDate: startDate,
-                        endDate: endDate
-                    },
-                    token: f360.state.login.guid
+                var tripTO = {
+                    name: name,
+                    startDate: startDate,
+                    endDate: endDate
                 };
                 f360.services.ajax({
-                    url: "TripService.asmx/CreateTrip",
-                    data: data,
-                    callback: callback
+                    url: "../api/trip/",
+                    data: tripTO,
+                    type: "post",
+                    success: callback
                 });
             }
         },
         user: {
             name: 'UserService',
             login: function (username, password, callback) {
-                var data = {
-                    user: {
-                        username: username,
-                        password: password
-                    }
+                var userTO = {
+                    username: username,
+                    password: password
                 };
-                f360.services.ajax({ url: this.name + '.asmx/LoginUser', data: data, callback: callback });
+                f360.services.ajax({
+                    url: "../api/user/"+username+"/"+password,
+                    success: callback
+                });
             },
             create:function(username, password, callback) {
-                var data = {
-                    user: {
-                        username: username,
-                        password: password
-                    }
+                var userTO = {
+                    username: username,
+                    password: password
                 };
-                f360.services.ajax({ url: this.name + '.asmx/CreateUser', data: data, callback:callback });
+                f360.services.ajax({
+                    url: "../api/user/",
+                    data: userTO,
+                    dataType: "json",
+                    type: "post",
+                    success: callback
+                });
             },
             validateUser: function (username, password, callback) {
                 var url = this.name;

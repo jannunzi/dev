@@ -2,11 +2,14 @@
 
 <link rel="Stylesheet" href="css/bootstrap.css" type="text/css"/>
 
+
+<form action="005.jsp" method="post">
+
+<div class='container'>
+
 <h2>WAM</h2>
 
 <a href="005.jsp?action=preview">Preview</a>
-
-<form action="005.jsp" method="post">
 
 <%
 
@@ -92,14 +95,14 @@ try {
 		</tr>
 		<tr>
 			<th></th>
-			<th><input name="name" class="form-control" placeholder="Name"/></th>
-			<th><input name="content" class="form-control" placeholder="Content"/></th>
-			<th><button name="action" value="add" class="btn btn-primary">Add</button></th>
+			<th><input name="name"    class="form-control"    placeholder="Name"/></th>
+			<th><input name="content" class="form-control"    placeholder="Content"/></th>
+			<th><button name="action" class="btn btn-primary" value="add">Add</button></th>
 		</tr>
 <%
 	while(results.next()) {
-		id = results.getInt("id");
-		name = results.getString("name");
+		id      = results.getInt("id");
+		name    = results.getString("name");
 		content = results.getString("content");
 
 		if(id == editId) {
@@ -146,5 +149,6 @@ try {
 
 
 %>
+</div>
 
 </form>

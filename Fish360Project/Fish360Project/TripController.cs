@@ -38,7 +38,8 @@ namespace Fish360Project
             }
         }
 
-        [Route("api/user/{id}/trip/")]
+//        [Route("api/user/{id}/trip/")]
+        [Route("api/tripsForUser/{id}")]
         [HttpGet]
         public List<TripTO> GetAllTripsForUserId(int id)
         {
@@ -47,6 +48,35 @@ namespace Fish360Project
                 var query = (from trip in db.Trips
                              join user in db.Users on trip.userId equals user.id
                              where user.id == id
+                             select trip);
+
+                List<TripTO> trips = new List<TripTO>();
+
+                foreach (var t in query)
+                {
+                    TripTO trip = new TripTO();
+                    trip.id = t.id;
+                    trip.name = t.name;
+                    if (t.startDate != null)
+                        trip.startDate = ((DateTime)t.startDate).ToString("yyyy-MM-dd");
+                    if (t.endDate != null)
+                        trip.endDate = ((DateTime)t.endDate).ToString("yyyy-MM-dd");
+                    trips.Add(trip);
+                }
+
+                return trips;
+            }
+        }
+
+        [Route("api/tripsForUsername/{username}")]
+        [HttpGet]
+        public List<TripTO> GetAllTripsForUsername(string username)
+        {
+            using (var db = new Fish360Project.f360Entities())
+            {
+                var query = (from trip in db.Trips
+                             join user in db.Users on trip.userId equals user.id
+                             where user.username == username
                              select trip);
 
                 List<TripTO> trips = new List<TripTO>();
