@@ -121,12 +121,13 @@
                     success: callback
                 });
             },
-            create: function (name, startDate, endDate, callback) {
+            create: function (name, startDate, endDate, userId, callback) {
                 // jga
                 var tripTO = {
                     name: name,
                     startDate: startDate,
-                    endDate: endDate
+                    endDate: endDate,
+                    userId: userId
                 };
                 f360.services.ajax({
                     url: "../api/trip/",
@@ -210,9 +211,15 @@
         fish : null
     },
     state : {
-            login: {
-                guid : null
-            }
+        login: {
+            user : {
+                username: null,
+                password: null,
+                id: null,
+                token: null
+            },
+            guid : null
+        }
     },
     constants: {
         dev: {

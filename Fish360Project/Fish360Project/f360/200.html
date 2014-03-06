@@ -314,21 +314,20 @@
 
             var username = $("#f360-username").val();
             var password = $("#f360-password").val();
+            f360.state.login.username = username;
+
 
             f360.state.username = username;
 
             f360.services.user.login(username, password, function (response) {
                 if (typeof response === 'object') {
-                    if (response !== 'unable to login') {
-                        f360.state.login.guid = response;
-//                        f360.services.trip.GetAllTrips(f360.state.login.guid, renderTrips);
-                        f360.services.trip.GetAllTrips(username, renderTrips);
-                        return;
-                    }
+                    f360.state.login.user = response;
+//                  f360.services.trip.GetAllTrips(f360.state.login.guid, renderTrips);
+                    f360.services.trip.GetAllTrips(f360.state.login.user.username, renderTrips);
+                    return;
                 }
                 f360.state.login.guid = null;
                 alert("Wrong Username or Password");
-                console.log(f360.state.login.guid);
             })
 
             $('.btn').show();
@@ -467,13 +466,13 @@
 
             if (f360.state.currentView == "tripDetails") {
                 f360.services.trip.UpdateTrip(id, name, startDate, endDate, function (response) {
-                    f360.services.trip.GetAllTrips(f360.state.login.guid, function (trips) {
+                    f360.services.trip.GetAllTrips(f360.state.login.user.username, function (trips) {
                         renderTrips(trips);
                     });
                 });
             } else if (f360.state.currentView == "newTrip") {
-                f360.services.trip.create(name, startDate, endDate, function (response) {
-                    f360.services.trip.GetAllTrips(f360.state.login.guid, function (trips) {
+                f360.services.trip.create(name, startDate, endDate, f360.state.login.user.id, function (response) {
+                    f360.services.trip.GetAllTrips(f360.state.login.username, function (trips) {
                         renderTrips(trips);
                     });
                 });
@@ -527,7 +526,7 @@
                 return;
             var id = $("#f360-trip-nid").val();
             f360.services.trip.DeleteTripForId(id, function (response) {
-                f360.services.trip.GetAllTrips(f360.state.login.guid, function (trips) {
+                f360.services.trip.GetAllTrips(f360.state.login.username, function (trips) {
                     renderTrips(trips);
                 });
             });
