@@ -19,7 +19,7 @@ public class ApplicationBean {
 	String selectAllApplications	 = "SELECT * FROM APPLICATION;";
 	String selectApplicationsForDev	 = "SELECT * FROM APPLICATION WHERE DEVID=?;";
 	String deleteApplicationForId	 = "DELETE FROM APPLICATION WHERE ID=?";
-	String insertApplication		 = "INSERT INTO APPLICATION VALUES (NULL, NULL, ?)";
+	String insertApplication		 = "INSERT INTO APPLICATION VALUES (NULL, ?, ?)";
 	String updateApplication		 = "UPDATE APPLICATION SET NAME=? WHERE ID=?";
 
 	Connection connection = null;
@@ -31,7 +31,8 @@ public class ApplicationBean {
 	public boolean create(Application newApplication) throws SQLException {
 		connection = ds.getConnection();
 		stmt = connection.prepareStatement(insertApplication);
-		stmt.setString(1, newApplication.name);
+		stmt.setInt(1, newApplication.devId);
+		stmt.setString(2, newApplication.name);
 		int rows = stmt.executeUpdate();
 		connection.close();
 		if(rows > 0)

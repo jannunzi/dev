@@ -3,6 +3,7 @@ package edu.cs3200.jdbc.ds.wam;
 public class Page {
 	public int id = -1;
 	public String name;
+	public int appId = -1;
 	public Page(int id, String name) {
 		this.id = id;
 		this.name = name;
@@ -10,4 +11,5 @@ public class Page {
 	public Page(String name) {
 		this.name = name;
 	}
+	public Page() {}
 }

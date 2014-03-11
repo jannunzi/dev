@@ -47,7 +47,7 @@ namespace Fish360Project
             using (var db = new Fish360Project.f360Entities())
             {
                 var query = (from fish in db.Fish
-                             join trip in db.Fish on fish.tripId equals trip.id
+                             join trip in db.Trips on fish.tripId equals trip.id
                              where trip.id == id
                              select fish);
 

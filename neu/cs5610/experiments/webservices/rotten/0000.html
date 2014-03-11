@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="../../../javascript/jquery-min.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <h1>Rotten Tomatoes Web Service Client</h1>
+
+        <h2>Render Result as Table</h2>
+
+        <table class="search3 result">
+            <tr class="item">
+                <td class="image">
+                    <img style="height:100px" src="http://content8.flixster.com/movie/10/94/47/10944718_mob.jpg" />
+                </td>
+                <td class="title">Title</td>
+            </tr>
+        </table>
+
+        <h2>Render Result as List</h2>
+
+        <table class="search2 result">
+            <tr class="item">
+                <td class="image">
+                    <img style="height:100px" src="http://content8.flixster.com/movie/10/94/47/10944718_mob.jpg" />
+                </td>
+                <td class="title">Title</td>
+            </tr>
+        </table>
+
+        <h2>Programmatic Search</h2>
+
+        <input class="search1 field form-control" />
+        <button class="search1 btn btn btn-block btn-primary">Search</button>
+        <textarea class="search1 result form-control"></textarea>
+
+        <h2>Reviews.JSON - Get a Specific Movie</h2>
+
+        <a href="http://api.rottentomatoes.com/api/public/v1.0/movies/10009/reviews.json?apikey=umgs9aw92awmyuw6qvmgqkgv">Reviews for Star Wars: Episode II - Attack of the Clones 3D</a>
+
+        <h2>Movie.JSON - Get a Specific Movie</h2>
+
+        <a href="http://api.rottentomatoes.com/api/public/v1.0/movies/10009.json?apikey=umgs9aw92awmyuw6qvmgqkgv">Star Wars: Episode II - Attack of the Clones 3D</a>
+
+        <h2>Movies.JSON - Search for Movies</h2>
+
+        <a href="http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=umgs9aw92awmyuw6qvmgqkgv&q=Star Wars&page_limit=10">Search for Star Wars</a>
+    
+    </div>
+    <script>
+        $(function () {
+            $(".search1.btn").click(search1);
+            $(".search2").on("click", ".item", selectItem);
+//            alert("ewq");
+//            "umgs9aw92awmyuw6qvmgqkgv"
+        });
+        function renderItem(response) {
+            console.log(response);
+        }
+
+        function selectItem() {
+            var id = $(this).attr("id");
+            var params = {
+                apikey: "umgs9aw92awmyuw6qvmgqkgv",
+            }
+            $.ajax({
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies/"+id+"/reviews.json",
+                data: params,
+                dataType: "jsonp",
+                success: renderItem
+            })
+        }
+
+        var item3 = null;
+        function render3(response) {
+            if (item3 == null) {
+                item3 = $(".search3 .item").clone();
+            }
+            var result3 = $(".search3.result");
+            result3.empty();
+            for (var m in response.movies) {
+                var movie = response.movies[m];
+                var item = item3.clone();
+                item.find(".title").html(movie.title);
+                item.find(".image img").attr("src", movie.posters.thumbnail);
+                result3.append(item);
+            }
+        }
+
+        var item2 = null;
+        function render1(response) {
+            if (item2 == null) {
+                item2 = $(".search2 .item").clone();
+            }
+            var result2 = $(".search2.result");
+            result2.empty();
+            for (var m in response.movies) {
+                var movie = response.movies[m];
+                var item = item2.clone();
+                item.attr("id", movie.id);
+                item.find(".title").html(movie.title);
+                item.find(".image img").attr("src", movie.posters.thumbnail);
+                result2.append(item);
+            }
+        }
+
+        function search1() {
+            var field = $(".search1.field").val();
+            var result = $(".search1.result");
+
+            var params = {
+                apikey: "umgs9aw92awmyuw6qvmgqkgv",
+                q: field,
+                page_limit: 10
+            };
+
+            $.ajax({
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                dataType: "jsonp",
+                data: params,
+                success: function (response) {
+                    render1(response);
+//                    render3(response);
+                    result.val(response);
+                    console.log(response);
+                    var txt = "";
+                    for (var m in response.movies) {
+                        var movie = response.movies[m];
+                        txt += movie.title + "\n";
+                    }
+                    result.val(txt);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

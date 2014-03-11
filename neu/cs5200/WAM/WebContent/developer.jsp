@@ -92,7 +92,7 @@ try {
 			<td>
 				<a href="developer.jsp?action=delete&id=<%= id %>">Delete</a>
 				<a href="developer.jsp?action=edit&id=<%= id %>">Edit</a>
-				<a href="application.jsp?action=filter&devId=<%= id %>">Children</a>
+				<a href="application.jsp?devId=<%= id %>">Applications</a>
 			</td>
 		</tr>
 

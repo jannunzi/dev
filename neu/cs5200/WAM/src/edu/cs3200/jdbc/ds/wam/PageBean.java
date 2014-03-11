@@ -19,7 +19,7 @@ public class PageBean {
 	String selectAllPages	 = "SELECT * FROM PAGE;";
 	String selectPagesForApp = "SELECT * FROM PAGE WHERE APPID=?;";
 	String deletePageForId	 = "DELETE FROM PAGE WHERE ID=?";
-	String insertPage		 = "INSERT INTO PAGE VALUES (NULL, ?, NULL)";
+	String insertPage		 = "INSERT INTO PAGE VALUES (NULL, ?, ?)";
 	String updatePage		 = "UPDATE PAGE SET NAME=? WHERE ID=?";
 
 	Connection connection = null;
@@ -32,6 +32,7 @@ public class PageBean {
 		connection = ds.getConnection();
 		stmt = connection.prepareStatement(insertPage);
 		stmt.setString(1, newPage.name);
+		stmt.setInt(2, newPage.appId);
 		int rows = stmt.executeUpdate();
 		connection.close();
 		if(rows > 0)
