@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="../../../javascript/jquery-min.js"></script>
+    <link href="../../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <title>Rotten Tomatoes JSON Client</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <h2>Search Movie Form</h2>
+
+        <div class="row">
+            <div class="col-xs-6">
+                
+                <h3>Search</h3>
+
+                <input value="Star Wars" class="movieName form-control" />
+                <button class="searchBtn btn btn-primary btn-block">Search</button>
+
+                <table class="movies table">
+                    <tr id="123" class="movie">
+                        <td class="thumb">
+                            <img height="100" src="http://content7.flixster.com/movie/10/94/47/10944709_mob.jpg " />
+                        </td>
+                        <td>
+                            <span class="title">Star Wars</span>
+                            <span class="year">1977</span>
+                        </td>
+                        <td class="critics_consensus">The best space opera</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-xs-6">
+
+                <h3>Details</h3>
+
+                <h4 class="detailsTitle"></h4>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $(".searchBtn").click(doSearch);
+            $(".movies").on("click", ".movie", itemClick);
+        });
+
+        function fetchDetails(id) {
+            
+            $.ajax({
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies/" + id + ".json?apikey=umgs9aw92awmyuw6qvmgqkgv",
+                dataType: "jsonp",
+                success: handleDetails
+            });
+        }
+
+        function handleDetails(movieDetails) {
+            $(".detailsTitle").html(movieDetails.title);
+            console.log(movieDetails.title);
+        }
+
+        function doSearch() {
+            var movieName = $(".movieName").val();
+
+            var params = {
+                apikey: "umgs9aw92awmyuw6qvmgqkgv",
+                q: movieName,
+                page_limit: 10
+            };
+
+            $.ajax({
+                url: "http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                data: params,
+                dataType : "jsonp",
+                success: handleResponse
+            });
+        }
+
+        var template = null;
+        function handleResponse(response) {
+
+            if (template == null) {
+                template = $(".movie").clone();
+            }
+
+            var container = $(".movies");
+
+            container.empty();
+
+            var movies = response.movies;
+            for (var m in movies) {
+                var movie = movies[m];
+                var title = movie.title;
+                var year = movie.year;
+                var id = movie.id;
+                var critics_consensus = "";
+                if (typeof movie.critics_consensus != "undefined")
+                    critics_consensus = movie.critics_consensus;
+                var thumbnail = movie.posters.thumbnail;
+
+                var item = template.clone();
+                item.find(".title").html(title);
+                item.find(".year").html(year);
+                item.find(".critics_consensus").html(critics_consensus);
+                item.find(".thumb img").attr("src", thumbnail);
+                item.attr("id", id);
+
+                container.append(item);
+
+                console.log(movie);
+
+
+//                console.log(title);
+  //              console.log(thumbnail);
+    //            console.log(id);
+            }
+        }
+
+        function itemClick() {
+            var movie = $(this);
+            var id = movie.attr("id");
+            fetchDetails(id);
+        }
+    </script>
+
+</body>
+</html>
