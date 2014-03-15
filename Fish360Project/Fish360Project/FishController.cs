@@ -12,6 +12,41 @@ namespace Fish360Project
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class FishController : ApiController
     {
+        [Route("api/string/")]
+        [HttpGet]
+        public String GetString()
+        {
+            return "Hello";
+        }
+
+        [Route("api/tripTest/")]
+        [HttpPost]
+        public String GetTripName(TripTO trip)
+        {
+            return trip.name;
+        }
+
+        [Route("api/tripTest1/")]
+        [HttpGet]
+        public List<TripTO> GetTrip()
+        {
+            TripTO trip = new TripTO();
+            trip.name = "Canada";
+            trip.startDate = "last week";
+            trip.endDate = "monday";
+            trip.id = 123;
+            trip.userId = 234;
+            List<TripTO> trips = new List<TripTO>();
+            trips.Add(trip);
+
+            return trips;
+        }
+
+
+
+
+
+
         [Route("api/fish/")]
         [HttpGet]
         public List<FishTO> GetAllFish()

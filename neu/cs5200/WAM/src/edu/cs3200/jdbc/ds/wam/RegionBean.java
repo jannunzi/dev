@@ -19,7 +19,7 @@ public class RegionBean {
 	String selectAllRegions	 = "SELECT * FROM REGION;";
 	String selectRegionsForPage	 = "SELECT * FROM REGION WHERE PAGEID=?;";
 	String deleteRegionForId = "DELETE FROM REGION WHERE ID=?";
-	String insertRegion		 = "INSERT INTO REGION VALUES (NULL,?,?,?,?,?,?,?,?,NULL)";
+	String insertRegion		 = "INSERT INTO REGION (ID, NAME, TOP, LEFT, WIDTH, HEIGHT, BGCOLOR, FGCOLOR, CONTENT, PAGEID) VALUES (NULL,?,?,?,?,?,?,?,?,NULL)";
 	String updateRegion		 = "UPDATE REGION SET NAME=?, TOP=?, CONTENT=? WHERE ID=?";
 
 	Connection connection = null;

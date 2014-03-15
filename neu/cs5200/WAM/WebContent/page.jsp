@@ -92,8 +92,9 @@ try {
 			<td>
 				<a href="page.jsp?action=delete&id=<%= id %>&devId=<%=devId %>&appId=<%=appId %>">Delete</a>
 				<a href="page.jsp?action=edit&id=<%= id %>&devId=<%=devId %>&appId=<%=appId %>">Edit</a>
-				<a href="region.jsp?devId=<%=devId %>&appId=<%=appId %>&pageId=<%= id %>&appId=<%= appId %>&devId=<%= devId %>">Regions</a>
-				<a href="row.jsp?devId=<%=devId %>&appId=<%=appId %>&pageId=<%= id %>&appId=<%= appId %>&devId=<%= devId %>">Rows</a>
+				<a href="preview.jsp?devId=<%=devId %>&appId=<%=appId %>&pageId=<%= id %>">Preview</a>
+				<a href="region.jsp?devId=<%=devId %>&appId=<%=appId %>&pageId=<%= id %>&devId=<%= devId %>">Regions</a>
+				<a href="row.jsp?devId=<%=devId %>&appId=<%=appId %>&pageId=<%= id %>&devId=<%= devId %>">Rows</a>
 			</td>
 		</tr>
 

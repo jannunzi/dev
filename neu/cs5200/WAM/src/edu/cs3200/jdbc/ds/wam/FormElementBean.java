@@ -9,9 +9,6 @@ import javax.sql.*;
 
 public class FormElementBean {
 	
-//	@Resource(name="jdbc/cs3200")
-	private DataSource ds;
- 
 	int id, editId = -1;
 	String name;
 	String action;
@@ -19,7 +16,7 @@ public class FormElementBean {
 	String selectAllFormElements		= "SELECT * FROM `FORMELEMENT`;";
 	String selectFormElementsForColumn	= "SELECT * FROM `FORMELEMENT` WHERE FORMID=?;";
 	String deleteFormElementForId		= "DELETE FROM `FORMELEMENT` WHERE ID=?";
-	String insertFormElement			= "INSERT INTO `FORMELEMENT` VALUES (NULL, ?, ?, ?, ?, ?)";
+	String insertFormElement			= "INSERT INTO `FORMELEMENT` (ID, NAME, TYPE, VALUE, DEFAULTVALUE, FORMID) VALUES (NULL, ?, ?, ?, ?, ?)";
 	String updateFormElement			= "UPDATE `FORMELEMENT` SET NAME=?, TYPE=?, VALUE=?, DEFAULTVALUE=?, FORMID=? WHERE ID=?";
 
 	Connection connection = null;
@@ -111,6 +108,7 @@ public class FormElementBean {
 		return false;
 	}
 
+	private DataSource ds;
 	public FormElementBean(){
 		try {
 			Context ctx = new InitialContext();

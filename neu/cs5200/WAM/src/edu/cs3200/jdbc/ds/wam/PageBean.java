@@ -19,7 +19,7 @@ public class PageBean {
 	String selectAllPages	 = "SELECT * FROM PAGE;";
 	String selectPagesForApp = "SELECT * FROM PAGE WHERE APPID=?;";
 	String deletePageForId	 = "DELETE FROM PAGE WHERE ID=?";
-	String insertPage		 = "INSERT INTO PAGE VALUES (NULL, ?, ?)";
+	String insertPage		 = "INSERT INTO PAGE (ID, NAME, APPID) VALUES (NULL, ?, ?)";
 	String updatePage		 = "UPDATE PAGE SET NAME=? WHERE ID=?";
 
 	Connection connection = null;

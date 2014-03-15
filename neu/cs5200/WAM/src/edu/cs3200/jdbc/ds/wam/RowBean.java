@@ -19,7 +19,7 @@ public class RowBean {
 	String selectAllRows	 = "SELECT * FROM ROW;";
 	String selectRowsForPage = "SELECT * FROM ROW WHERE PAGEID=?;";
 	String deleteRowForId	 = "DELETE FROM ROW WHERE ID=?";
-	String insertRow		 = "INSERT INTO ROW VALUES (NULL, ?, ?)";
+	String insertRow		 = "INSERT INTO ROW (ID, NAME, PAGEID) VALUES (NULL, ?, ?)";
 	String updateRow		 = "UPDATE ROW SET NAME=? WHERE ID=?";
 
 	Connection connection = null;

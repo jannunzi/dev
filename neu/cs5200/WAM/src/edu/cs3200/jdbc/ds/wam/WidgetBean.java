@@ -19,7 +19,7 @@ public class WidgetBean {
 	String selectAllWidgets		  = "SELECT * FROM `WIDGET`;";
 	String selectWidgetsForColumn = "SELECT * FROM `WIDGET` WHERE COLID=?;";
 	String deleteWidgetForId	  = "DELETE FROM `WIDGET` WHERE ID=?";
-	String insertWidget			  = "INSERT INTO `WIDGET` VALUES (NULL, ?, ?, ?, ?, ?)";
+	String insertWidget			  = "INSERT INTO `WIDGET` (ID, COLID, NAME, WIDGETTYPE, URL, HTML) VALUES (NULL, ?, ?, ?, ?, ?)";
 	String updateWidget			  = "UPDATE `WIDGET` SET COLID=?, NAME=?, WIDGETTYPE=?, URL=?, HTML=? WHERE ID=?";
 
 	Connection connection = null;

@@ -140,7 +140,7 @@ namespace Fish360Project
             }
         }
 
-        // PUT api/<controller>/5
+        // PUT api/<controller>/
         [Route("api/trip/")]
         [HttpPut]
         public void Put([FromBody]TripTO tripTO)

@@ -19,7 +19,7 @@ public class ApplicationBean {
 	String selectAllApplications	 = "SELECT * FROM APPLICATION;";
 	String selectApplicationsForDev	 = "SELECT * FROM APPLICATION WHERE DEVID=?;";
 	String deleteApplicationForId	 = "DELETE FROM APPLICATION WHERE ID=?";
-	String insertApplication		 = "INSERT INTO APPLICATION VALUES (NULL, ?, ?)";
+	String insertApplication		 = "INSERT INTO APPLICATION (ID, DEVID, NAME) VALUES (NULL, ?, ?)";
 	String updateApplication		 = "UPDATE APPLICATION SET NAME=? WHERE ID=?";
 
 	Connection connection = null;

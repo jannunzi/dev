@@ -19,7 +19,7 @@ public class ColumnBean {
 	String selectAllColumns	 = "SELECT * FROM `COLUMN`;";
 	String selectColumnsForRow = "SELECT * FROM `COLUMN` WHERE ROWID=?;";
 	String deleteColumnForId	 = "DELETE FROM `COLUMN` WHERE ID=?";
-	String insertColumn		 = "INSERT INTO `COLUMN` VALUES (NULL, ?, ?)";
+	String insertColumn		 = "INSERT INTO `COLUMN` (ID, NAME, ROWID) VALUES (NULL, ?, ?)";
 	String updateColumn		 = "UPDATE `COLUMN` SET NAME=? WHERE ID=?";
 
 	Connection connection = null;

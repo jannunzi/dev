@@ -19,7 +19,7 @@ public class DeveloperBean {
 
 	String selectAllDevelopers	 = "SELECT * FROM DEVELOPER;";
 	String deleteDeveloperForId	 = "DELETE FROM DEVELOPER WHERE ID=?";
-	String insertDeveloper		 = "INSERT INTO DEVELOPER VALUES (NULL, ?, ?, ?)";
+	String insertDeveloper		 = "INSERT INTO DEVELOPER (ID, FIRSTNAME, LASTNAME, SALARY) VALUES (NULL, ?, ?, ?)";
 	String updateDeveloper		 = "UPDATE DEVELOPER SET FIRSTNAME=?, LASTNAME=?, SALARY=? WHERE ID=?";
 
 	Connection connection = null;
