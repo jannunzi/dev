@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="Scripts/jquery-1.10.2.js"></script>
+<title></title>
+</head>
+<body>
+
+    <script>
+        $(function () {
+            //            alert("hello from jquery");
+            getHello();
+            getTripName();
+        });
+
+        function getTripName() {
+            var trip = {
+                name: "My Wonderful Trip to Canada",
+                id: 123,
+                startDate: "1234/43/23",
+                endDate: "1234/43/23",
+                userId:234
+            };
+
+            $.ajax({
+                url: "api/tripTest",
+                type: "post",
+                data: JSON.stringify(trip),
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+
+            $.ajax({
+                url: "api/tripTest1/",
+                type: "get",
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function getHello() {
+            $.ajax({
+                url: "/api/string",
+                dataType : 'json',
+                contentType : 'application/json',
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
