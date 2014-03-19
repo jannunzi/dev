@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link type="text/css" rel="stylesheet" href="../../css/bootstrap.css" />
+    <script src="../../javascript/jquery-min.js"></script>
+<title></title>
+</head>
+<body>
+
+    <script>
+        $(function () {
+            console.log(localStorage);
+
+            localStorage.removeItem("alice");
+            localStorage.clear();
+            console.log(localStorage);
+            /*
+            var myObject = {
+                firstName: "Alice",
+                lastName: "Wonderland"
+            };
+            localStorage.setItem("alice", JSON.stringify(myObject));
+            */
+            var alice = localStorage.getItem("alice");
+            alice = JSON.parse(alice);
+            console.log(alice);
+            console.log(alice.firstName);
+            console.log(alice.lastName);
+        });
+    </script>
+</body>
+</html>

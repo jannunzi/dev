@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link type="text/css" rel="stylesheet" href="../../css/bootstrap.css" />
+    <script src="../../javascript/jquery-min.js"></script>
+    <script src="../../javascript/jquery-ui.min.js"></script>
+<title></title>
+    <style>
+        html,body {
+            margin:0px;
+            height:100%;
+            overflow:hidden;
+        }
+        #canvas {
+            min-height:100%;
+            height:100%;
+            margin-bottom:-10px;
+        }
+        #toolbar {
+            background-color:lightgray;
+            height:50px;
+            padding-top : 10px;
+            padding-left : 10px;
+        }
+        .template {
+            display : none;
+        }
+    </style>
+</head>
+<body>
+        <div id="canvas">
+
+        </div>
+        <div id="toolbar">
+            <div class="row">
+                <div class="col-xs-2">
+                    <select class="form-control widget-type">
+                        <option value="paragraph">Paragraph</option>
+                        <option value="image">Image</option>
+                        <option value="video">YouTube</option>
+                    </select>
+                </div>
+                <div class="col-xs-1">
+                    <button class="add form-control btn btn-primary">
+                        Add
+                    </button>
+                </div>
+                <div class="col-xs-1">
+                    <button class="clear form-control btn btn-primary">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <p class="template">My Paragraph Template</p>
+        <img class="template" src="http://ecx.images-amazon.com/images/I/81EK07ZfSAS._SL1500_.jpg" />
+
+    <script>
+        var paragraphTemplate = null;
+        var imageTemplate = null;
+        var model = {
+            widgets: []
+        };
+        $(function () {
+            $("#toolbar").hover(toolbarHoverIn, toolbarHoverOut);
+            $(".add").click(addBtnHandler);
+            $(".clear").click(clearBtnHandler);
+            paragraphTemplate = $("p.template").clone();
+            imageTemplate = $("img.template").clone();
+
+            var modelStr = localStorage.getItem("com.wam.pageeditor");
+            if (typeof modelStr == "string" && modelStr != "") {
+                var parse = JSON.parse(modelStr);
+                if (typeof parse == "object") {
+                    model = parse;
+                    renderPage(model);
+                }
+            }
+
+        });
+
+        function clearBtnHandler(event) {
+            localStorage.removeItem("com.wam.pageeditor");
+            model.widgets = [];
+            renderPage(model);
+        }
+
+        function addBtnHandler(event) {
+            var widgetType = $(".widget-type").val();
+            console.log(widgetType);
+            var canvas = $("#canvas");
+            if (widgetType == "paragraph") {
+                var paragraph = {
+                    type : "paragraph",
+                    content : "My Object Paragrah"
+                };
+                model.widgets.push(paragraph);
+            } else if (widgetType == "image") {
+                var image = {
+                    type: "image",
+                    src: "http://ecx.images-amazon.com/images/I/81EK07ZfSAS._SL1500_.jpg",
+                    width: 100
+                };
+                model.widgets.push(image);
+            } else if (widgetType == "video") {
+
+            }
+            saveMode(model);
+            renderPage(model);
+        }
+
+        function saveMode(model) {
+            var modelStr = JSON.stringify(model);
+            localStorage.setItem("com.wam.pageeditor", modelStr);
+        }
+
+        function renderPage(model) {
+            console.log(model);
+            var widgets = model.widgets;
+            var canvas = $("#canvas");
+            canvas.empty();
+            var instance = null;
+            for (var w in widgets) {
+                var widget = widgets[w];
+                var widgetType = widget.type;
+                if (widgetType == "paragraph") {
+                    instance = paragraphTemplate.clone();
+                    instance.html(widget.content);
+                    instance.removeClass("template");
+                    canvas.append(instance);
+                } else if (widgetType == "image") {
+                    instance = imageTemplate.clone();
+                    instance.removeClass("template");
+
+                    instance.attr("src", widget.src);
+                    if (typeof widget.height != "undefined" && widget.height != null) {
+                        instance.attr("height", widget.height)
+                    }
+                    if (typeof widget.width != "undefined" && widget.width  != null) {
+                        instance.attr("width", widget.width)
+                    }
+
+                    canvas.append(instance);
+                } else if (widgetType == "video") {
+
+                }
+                instance.draggable({
+                    stop: function () {
+                        var instance = $(this);
+                        var position = instance.position();
+                        var top = position.top;
+                        var left = position.left;
+                        console.log([top, left]);
+                    }
+                });
+            }
+        }
+
+        function toolbarHoverIn() {
+            $("#canvas").animate({"margin-bottom" : "-50px"});
+        }
+        function toolbarHoverOut() {
+            $("#canvas").animate({ "margin-bottom": "-10px" });
+        }
+    </script>
+</body>
+</html>
