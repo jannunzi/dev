@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/f360.css" />
+
+    <style>
+        .f360-back {
+            margin-top: 8px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                <a href="#" class="navbar-brand">Login</a>
+
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <!-- These are the 3 bars on the right hand side of the nav bar to toggle the menu -->
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main" style="height: 1px;">
+                <ul class="nav navbar-nav">
+
+                    <li><a href="#login" data-target="f360-login" title="Login">Login</a></li>
+                    <li><a href="#trips" data-target="f360-trips" title="Trips">Trips</a></li>
+                    <li><a href="#fish" data-target="f360-fish" title="Fish">Fish</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container f360-page f360-login">
+
+        <div role="form">
+            <div class="form-group">
+                <label for="f360-username">Username</label>
+                <input type="text" class="form-control" id="f360-username" placeholder="Username" />
+            </div>
+            <div class="form-group">
+                <label for="f360-password">Password</label>
+                <input type="password" class="form-control" id="f360-password" placeholder="Password" />
+            </div>
+            <button class="btn btn-primary btn-block f360-login">Login</button>
+            <button class="btn btn-primary btn-block f360-register">Register</button>
+
+            <!--a href="#" id="test-user-service-create" class="btn btn-xs btn-warning btn-block">Create User</!--a>
+            <a href="#" id="test-user-service-login" class="btn btn-xs btn-warning btn-block">Login User</a>
+            <a href="#" id="test-user-service-get-by-id" class="btn btn-xs btn-warning btn-block">Get User by Id</a>
+            <a href="#" id="test-user-service-get-all" class="btn btn-xs btn-warning btn-block">Get All Users</a>
+            <a href="#" id="test-user-service-remove-by-id" class="btn btn-xs btn-warning btn-block">Remove User by Id</a-->
+
+        </div>
+    </div>
+
+    <div class="container f360-page f360-register">
+
+        <div role="form">
+            <div class="form-group">
+                <label for="f360-username-register">Username</label>
+                <input type="text" class="form-control" id="f360-username-register" placeholder="Username" />
+            </div>
+            <div class="form-group">
+                <label for="f360-password-1-register">Password</label>
+                <input type="password" class="form-control" id="f360-password-1-register" placeholder="Password" />
+            </div>
+            <div class="form-group">
+                <label for="f360-password-2-register">Type Password Again</label>
+                <input type="password" class="form-control" id="f360-password-2-register" placeholder="Password" />
+            </div>
+            <button class="btn btn-primary btn-block f360-register">Register</button>
+            <button class="btn btn-primary btn-block f360-cancel">Cancel</button>
+        </div>
+
+    </div>
+
+    <div class="f360-page f360-trips">
+
+        <div class="container">
+            <button class="btn btn-primary btn-block f360-add">Add Trip</button>
+        </div>
+
+        <ul class="list-unstyled">
+            <li>
+                <a href="#">
+                    <span class="name">Trip 1</span>
+                    <span class="pull-right">&#9654;</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>Trip 2</span>
+                    <span class="pull-right">&#9654;</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>Trip 3</span>
+                    <span class="pull-right">&#9654;</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="container f360-page f360-trip f360-details">
+        <div role="form">
+            <div class="form-group">
+                <label for="f360-trip-name">Trip Name</label>
+                <input type="text" class="form-control" id="f360-trip-name" name="name" placeholder="Trip Name" />
+            </div>
+            <div class="form-group">
+                <label for="f360-trip-start-date">Start Date</label>
+                <input type="date" class="form-control" id="f360-trip-start-date" name="startDate" />
+            </div>
+            <div class="form-group">
+                <label for="f360-trip-end-date">End Date</label>
+                <input type="date" class="form-control" id="f360-trip-end-date" name="endDate" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="id" id="f360-trip-nid" />
+            </div>
+            <button class="btn btn-warning btn-block f360-fish">Fish</button>
+            <button class="btn btn-success btn-block f360-save">Save</button>
+            <button class="btn btn-danger btn-block f360-delete">Delete</button>
+        </div>
+    </div>
+
+    <div class="f360-page f360-fish f360-list">
+
+        <div class="container">
+            <button class="btn btn-primary btn-block f360-add">Add Fish</button>
+        </div>
+
+        <ul class="list-unstyled f360-list">
+            <li class="f360-fish">
+                <a href="#" class="f360-id">
+                    <span class="f360-name">Fish 1.1</span>
+                    <span class="pull-right">&#9654;</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>Fish 2</span>
+                    <span class="pull-right">&#9654;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container f360-page f360-fish f360-details">
+        <div role="form">
+            <div class="form-group">
+                <label for="f360-fish-name">Fish Name</label>
+                <input type="text" class="form-control" id="f360-fish-name" placeholder="Fish Name" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="f360-fish-id" />
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" class="form-control" id="f360-fish-date" />
+            </div>
+            <div class="form-group">
+                <label>Weight</label>
+                <input type="number" class="form-control" id="f360-fish-weight" placeholder="Weight" />
+            </div>
+            <div class="form-group">
+                <label>Length</label>
+                <input type="number" class="form-control" id="f360-fish-length" placeholder="Length"/>
+            </div>
+            <div class="form-group">
+                <label>Species</label>
+                <select id="f360-fish-species" class="form-control">
+                    <option>Bass</option>
+                    <option>Black Sea Bass</option>
+                    <option>Bluefin</option>
+                    <option>Bluefish</option>
+                    <option>Bonito</option>
+                    <option>Fluke</option>
+                    <option>Mackerel</option>
+                    <option>Scup</option>
+                    <option>Striped Bass</option>
+                    <option>Tautog</option>
+                    <option>Weakfish</option>
+                    <option>Winter Flounder</option>
+                </select>
+            </div>
+            <button class="btn btn-success btn-block f360-save">Save</button>
+            <button class="btn btn-danger btn-block f360-delete">Delete</button>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+
+            <button class="btn btn-default f360-back">Back</button>
+
+        </div>
+    </div>
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/f360.js"></script>
+    <script>
+
+        f360.state.currentView = "login";
+
+        $(function () {
+
+            $('.nav a').on('click', function () {
+                $(".navbar-toggle").click();
+
+                // show/hide the correct page
+                var a = $(this);
+                var dataTarget = a.attr("data-target");
+                $('.f360-page').hide();
+                $('.f360-page.' + dataTarget).show();
+
+                // set the title of the page
+                var title = a.attr("title");
+                $(".navbar-brand").html(title);
+            });
+
+            // transition / navigation
+            $(".f360-page.f360-login button.f360-login").click(loginAction);
+            $(".f360-page.f360-login button.f360-register").click(startRegisterAction);
+            $(".f360-page.f360-register button.f360-register").click(registerAction);
+            $(".f360-page.f360-register button.f360-cancel").click(registerCancelAction);
+            $(".f360-page.f360-trips").on("click", "li", selectTripAction);
+            $(".f360-page.f360-trip button.f360-fish").click(showFishAction);
+            $(".f360-page.f360-fish.f360-list").on("click", "li", selectFishAction);
+
+            // add trips and fish
+            $(".f360-page.f360-trips .f360-add").click(addTripAction);
+            $(".f360-page.f360-fish  .f360-add").click(addFishAction);
+
+            // add trips and fish
+            $(".f360-page.f360-trip.f360-details .f360-save").click(saveTripAction);
+            $(".f360-page.f360-fish.f360-details .f360-save").click(saveFishAction);
+            $(".f360-page.f360-trip.f360-details .f360-delete").click(deleteTripAction);
+            $(".f360-page.f360-fish.f360-details .f360-delete").click(deleteFishAction);
+
+            // add back button
+            $(".f360-back").click(backAction);
+        });
+
+        function selectTripAction() {
+            var id = $(this).attr("id");
+
+            f360.services.trip.GetTripForId(id, renderTripDetails);
+            // getTrip(id, showTripDetails);
+
+            setTitle('Trip');
+            $('.btn').show();
+
+        }
+
+        function renderTripDetails(trip) {
+            trip = trip;
+            for (var key in trip) {
+                var selector = "[name=" + key + "]";
+                var val = trip[key];
+                if (val === null)
+                    continue;
+                $(selector).val(val);
+            }
+            showTripDetails();
+        }
+
+        function startRegisterAction() {
+            showRegister();
+        }
+
+        function registerCancelAction() {
+            $("#f360-username-register").val("");
+            $("#f360-password-1-register").val("");
+            $("#f360-password-2-register").val("");
+
+            showLogin();
+        }
+
+        function registerAction() {
+            var username = $("#f360-username-register").val();
+            var password1 = $("#f360-password-1-register").val();
+            var password2 = $("#f360-password-2-register").val();
+            if (password1 != password2) {
+                alert("Passwords Must Match");
+                return;
+            }
+            f360.services.user.validateUsername(username, function (response) {
+                if (response === "username does not exist") {
+                    $("#f360-username").val(username);
+                    f360.services.user.create(username, password1, showLogin);
+                }
+                else if (response === "username exists")
+                    alert("User Already Exists");
+                else
+                    alert("Error Creating User");
+            });
+        }
+
+        function loginAction() {
+
+            var username = $("#f360-username").val();
+            var password = $("#f360-password").val();
+            f360.state.login.username = username;
+
+
+            f360.state.username = username;
+
+            f360.services.user.login(username, password, function (response) {
+                if (typeof response === 'object') {
+                    f360.state.login.user = response;
+//                  f360.services.trip.GetAllTrips(f360.state.login.guid, renderTrips);
+                    f360.services.trip.GetAllTrips(f360.state.login.user.username, renderTrips);
+                    return;
+                }
+                f360.state.login.guid = null;
+                alert("Wrong Username or Password");
+            })
+
+            $('.btn').show();
+        }
+
+        function renderTrips(trips) {
+            if (f360.templates.trips === null) {
+                f360.templates.trips = $(".f360-page.f360-trips ul li:first");
+            }
+            var ul = $(".f360-page.f360-trips ul");
+            ul.empty();
+            for (var t = 0; t < trips.length; t++) {
+                var instance = f360.templates.trips.clone();
+                instance.attr("id", trips[t]["id"]);
+                for (var key in trips[t]) {
+                    var selector = "." + key;
+                    instance.find(selector).html(trips[t][key]);
+                }
+                ul.append(instance);
+            }
+            showTripList()
+        }
+/*
+        function getAllTripsService(username, callback) {
+            $.ajax({
+                url: "http://dev.fish360.net/autotideapp/services/FishingTrip_FindForUsername.php",
+                data: { username: username },
+                dataType: "jsonp",
+                success: function (response) {
+                    renderTrips(response);
+                    if (typeof callback === "function") {
+                        callback(response);
+                    }
+                }
+            });
+        }
+        */
+        function backAction(event) {
+            event.preventDefault();
+
+            if (f360.state.currentView === "tripList") {
+                showLogin();
+            } else if (f360.state.currentView === "tripDetails") {
+                showTripList();
+            } else if (f360.state.currentView === "newTrip") {
+                showTripList();
+            } else if (f360.state.currentView === "fishList") {
+                showTripDetails();
+            } else if (f360.state.currentView === "fishDetails") {
+                showFishList();
+            } else if (f360.state.currentView === "newFish") {
+                showFishList();
+            }
+
+        }
+
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+
+        function showLogin() {
+            setTitle('Login');
+
+            f360.state.currentView = "login";
+
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-login').show();
+        }
+
+        function showRegister() {
+            setTitle('Register');
+
+            f360.state.currentView = "register";
+
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-register').show();
+        }
+
+        function showTripList() {
+
+            setTitle('Trips');
+
+            f360.state.currentView = "tripList";
+
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-trips').show();
+        }
+        function showFishList() {
+
+            f360.state.currentView = "fishList";
+
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-fish.f360-list').show();
+        }
+        function showNewFish() {
+            f360.state.currentView = "newFish";
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-fish.f360-details').show();
+        }
+        function showFishDetails() {
+            f360.state.currentView = "fishDetails";
+
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-fish.f360-details').show();
+        }
+        function showNewTrip() {
+            f360.state.currentView = "newTrip";
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-trip.f360-details').show();
+        }
+        function showTripDetails(trip) {
+            setTitle("Trip");
+
+            f360.state.currentView = "tripDetails";
+
+            scrollToTop();
+            $('.f360-page').hide();
+            $('.f360-page.f360-trip.f360-details').show();
+        }
+        function setTitle(title) {
+            $('.navbar-brand').html(title);
+        }
+
+        function saveTripAction() {
+            var name = $("#f360-trip-name").val();
+            var startDate = $("#f360-trip-start-date").val();
+            var endDate = $("#f360-trip-end-date").val();
+            var id = $("#f360-trip-nid").val();
+
+            if (f360.state.currentView == "tripDetails") {
+                f360.services.trip.UpdateTrip(id, name, startDate, endDate, function (response) {
+                    f360.services.trip.GetAllTrips(f360.state.login.user.username, function (trips) {
+                        renderTrips(trips);
+                    });
+                });
+            } else if (f360.state.currentView == "newTrip") {
+                f360.services.trip.create(name, startDate, endDate, f360.state.login.user.id, function (response) {
+                    f360.services.trip.GetAllTrips(f360.state.login.username, function (trips) {
+                        renderTrips(trips);
+                    });
+                });
+            }
+        }
+        function saveFishAction() {
+
+            var id = $("#f360-fish-id").val();
+            var tripId = $("#f360-trip-nid").val();
+            var name = $("#f360-fish-name").val();
+            var date = $("#f360-fish-date").val();
+            var weight = $("#f360-fish-weight").val();
+            var length = $("#f360-fish-length").val();
+            var species = $("#f360-fish-species").val();
+
+            if (weight === "") weight = 0;
+            if (length === "") length = 0;
+
+            var fishTO = {
+                id: id,
+                tripId : tripId,
+                name: name,
+                caughtDate: date,
+                weight: weight,
+                length: length,
+                species: species
+            };
+
+            if (f360.state.currentView === "newFish") {
+                fishTO.id = 0;
+                f360.services.fish.CreateFish(fishTO, function () {
+                    f360.services.fish.GetAllFishForTripId(tripId, function(fishList){
+                        setTitle('Fish');
+                        f360.fish.render.list(fishList);
+                        showFishList();
+                    });
+                });
+            } else if (f360.state.currentView === "fishDetails") {
+                f360.services.fish.UpdateFish(fishTO, function () {
+                    f360.services.fish.GetAllFishForTripId(tripId, function (fishList) {
+                        setTitle('Fish');
+                        f360.fish.render.list(fishList);
+                        showFishList();
+                    });
+                });
+            }
+        }
+        function deleteTripAction() {
+            var sure = confirm("Confirm Delete Trip");
+            if (!sure)
+                return;
+            var id = $("#f360-trip-nid").val();
+            f360.services.trip.DeleteTripForId(id, function (response) {
+                f360.services.trip.GetAllTrips(f360.state.login.username, function (trips) {
+                    renderTrips(trips);
+                });
+            });
+        }
+        function deleteFishAction() {
+            var sure = confirm("Confirm Delete Fish");
+            if (!sure)
+                return;
+            var fishId = $("#f360-fish-id").val();
+            var tripId = $("#f360-trip-nid").val();
+            f360.services.fish.DeleteFishForId(fishId, function (response) {
+                f360.services.fish.GetAllFishForTripId(tripId, function (fishList) {
+                    f360.fish.render.list(fishList);
+                    showFishList();
+                });
+            });
+        }
+        function addTripAction() {
+            $("#f360-trip-name").val("");
+
+            var now = new Date();
+            var nowPlus3 = new Date();
+            nowPlus3.setDate(now.getDate() + 3);
+
+            $("#f360-trip-start-date").val(f360.utils.dateToYYYYMMDD(now));
+            $("#f360-trip-end-date").val(f360.utils.dateToYYYYMMDD(nowPlus3));
+            showNewTrip();
+
+            $('.f360-page.f360-trip .f360-delete').hide();
+            $('.f360-page.f360-trip .f360-fish').hide();
+        }
+        function addFishAction() {
+            $(".f360-page.f360-fish.f360-details input").val("").html("");
+            var now = new Date();
+            $("#f360-fish-date").val(f360.utils.dateToYYYYMMDD(now));
+
+            showNewFish();
+
+//            showFishDetails();
+            // jga
+            $('.f360-page.f360-fish .f360-delete').hide();
+        }
+        function selectFishAction(event) {
+
+            var fishId = $(event.currentTarget).find(".f360-id").attr("id");
+
+            f360.services.fish.GetFishForId(fishId, function (fishTO) {
+                fishTO = fishTO;
+                $("#f360-fish-name").val(fishTO.name);
+                $("#f360-fish-id").val(fishTO.id);
+                $("#f360-fish-date").val(fishTO.caughtDate);
+                $("#f360-fish-weight").val(fishTO.weight);
+                $("#f360-fish-length").val(fishTO.length);
+                $("#f360-fish-species").val(fishTO.species);
+
+                showFishDetails();
+            });
+
+            $('.navbar-brand').html('Fish');
+            $('.btn').show();
+        }
+        function showFishAction() {
+            var tripId = $("#f360-trip-nid").val();
+            f360.services.fish.GetAllFishForTripId(tripId, function(fishList){
+                setTitle('Fish');
+                f360.fish.render.list(fishList);
+                showFishList();
+            });
+
+            $('.btn').show();
+        }
+
+    </script>
+</body>
+</html>

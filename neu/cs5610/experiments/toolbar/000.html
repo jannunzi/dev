@@ -1,0 +1,59 @@
+﻿<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sticky footer · Twitter Bootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <script src="../../javascript/jquery-2.0.3.min.js"></script>
+
+    <style type="text/css">
+        body {
+            overflow: hidden;
+        }
+        #wrap {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            /* Negative indent footer by it's height */
+            margin: 0 auto -60px;
+        }
+
+        /* Set the fixed height of the footer here */
+        #footer {
+            padding-top: 15px;
+            height: 60px;
+        }
+
+        #footer {
+            background-color: #aaaaaa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrap">
+        <div class="container">
+            <h1>Template</h1>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-2">
+                    <select class="form-control">
+                        <option>Paragraph</option>
+                    </select>
+                </div>
+                <div class="col-xs-1">
+                    <button class="form-control btn btn-primary btn-block">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

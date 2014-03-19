@@ -1,0 +1,33 @@
+﻿body {
+    padding-top:    70px;
+    padding-bottom: 70px;
+}
+
+.f360-page {
+    display : none;
+}
+.f360-page.f360-login {
+    display : block;
+}
+/*
+.f360-page.f360-fish ul,
+.f360-page.f360-trips ul {
+    position:relative;
+    top:-10px;
+}
+    */
+.f360-page.f360-fish li,
+.f360-page.f360-trips li {
+    border-bottom: 1px solid beige;
+    padding: 10px;
+    cursor : pointer;
+}
+..f360-page.f360-fish li a,
+.f360-page.f360-trips li a {
+    text-decoration:none;
+}
+
+.f360-page.f360-fish li:hover,
+.f360-page.f360-trips li:hover {
+    background-color : #dde4e6;
+}
