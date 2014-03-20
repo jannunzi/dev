@@ -87,9 +87,10 @@
             }
         },
         trip: {
-            UpdateTrip: function (id, name, startDate, endDate, callback) {
+            UpdateTrip: function (id, name, startDate, endDate, notes, callback) {
                 var tripTO = {
-                    id : id,
+                    notes: notes,
+                    id: id,
                     name: name,
                     startDate: startDate,
                     endDate: endDate
@@ -121,12 +122,13 @@
                     success: callback
                 });
             },
-            create: function (name, startDate, endDate, userId, callback) {
+            create: function (name, startDate, endDate, userId, notes, callback) {
                 // jga
                 var tripTO = {
                     name: name,
                     startDate: startDate,
                     endDate: endDate,
+                    notes: notes,
                     userId: userId
                 };
                 f360.services.ajax({

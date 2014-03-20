@@ -3,6 +3,7 @@
 <head>
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" type="text/css" href="../Content/bootstrap.min.flatly.css" />
     <link rel="stylesheet" type="text/css" href="../Content/f360.css" />
 
@@ -120,12 +121,18 @@
                 <input type="text" class="form-control" id="f360-trip-name" name="name" placeholder="Trip Name" />
             </div>
             <div class="form-group">
-                <label for="f360-trip-start-date">Start Date</label>
+                <label for="f360-trip-start-date">Start</label>
                 <input type="date" class="form-control" id="f360-trip-start-date" name="startDate" />
+                <input type="time" class="form-control" id="f360-trip-start-time" name="startTime" />
             </div>
             <div class="form-group">
-                <label for="f360-trip-end-date">End Date</label>
+                <label for="f360-trip-end-date">End</label>
                 <input type="date" class="form-control" id="f360-trip-end-date" name="endDate" />
+                <input type="time" class="form-control" id="f360-trip-end-time" name="endTime" />
+            </div>
+            <div class="form-group">
+                <label for="f360-trip-notes">Notes</label>
+                <textarea class="form-control" id="f360-trip-notes" name="tripNotes"></textarea>
             </div>
             <div class="form-group">
                 <input type="hidden" class="form-control" name="id" id="f360-trip-nid" />
@@ -168,8 +175,9 @@
                 <input type="hidden" class="form-control" id="f360-fish-id" />
             </div>
             <div class="form-group">
-                <label>Date</label>
+                <label>Caught</label>
                 <input type="date" class="form-control" id="f360-fish-date" />
+                <input type="time" class="form-control" id="f360-fish-time" />
             </div>
             <div class="form-group">
                 <label>Weight</label>
@@ -195,6 +203,10 @@
                     <option>Weakfish</option>
                     <option>Winter Flounder</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="f360-fish-notes">Notes</label>
+                <textarea class="form-control" id="f360-fish-notes" name="fishNotes"></textarea>
             </div>
             <button class="btn btn-success btn-block f360-save">Save</button>
             <button class="btn btn-danger btn-block f360-delete">Delete</button>
@@ -460,18 +472,19 @@
 
         function saveTripAction() {
             var name = $("#f360-trip-name").val();
+            var notes = $("#f360-trip-notes").val();
             var startDate = $("#f360-trip-start-date").val();
             var endDate = $("#f360-trip-end-date").val();
             var id = $("#f360-trip-nid").val();
 
             if (f360.state.currentView == "tripDetails") {
-                f360.services.trip.UpdateTrip(id, name, startDate, endDate, function (response) {
+                f360.services.trip.UpdateTrip(id, name, startDate, endDate, notes, function (response) {
                     f360.services.trip.GetAllTrips(f360.state.login.user.username, function (trips) {
                         renderTrips(trips);
                     });
                 });
             } else if (f360.state.currentView == "newTrip") {
-                f360.services.trip.create(name, startDate, endDate, f360.state.login.user.id, function (response) {
+                f360.services.trip.create(name, startDate, endDate, f360.state.login.user.id, notes, function (response) {
                     f360.services.trip.GetAllTrips(f360.state.login.username, function (trips) {
                         renderTrips(trips);
                     });
@@ -487,6 +500,7 @@
             var weight = $("#f360-fish-weight").val();
             var length = $("#f360-fish-length").val();
             var species = $("#f360-fish-species").val();
+            var notes = $("#f360-fish-notes").val();
 
             if (weight === "") weight = 0;
             if (length === "") length = 0;
@@ -498,7 +512,8 @@
                 caughtDate: date,
                 weight: weight,
                 length: length,
-                species: species
+                species: species,
+                notes: notes
             };
 
             if (f360.state.currentView === "newFish") {
@@ -581,6 +596,7 @@
                 $("#f360-fish-weight").val(fishTO.weight);
                 $("#f360-fish-length").val(fishTO.length);
                 $("#f360-fish-species").val(fishTO.species);
+                $("#f360-fish-notes").val(fishTO.notes);
 
                 showFishDetails();
             });

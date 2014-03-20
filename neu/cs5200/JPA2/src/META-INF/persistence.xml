@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="JPA1">
+	<persistence-unit name="JPA2">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>jpa.sqlfirst.simple.SimpleOne</class>
-		<class>jpa.sqlfirst.simple.SimpleTwo</class>
-		<class>jpa.sqlfirst.onetomany.Many</class>
-		<class>jpa.sqlfirst.onetomany.One</class>
-		<class>jpa.sqlfirst.map.Map</class>
-		<class>jpa.sqlfirst.map.MapMany</class>
-		<class>jpa.sqlfirst.map.MapOne</class>
 		<class>model.Author</class>
 		<class>model.Book</class>
 		<properties>
 			<property name="eclipselink.jdbc.password" value=""/>
 			<property name="eclipselink.jdbc.user" value="root"/>
 			<property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost/jpa1"/>
+			<property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost/jpa2"/>
 			<!-- property name="eclipselink.ddl-generation" value="drop-and-create-tables"/-->
 			<property name="eclipselink.logging.level" value="INFO"/>
 		</properties>

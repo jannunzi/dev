@@ -4,6 +4,10 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>model.Author</class>
 		<class>model.Book</class>
+		<class>codefirst.Fiction</class>
+		<class>codefirst.Table2</class>
+		<class>codefirst.Application</class>
+		<class>codefirst.Developer</class>
 		<properties>
 			<property name="eclipselink.jdbc.password" value=""/>
 			<property name="eclipselink.jdbc.user" value="root"/>

@@ -27,6 +27,7 @@ namespace Fish360Project
                     TripTO trip = new TripTO();
                     trip.id = t.id;
                     trip.name = t.name;
+//                    trip.notes = t.notes;
                     if (t.startDate != null)
                         trip.startDate = ((DateTime)t.startDate).ToString("yyyy-MM-dd");
                     if (t.endDate != null)
