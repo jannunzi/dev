@@ -186,6 +186,8 @@
     <Content Include="f360\100.html" />
     <Content Include="FishService.asmx" />
     <Content Include="HelloWorld.html" />
+    <Content Include="images\f360-icon.png" />
+    <Content Include="images\iphone-ios-app-icon-template.jpg" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
