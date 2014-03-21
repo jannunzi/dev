@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product App</title>
+</head>
+<body>
+
+    <div>
+        <h2>All Products</h2>
+        <ul id="products" />
+    </div>
+    <div>
+        <h2>Search by ID</h2>
+        <input type="text" id="prodId" size="5" />
+        <input type="button" value="Search" onclick="find();" />
+        <p id="product" />
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        var uri = 'api/products';
+
+        $(document).ready(function () {
+            getAllProducts();
+            getProduct(1);
+            var product = {
+                id: 123,
+                name: 'product 123',
+                category: 'category 123',
+                price: 123.34
+            }
+            putProduct(product);
+            postProduct(product);
+            deleteProduct(1);
+        });
+
+        function deleteProduct(id) {
+            $.ajax({
+                url: 'api/products/' + id,
+                dataType: "json",
+                type: 'delete',
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function postProduct(product) {
+            $.ajax({
+                url: 'api/products',
+                data: product,
+                type: 'post',
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function putProduct(product) {
+            $.ajax({
+                url: 'api/products/' + product.id,
+                data: product,
+                type: 'put',
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function getAllProducts() {
+            $.ajax({
+                url: 'api/products',
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    $.each(response, function (key, item) {
+                        // Add a list item for the product.
+                        $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+                    });
+                }
+            });
+        }
+
+        function getProduct(id) {
+            $.ajax({
+                url: 'api/products/'+id,
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    $('#product').text(formatItem(response));
+                },
+                error: function (status, err) {
+                    $('#product').text('Error: ' + err);
+                }
+            });
+        }
+
+        function formatItem(item) {
+            return item.Name + ': $' + item.Price;
+        }
+
+        function find() {
+            var id = $('#prodId').val();
+            getProduct(id);
+        }
+    </script>
+</body>
+</html>
