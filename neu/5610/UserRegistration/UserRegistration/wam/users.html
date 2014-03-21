@@ -6,8 +6,22 @@
     <script src="../Scripts/jquery-1.10.2.js"></script>
 </head>
 <body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <input class="username" />
+                <input class="password" />
+                <button class="login">Login</button>
+                <br/>
+                <span class="error"></span>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(function () {
+        /*
             getAllUsers();
             getUser(3);
             var newUser = {
@@ -17,7 +31,31 @@
             postUser(newUser);
             putUser(1, newUser);
             deleteUser(2);
+            */
+            $(".login").click(loginAction);
+            getUsersByUsername("user222");
         });
+
+        function loginAction() {
+
+        }
+
+        var currentUsername = null;
+        function getUsersByUsername(username) {
+            $.ajax({
+                url: "/api/users?username=" + username,
+                dataType: "json",
+                success: function (response) {
+                    if (typeof response == "undefined" ||
+                        response == null || response.length == 0) {
+                        $(".response").html("Unable to login");
+                    } else {
+                        currentUsername = response[0].username;
+                    }
+                    console.log(response);
+                }
+            })
+        }
 
         function getAllUsers() {
             $.ajax({

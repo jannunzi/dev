@@ -70,5 +70,24 @@ namespace UserRegistration
             }
             return "Delete " + id;
         }
+        public List<UserTO> GetUserByUsername(string username)
+        {
+            List<UserTO> users = new List<UserTO>();
+            using (var db = new UserRegistrationEntities1())
+            {
+                var query = from dev in db.Developers
+                            where dev.username == username
+                            select dev;
+
+                foreach (var d in query)
+                {
+                    UserTO u = new UserTO();
+                    u.username = d.username;
+                    u.password = d.password;
+                    users.Add(u);
+                }
+            }
+            return users;
+        }
     }
 }
