@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Content/bootstrap.css" type="text/css" rel="stylesheet" />
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <script>
+        $(function () {
+            getAllUsers();
+            getUser(1);
+            var newUser = {
+                username: "user5",
+                password: "p5"
+            };
+            postUser(newUser);
+            putUser(1, newUser);
+            deleteUser(2);
+        });
+
+        function getAllUsers() {
+            $.ajax({
+                url: "/api/users",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function getUser(id) {
+            $.ajax({
+                url: '/api/users/' + id,
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        }
+
+        function postUser(newUser) {
+            $.ajax({
+                url: "/api/users",
+                dataType: "json",
+                data: newUser,
+                type: "post",
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function putUser(id, oldUser) {
+            oldUser.username = "user6";
+            $.ajax({
+                url: "/api/users/"+id,
+                type: "put",
+                dataType: "json",
+                data: oldUser,
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        }
+
+        function deleteUser(id) {
+            $.ajax({
+                url: '/api/users/' + id,
+                dataType: "json",
+                type: "delete",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        }
+
+
+    </script>
+</body>
+</html>
