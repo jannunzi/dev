@@ -29,19 +29,45 @@ namespace UserRegistration
         }
         public UserTO GetUser(int id)
         {
-            UserTO u = new UserTO {id=4, username = "user4", password = "p4" };
+            UserTO u = new UserTO();
+            using (var db = new UserRegistrationEntities1())
+            {
+                Developer dev = db.Developers.Find(id);
+                u = new UserTO { id = dev.Id, username = dev.username, password = dev.password };
+            }
             return u;
         }
         public string PostUser(UserTO newUser)
         {
+            using (var db = new UserRegistrationEntities1())
+            {
+                Developer dev = new Developer();
+                dev.username = newUser.username;
+                dev.password = newUser.password;
+                db.Developers.Add(dev);
+                db.SaveChanges();
+            }
             return newUser.username;
         }
-        public string PutUser(UserTO oldUser)
+        public string PutUser(int id, UserTO oldUser)
         {
+            using (var db = new UserRegistrationEntities1())
+            {
+                Developer dev = db.Developers.Find(id);
+                dev.password = oldUser.password;
+                dev.username = oldUser.username;
+                db.SaveChanges();
+            }
             return oldUser.username;
         }
         public string DeleteUser(int id)
         {
+            using (var db = new UserRegistrationEntities1())
+            {
+                Developer dev = db.Developers.Find(id);
+                db.Developers.Remove(dev);
+                db.SaveChanges();
+            }
             return "Delete " + id;
         }
     }
