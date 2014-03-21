@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <input class="username form-control" placeholder="Username" />
+                <input class="password form-control" placeholder="Password" type="password"/>
+                <button class="btn btn-primary btn-block login">Login</button>
+                <span class="message"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $(".login").click(loginAction);
+        });
+
+        var wam = {
+            currentUser : null
+        };
+        function loginAction() {
+            var username = $(".username").val();
+            getDeveloperByUsername(username, function (response) {
+                if (response == null) {
+                    wam.currentUser = null;
+                    $(".message").html("Sorry that username does not exist");
+                } else {
+                    wam.currentUser = response;
+                    console.log(wam);
+                    $(".message").html("Welcome " + response.username);
+                }
+            });
+        }
+
+        function getDeveloperByUsername(username, callback) {
+            $.ajax({
+                url: "/api/developers?username=" + username,
+                dataType: "json",
+                success: function (response) {
+                    if (typeof callback == "function") {
+                        callback(response);
+                    }
+                }
+            });
+        }
+
+        function deleteDeveloper(id) {
+            $.ajax({
+                url: "/api/developers/" + id,
+                type: "delete",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        }
+
+        function putDeveloper(id, developerTO) {
+            $.ajax({
+                url: "/api/developers/"+id,
+                type: "put",
+                dataType: "json",
+                data: developerTO,
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        }
+
+        function postDeveloper(developerTO) {
+            $.ajax({
+                url: "/api/developers",
+                type:"post",
+                dataType: "json",
+                data: developerTO,
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        }
+
+        function getDeveloper(usernameId) {
+            $.ajax({
+                url: "/api/developers/" + usernameId,
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        }
+
+        function getAllDevelopers() {
+            $.ajax({
+                url: "/api/developers",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        }
+    </script>
+</body>
+</html>
