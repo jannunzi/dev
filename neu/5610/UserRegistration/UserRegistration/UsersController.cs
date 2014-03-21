@@ -10,27 +10,33 @@ namespace UserRegistration
 {
     public class UsersController : ApiController
     {
-        public List<User> GetAllUser()
+        public List<UserTO> GetAllUser()
         {
-            List<User> users = new List<User>();
-            User u1 = new User {username="user1", password="p1"};
-            User u2 = new User {username="user2", password="p2"};
-            User u3 = new User { username = "user3", password = "p3" };
-            users.Add(u1);
-            users.Add(u2);
-            users.Add(u3);
+            List<UserTO> users = new List<UserTO>();
+            using (var db = new UserRegistrationEntities1())
+            {
+                var query = from dev in db.Developers
+                            select dev;
+                foreach (var d in query)
+                {
+                    UserTO u = new UserTO();
+                    u.username = d.username;
+                    u.password = d.password;
+                    users.Add(u);
+                }
+            }
             return users;
         }
-        public User GetUser(int id)
+        public UserTO GetUser(int id)
         {
-            User u = new User { username = "user4", password = "p4" };
+            UserTO u = new UserTO {id=4, username = "user4", password = "p4" };
             return u;
         }
-        public string PostUser(User newUser)
+        public string PostUser(UserTO newUser)
         {
             return newUser.username;
         }
-        public string PutUser(User oldUser)
+        public string PutUser(UserTO oldUser)
         {
             return oldUser.username;
         }
