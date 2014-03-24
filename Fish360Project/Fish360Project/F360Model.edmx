@@ -16,6 +16,8 @@
           <Property Name="species" Type="varchar" MaxLength="50" />
           <Property Name="caughtDate" Type="datetime" />
           <Property Name="tripId" Type="int" />
+          <Property Name="notes" Type="varbinary" MaxLength="250" />
+          <Property Name="caughtTime" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Species">
           <Key>
@@ -32,6 +34,7 @@
           <Property Name="startDate" Type="datetime" />
           <Property Name="endDate" Type="datetime" />
           <Property Name="userId" Type="int" />
+          <Property Name="notes" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -115,6 +118,8 @@
           <Property Name="tripId" Type="Int32" />
           <NavigationProperty Name="Species1" Relationship="Self.FK__Fish__species__33D4B598" FromRole="Fish" ToRole="Species" />
           <NavigationProperty Name="Trips" Relationship="Self.FK_Fish_0" FromRole="Fish" ToRole="Trips" />
+          <Property Name="notes" Type="Binary" MaxLength="250" FixedLength="false" />
+          <Property Name="caughtTime" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Species">
           <Key>
@@ -134,6 +139,7 @@
           <Property Name="userId" Type="Int32" />
           <NavigationProperty Name="Fish" Relationship="Self.FK_Fish_0" FromRole="Trips" ToRole="Fish" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Trips__userId__2F10007B" FromRole="Trips" ToRole="Users" />
+          <Property Name="notes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -210,6 +216,8 @@
           <EntitySetMapping Name="Fish">
             <EntityTypeMapping TypeName="f360Model.Fish">
               <MappingFragment StoreEntitySet="Fish">
+                <ScalarProperty Name="caughtTime" ColumnName="caughtTime" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="weight" ColumnName="weight" />
@@ -230,6 +238,7 @@
           <EntitySetMapping Name="Trips">
             <EntityTypeMapping TypeName="f360Model.Trips">
               <MappingFragment StoreEntitySet="Trips">
+                <ScalarProperty Name="notes" ColumnName="notes" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="startDate" ColumnName="startDate" />

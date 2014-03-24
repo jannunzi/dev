@@ -37,7 +37,10 @@ namespace Fish360Project
                 fishTO.length = (double)fishDB.length;
                 fishTO.species = fishDB.species;
                 if (fishDB.caughtDate != null)
+                {
                     fishTO.caughtDate = ((DateTime)fishDB.caughtDate).ToString("yyyy-MM-dd");
+                    fishTO.caughtTime = ((DateTime)fishDB.caughtDate).TimeOfDay.ToString("HH:mm:ss tt");
+                }
                 return fishTO;
             }
         }
@@ -79,7 +82,8 @@ namespace Fish360Project
                 fishDB.species = fishTO.species;
                 fishDB.length = fishTO.length;
                 fishDB.weight = fishTO.weight;
-                fishDB.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                string date = fishTO.caughtDate + " " + fishTO.caughtTime;
+                fishDB.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
 
                 db.SaveChanges();
             }
@@ -96,7 +100,8 @@ namespace Fish360Project
                 fishDB.species = fishTO.species;
                 fishDB.length = fishTO.length;
                 fishDB.weight = fishTO.weight;
-                fishDB.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                string date = fishTO.caughtDate + " " + fishTO.caughtTime;
+                fishDB.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
                 fishDB.tripId = fishTO.tripId;
 
                 db.Fish.Add(fishDB);
@@ -129,7 +134,10 @@ namespace Fish360Project
                     fish.length = (double)f.length;
                     fish.species = f.species;
                     if (f.caughtDate != null)
+                    {
                         fish.caughtDate = ((DateTime)f.caughtDate).ToString("yyyy-MM-dd");
+                        fish.caughtTime = ((DateTime)f.caughtDate).TimeOfDay.ToString("HH:mm:ss tt");
+                    }
                     fishes.Add(fish);
                 }
 

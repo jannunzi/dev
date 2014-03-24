@@ -24,6 +24,7 @@ namespace Fish360Project
         public Nullable<System.DateTime> startDate { get; set; }
         public Nullable<System.DateTime> endDate { get; set; }
         public Nullable<int> userId { get; set; }
+        public string notes { get; set; }
     
         public virtual ICollection<Fish> Fish { get; set; }
         public virtual Users Users { get; set; }

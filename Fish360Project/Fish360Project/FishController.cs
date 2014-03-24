@@ -67,7 +67,7 @@ namespace Fish360Project
                     fish.weight = (double)fsh.weight;
                     fish.length = (double)fsh.length;
                     if (fsh.caughtDate != null)
-                        fish.caughtDate = ((DateTime)fsh.caughtDate).ToString("yyyy-MM-dd");
+                        fish.caughtDate = ((DateTime)fsh.caughtDate).ToString("yyyy-MM-dd HH:mm:ss tt");
                     fishes.Add(fish);
                 }
 
@@ -98,7 +98,7 @@ namespace Fish360Project
                     fish.weight = (double)fsh.weight;
                     fish.length = (double)fsh.length;
                     if (fsh.caughtDate != null)
-                        fish.caughtDate = ((DateTime)fsh.caughtDate).ToString("yyyy-MM-dd");
+                        fish.caughtDate = ((DateTime)fsh.caughtDate).ToString("yyyy-MM-dd HH:mm:ss tt");
                     fishes.Add(fish);
                 }
 
@@ -128,7 +128,7 @@ namespace Fish360Project
                 fishTO.weight = (double)fsh.weight;
                 fishTO.length = (double)fsh.length;
                 if (fsh.caughtDate != null)
-                    fishTO.caughtDate = ((DateTime)fsh.caughtDate).ToString("yyyy-MM-dd");
+                    fishTO.caughtDate = ((DateTime)fsh.caughtDate).ToString("yyyy-MM-dd HH:mm:ss tt");
 
                 return fishTO;
             }
@@ -146,7 +146,8 @@ namespace Fish360Project
                 newFish.species = fishTO.species;
                 newFish.length = fishTO.length;
                 newFish.weight = fishTO.weight;
-                newFish.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+//              newFish.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
+                newFish.caughtDate = DateTime.Parse(fishTO.caughtDate);//, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
                 newFish.tripId = (int)fishTO.tripId;
 
                 db.Fish.Add(newFish);
@@ -198,7 +199,7 @@ namespace Fish360Project
 
         private DateTime parseDateTimeExactFromString(string date)
         {
-            return DateTime.ParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            return DateTime.Parse(date);
         }
     }
 }

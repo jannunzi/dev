@@ -281,7 +281,21 @@
         }
 
         function renderTripDetails(trip) {
+            // jga
             trip = trip;
+
+            var startDate = trip.startDate.split(" ");
+            var endDate = trip.endDate.split(" ");
+
+            $("[name=endDate]").val(endDate[0]);//: "2016-02-03 03:04:00 AM"
+            $("[name=endTime]").val(endDate[1]);//: "2016-02-03 03:04:00 AM"
+            $("[name=startDate]").val(startDate[0]);//: "2016-02-03 03:04:00 AM"
+            $("[name=startTime]").val(startDate[1]);//: "2016-02-03 03:04:00 AM"
+            $("[name=id]").val(trip.id);//: 2
+            $("[name=name").val(trip.name);//"J1"
+            $("[name=notes").val(trip.notes);//: null
+            $("[name=userId").val(trip.userId);//: 0
+/*
             for (var key in trip) {
                 var selector = "[name=" + key + "]";
                 var val = trip[key];
@@ -289,6 +303,7 @@
                     continue;
                 $(selector).val(val);
             }
+            */
             showTripDetails();
         }
 
@@ -476,7 +491,11 @@
             var name = $("#f360-trip-name").val();
             var notes = $("#f360-trip-notes").val();
             var startDate = $("#f360-trip-start-date").val();
+            var startTime = $("#f360-trip-start-time").val();
+            startDate += "T" + startTime;// + ":00";
             var endDate = $("#f360-trip-end-date").val();
+            var endTime = $("#f360-trip-end-time").val();
+            endDate += "T" + endTime;// + ":00";
             var id = $("#f360-trip-nid").val();
 
             if (f360.state.currentView == "tripDetails") {
@@ -499,6 +518,7 @@
             var tripId = $("#f360-trip-nid").val();
             var name = $("#f360-fish-name").val();
             var date = $("#f360-fish-date").val();
+            var time = $("#f360-fish-time").val();
             var weight = $("#f360-fish-weight").val();
             var length = $("#f360-fish-length").val();
             var species = $("#f360-fish-species").val();
@@ -511,7 +531,7 @@
                 id: id,
                 tripId : tripId,
                 name: name,
-                caughtDate: date,
+                caughtDate: date + "T" + time+":00",
                 weight: weight,
                 length: length,
                 species: species,
@@ -570,6 +590,8 @@
 
             $("#f360-trip-start-date").val(f360.utils.dateToYYYYMMDD(now));
             $("#f360-trip-end-date").val(f360.utils.dateToYYYYMMDD(nowPlus3));
+            $("#f360-trip-start-time").val("12:00");
+            $("#f360-trip-end-time").val("12:00");
             showNewTrip();
 
             $('.f360-page.f360-trip .f360-delete').hide();
@@ -579,12 +601,9 @@
             $(".f360-page.f360-fish.f360-details input").val("").html("");
             var now = new Date();
             $("#f360-fish-date").val(f360.utils.dateToYYYYMMDD(now));
+            $("#f360-fish-time").val("12:00");
 
             showNewFish();
-
-//            showFishDetails();
-            // jga
-            $('.f360-page.f360-fish .f360-delete').hide();
         }
         function selectFishAction(event) {
 
@@ -592,9 +611,14 @@
 
             f360.services.fish.GetFishForId(fishId, function (fishTO) {
                 fishTO = fishTO;
+                var date = Date.parse(fishTO.caughtDate);
+                var dates = fishTO.caughtDate.split(" ");
+
+//                console.log(date);
                 $("#f360-fish-name").val(fishTO.name);
                 $("#f360-fish-id").val(fishTO.id);
-                $("#f360-fish-date").val(fishTO.caughtDate);
+                $("#f360-fish-date").val(dates[0]);// jga
+                $("#f360-fish-time").val(dates[1]);
                 $("#f360-fish-weight").val(fishTO.weight);
                 $("#f360-fish-length").val(fishTO.length);
                 $("#f360-fish-species").val(fishTO.species);
