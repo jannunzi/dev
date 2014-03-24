@@ -293,7 +293,7 @@
             $("[name=startTime]").val(startDate[1]);//: "2016-02-03 03:04:00 AM"
             $("[name=id]").val(trip.id);//: 2
             $("[name=name").val(trip.name);//"J1"
-            $("[name=notes").val(trip.notes);//: null
+            $("[name=tripNotes").val(trip.notes);//: null
             $("[name=userId").val(trip.userId);//: 0
 /*
             for (var key in trip) {
@@ -583,6 +583,7 @@
         }
         function addTripAction() {
             $("#f360-trip-name").val("");
+            $("#f360-trip-notes").val("");
 
             var now = new Date();
             var nowPlus3 = new Date();

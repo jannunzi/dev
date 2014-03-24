@@ -25,6 +25,7 @@ namespace Fish360Project
 
                 Trips newTrip = new Trips();
                 newTrip.name = tripTO.name;
+                newTrip.notes = tripTO.notes;
                 newTrip.startDate = DateTime.ParseExact(tripTO.startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
                 newTrip.endDate = DateTime.ParseExact(tripTO.endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
                 newTrip.userId = userTO.id;
@@ -57,6 +58,7 @@ namespace Fish360Project
                     return null;
 
                 tripDB.name = tripTO.name;
+                tripDB.notes = tripTO.notes;
                 tripDB.startDate = parseDateTimeExactFromString(tripTO.startDate);
                 tripDB.endDate = parseDateTimeExactFromString(tripTO.endDate);
                 db.SaveChanges();
@@ -107,6 +109,7 @@ namespace Fish360Project
                 
                 tripTO.id = query.id;
                 tripTO.name = query.name;
+                tripTO.notes = query.notes;
                 tripTO.startDate = ((DateTime)query.startDate).ToString("yyyy-MM-dd");
                 tripTO.endDate = ((DateTime)query.endDate).ToString("yyyy-MM-dd");
 
@@ -134,6 +137,7 @@ namespace Fish360Project
                     TripTO trip = new TripTO();
                     trip.id = t.id;
                     trip.name = t.name;
+                    trip.notes = t.notes;
                     if (t.startDate != null)
                         trip.startDate = ((DateTime)t.startDate).ToString("yyyy-MM-dd");
                     if (t.endDate != null)
@@ -188,6 +192,7 @@ namespace Fish360Project
                     TripTO trip = new TripTO();
                     trip.id = t.id;
                     trip.name = t.name;
+                    trip.notes = t.notes;
                     if (t.startDate != null)
                         trip.startDate = ((DateTime)t.startDate).ToString("yyyy-MM-dd");
                     if (t.endDate != null)

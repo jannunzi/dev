@@ -1,5 +1,5 @@
 ﻿var f360 = {
-    environment: "dev",
+    environment: "prod",
     fish: {
         template: {
             list: {

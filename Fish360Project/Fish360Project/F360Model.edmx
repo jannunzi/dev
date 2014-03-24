@@ -16,7 +16,7 @@
           <Property Name="species" Type="varchar" MaxLength="50" />
           <Property Name="caughtDate" Type="datetime" />
           <Property Name="tripId" Type="int" />
-          <Property Name="notes" Type="varbinary" MaxLength="250" />
+          <Property Name="notes" Type="varchar" MaxLength="1000" />
           <Property Name="caughtTime" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Species">
@@ -118,7 +118,7 @@
           <Property Name="tripId" Type="Int32" />
           <NavigationProperty Name="Species1" Relationship="Self.FK__Fish__species__33D4B598" FromRole="Fish" ToRole="Species" />
           <NavigationProperty Name="Trips" Relationship="Self.FK_Fish_0" FromRole="Fish" ToRole="Trips" />
-          <Property Name="notes" Type="Binary" MaxLength="250" FixedLength="false" />
+          <Property Name="notes" Type="String" />
           <Property Name="caughtTime" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Species">

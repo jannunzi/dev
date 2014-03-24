@@ -124,6 +124,7 @@ namespace Fish360Project
                 fishTO.id = fsh.id;
                 fishTO.name = fsh.name;
                 fishTO.species = fsh.species;
+                fishTO.notes = fsh.notes;
                 fishTO.tripId = (int)fsh.tripId;
                 fishTO.weight = (double)fsh.weight;
                 fishTO.length = (double)fsh.length;
@@ -146,7 +147,7 @@ namespace Fish360Project
                 newFish.species = fishTO.species;
                 newFish.length = fishTO.length;
                 newFish.weight = fishTO.weight;
-//              newFish.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
+                newFish.notes = fishTO.notes;
                 newFish.caughtDate = DateTime.Parse(fishTO.caughtDate);//, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
                 newFish.tripId = (int)fishTO.tripId;
 
@@ -167,8 +168,8 @@ namespace Fish360Project
                               select fish).FirstOrDefault();
 
                 fishDB.name = fishTO.name;
-//                fishDB.id = fishTO.id;
                 fishDB.weight = fishTO.weight;
+                fishDB.notes = fishTO.notes;
                 fishDB.length = fishTO.length;
                 fishDB.tripId = fishTO.tripId;
                 fishDB.species = fishTO.species;

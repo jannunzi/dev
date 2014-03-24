@@ -21,7 +21,7 @@ namespace Fish360Project
         public string species { get; set; }
         public Nullable<System.DateTime> caughtDate { get; set; }
         public Nullable<int> tripId { get; set; }
-        public byte[] notes { get; set; }
+        public string notes { get; set; }
         public Nullable<System.TimeSpan> caughtTime { get; set; }
     
         public virtual Species Species1 { get; set; }

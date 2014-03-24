@@ -27,7 +27,7 @@ namespace Fish360Project
                     TripTO trip = new TripTO();
                     trip.id = t.id;
                     trip.name = t.name;
-//                    trip.notes = t.notes;
+                    trip.notes = t.notes;
                     if (t.startDate != null)
                         trip.startDate = ((DateTime)t.startDate).ToString("yyyy-MM-dd HH:mm:ss tt");
                     if (t.endDate != null)
@@ -58,6 +58,7 @@ namespace Fish360Project
                     TripTO trip = new TripTO();
                     trip.id = t.id;
                     trip.name = t.name;
+                    trip.notes = t.notes;
                     if (t.startDate != null)
                         trip.startDate = ((DateTime)t.startDate).ToString("yyyy-MM-dd HH:mm:ss tt");
                     if (t.endDate != null)
@@ -87,6 +88,7 @@ namespace Fish360Project
                     TripTO trip = new TripTO();
                     trip.id = t.id;
                     trip.name = t.name;
+                    trip.notes = t.notes;
                     if (t.startDate != null)
                         trip.startDate = ((DateTime)t.startDate).ToString("yyyy-MM-dd HH:mm:ss tt");
                     if (t.endDate != null)
@@ -116,6 +118,7 @@ namespace Fish360Project
 
                 tripTO.id = query.id;
                 tripTO.name = query.name;
+                tripTO.notes = query.notes;
                 tripTO.startDate = ((DateTime)query.startDate).ToString("yyyy-MM-dd HH:mm:ss tt");
                 tripTO.endDate = ((DateTime)query.endDate).ToString("yyyy-MM-dd HH:mm:ss tt");
 
@@ -132,6 +135,7 @@ namespace Fish360Project
             {
                 Trips newTrip = new Trips();
                 newTrip.name = tripTO.name;
+                newTrip.notes = tripTO.notes;
                 newTrip.startDate = DateTime.Parse(tripTO.startDate);//, "yyyy-MM-dd", CultureInfo.InvariantCulture);
                 newTrip.endDate = DateTime.Parse(tripTO.endDate);//, "yyyy-MM-dd", CultureInfo.InvariantCulture);
                 newTrip.userId = tripTO.userId;
@@ -153,6 +157,7 @@ namespace Fish360Project
                               select trip).FirstOrDefault();
 
                 tripDB.name = tripTO.name;
+                tripDB.notes = tripTO.notes;
                 tripDB.startDate = parseDateTimeExactFromString(tripTO.startDate);
                 tripDB.endDate = parseDateTimeExactFromString(tripTO.endDate);
                 db.SaveChanges();

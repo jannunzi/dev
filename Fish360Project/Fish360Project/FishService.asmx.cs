@@ -36,6 +36,8 @@ namespace Fish360Project
                 fishTO.weight = (double)fishDB.weight;
                 fishTO.length = (double)fishDB.length;
                 fishTO.species = fishDB.species;
+//                fishTO.notes = System.Text.Encoding.UTF8.GetString(fishDB.notes);
+                fishTO.notes = fishDB.notes;
                 if (fishDB.caughtDate != null)
                 {
                     fishTO.caughtDate = ((DateTime)fishDB.caughtDate).ToString("yyyy-MM-dd");
@@ -82,6 +84,7 @@ namespace Fish360Project
                 fishDB.species = fishTO.species;
                 fishDB.length = fishTO.length;
                 fishDB.weight = fishTO.weight;
+                fishDB.notes = fishTO.notes;
                 string date = fishTO.caughtDate + " " + fishTO.caughtTime;
                 fishDB.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
 
@@ -100,6 +103,7 @@ namespace Fish360Project
                 fishDB.species = fishTO.species;
                 fishDB.length = fishTO.length;
                 fishDB.weight = fishTO.weight;
+                fishDB.notes = fishTO.notes;
                 string date = fishTO.caughtDate + " " + fishTO.caughtTime;
                 fishDB.caughtDate = DateTime.ParseExact(fishTO.caughtDate, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
                 fishDB.tripId = fishTO.tripId;
@@ -130,6 +134,7 @@ namespace Fish360Project
                     fish.id = f.id;
                     fish.tripId = (int)f.tripId;
                     fish.name = f.name;
+                    fish.notes = f.notes;
                     fish.weight = (double)f.weight;
                     fish.length = (double)f.length;
                     fish.species = f.species;
@@ -145,6 +150,19 @@ namespace Fish360Project
             }
         }
 
+        static byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
+        static string GetString(byte[] bytes)
+        {
+            char[] chars = new char[bytes.Length / sizeof(char)];
+            System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+            return new string(chars);
+        }
         [WebMethod]
         public string HelloWorld()
         {

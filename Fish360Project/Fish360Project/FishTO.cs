@@ -14,6 +14,7 @@ namespace Fish360Project
         public string species { set; get; }
         public string caughtDate { set; get; }
         public string caughtTime { set; get; }
+        public string notes { set; get; }
         public int tripId { set; get; }
 
         public FishTO() { }
