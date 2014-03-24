@@ -12,18 +12,18 @@ namespace Wam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Application
+    public partial class FormElementChoice
     {
-        public Application()
-        {
-            this.Pages = new HashSet<Page>();
-        }
-    
         public int Id { get; set; }
         public string name { get; set; }
-        public Nullable<int> userId { get; set; }
+        public string value { get; set; }
+        public string defaultValue { get; set; }
+        public string dataType { get; set; }
+        public Nullable<int> formElementId { get; set; }
+        public string label { get; set; }
+        public string placeholder { get; set; }
+        public Nullable<int> order { get; set; }
     
-        public virtual Developer Developer { get; set; }
-        public virtual ICollection<Page> Pages { get; set; }
+        public virtual FormElement FormElement { get; set; }
     }
 }

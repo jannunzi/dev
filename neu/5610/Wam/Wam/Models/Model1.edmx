@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WamAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WamAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Application">
           <Key>
             <PropertyRef Name="Id" />
@@ -21,6 +21,63 @@
           <Property Name="username" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="FormElement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="defaultValue" Type="varchar" MaxLength="50" />
+          <Property Name="dataType" Type="varchar" MaxLength="50" />
+          <Property Name="formId" Type="int" />
+          <Property Name="label" Type="varchar" MaxLength="50" />
+          <Property Name="title" Type="varchar" MaxLength="50" />
+          <Property Name="placeholder" Type="varchar" MaxLength="50" />
+          <Property Name="order" Type="int" />
+        </EntityType>
+        <EntityType Name="FormElementChoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="defaultValue" Type="varchar" MaxLength="50" />
+          <Property Name="dataType" Type="varchar" MaxLength="50" />
+          <Property Name="formElementId" Type="int" />
+          <Property Name="label" Type="varchar" MaxLength="50" />
+          <Property Name="placeholder" Type="varchar" MaxLength="50" />
+          <Property Name="order" Type="int" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="applicationId" Type="int" />
+        </EntityType>
+        <EntityType Name="Widget">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="pageId" Type="int" />
+          <Property Name="widgetType" Type="varchar" MaxLength="50" />
+          <Property Name="url" Type="varchar" MaxLength="50" />
+          <Property Name="href" Type="varchar" MaxLength="50" />
+          <Property Name="src" Type="varchar" MaxLength="50" />
+          <Property Name="html" Type="varchar" MaxLength="50" />
+          <Property Name="style" Type="varchar" MaxLength="50" />
+          <Property Name="cssClass" Type="varchar" MaxLength="50" />
+          <Property Name="width" Type="int" />
+          <Property Name="height" Type="int" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="order" Type="int" />
+        </EntityType>
         <Association Name="FK__Applicati__userI__173876EA">
           <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
           <End Role="Application" Type="Self.Application" Multiplicity="*" />
@@ -33,16 +90,83 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__FormEleme__formE__300424B4">
+          <End Role="FormElement" Type="Self.FormElement" Multiplicity="0..1" />
+          <End Role="FormElementChoices" Type="Self.FormElementChoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormElement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormElementChoices">
+              <PropertyRef Name="formElementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FormEleme__formI__2F10007B">
+          <End Role="Widget" Type="Self.Widget" Multiplicity="0..1" />
+          <End Role="FormElement" Type="Self.FormElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Widget">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormElement">
+              <PropertyRef Name="formId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Page__applicatio__239E4DCF">
+          <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="Page" Type="Self.Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Page">
+              <PropertyRef Name="applicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Widget__pageId__267ABA7A">
+          <End Role="Page" Type="Self.Page" Multiplicity="0..1" />
+          <End Role="Widget" Type="Self.Widget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Widget">
+              <PropertyRef Name="pageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="WamAppModelStoreContainer">
           <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Developer" EntityType="Self.Developer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormElement" EntityType="Self.FormElement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormElementChoices" EntityType="Self.FormElementChoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Widget" EntityType="Self.Widget" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Applicati__userI__173876EA" Association="Self.FK__Applicati__userI__173876EA">
             <End Role="Developer" EntitySet="Developer" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
+          <AssociationSet Name="FK__FormEleme__formE__300424B4" Association="Self.FK__FormEleme__formE__300424B4">
+            <End Role="FormElement" EntitySet="FormElement" />
+            <End Role="FormElementChoices" EntitySet="FormElementChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FormEleme__formI__2F10007B" Association="Self.FK__FormEleme__formI__2F10007B">
+            <End Role="Widget" EntitySet="Widget" />
+            <End Role="FormElement" EntitySet="FormElement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Page__applicatio__239E4DCF" Association="Self.FK__Page__applicatio__239E4DCF">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Page" EntitySet="Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Widget__pageId__267ABA7A" Association="Self.FK__Widget__pageId__267ABA7A">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="Widget" EntitySet="Widget" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WamAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -54,6 +178,7 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="userId" Type="Int32" />
           <NavigationProperty Name="Developer" Relationship="Self.FK__Applicati__userI__173876EA" FromRole="Application" ToRole="Developer" />
+          <NavigationProperty Name="Pages" Relationship="WamAppModel.FK__Page__applicatio__239E4DCF" FromRole="Application" ToRole="Page" />
         </EntityType>
         <EntityType Name="Developer">
           <Key>
@@ -83,7 +208,139 @@
             <End Role="Developer" EntitySet="Developers" />
             <End Role="Application" EntitySet="Applications" />
           </AssociationSet>
+          <EntitySet Name="Pages" EntityType="WamAppModel.Page" />
+          <AssociationSet Name="FK__Page__applicatio__239E4DCF" Association="WamAppModel.FK__Page__applicatio__239E4DCF">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Page" EntitySet="Pages" />
+          </AssociationSet>
+          <EntitySet Name="Widgets" EntityType="WamAppModel.Widget" />
+          <AssociationSet Name="FK__Widget__pageId__267ABA7A" Association="WamAppModel.FK__Widget__pageId__267ABA7A">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="Widget" EntitySet="Widgets" />
+          </AssociationSet>
+          <EntitySet Name="FormElements" EntityType="WamAppModel.FormElement" />
+          <EntitySet Name="FormElementChoices" EntityType="WamAppModel.FormElementChoice" />
+          <AssociationSet Name="FK__FormEleme__formE__300424B4" Association="WamAppModel.FK__FormEleme__formE__300424B4">
+            <End Role="FormElement" EntitySet="FormElements" />
+            <End Role="FormElementChoice" EntitySet="FormElementChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FormEleme__formI__2F10007B" Association="WamAppModel.FK__FormEleme__formI__2F10007B">
+            <End Role="Widget" EntitySet="Widgets" />
+            <End Role="FormElement" EntitySet="FormElements" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="applicationId" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="WamAppModel.FK__Page__applicatio__239E4DCF" FromRole="Page" ToRole="Application" />
+          <NavigationProperty Name="Widgets" Relationship="WamAppModel.FK__Widget__pageId__267ABA7A" FromRole="Page" ToRole="Widget" />
+        </EntityType>
+        <Association Name="FK__Page__applicatio__239E4DCF">
+          <End Type="WamAppModel.Application" Role="Application" Multiplicity="0..1" />
+          <End Type="WamAppModel.Page" Role="Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Page">
+              <PropertyRef Name="applicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Widget">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pageId" Type="Int32" />
+          <NavigationProperty Name="Page" Relationship="WamAppModel.FK__Widget__pageId__267ABA7A" FromRole="Widget" ToRole="Page" />
+          <Property Name="widgetType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="href" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="src" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="html" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="style" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cssClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="width" Type="Int32" />
+          <Property Name="height" Type="Int32" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FormElements" Relationship="WamAppModel.FK__FormEleme__formI__2F10007B" FromRole="Widget" ToRole="FormElement" />
+          <Property Name="order" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__Widget__pageId__267ABA7A">
+          <End Type="WamAppModel.Page" Role="Page" Multiplicity="0..1" />
+          <End Type="WamAppModel.Widget" Role="Widget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Widget">
+              <PropertyRef Name="pageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormElement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="defaultValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="formId" Type="Int32" />
+          <Property Name="label" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="placeholder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FormElementChoices" Relationship="WamAppModel.FK__FormEleme__formE__300424B4" FromRole="FormElement" ToRole="FormElementChoice" />
+          <NavigationProperty Name="Widget" Relationship="WamAppModel.FK__FormEleme__formI__2F10007B" FromRole="FormElement" ToRole="Widget" />
+          <Property Name="order" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FormElementChoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="defaultValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="formElementId" Type="Int32" />
+          <Property Name="label" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="placeholder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FormElement" Relationship="WamAppModel.FK__FormEleme__formE__300424B4" FromRole="FormElementChoice" ToRole="FormElement" />
+          <Property Name="order" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__FormEleme__formE__300424B4">
+          <End Type="WamAppModel.FormElement" Role="FormElement" Multiplicity="0..1" />
+          <End Type="WamAppModel.FormElementChoice" Role="FormElementChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormElement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormElementChoice">
+              <PropertyRef Name="formElementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FormEleme__formI__2F10007B">
+          <End Type="WamAppModel.Widget" Role="Widget" Multiplicity="0..1" />
+          <End Type="WamAppModel.FormElement" Role="FormElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Widget">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormElement">
+              <PropertyRef Name="formId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -105,6 +362,67 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="WamAppModel.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Widgets">
+            <EntityTypeMapping TypeName="WamAppModel.Widget">
+              <MappingFragment StoreEntitySet="Widget">
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="cssClass" ColumnName="cssClass" />
+                <ScalarProperty Name="style" ColumnName="style" />
+                <ScalarProperty Name="html" ColumnName="html" />
+                <ScalarProperty Name="src" ColumnName="src" />
+                <ScalarProperty Name="href" ColumnName="href" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="widgetType" ColumnName="widgetType" />
+                <ScalarProperty Name="pageId" ColumnName="pageId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormElements">
+            <EntityTypeMapping TypeName="WamAppModel.FormElement">
+              <MappingFragment StoreEntitySet="FormElement">
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="placeholder" ColumnName="placeholder" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="label" ColumnName="label" />
+                <ScalarProperty Name="formId" ColumnName="formId" />
+                <ScalarProperty Name="dataType" ColumnName="dataType" />
+                <ScalarProperty Name="defaultValue" ColumnName="defaultValue" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormElementChoices">
+            <EntityTypeMapping TypeName="WamAppModel.FormElementChoice">
+              <MappingFragment StoreEntitySet="FormElementChoices">
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="placeholder" ColumnName="placeholder" />
+                <ScalarProperty Name="label" ColumnName="label" />
+                <ScalarProperty Name="formElementId" ColumnName="formElementId" />
+                <ScalarProperty Name="dataType" ColumnName="dataType" />
+                <ScalarProperty Name="defaultValue" ColumnName="defaultValue" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

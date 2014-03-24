@@ -4,10 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4597f257a4814ce9972f01a76f69422f" Name="Diagram1">
+      <Diagram DiagramId="4597f257a4814ce9972f01a76f69422f" Name="Diagram1" ZoomLevel="108">
         <EntityTypeShape EntityType="WamAppModel.Application" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WamAppModel.Developer" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="WamAppModel.FK__Applicati__userI__173876EA" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WamAppModel.Page" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="WamAppModel.FK__Page__applicatio__239E4DCF" />
+        <EntityTypeShape EntityType="WamAppModel.Widget" Width="1.5" PointX="7.5" PointY="1.125" />
+        <AssociationConnector Association="WamAppModel.FK__Widget__pageId__267ABA7A" />
+        <EntityTypeShape EntityType="WamAppModel.FormElement" Width="1.5" PointX="9.75" PointY="1.375" />
+        <EntityTypeShape EntityType="WamAppModel.FormElementChoice" Width="1.875" PointX="12" PointY="1.75" />
+        <AssociationConnector Association="WamAppModel.FK__FormEleme__formE__300424B4" />
+        <AssociationConnector Association="WamAppModel.FK__FormEleme__formI__2F10007B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

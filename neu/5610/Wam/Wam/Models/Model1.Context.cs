@@ -27,5 +27,9 @@ namespace Wam.Models
     
         public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<Developer> Developers { get; set; }
+        public virtual DbSet<Page> Pages { get; set; }
+        public virtual DbSet<Widget> Widgets { get; set; }
+        public virtual DbSet<FormElement> FormElements { get; set; }
+        public virtual DbSet<FormElementChoice> FormElementChoices { get; set; }
     }
 }

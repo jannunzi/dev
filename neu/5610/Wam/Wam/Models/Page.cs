@@ -12,18 +12,18 @@ namespace Wam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Application
+    public partial class Page
     {
-        public Application()
+        public Page()
         {
-            this.Pages = new HashSet<Page>();
+            this.Widgets = new HashSet<Widget>();
         }
     
         public int Id { get; set; }
         public string name { get; set; }
-        public Nullable<int> userId { get; set; }
+        public Nullable<int> applicationId { get; set; }
     
-        public virtual Developer Developer { get; set; }
-        public virtual ICollection<Page> Pages { get; set; }
+        public virtual Application Application { get; set; }
+        public virtual ICollection<Widget> Widgets { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using Wam.Models;
 
 namespace Wam.Account
 {
-    public partial class Register : Page
+    public partial class Register : System.Web.UI.Page
     {
         protected void CreateUser_Click(object sender, EventArgs e)
         {

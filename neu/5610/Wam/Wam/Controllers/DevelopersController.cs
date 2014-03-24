@@ -68,6 +68,21 @@ namespace Wam.Controllers
             return d5;
         }
 
+        public DeveloperTO GetDeveloperByUsernameAndPassword(string username, string password)
+        {
+            DeveloperTO d5 = null;
+
+            using (var db = new WamAppEntities1())
+            {
+                var devs = from d in db.Developers where d.username == username && d.password == password select d;
+                Developer dd = devs.FirstOrDefault();
+                if (dd != null)
+                    d5 = new DeveloperTO { id = dd.Id, password = dd.password, username = dd.username };
+            }
+
+            return d5;
+        }
+
         // POST api/<controller>
         public string PostDeveloper(DeveloperTO developer)
         {

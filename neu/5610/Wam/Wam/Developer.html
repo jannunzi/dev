@@ -3,107 +3,188 @@
 <head>
     <link href="../Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <script src="../Scripts/jquery.js"></script>
+    <script src="../Scripts/jquery-ui.js"></script>
     <title></title>
+    <style>
+        .title {
+            background-color: #428bca;
+            margin: 0px;
+            color: white;
+            padding: 10px;
+            font-size: 24px;
+        }
+        .no-margin {
+            margin:0px;
+        }
+        .center {
+            text-align: center;
+        }
+        .right {
+            float: right;
+        }
+        .left {
+            float: left;
+        }
+        .main.header .left.action,
+        .main.header .right.action
+        {
+            display: none;
+        }
+
+        .page {
+            display: none;
+        }
+        .login.page {
+            display: block;
+        }
+
+        .list {
+            padding: 0px;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        .list .item {
+            border-bottom: 1px solid beige;
+            padding: 10px;
+            cursor: pointer;
+            list-style:none;
+        }
+
+        .list .item:hover{
+            background-color: #dde4e6;
+        }
+
+    </style>
 </head>
 <body>
+    <div class="main header">
+        <button class="btn left back action">Left</button>
+        <button class="btn right forward action">Right</button>
+        <h1 class="container no-margin center title">Login</h1>
+    </div>
+    <br />
     <div class="container">
-        <div class="row">
+        <div class="row login page">
             <div class="col-xs-12">
-                <input class="username form-control" placeholder="Username" />
-                <input class="password form-control" placeholder="Password" type="password"/>
-                <button class="btn btn-primary btn-block login">Login</button>
+                <input class="username form-control" placeholder="Username" value="user1" />
+                <br/>
+                <input class="password form-control" placeholder="Password" type="password" value="p1"/>
+                <br />
+                <button class="btn btn-primary btn-block login action">Login</button>
+                <br />
+                <button class="btn btn-primary btn-block register navigate">Register</button>
+                <br />
                 <span class="message"></span>
             </div>
         </div>
+        <div class="row register page">
+            <div class="col-xs-12">
+                <input class="username form-control fld" placeholder="Username" />
+                <br />
+                <input class="password form-control fld" placeholder="Password" type="password" />
+                <br />
+                <input class="password2 form-control fld" placeholder="Validate Password" type="password" />
+                <br />
+                <button class="btn btn-primary btn-block register">Register</button>
+                <br />
+                <button class="btn btn-primary btn-block cancel">Cancel</button>
+                <br/>
+                <span class="message"></span>
+            </div>
+        </div>
+        <div class="row profile page">
+            <div class="col-xs-12">
+                <button class="applications btn btn-primary btn-block">Applications</button>
+            </div>
+        </div>
+        <div class="row applications page">
+            <div class="col-xs-12">
+                <button class="add btn btn-primary btn-block">Add</button>
+                <br />
+                <ul class="application list">
+                    <li class="item">
+                        <span class="name">Application 1</span>
+                        <span class="pull-right">&#9654;</span>
+                    </li>
+                    <li class="item">
+                        <span class="name">Application 2</span>
+                        <span class="pull-right">&#9654;</span>
+                    </li>
+                    <li class="item">
+                        <span class="name">Application 3</span>
+                        <span class="pull-right">&#9654;</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row application details page applicationDetails">
+            <div class="col-xs-12">
+                <button class="pages btn btn-primary btn-block">Pages</button>
+                <button class="data btn btn-primary btn-block">Data</button>
+                <button class="scripts btn btn-primary btn-block">Scripts</button>
+            </div>
+        </div>
+        <div class="row pages page">
+            <div class="col-xs-12">
+                <button class="add btn btn-primary btn-block">Add</button>
+                <br />
+                <ul class="list">
+                    <li class="item">
+                        <span class="name">Page 1</span>
+                        <span class="pull-right">&#9654;</span>
+                    </li>
+                    <li class="item">
+                        <span class="name">Page 2</span>
+                        <span class="pull-right">&#9654;</span>
+                    </li>
+                    <li class="item">
+                        <span class="name">page 3</span>
+                        <span class="pull-right">&#9654;</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row details page pageDetails">
+            <div class="col-xs-12">
+                <button class="widgets btn btn-primary btn-block">Widgets</button>
+            </div>
+        </div>
+        <div class="row widgets page">
+            <div class="col-xs-12">
+                <ul class="list">
+                    <li class="item TEXT">
+                        <input type="text" class="form-control" name="input-text-1" />
+                    </li>
+                    <li class="item TEXTAREA">
+                        <textarea class="form-control" name="textarea-1"></textarea>
+                    </li>
+                    <li class="item BUTTON">
+                        <button class="btn btn-primary btn-block" name="button-1">Button</button>
+                    </li>
+                    <li class="item LABEL">
+                        <label>Label</label>
+                    </li>
+                    <li class="item SELECT">
+                        <select class="form-control" name="select-1">
+                            <option value="val1">Value 1</option>
+                            <option value="val2">Value 2</option>
+                            <option value="val3">Value 3</option>
+                        </select>
+                    </li>
+                </ul>
+                <button class="add btn btn-primary btn-block">Add</button>
+            </div>
+        </div>
     </div>
-    <script>
-        $(function () {
-            $(".login").click(loginAction);
-        });
-
-        var wam = {
-            currentUser : null
-        };
-        function loginAction() {
-            var username = $(".username").val();
-            getDeveloperByUsername(username, function (response) {
-                if (response == null) {
-                    wam.currentUser = null;
-                    $(".message").html("Sorry that username does not exist");
-                } else {
-                    wam.currentUser = response;
-                    console.log(wam);
-                    $(".message").html("Welcome " + response.username);
-                }
-            });
-        }
-
-        function getDeveloperByUsername(username, callback) {
-            $.ajax({
-                url: "/api/developers?username=" + username,
-                dataType: "json",
-                success: function (response) {
-                    if (typeof callback == "function") {
-                        callback(response);
-                    }
-                }
-            });
-        }
-
-        function deleteDeveloper(id) {
-            $.ajax({
-                url: "/api/developers/" + id,
-                type: "delete",
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                }
-            })
-        }
-
-        function putDeveloper(id, developerTO) {
-            $.ajax({
-                url: "/api/developers/"+id,
-                type: "put",
-                dataType: "json",
-                data: developerTO,
-                success: function (response) {
-                    console.log(response);
-                }
-            })
-        }
-
-        function postDeveloper(developerTO) {
-            $.ajax({
-                url: "/api/developers",
-                type:"post",
-                dataType: "json",
-                data: developerTO,
-                success: function (response) {
-                    console.log(response);
-                }
-            })
-        }
-
-        function getDeveloper(usernameId) {
-            $.ajax({
-                url: "/api/developers/" + usernameId,
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                }
-            })
-        }
-
-        function getAllDevelopers() {
-            $.ajax({
-                url: "/api/developers",
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                }
-            })
-        }
-    </script>
+    <script src="../Scripts/wam.js"></script>
+    <!--script src="../Scripts/wam-services.js"></script-->
+    <script src="../Scripts/wam-login.js"></script>
+    <script src="../Scripts/wam-register.js"></script>
+    <script src="../Scripts/wam-profile.js"></script>
+    <script src="../Scripts/wam-applications.js"></script>
+    <script src="../Scripts/wam-application-details.js"></script>
+    <script src="../Scripts/wam-pages.js"></script>
+    <script src="../Scripts/wam-page-details.js"></script>
+    <script src="../Scripts/wam-widgets.js"></script>
 </body>
 </html>
