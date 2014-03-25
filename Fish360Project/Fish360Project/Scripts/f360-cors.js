@@ -3,7 +3,7 @@
     fish: {
         template: {
             list: {
-                container: {
+                container: { 
                     selector: ".f360-page.f360-fish.f360-list ul.f360-list",
                     dom: null
                 },
