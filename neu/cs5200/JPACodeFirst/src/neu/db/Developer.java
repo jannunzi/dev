@@ -22,7 +22,6 @@ public class Developer implements Serializable {
 	private String username;
 	private String password;
 	private List<Application> applications = new ArrayList<Application>();
-	private List<Developer> follows = new ArrayList<Developer>();
 	private List<Review> reviews = new ArrayList<Review>();
 	
 	private static final long serialVersionUID = 1L;
@@ -57,17 +56,10 @@ public class Developer implements Serializable {
 	public void setApplications(List<Application> applications) {
 		this.applications = applications;
 	}
-	public List<Developer> getFollows() {
-		return follows;
-	}
-	public void setFollows(List<Developer> follows) {
-		this.follows = follows;
-	}
 	public List<Review> getReviews() {
 		return reviews;
 	}
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-   
 }

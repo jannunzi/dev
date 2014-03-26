@@ -18,6 +18,7 @@ public class Review implements Serializable {
 	private int id;
 	private String comment;
 	private int stars;
+	private Developer reviewedBy;
 	private Application application;
 	private static final long serialVersionUID = 1L;
 
@@ -50,6 +51,12 @@ public class Review implements Serializable {
 	}
 	public void setApplication(Application application) {
 		this.application = application;
+	}
+	public Developer getReviewedBy() {
+		return reviewedBy;
+	}
+	public void setReviewedBy(Developer reviewedBy) {
+		this.reviewedBy = reviewedBy;
 	}
    
 }

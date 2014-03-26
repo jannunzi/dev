@@ -120,9 +120,9 @@ public class Dao {
 
 		Dao dao = new Dao();
 
+		/*
 		Html h2 = dao.getHtmlWidget(2);
 		
-		/*
 		Html h1 = new Html();
 		h1.setName("You Tube 1");
 		h1.setHeight(100);
@@ -166,6 +166,7 @@ public class Dao {
 		alice.setUsername("alice");
 		alice.setPassword("p1");
 		dao.createDeveloper(alice);
+		
 		Developer bob = new Developer();
 		bob.setUsername("bob");
 		bob.setPassword("p2");
@@ -173,12 +174,13 @@ public class Dao {
 		twitter.setName("Twitter");
 		dao.createDeveloperAndApplication(bob, twitter);
 		dao.addApplicationToDeveloper(1, 2);
-
-		List<Application> apps = dao.getDevelopersApplications(1);
+*/
+		List<Application> apps = dao.getDevelopersApplications(2);
+		System.out.println(apps);
 		for(Application app:apps){
 			System.out.println(app.getName());
 		}
-		*/
+		//*/
 	}
 
 }

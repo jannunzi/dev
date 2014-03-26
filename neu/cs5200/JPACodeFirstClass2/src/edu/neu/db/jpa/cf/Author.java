@@ -1,4 +1,4 @@
-package neu.db;
+package edu.neu.db.jpa.cf;
 
 import java.io.Serializable;
 import java.lang.String;
@@ -7,24 +7,23 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Application
+ * Entity implementation class for Entity: Author
  *
  */
 @Entity
 
-public class Application implements Serializable {
+public class Author implements Serializable {
 
 	   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private Developer developer;
+	private List<Book> books;
 	private List<Review> reviews;
-	
 	private static final long serialVersionUID = 1L;
 
-	public Application() {
+	public Author() {
 		super();
 	}   
 	public int getId() {
@@ -41,11 +40,11 @@ public class Application implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Developer getDeveloper() {
-		return developer;
+	public List<Book> getBooks() {
+		return books;
 	}
-	public void setDeveloper(Developer developer) {
-		this.developer = developer;
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 	public List<Review> getReviews() {
 		return reviews;
@@ -53,5 +52,4 @@ public class Application implements Serializable {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-   
 }
