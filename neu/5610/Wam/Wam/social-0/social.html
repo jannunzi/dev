@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="social.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery.js"></script>
+    <script src="../Scripts/jquery-ui.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="main header">
+        <button class="btn left back action">Left</button>
+        <button class="btn right forward action">Right</button>
+        <h1 class="container no-margin center title">Login</h1>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row login page">
+            <div class="col-xs-12">
+                <input class="username form-control" placeholder="Username" value="user1" />
+                <br/>
+                <input class="password form-control" placeholder="Password" type="password" value="p1"/>
+                <br />
+                <button class="btn btn-primary btn-block login action">Login</button>
+                <br />
+                <button class="btn btn-primary btn-block register navigate">Register</button>
+                <br />
+                <span class="message"></span>
+            </div>
+        </div>
+        <div class="row register page">
+            <div class="col-xs-12">
+                <input class="username form-control fld" placeholder="Username" />
+                <br />
+                <input class="password form-control fld" placeholder="Password" type="password" />
+                <br />
+                <input class="password2 form-control fld" placeholder="Validate Password" type="password" />
+                <br />
+                <button class="btn btn-primary btn-block register">Register</button>
+                <br />
+                <button class="btn btn-primary btn-block cancel">Cancel</button>
+                <br/>
+                <span class="message"></span>
+            </div>
+        </div>
+        <div class="row profile page">
+            <div class="col-xs-12">
+                <input class="firstName form-control" placeholder="First Name"/>
+                <input class="lastName form-control" placeholder="Last Name" />
+                <input class="search field form-control" placeholder="Search" value="The Hobbit"/>
+                <button class="btn btn-primary btn-block search action">Search</button>
+                <ul class="results">
+                    <li class="movie">
+                        <img height="100" src="#" />
+                        <a class="likes" href="#">Like</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="social.js"></script>
+    <script src="social-register.js"></script>
+    <script src="social-login.js"></script>
+    <script src="social-profile.js"></script>
+</body>
+</html>
