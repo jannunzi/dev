@@ -1,4 +1,4 @@
-package edu.neu.db.jpa.cf;
+package edu.neu.db.jpa.codefirst;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

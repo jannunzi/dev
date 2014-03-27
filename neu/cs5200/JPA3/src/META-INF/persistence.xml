@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="JPACodeFirstClass2">
+	<persistence-unit name="JPA3">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>edu.neu.db.jpa.codefirst.Author</class>
-		<class>edu.neu.db.jpa.codefirst.Book</class>
-		<class>edu.neu.db.jpa.codefirst.Review</class>
+		<class>edu.neu.db.jpa.books.Author</class>
+		<class>edu.neu.db.jpa.books.Book</class>
+		<class>edu.neu.db.jpa.books.Likes</class>
 		<properties>
 			<property name="eclipselink.jdbc.password" value=""/>
 			<property name="eclipselink.jdbc.user" value="root"/>
 			<property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost/JPACodeFirstClass2"/>
+			<property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost/jpa3"/>
 			<!-- property name="eclipselink.ddl-generation" value="drop-and-create-tables"/-->
-			<property name="eclipselink.logging.level" value="ALL"/>
+			<property name="eclipselink.logging.level" value="OFF"/>
 		</properties>
 	</persistence-unit>
 </persistence>

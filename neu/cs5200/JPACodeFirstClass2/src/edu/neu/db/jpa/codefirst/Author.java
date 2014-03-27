@@ -1,4 +1,4 @@
-package edu.neu.db.jpa.cf;
+package edu.neu.db.jpa.codefirst;
 
 import java.io.Serializable;
 import java.lang.String;

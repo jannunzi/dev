@@ -1,4 +1,4 @@
-package edu.neu.db.jpa.cf;
+package edu.neu.db.jpa.codefirst;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,12 +95,13 @@ public class BooksDao {
 	public static void main(String[] args) {
 		BooksDao dao = new BooksDao();
 
+		/*
 		Review review = new Review();
 		review.setComments("Awesome Book");
 		review.setStars(5);
 		
 		dao.authorReviewsBook(1, 1, review);	
-		
+		*/
 		
 		
 		List<Book> books = dao.getBooksForAuthor(1);
