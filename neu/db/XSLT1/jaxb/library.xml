@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<library>
+    <book>
+        <author>Author1</author>
+        <date>2014-03-27T16:11:07.633-04:00</date>
+        <genre>Genre1</genre>
+        <price>12.23</price>
+        <publisher>Publisher1</publisher>
+        <title>Book1</title>
+    </book>
+    <book>
+        <author>Author2</author>
+        <date>2014-03-27T16:11:07.633-04:00</date>
+        <genre>Genre2</genre>
+        <price>12.23</price>
+        <publisher>Publisher2</publisher>
+        <title>Book2</title>
+    </book>
+    <book>
+        <author>Author3</author>
+        <date>2014-03-27T16:11:07.633-04:00</date>
+        <genre>Genre3</genre>
+        <price>12.23</price>
+        <publisher>Publisher3</publisher>
+        <title>Book3</title>
+    </book>
+    <book>
+        <author>Author4</author>
+        <date>2014-03-27T16:11:07.633-04:00</date>
+        <genre>Genre4</genre>
+        <price>12.23</price>
+        <publisher>Publisher4</publisher>
+        <title>Book4</title>
+    </book>
+</library>
