@@ -68,6 +68,14 @@ namespace Fish360Project
                     fish.length = (double)fsh.length;
                     if (fsh.caughtDate != null)
                         fish.caughtDate = ((DateTime)fsh.caughtDate).ToString("yyyy-MM-dd HH:mm:ss tt");
+
+                    fish.girth = fsh.girth;
+                    fish.spot = fsh.spot;
+                    fish.presentation = fsh.presentation;
+                    fish.depth = fsh.depth;
+                    fish.clarity = fsh.clarity;
+                    fish.temperature = fsh.temperature;
+
                     fishes.Add(fish);
                 }
 
@@ -99,6 +107,14 @@ namespace Fish360Project
                     fish.length = (double)fsh.length;
                     if (fsh.caughtDate != null)
                         fish.caughtDate = ((DateTime)fsh.caughtDate).ToString("yyyy-MM-dd HH:mm:ss tt");
+                    
+                    fish.girth = fsh.girth;
+                    fish.spot = fsh.spot;
+                    fish.presentation = fsh.presentation;
+                    fish.depth = fsh.depth;
+                    fish.clarity = fsh.clarity;
+                    fish.temperature = fsh.temperature;
+
                     fishes.Add(fish);
                 }
 
@@ -128,6 +144,14 @@ namespace Fish360Project
                 fishTO.tripId = (int)fsh.tripId;
                 fishTO.weight = (double)fsh.weight;
                 fishTO.length = (double)fsh.length;
+
+                fishTO.girth = fsh.girth;
+                fishTO.spot = fsh.spot;
+                fishTO.presentation = fsh.presentation;
+                fishTO.depth = fsh.depth;
+                fishTO.clarity = fsh.clarity;
+                fishTO.temperature = fsh.temperature;
+                
                 if (fsh.caughtDate != null)
                     fishTO.caughtDate = ((DateTime)fsh.caughtDate).ToString("yyyy-MM-dd HH:mm:ss tt");
 
@@ -151,6 +175,13 @@ namespace Fish360Project
                 newFish.caughtDate = DateTime.Parse(fishTO.caughtDate);//, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
                 newFish.tripId = (int)fishTO.tripId;
 
+                newFish.girth = fishTO.girth;
+                newFish.spot = fishTO.spot;
+                newFish.presentation = fishTO.presentation;
+                newFish.depth = fishTO.depth;
+                newFish.clarity = fishTO.clarity;
+                newFish.temperature = fishTO.temperature;
+
                 db.Fish.Add(newFish);
                 db.SaveChanges();
             }
@@ -173,6 +204,14 @@ namespace Fish360Project
                 fishDB.length = fishTO.length;
                 fishDB.tripId = fishTO.tripId;
                 fishDB.species = fishTO.species;
+
+                fishDB.girth = fishTO.girth;
+                fishDB.spot = fishTO.spot;
+                fishDB.presentation = fishTO.presentation;
+                fishDB.depth = fishTO.depth;
+                fishDB.clarity = fishTO.clarity;
+                fishDB.temperature = fishTO.temperature;
+
                 fishDB.caughtDate = parseDateTimeExactFromString(fishTO.caughtDate);
                 db.SaveChanges();
             }

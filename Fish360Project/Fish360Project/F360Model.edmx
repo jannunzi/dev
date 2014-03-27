@@ -18,6 +18,12 @@
           <Property Name="tripId" Type="int" />
           <Property Name="notes" Type="varchar" MaxLength="1000" />
           <Property Name="caughtTime" Type="time" Precision="7" />
+          <Property Name="girth" Type="varchar" MaxLength="50" />
+          <Property Name="spot" Type="varchar" MaxLength="50" />
+          <Property Name="presentation" Type="varchar" MaxLength="50" />
+          <Property Name="depth" Type="varchar" MaxLength="50" />
+          <Property Name="clarity" Type="varchar" MaxLength="50" />
+          <Property Name="temperature" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Species">
           <Key>
@@ -118,8 +124,14 @@
           <Property Name="tripId" Type="Int32" />
           <NavigationProperty Name="Species1" Relationship="Self.FK__Fish__species__33D4B598" FromRole="Fish" ToRole="Species" />
           <NavigationProperty Name="Trips" Relationship="Self.FK_Fish_0" FromRole="Fish" ToRole="Trips" />
-          <Property Name="notes" Type="String" />
+          <Property Name="notes" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
           <Property Name="caughtTime" Type="Time" Precision="7" />
+          <Property Name="girth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="spot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="presentation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="depth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clarity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="temperature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Species">
           <Key>
@@ -216,6 +228,12 @@
           <EntitySetMapping Name="Fish">
             <EntityTypeMapping TypeName="f360Model.Fish">
               <MappingFragment StoreEntitySet="Fish">
+                <ScalarProperty Name="temperature" ColumnName="temperature" />
+                <ScalarProperty Name="clarity" ColumnName="clarity" />
+                <ScalarProperty Name="depth" ColumnName="depth" />
+                <ScalarProperty Name="presentation" ColumnName="presentation" />
+                <ScalarProperty Name="spot" ColumnName="spot" />
+                <ScalarProperty Name="girth" ColumnName="girth" />
                 <ScalarProperty Name="caughtTime" ColumnName="caughtTime" />
                 <ScalarProperty Name="notes" ColumnName="notes" />
                 <ScalarProperty Name="id" ColumnName="id" />

@@ -23,6 +23,12 @@ namespace Fish360Project
         public Nullable<int> tripId { get; set; }
         public string notes { get; set; }
         public Nullable<System.TimeSpan> caughtTime { get; set; }
+        public string girth { get; set; }
+        public string spot { get; set; }
+        public string presentation { get; set; }
+        public string depth { get; set; }
+        public string clarity { get; set; }
+        public string temperature { get; set; }
     
         public virtual Species Species1 { get; set; }
         public virtual Trips Trips { get; set; }

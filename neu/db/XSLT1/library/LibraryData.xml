@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Edited by XMLSpy -->
+<library>
+	<book>
+		<title>Dune</title>
+		<author>Frank Herbert</author>
+		<genre>Sci Fi</genre>
+		<publisher>Chilton Books</publisher>
+		<price>4</price>
+		<date>1965</date>
+	</book>
+	<book>
+		<title>Ender's Game</title>
+		<author>Orson Scott Card</author>
+		<genre>Sci Fi</genre>
+		<publisher>Tor Books</publisher>
+		<price>6</price>
+		<date>1985</date>
+	</book>
+	<book>
+		<title>The Foundation Trilogy</title>
+		<author>Isaac Asimov</author>
+		<genre>Sci Fi</genre>
+		<publisher>Astounding Magazine, Gnome Press, Spectra, Doubleday</publisher>
+		<price>8</price>
+		<date>1042</date>
+	</book>
+	<book>
+		<title>Do Androids Dream of Electric Sheep?</title>
+		<author>Philip K Dick</author>
+		<genre>Sci Fi</genre>
+		<publisher>Doubleday</publisher>
+		<price>10</price>
+		<date>1968</date>
+	</book>
+	<book>
+		<title>Mars Trilogy</title>
+		<author>Kim Stanley Robinson</author>
+		<genre>Sci Fi</genre>
+		<publisher>Spectra/Bantam Dell/Random House</publisher>
+		<price>12</price>
+		<date>January 1, 1993</date>
+	</book>
+	<book>
+		<title>2001: A Space Odyssey</title>
+		<author>Arthur C Clarke</author>
+		<genre>Sci Fi</genre>
+		<publisher>New American Library</publisher>
+		<price>14</price>
+		<date>1968</date>
+	</book>
+	<book>
+		<title>The Forever War</title>
+		<author>Joe Haldeman</author>
+		<genre>Sci Fi</genre>
+		<publisher>St. Martin's Press</publisher>
+		<price>15</price>
+		<date>1974</date>
+	</book>
+	<book>
+		<title>The Chronicles of Narnia</title>
+		<author></author>
+		<genre>Fantasy</genre>
+		<publisher></publisher>
+		<price>16</price>
+		<date></date>
+	</book>
+	<book>
+		<title>The Lord of The Rings</title>
+		<author></author>
+		<genre></genre>
+		<publisher></publisher>
+		<price>18</price>
+		<date></date>
+	</book>
+	<book>
+		<title>Game of Thrones</title>
+		<author></author>
+		<genre></genre>
+		<publisher></publisher>
+		<price>20</price>
+		<date></date>
+	</book>
+	<book>
+		<title></title>
+		<author></author>
+		<genre></genre>
+		<publisher></publisher>
+		<price>22</price>
+		<date></date>
+	</book>
+	<book>
+		<title></title>
+		<author></author>
+		<genre></genre>
+		<publisher></publisher>
+		<price>24</price>
+		<date></date>
+	</book>
+	<book>
+		<title></title>
+		<author></author>
+		<genre></genre>
+		<publisher></publisher>
+		<price>26</price>
+		<date></date>
+	</book>
+	<book>
+		<title></title>
+		<author></author>
+		<genre></genre>
+		<publisher></publisher>
+		<price>28</price>
+		<date></date>
+	</book>
+</library>

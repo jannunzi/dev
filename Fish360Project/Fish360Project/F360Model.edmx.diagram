@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cdde09171aa84106949caa7eb446d2c9" Name="Diagram1">
-        <EntityTypeShape EntityType="f360Model.Fish" Width="1.5" PointX="5.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="f360Model.Fish" Width="1.5" PointX="5.625" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="f360Model.Species" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="f360Model.Trips" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="f360Model.Users" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />

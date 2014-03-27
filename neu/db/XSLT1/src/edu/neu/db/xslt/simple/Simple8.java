@@ -1,4 +1,4 @@
-package edu.neu.db.xslt;
+package edu.neu.db.xslt.simple;
 
 import java.io.File;
 
@@ -10,16 +10,16 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-public class Simple7
+public class Simple8
 {
 	public static void main(String[] args) throws TransformerException
 	{
         TransformerFactory factory = TransformerFactory.newInstance();
-        Source xslt = new StreamSource(new File("simple7.choose.xslt"));
+        Source xslt = new StreamSource(new File("simple/simple8.apply.xslt"));
         Transformer transformer = factory.newTransformer(xslt);
 
-        Source text = new StreamSource(new File("simple1.xml"));
-        transformer.transform(text, new StreamResult(new File("simple7.output.html")));
+        Source text = new StreamSource(new File("simple/simple1.xml"));
+        transformer.transform(text, new StreamResult(new File("simple/simple8.output.html")));
 	}
 
 }

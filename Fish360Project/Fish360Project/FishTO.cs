@@ -17,6 +17,13 @@ namespace Fish360Project
         public string notes { set; get; }
         public int tripId { set; get; }
 
+        public string girth { set; get; }
+        public string spot { set; get; }
+        public string presentation { set; get; }
+        public string depth { set; get; }
+        public string clarity { set; get; }
+        public string temperature { set; get; }
+
         public FishTO() { }
         public FishTO(int id, int tripId, string name, double weight, double length, string species, string caught)
         {
