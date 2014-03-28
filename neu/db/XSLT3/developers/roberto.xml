@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dev>
+    <app>
+        <nombre>KeyNote</nombre>
+        <precio>0.0</precio>
+    </app>
+    <app>
+        <nombre>Word</nombre>
+        <precio>99.0</precio>
+    </app>
+</dev>
