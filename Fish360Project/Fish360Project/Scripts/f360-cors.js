@@ -1,5 +1,12 @@
 ﻿var f360 = {
-    environment: "prod",
+    init: function() {
+        f360.search.init();
+    },
+    showPage: function(pageClass){
+        $(".f360-page").hide();
+        $(".f360-page." + pageClass).show();
+    },
+    environment: "dev",
     fish: {
         template: {
             list: {
