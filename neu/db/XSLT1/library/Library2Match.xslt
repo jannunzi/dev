@@ -2,6 +2,10 @@
 <xsl:stylesheet version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<!-- this matches the root of the input xml file
+	 if it matches, which it does, the body of the
+	 template will be streamed to the output xml file
+-->
 <xsl:template match="/">
   <html>
   <body>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<developer>
+	<name>Joe Shmoe</name>
+	<application>
+		<id>123</id>
+		<name>Twitter</name>
+		<price>12</price>
+	</application>
+	<application>
+		<id>234</id>
+		<name>Facebook</name>
+		<price>23</price>
+	</application>
+	<application>
+		<id>345</id>
+		<name>Gmail</name>
+		<price>34</price>
+	</application>
+	<application>
+		<id>456</id>
+		<name>Word</name>
+		<price>45</price>
+	</application>
+</developer>

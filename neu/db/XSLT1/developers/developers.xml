@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<developers>
+	<developer>
+		<firstName>Alice</firstName>
+		<lastName>Wonderland</lastName>
+		<applications>
+			<application>
+				<name>PowerPoint</name>
+				<genre>Productivity</genre>
+				<price>12</price>
+			</application>
+			<application>
+				<name>Word</name>
+				<genre>Productivity</genre>
+				<price>23</price>
+			</application>
+			<application>
+				<name>Excel</name>
+				<genre>Productivity</genre>
+				<price>34</price>
+			</application>
+		</applications>
+	</developer>
+	<developer>
+		<firstName>Bob</firstName>
+		<lastName>Marley</lastName>
+		<applications>
+			<application>
+				<name>Minecraft</name>
+				<genre>Game</genre>
+				<price>45</price>
+			</application>
+			<application>
+				<name>Donkey Kong</name>
+				<genre>Game</genre>
+				<price>56</price>
+			</application>
+			<application>
+				<name>Space Invaders</name>
+				<genre>Game</genre>
+				<price>67</price>
+			</application>
+		</applications>
+	</developer>
+</developers>
