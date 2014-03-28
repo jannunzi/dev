@@ -19,7 +19,6 @@
             var item = wam.widgets.dom.widgetTemplates[type].clone();
             item.attr("id", widgetsTO.id);
             item.find(".name").html(widgetsTO.name);
-//          item.find(".form-control").attr("readonly", "readonly");
             wam.widgets.dom.list.append(item);
         }
         $(".widgets.page .list").sortable({

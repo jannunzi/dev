@@ -6,7 +6,7 @@
         $(".f360-page").hide();
         $(".f360-page." + pageClass).show();
     },
-    environment: "dev",
+    environment: "prod",
     fish: {
         template: {
             list: {

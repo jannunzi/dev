@@ -5,7 +5,8 @@
     },
     renderers: {
         searchResults: function (fishTOs) {
-
+            f360.fish.render.list(fishTOs);
+            showFishList();
         }
     },
     dom: {
@@ -33,16 +34,13 @@
     services: {
         init: function () { },
         postSearch: function (searchTO, callback) {
-
             console.log(searchTO);
             $.ajax({
                 url: "../api/search",
                 type: "post",
                 dataType: "json",
                 data: searchTO,
-                success: function(response) {
-                    console.log(response);
-                }
+                success: callback
             })
         }
     },
@@ -60,13 +58,14 @@
                 length: f360.search.dom.length.val(),
                 species: f360.search.dom.species.val(),
             };
-            f360.search.services.postSearch(searchTO, f360.search.renderers.results);
+            f360.search.services.postSearch(searchTO, f360.search.renderers.searchResults);
         },
         cancelBtnClk: function (event) {
             f360.showPage("f360-login");
         },
         searchBtnClk: function (event) {
             f360.showPage("f360-search-form");
+            f360.state.currentView = "searchForm";
         }
     }
 };

@@ -19,7 +19,7 @@ namespace Fish360Project
             {
                 using (var db = new Fish360Project.f360Entities())
                 {
-                    var fishes = (from fish in db.Fish where fish.name == search.name select fish);
+                    var fishes = (from fish in db.Fish where fish.name.Contains(search.name) select fish);
 
                     foreach (Fish fsh in fishes)
                     {

@@ -169,7 +169,7 @@
         <div role="form">
             <div class="form-group">
                 <label for="f360-fish-name">Fish Name</label>
-                <input type="text" class="form-control" id="f360-fish-name-search" placeholder="Fish Name" />
+                <input type="text" class="form-control" id="f360-fish-name-search" placeholder="Fish Name" autocapitalize="off" />
             </div>
             <div class="form-group">
                 <label>Caught</label>
@@ -465,6 +465,8 @@
                 showFishList();
             } else if (f360.state.currentView === "newFish") {
                 showFishList();
+            } else if (f360.state.currentView === "searchForm") {
+                showLogin();
             }
 
         }
