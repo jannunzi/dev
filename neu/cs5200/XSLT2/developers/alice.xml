@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<developer>
+    <application>
+        <id>123</id>
+        <name>App1</name>
+    </application>
+    <application>
+        <id>234</id>
+        <name>App2</name>
+    </application>
+    <application>
+        <id>345</id>
+        <name>App3</name>
+    </application>
+    <application>
+        <id>456</id>
+        <name>App4</name>
+    </application>
+    <application>
+        <id>567</id>
+        <name>App5</name>
+    </application>
+    <application>
+        <id>678</id>
+        <name>App6</name>
+    </application>
+    <id>321</id>
+    <name>Alice</name>
+</developer>

@@ -31,5 +31,6 @@ namespace Wam.Models
         public virtual DbSet<Widget> Widgets { get; set; }
         public virtual DbSet<FormElement> FormElements { get; set; }
         public virtual DbSet<FormElementChoice> FormElementChoices { get; set; }
+        public virtual DbSet<Following> Followings { get; set; }
     }
 }

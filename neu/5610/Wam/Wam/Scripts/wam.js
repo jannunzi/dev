@@ -23,6 +23,7 @@ var wam = {
         wam.login.init();
         wam.register.init();
         wam.profile.init();
+        wam.following.init();
         wam.applications.init();
         wam.applicationDetails.init();
         wam.pages.init();

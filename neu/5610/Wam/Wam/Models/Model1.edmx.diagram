@@ -16,6 +16,9 @@
         <EntityTypeShape EntityType="WamAppModel.FormElementChoice" Width="1.875" PointX="12" PointY="1.75" />
         <AssociationConnector Association="WamAppModel.FK__FormEleme__formE__300424B4" />
         <AssociationConnector Association="WamAppModel.FK__FormEleme__formI__2F10007B" />
+        <EntityTypeShape EntityType="WamAppModel.Following" Width="1.5" PointX="3" PointY="3.875" />
+        <AssociationConnector Association="WamAppModel.FK__Following__follo__36B12243" />
+        <AssociationConnector Association="WamAppModel.FK__Following__follo__37A5467C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

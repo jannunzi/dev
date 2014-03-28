@@ -170,6 +170,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\wam-following-search-results.js" />
+    <Content Include="Scripts\wam-following.js" />
     <Content Include="social-0\social-profile.js" />
     <Content Include="social\social-0.js" />
     <Content Include="social\social-login.js" />
@@ -323,6 +325,7 @@
     </Compile>
     <Compile Include="Controllers\ApplicationsController.cs" />
     <Compile Include="Controllers\DevelopersController.cs" />
+    <Compile Include="Controllers\FollowingController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Default.aspx.cs">
@@ -343,6 +346,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DeveloperTO.cs" />
+    <Compile Include="Models\Following.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FollowingTO.cs" />
     <Compile Include="Models\FormElement.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

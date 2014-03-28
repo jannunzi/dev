@@ -21,6 +21,16 @@
           <Property Name="username" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Following">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="followerId" Type="int" />
+          <Property Name="followedId" Type="int" />
+          <Property Name="rating" Type="int" />
+          <Property Name="followedUsername" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="FormElement">
           <Key>
             <PropertyRef Name="Id" />
@@ -90,6 +100,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Following__follo__36B12243">
+          <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
+          <End Role="Following" Type="Self.Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="followerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Following__follo__37A5467C">
+          <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
+          <End Role="Following" Type="Self.Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="followedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__FormEleme__formE__300424B4">
           <End Role="FormElement" Type="Self.FormElement" Multiplicity="0..1" />
           <End Role="FormElementChoices" Type="Self.FormElementChoices" Multiplicity="*" />
@@ -141,6 +175,7 @@
         <EntityContainer Name="WamAppModelStoreContainer">
           <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Developer" EntityType="Self.Developer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Following" EntityType="Self.Following" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormElement" EntityType="Self.FormElement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormElementChoices" EntityType="Self.FormElementChoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
@@ -148,6 +183,14 @@
           <AssociationSet Name="FK__Applicati__userI__173876EA" Association="Self.FK__Applicati__userI__173876EA">
             <End Role="Developer" EntitySet="Developer" />
             <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Following__follo__36B12243" Association="Self.FK__Following__follo__36B12243">
+            <End Role="Developer" EntitySet="Developer" />
+            <End Role="Following" EntitySet="Following" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Following__follo__37A5467C" Association="Self.FK__Following__follo__37A5467C">
+            <End Role="Developer" EntitySet="Developer" />
+            <End Role="Following" EntitySet="Following" />
           </AssociationSet>
           <AssociationSet Name="FK__FormEleme__formE__300424B4" Association="Self.FK__FormEleme__formE__300424B4">
             <End Role="FormElement" EntitySet="FormElement" />
@@ -188,6 +231,8 @@
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__userI__173876EA" FromRole="Developer" ToRole="Application" />
+          <NavigationProperty Name="Followings" Relationship="WamAppModel.FK__Following__follo__36B12243" FromRole="Developer" ToRole="Following" />
+          <NavigationProperty Name="Followings1" Relationship="WamAppModel.FK__Following__follo__37A5467C" FromRole="Developer" ToRole="Following" />
         </EntityType>
         <Association Name="FK__Applicati__userI__173876EA">
           <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
@@ -227,6 +272,15 @@
           <AssociationSet Name="FK__FormEleme__formI__2F10007B" Association="WamAppModel.FK__FormEleme__formI__2F10007B">
             <End Role="Widget" EntitySet="Widgets" />
             <End Role="FormElement" EntitySet="FormElements" />
+          </AssociationSet>
+          <EntitySet Name="Followings" EntityType="WamAppModel.Following" />
+          <AssociationSet Name="FK__Following__follo__36B12243" Association="WamAppModel.FK__Following__follo__36B12243">
+            <End Role="Developer" EntitySet="Developers" />
+            <End Role="Following" EntitySet="Followings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Following__follo__37A5467C" Association="WamAppModel.FK__Following__follo__37A5467C">
+            <End Role="Developer" EntitySet="Developers" />
+            <End Role="Following" EntitySet="Followings" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Page">
@@ -341,6 +395,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Following">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="followerId" Type="Int32" />
+          <Property Name="followedId" Type="Int32" />
+          <Property Name="rating" Type="Int32" />
+          <NavigationProperty Name="Developer" Relationship="WamAppModel.FK__Following__follo__36B12243" FromRole="Following" ToRole="Developer" />
+          <NavigationProperty Name="Developer1" Relationship="WamAppModel.FK__Following__follo__37A5467C" FromRole="Following" ToRole="Developer" />
+          <Property Name="followedUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Following__follo__36B12243">
+          <End Type="WamAppModel.Developer" Role="Developer" Multiplicity="0..1" />
+          <End Type="WamAppModel.Following" Role="Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="followerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Following__follo__37A5467C">
+          <End Type="WamAppModel.Developer" Role="Developer" Multiplicity="0..1" />
+          <End Type="WamAppModel.Following" Role="Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="followedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -422,6 +512,17 @@
                 <ScalarProperty Name="defaultValue" ColumnName="defaultValue" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Followings">
+            <EntityTypeMapping TypeName="WamAppModel.Following">
+              <MappingFragment StoreEntitySet="Following">
+                <ScalarProperty Name="followedUsername" ColumnName="followedUsername" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="followedId" ColumnName="followedId" />
+                <ScalarProperty Name="followerId" ColumnName="followerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

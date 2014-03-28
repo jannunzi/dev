@@ -17,6 +17,8 @@ namespace Wam.Models
         public Developer()
         {
             this.Applications = new HashSet<Application>();
+            this.Followings = new HashSet<Following>();
+            this.Followings1 = new HashSet<Following>();
         }
     
         public int Id { get; set; }
@@ -24,5 +26,7 @@ namespace Wam.Models
         public string password { get; set; }
     
         public virtual ICollection<Application> Applications { get; set; }
+        public virtual ICollection<Following> Followings { get; set; }
+        public virtual ICollection<Following> Followings1 { get; set; }
     }
 }
