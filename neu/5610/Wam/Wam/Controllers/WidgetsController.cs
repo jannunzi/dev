@@ -10,6 +10,43 @@ namespace Wam.Controllers
 {
     public class WidgetsController : ApiController
     {
+        public void DeleteWidgets(int id)
+        {
+            using (var db = new WamAppEntities1())
+            {
+                Widget widget = db.Widgets.Find(id);
+                if(widget != null)
+                {
+                    db.Widgets.Remove(widget);
+                    db.SaveChanges();
+                }
+            }
+        }
+        // actually this is not a get, should be a post.
+        // creates new widget for pageId
+        public void GetWidgetForPage(int pageId, string widgetType)
+        {
+            widgetType = widgetType.ToUpper();
+            using(var db = new WamAppEntities1())
+            {
+                Widget widget = new Widget();
+                widget.name = "Widget Name";
+                widget.pageId = pageId;
+                widget.widgetType = widgetType;
+                widget.height = 0;
+                widget.width = 0;
+                widget.src = "";
+                widget.order = 0;
+                widget.href = "";
+                widget.html = "";
+                widget.value = "";
+                widget.style = "";
+                widget.cssClass = "";
+
+                db.Widgets.Add(widget);
+                db.SaveChanges();
+            }
+        }
         public List<WidgetTO> GetWidgetsForPage(int pageId)
         {
             List<WidgetTO> widgetTOs = new List<WidgetTO>();

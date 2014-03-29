@@ -29,6 +29,7 @@ var wam = {
         wam.pages.init();
         wam.pageDetails.init();
         wam.widgets.init();
+        wam.widgetSelector.init();
     },
     showPage: function (pageName) {
         $(".message").val("");
