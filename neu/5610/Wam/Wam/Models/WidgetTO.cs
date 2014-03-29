@@ -20,5 +20,6 @@ namespace Wam.Models
         public int width { set; get; }
         public int height { set; get; }
         public string value { set; get; }
+        public int order { set; get; }
     }
 }

@@ -30,8 +30,8 @@
             wam.widgetSelector.dom.allItems.blur();
             var item = $(this);
             var type = item.attr("data-role");
-            console.log(type);
-            wam.widgetSelector.services.postWidgetForPage(wam.widgetSelector.state.pageId, type, function (response) {
+            var widgetCount = $(".widgets.page .list .item").length;
+            wam.widgetSelector.services.postWidgetForPage(wam.widgetSelector.state.pageId, type, widgetCount, function (response) {
                 wam.widgets.show();
             });
         },
@@ -40,11 +40,13 @@
         }
     },
     services: {
-        postWidgetForPage: function(pageId, widgetType, callback)
+        // this actually adds a new widget to the page
+        postWidgetForPage: function(pageId, widgetType, order, callback)
         {
             var data = {
                 pageId: pageId,
-                widgetType: widgetType
+                widgetType: widgetType,
+                order: order
             }
             $.ajax({
                 url: "../api/widgets",

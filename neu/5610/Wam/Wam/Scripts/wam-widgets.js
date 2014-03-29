@@ -29,7 +29,8 @@
             wam.widgets.dom.list.append(item);
         }
         $(".widgets.page .list").sortable({
-            axis : 'y'
+            axis: 'y',
+            stop: wam.widgets.controllers.sort
         });
         wam.showPage("widgets");
     },
@@ -70,6 +71,14 @@
             $("body").on("click", ".widgets.page .list .item", wam.widgets.controllers.widgetItemClick);
             $("body").on("click", ".widgets.page .list .item .delete", wam.widgets.controllers.delete);
         },
+        sort: function (event, ui) {
+            var li = ui.item;
+            var id = li.attr("id");
+            var ul = li.parent();
+            var lis = ul.children();
+            var index = lis.index(li);
+            wam.widgets.services.sort(id, index);
+        },
         delete: function (event) {
             event.stopPropagation();
             var id = $(this).parent().attr("id");
@@ -105,6 +114,20 @@
                 dataType: "json",
                 success: callback
             })
+        },
+        sort: function (widgetId, newOrder, callback) {
+            var widgetTO = {
+                id: widgetId,
+                order: newOrder
+            };
+            $.ajax({
+                url: "/api/widgets",
+                type: "put",
+                data: widgetTO,
+                dataType: "json",
+                success: callback
+            })
+            console.log([widgetId, newOrder]);
         }
     }
 }

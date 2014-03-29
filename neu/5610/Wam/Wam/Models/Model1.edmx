@@ -77,6 +77,7 @@
           <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="pageId" Type="int" />
           <Property Name="widgetType" Type="varchar" MaxLength="50" />
+          <Property Name="order" Type="int" />
           <Property Name="url" Type="varchar" MaxLength="50" />
           <Property Name="href" Type="varchar" MaxLength="50" />
           <Property Name="src" Type="varchar" MaxLength="50" />
@@ -86,7 +87,6 @@
           <Property Name="width" Type="int" />
           <Property Name="height" Type="int" />
           <Property Name="value" Type="varchar" MaxLength="50" />
-          <Property Name="order" Type="int" />
         </EntityType>
         <Association Name="FK__Applicati__userI__173876EA">
           <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
@@ -136,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__FormEleme__formI__2F10007B">
+        <Association Name="FK__FormEleme__formI__5070F446">
           <End Role="Widget" Type="Self.Widget" Multiplicity="0..1" />
           <End Role="FormElement" Type="Self.FormElement" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Widget__pageId__267ABA7A">
+        <Association Name="FK__Widget__pageId__4F7CD00D">
           <End Role="Page" Type="Self.Page" Multiplicity="0..1" />
           <End Role="Widget" Type="Self.Widget" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,7 +196,7 @@
             <End Role="FormElement" EntitySet="FormElement" />
             <End Role="FormElementChoices" EntitySet="FormElementChoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__FormEleme__formI__2F10007B" Association="Self.FK__FormEleme__formI__2F10007B">
+          <AssociationSet Name="FK__FormEleme__formI__5070F446" Association="Self.FK__FormEleme__formI__5070F446">
             <End Role="Widget" EntitySet="Widget" />
             <End Role="FormElement" EntitySet="FormElement" />
           </AssociationSet>
@@ -204,7 +204,7 @@
             <End Role="Application" EntitySet="Application" />
             <End Role="Page" EntitySet="Page" />
           </AssociationSet>
-          <AssociationSet Name="FK__Widget__pageId__267ABA7A" Association="Self.FK__Widget__pageId__267ABA7A">
+          <AssociationSet Name="FK__Widget__pageId__4F7CD00D" Association="Self.FK__Widget__pageId__4F7CD00D">
             <End Role="Page" EntitySet="Page" />
             <End Role="Widget" EntitySet="Widget" />
           </AssociationSet>

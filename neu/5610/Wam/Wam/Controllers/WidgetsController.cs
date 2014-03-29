@@ -10,6 +10,40 @@ namespace Wam.Controllers
 {
     public class WidgetsController : ApiController
     {
+        public void PutWidgets(WidgetTO widgetTO)
+        {
+            using (var db = new WamAppEntities1())
+            {
+                Widget widget = db.Widgets.Find(widgetTO.id);
+                int order = widget.order.Value;
+                
+                if (widgetTO.order == order)
+                    return;
+
+                int min = Math.Min(order, widgetTO.order);
+                int max   = Math.Max(order, widgetTO.order);
+                var widgets = from w in db.Widgets
+                                where w.order >= min
+                                &&    w.order <= max
+                                select w;
+                if(widgetTO.order > order)
+                {
+                    foreach (var wid in widgets)
+                    {
+                        wid.order--;
+                    }
+                }
+                else
+                {
+                    foreach (var wid in widgets)
+                    {
+                        wid.order++;
+                    }
+                }
+                widget.order = widgetTO.order;
+                db.SaveChanges();
+            }
+        }
         public void DeleteWidgets(int id)
         {
             using (var db = new WamAppEntities1())
@@ -24,7 +58,7 @@ namespace Wam.Controllers
         }
         // actually this is not a get, should be a post.
         // creates new widget for pageId
-        public void GetWidgetForPage(int pageId, string widgetType)
+        public void GetWidgetForPage(int pageId, string widgetType, int order)
         {
             widgetType = widgetType.ToUpper();
             using(var db = new WamAppEntities1())
@@ -36,7 +70,7 @@ namespace Wam.Controllers
                 widget.height = 0;
                 widget.width = 0;
                 widget.src = "";
-                widget.order = 0;
+                widget.order = order;
                 widget.href = "";
                 widget.html = "";
                 widget.value = "";
@@ -53,6 +87,7 @@ namespace Wam.Controllers
             using (var db = new WamAppEntities1())
             {
                 var widgets = from w in db.Widgets
+                              orderby w.order
                               where w.pageId == pageId
                               select w;
                 foreach (var widget in widgets)
