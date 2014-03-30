@@ -7,7 +7,7 @@
         title: "Pages"
     },
     show: function () {
-        wam.pages.services.getPagesForApplicationId(
+        wam.services.pages.getPagesForApplicationId(
             wam.state.currentApplicationId,
             wam.pages.render);
     },
@@ -46,15 +46,5 @@
             var id = $(this).attr("id");
             wam.pageDetails.show(id);
         },
-    },
-    services: {
-        getPagesForApplicationId: function (appId, callback) {
-            $.ajax({
-                url: "/api/pages",
-                dataType: "json",
-                data: {application: appId},
-                success: callback
-            });
-        }
     }
 }

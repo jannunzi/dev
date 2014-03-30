@@ -172,6 +172,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\wam-following-search-results.js" />
     <Content Include="Scripts\wam-following.js" />
+    <Content Include="Scripts\wam-widgetGenericEditor.js" />
+    <Content Include="Scripts\wam-widgetEditor.js" />
     <Content Include="Scripts\wam-widgetSelector.js" />
     <Content Include="social-0\social-profile.js" />
     <Content Include="social\social-0.js" />

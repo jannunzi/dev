@@ -78,6 +78,7 @@
           <Property Name="pageId" Type="int" />
           <Property Name="widgetType" Type="varchar" MaxLength="50" />
           <Property Name="order" Type="int" />
+          <Property Name="label" Type="varchar" MaxLength="50" />
           <Property Name="url" Type="varchar" MaxLength="50" />
           <Property Name="href" Type="varchar" MaxLength="50" />
           <Property Name="src" Type="varchar" MaxLength="50" />
@@ -87,6 +88,8 @@
           <Property Name="width" Type="int" />
           <Property Name="height" Type="int" />
           <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="data" Type="varchar" MaxLength="1000" />
+          <Property Name="content" Type="varchar" MaxLength="1000" />
         </EntityType>
         <Association Name="FK__Applicati__userI__173876EA">
           <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
@@ -136,7 +139,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__FormEleme__formI__5070F446">
+        <Association Name="FK__FormEleme__formI__5EBF139D">
           <End Role="Widget" Type="Self.Widget" Multiplicity="0..1" />
           <End Role="FormElement" Type="Self.FormElement" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +163,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Widget__pageId__4F7CD00D">
+        <Association Name="FK__Widget__pageId__5FB337D6">
           <End Role="Page" Type="Self.Page" Multiplicity="0..1" />
           <End Role="Widget" Type="Self.Widget" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,7 +199,7 @@
             <End Role="FormElement" EntitySet="FormElement" />
             <End Role="FormElementChoices" EntitySet="FormElementChoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__FormEleme__formI__5070F446" Association="Self.FK__FormEleme__formI__5070F446">
+          <AssociationSet Name="FK__FormEleme__formI__5EBF139D" Association="Self.FK__FormEleme__formI__5EBF139D">
             <End Role="Widget" EntitySet="Widget" />
             <End Role="FormElement" EntitySet="FormElement" />
           </AssociationSet>
@@ -204,7 +207,7 @@
             <End Role="Application" EntitySet="Application" />
             <End Role="Page" EntitySet="Page" />
           </AssociationSet>
-          <AssociationSet Name="FK__Widget__pageId__4F7CD00D" Association="Self.FK__Widget__pageId__4F7CD00D">
+          <AssociationSet Name="FK__Widget__pageId__5FB337D6" Association="Self.FK__Widget__pageId__5FB337D6">
             <End Role="Page" EntitySet="Page" />
             <End Role="Widget" EntitySet="Widget" />
           </AssociationSet>
@@ -325,6 +328,9 @@
           <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="FormElements" Relationship="WamAppModel.FK__FormEleme__formI__2F10007B" FromRole="Widget" ToRole="FormElement" />
           <Property Name="order" Type="Int32" />
+          <Property Name="label" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Widget__pageId__267ABA7A">
           <End Type="WamAppModel.Page" Role="Page" Multiplicity="0..1" />
@@ -467,6 +473,9 @@
           <EntitySetMapping Name="Widgets">
             <EntityTypeMapping TypeName="WamAppModel.Widget">
               <MappingFragment StoreEntitySet="Widget">
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="label" ColumnName="label" />
                 <ScalarProperty Name="order" ColumnName="order" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="height" ColumnName="height" />

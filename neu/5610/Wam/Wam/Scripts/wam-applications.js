@@ -7,7 +7,7 @@
         title: "Applications"
     },
     show: function () {
-        wam.applications.services.getApplicationsForUsername(
+        wam.services.applications.getApplicationsForUsername(
             wam.state.currentUser.username,
             wam.applications.render);
     },
@@ -50,22 +50,5 @@
             var id = $(this).attr("id");
             wam.applicationDetails.show(id);
         },
-    },
-    services: {
-        getApplicationsForUsername: function (username, callback) {
-            $.ajax({
-                url: "/api/applications",
-                dataType: "json",
-                data: {username: username},
-                success: callback
-            });
-        },
-        getApplications: function (username, callback) {
-            $.ajax({
-                url: "/api/applications",
-                dataType: "json",
-                success:callback
-            });
-        }
     }
 }

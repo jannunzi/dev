@@ -30,6 +30,7 @@ var wam = {
         wam.pageDetails.init();
         wam.widgets.init();
         wam.widgetSelector.init();
+        wam.widgetEditor.init();
     },
     showPage: function (pageName) {
         $(".message").val("");

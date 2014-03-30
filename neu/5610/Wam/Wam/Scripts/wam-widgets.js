@@ -14,7 +14,7 @@
             this.state.pageId = pageId;
         else
             pageId = this.state.pageId;
-        wam.widgets.services.getWidgetsForPageId(
+        wam.services.widgets.getWidgetsForPageId(
             pageId,
             wam.widgets.render);
     },
@@ -66,9 +66,9 @@
     },
     controllers: {
         init: function () {
-            wam.widgets.dom.addBtn.click(wam.widgets.controllers.addClick);
-            wam.widgets.dom.editBtn.click(wam.widgets.controllers.editClick);
-            $("body").on("click", ".widgets.page .list .item", wam.widgets.controllers.widgetItemClick);
+            wam.widgets.dom.addBtn.click(wam.widgets.controllers.add);
+            wam.widgets.dom.editBtn.click(wam.widgets.controllers.edit);
+            $("body").on("click", ".widgets.page .list .item", wam.widgets.controllers.select);
             $("body").on("click", ".widgets.page .list .item .delete", wam.widgets.controllers.delete);
         },
         sort: function (event, ui) {
@@ -77,57 +77,28 @@
             var ul = li.parent();
             var lis = ul.children();
             var index = lis.index(li);
-            wam.widgets.services.sort(id, index);
+            wam.services.widgets.sort(id, index);
         },
         delete: function (event) {
             event.stopPropagation();
             var id = $(this).parent().attr("id");
             console.log(id);
             $(this).parent().remove();
-            wam.widgets.services.delete(id);
+            wam.services.widgets.delete(id);
         },
-        addClick: function () {
+        add: function () {
             wam.widgetSelector.show(wam.widgets.state.pageId);
         },
-        editClick: function () {
+        edit: function () {
             $(".widgets.page .list .item .widget").css("width", "95%");
             $(".widgets.page .list .item .delete").show();
         },
-        widgetItemClick: function () {
+        select: function () {
             var id = $(this).attr("id");
-            console.log(id);
+            wam.widgetEditor.show(id);
         },
     },
     services: {
-        getWidgetsForPageId: function (pageId, callback) {
-            $.ajax({
-                url: "/api/widgets",
-                dataType: "json",
-                data: { pageId: pageId },
-                success: callback
-            });
-        },
-        delete: function (widgetId, callback) {
-            $.ajax({
-                url: "/api/widgets/"+widgetId,
-                type: 'delete',
-                dataType: "json",
-                success: callback
-            })
-        },
-        sort: function (widgetId, newOrder, callback) {
-            var widgetTO = {
-                id: widgetId,
-                order: newOrder
-            };
-            $.ajax({
-                url: "/api/widgets",
-                type: "put",
-                data: widgetTO,
-                dataType: "json",
-                success: callback
-            })
-            console.log([widgetId, newOrder]);
-        }
+
     }
 }

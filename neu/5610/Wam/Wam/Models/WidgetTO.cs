@@ -21,5 +21,8 @@ namespace Wam.Models
         public int height { set; get; }
         public string value { set; get; }
         public int order { set; get; }
+        public string label { set; get; }
+        public string data { set; get; }
+        public string content { set; get; }
     }
 }

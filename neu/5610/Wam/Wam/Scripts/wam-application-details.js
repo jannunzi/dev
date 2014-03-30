@@ -1,6 +1,6 @@
 ﻿wam.applicationDetails = {
-    constants : {
-        title : "App Details"
+    constants: {
+        title: "App Details"
     },
     init: function () {
         this.dom.init();
@@ -10,14 +10,14 @@
         wam.state.currentApplicationId = applicationId;
         wam.showPage("applicationDetails");
     },
-    render: function() {
+    render: function () {
     },
     dom: {
         pagesBtn: null,
         dataBtn: null,
         scriptsBtn: null,
         init: function () {
-            wam.applicationDetails.dom.pagesBtn    = $(".applicationDetails.page .pages.btn");
+            wam.applicationDetails.dom.pagesBtn = $(".applicationDetails.page .pages.btn");
             wam.applicationDetails.dom.dataBtn = $(".applicationDetails.page .data.btn");
             wam.applicationDetails.dom.scriptsBtn = $(".applicationDetails.page .scripts.btn");
         }
@@ -37,7 +37,5 @@
         scriptsClick: function () {
             alert("Scripts");
         }
-},
-    services: {
     }
-}
+};

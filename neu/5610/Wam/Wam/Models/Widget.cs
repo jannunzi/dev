@@ -33,6 +33,9 @@ namespace Wam.Models
         public Nullable<int> height { get; set; }
         public string value { get; set; }
         public Nullable<int> order { get; set; }
+        public string label { get; set; }
+        public string data { get; set; }
+        public string content { get; set; }
     
         public virtual Page Page { get; set; }
         public virtual ICollection<FormElement> FormElements { get; set; }

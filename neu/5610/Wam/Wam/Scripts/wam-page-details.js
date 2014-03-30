@@ -25,7 +25,5 @@
         widgetsClick: function () {
             wam.widgets.show(wam.state.currentPageId);
         }
-    },
-    services: {
     }
 }
