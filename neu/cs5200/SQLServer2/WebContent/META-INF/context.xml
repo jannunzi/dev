@@ -1,0 +1,9 @@
+<Context>
+ 
+  <Resource name="jdbc/sharegen" auth="Container" type="javax.sql.DataSource"
+               maxActive="50" maxIdle="30" maxWait="10000"
+               username="semaan_app_user" password="qcdb01" 
+               driverClassName="com.microsoft.jdbc.sqlserver.SQLServerDriver"
+               url="jdbc:microsoft:sqlserver://QCSMN01:1433;databaseName=ShareGen"/>
+ 
+</Context>
