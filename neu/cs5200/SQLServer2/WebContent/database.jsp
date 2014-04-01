@@ -71,13 +71,17 @@
 	{
 		List<Column> columns = tableService.getColumns(tableName);
 %>
-						<th>Field (<%= columns.size() %>)</th>
+						<th>Fields (<%= columns.size() %>)</th>
+						<th>Type</th>
+						<th>Size</th>
 					</tr>
 				</thead>
 				<tbody>
 <%		for(Column col : columns)
 		{%>			<tr>
 						<td><%= col.name %></td>
+						<td><%= col.type %></td>
+						<td><%= col.size %></td>
 					</tr>
 <%		}
 	}

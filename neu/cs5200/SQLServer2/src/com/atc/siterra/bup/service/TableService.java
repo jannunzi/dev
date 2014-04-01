@@ -44,12 +44,23 @@ public class TableService
 			Connection connection = getConnection();
 			DatabaseMetaData meta = connection.getMetaData();
 			results = meta.getColumns(null, null, tableName, null);
+			ResultSetMetaData meta2 = results.getMetaData();
+			int columnCount = meta2.getColumnCount();
+			for(int i=1; i<=columnCount; i++)
+			{
+				System.out.println(meta2.getColumnLabel(i));
+				System.out.println(meta2.getColumnName(i));
+				System.out.println(meta2.getColumnTypeName(i));
+				System.out.println("------------");
+			}
 			while(results.next()) {
-				String columnName = results.getString(4);
-				int columnType = results.getInt(5);
+				String columnName = results.getString("COLUMN_NAME");
+				int columnType = results.getInt("DATA_TYPE");
+				int size = results.getInt("COLUMN_SIZE");
 				Column column = new Column();
 				column.name = columnName;
 				column.type = columnType;
+				column.size = size;
 				columns.add(column);
 			}
 			closeConnection();
