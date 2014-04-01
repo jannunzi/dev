@@ -31,12 +31,14 @@ var wam = {
         wam.widgets.init();
         wam.widgetSelector.init();
         wam.widgetEditor.init();
+        wam.widgets.text.init();
     },
-    showPage: function (pageName) {
+    showPage: function (pageName, title) {
         $(".message").val("");
         $(".page").hide();
         $(".page." + pageName).show();
-        var title = wam[pageName].constants.title;
+        if(typeof title === "undefined")
+            title = wam[pageName].constants.title;
         $(".main.header .title").html(title);
         this.state.currentPage = pageName;
     }

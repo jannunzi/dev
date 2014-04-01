@@ -94,8 +94,11 @@
             $(".widgets.page .list .item .delete").show();
         },
         select: function () {
-            var id = $(this).attr("id");
-            wam.widgetEditor.show(id);
+            var widget = $(this);
+            var id = widget.attr("id");
+            var dataRole = widget.attr("data-role");
+            wam.widgets[dataRole].show(id);
+//            wam.widgetEditor.show(id);
         },
     },
     services: {

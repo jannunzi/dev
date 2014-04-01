@@ -29,8 +29,10 @@
     widgets: {
         get: function(widgetId, callback) {
             $.ajax({
-                url: "../api/widgets/"+widgetId,
+                url: "/api/widgets",
                 dataType: "json",
+                data: {widgetId: widgetId},
+                type: "get",
                 success: callback
             });
         },
