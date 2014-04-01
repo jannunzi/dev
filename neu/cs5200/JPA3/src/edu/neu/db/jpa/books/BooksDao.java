@@ -120,9 +120,64 @@ public class BooksDao {
 		return likes;
 	}
 	
+	public void authorNoLongerLikesBook(int authorId, int bookId) {
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		
+		// find the author that no longer likes the book:
+		Author author = em.find(Author.class, authorId);
+		System.out.print(author.getFirstName());
+		System.out.println(" currently likes these Books:");
+		List<Likes> likes = author.getLikes();
+		for(Likes authorLikes: likes)
+		{
+			Book bookLiked = authorLikes.getBook();
+			System.out.println(bookLiked.getTitle());
+		}
+
+		// find the book that the author no longer likes
+		System.out.println("-------------------");
+		System.out.print(author.getFirstName());
+		System.out.println(" no Longer Likes:");
+		Book bookNotLiked = em.find(Book.class, bookId);
+		System.out.println(bookNotLiked.getTitle());
+		
+		// Search for the like we want to remove by looking for the book the author no longer likes
+		Likes removeLikes = null;
+		for(Likes authorLikes: likes)
+		{
+			Book bookLiked = authorLikes.getBook();
+			if(bookLiked.equals(bookNotLiked))
+			{
+				removeLikes = authorLikes;
+			}
+		}
+		
+		// now that we know the likes we want to remove find the likes by id from database
+		removeLikes = em.find(Likes.class, removeLikes.getId());
+		System.out.println(removeLikes.getAuthor().getFirstName());
+		System.out.println(removeLikes.getBook().getTitle());
+
+		// remove likes from author
+		author.getLikes().remove(removeLikes);
+		em.persist(author);
+		// remove likes from book
+		bookNotLiked.getLikes().remove(removeLikes);
+		em.persist(bookNotLiked);
+		// remove likes mapping
+		em.remove(removeLikes);
+		
+		em.getTransaction().commit();
+		em.close();
+	}
+	
 	public static void main(String[] args) {
 		
 		BooksDao dao = new BooksDao();
+		
+		
+		dao.authorNoLongerLikesBook(1, 3);
+		System.out.println("==================");
 		
 		System.out.println("Authors that like Dune");
 		List<Likes> likesFromBook = dao.whatAuthorsLikeThisBook(3);
