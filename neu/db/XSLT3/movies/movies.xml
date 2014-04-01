@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<movies>
+	<movie>
+		<title>Star Wars</title>
+		<date>1977</date>
+		<stars>5</stars>
+		<actor>
+			<firstName>Mark</firstName>
+			<lastName>Hamill</lastName>
+			<character>Luke Skywalker</character>
+		</actor>
+		<actor>
+			<firstName>Harrison</firstName>
+			<lastName>Ford</lastName>
+			<character>Han Solo</character>
+		</actor>
+	</movie>
+	<movie>
+		<title>Star Trek</title>
+		<date>2009</date>
+		<stars>3</stars>
+		<actor>
+			<firstName>Chris</firstName>
+			<lastName>Pine</lastName>
+			<character>James Tiberus Kirk</character>
+		</actor>
+		<actor>
+			<firstName>Zachary</firstName>
+			<lastName>Quinto</lastName>
+			<character>Spock</character>
+		</actor>
+	</movie>
+	<movie>
+		<title>Hulk</title>
+		<date>2003</date>
+		<stars>0</stars>
+		<actor>
+			<firstName>Eric</firstName>
+			<lastName>Bana</lastName>
+			<character>Bruce Banner</character>
+		</actor>
+	</movie>
+</movies>
