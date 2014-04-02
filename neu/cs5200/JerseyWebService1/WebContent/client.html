@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<script src="js/jquery-2.1.0.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>JavaScript Web Client</h1>
+
+<h2>Default Response</h2>
+<textarea class="default" cols="50">
+</textarea>
+
+<h2>HTML Response</h2>
+<textarea class="html" cols="50">
+</textarea>
+
+<h2>XML Response</h2>
+See console for full XML document in the response<br/>
+<textarea class="xml" cols="50">
+</textarea>
+
+<script>
+	$(function(){
+		defaultQuery();
+		xmlQuery();
+		htmlQuery();
+	});
+	
+	function htmlQuery() {
+		$.ajax({
+			url: "http://localhost:8080/JerseyWebService1/rest/hello",
+			dataType: 'html',
+			success: function(response) {
+				console.log(response);
+				$(".html").val(response);
+			}
+		});		
+	}
+	
+	function xmlQuery() {
+		$.ajax({
+			url: "http://localhost:8080/JerseyWebService1/rest/hello",
+			dataType: 'xml',
+			success: function(response) {
+				console.log(response);
+				$(".xml").val(response);
+			}
+		});		
+	}
+	
+	function defaultQuery() {
+		$.ajax({
+			url: "http://localhost:8080/JerseyWebService1/rest/hello",
+			success: function(response) {
+				console.log(response);
+				$(".default").val(response);
+			}
+		});		
+	}
+</script>
+
+</body>
+</html>
