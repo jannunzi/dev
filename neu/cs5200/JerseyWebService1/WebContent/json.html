@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<script src="js/jquery-2.1.0.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>JavaScript Web Client</h1>
+
+<h2>Default Response</h2>
+See console for full JSON object<br/>
+<textarea class="default" cols="70">
+</textarea>
+
+<h2>JSON.stringify Response</h2>
+<textarea class="stringify" cols="70">
+</textarea>
+
+<script>
+	$(function(){
+		defaultQuery();
+	});
+	
+	function defaultQuery() {
+		$.ajax({
+			url: "http://localhost:8080/JerseyWebService1/rest/json",
+			success: function(response) {
+				console.log(response);
+				$(".default").val(response);
+				$(".stringify").val(JSON.stringify(response));
+			}
+		});		
+	}
+	
+</script>
+
+</body>
+</html>
