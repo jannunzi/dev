@@ -164,6 +164,7 @@ public class BooksDao {
 		// remove likes from book
 		bookNotLiked.getLikes().remove(removeLikes);
 		em.persist(bookNotLiked);
+
 		// remove likes mapping
 		em.remove(removeLikes);
 		
