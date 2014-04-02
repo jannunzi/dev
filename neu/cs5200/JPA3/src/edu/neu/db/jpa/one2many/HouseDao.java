@@ -19,7 +19,6 @@ public class HouseDao {
 		em.getTransaction().commit();
 		em.close();
 	}
-	
 	public void createOwnerAndHouse(Owner owner, House house) {
 		em = factory.createEntityManager();
 		em.getTransaction().begin();
@@ -61,9 +60,9 @@ public class HouseDao {
 	public static void main(String[] args) {
 		HouseDao dao = new HouseDao();
 		
+		/*
 		dao.removeOwnerById(5);
 		
-		/*
 		Owner bob = new Owner();
 		bob.setFirstName("Bob");
 		bob.setLastName("Marley");
