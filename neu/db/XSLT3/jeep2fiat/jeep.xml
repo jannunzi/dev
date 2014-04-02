@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cars>
+	<models>
+		<model>
+			<name>Jeep Grand Cherokee</name>
+			<seats>5</seats>
+			<msrp>21000</msrp>
+		</model>
+		<model>
+			<name>Wrangler Unlimited</name>
+			<seats>5</seats>
+			<msrp>18000</msrp>
+		</model>
+		<model>
+			<name>Durango</name>
+			<seats>7</seats>
+			<msrp>30000</msrp>
+		</model>
+	</models>
+</cars>
