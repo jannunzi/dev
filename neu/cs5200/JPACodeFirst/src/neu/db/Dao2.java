@@ -88,10 +88,10 @@ public class Dao2 {
 		Developer devFollows  = em.find(Developer.class, devFollowsId);
 		Developer devFollowed = em.find(Developer.class, devFollowedId);
 		
-		devFollows.getFollows().add(devFollowed);
+//		devFollows.getFollows().add(devFollowed);
 		em.merge(devFollows);
 		
-		devFollowed.getFollowedBy().add(devFollows);
+	//	devFollowed.getFollowedBy().add(devFollows);
 		em.merge(devFollowed);
 		
 		em.getTransaction().commit();
