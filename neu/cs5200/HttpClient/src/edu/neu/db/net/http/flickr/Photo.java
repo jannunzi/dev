@@ -1,4 +1,4 @@
-package edu.neu.db.net.http;
+package edu.neu.db.net.http.flickr;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;

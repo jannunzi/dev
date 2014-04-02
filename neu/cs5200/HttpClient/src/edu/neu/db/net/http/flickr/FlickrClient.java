@@ -1,4 +1,4 @@
-package edu.neu.db.net.http;
+package edu.neu.db.net.http.flickr;
 
 import java.io.BufferedReader;
 import java.io.IOException;
