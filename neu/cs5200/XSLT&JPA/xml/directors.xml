@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<directorDatabase>
+    <director id="1" firstName="Alice" lastName="Wonderland">
+        <movie id="1" name="Star Wars" stars="5">
+            <actor id="1" firstName="Harrison" lastName="Ford" oscars="2"/>
+            <actor id="2" firstName="Mark" lastName="Hamill" oscars="0"/>
+        </movie>
+        <movie id="2" name="Star Trek" stars="5">
+            <actor id="3" firstName="Actor 1" lastName="Actor 1 Last" oscars="1"/>
+            <actor id="4" firstName="Actor 2" lastName="Actor 2 Last" oscars="2"/>
+        </movie>
+    </director>
+    <director id="2" firstName="Bob" lastName="Marley">
+        <movie id="3" name="Avatar" stars="5">
+            <actor id="5" firstName="Actor 3" lastName="Actor 3 Last" oscars="3"/>
+            <actor id="6" firstName="Actor 4" lastName="Actor 3 Last" oscars="4"/>
+        </movie>
+        <movie id="4" name="Man on Fire" stars="5">
+            <actor id="7" firstName="Actor 5" lastName="Actor 4 Last" oscars="5"/>
+            <actor id="8" firstName="Actor 6" lastName="Actor 5 Last" oscars="6"/>
+        </movie>
+    </director>
+</directorDatabase>
