@@ -2,7 +2,7 @@
     constants : {
         title : "Login"
     },
-    show : function() {
+    show: function () {
         wam.showPage("login");
     },
     init: function () {

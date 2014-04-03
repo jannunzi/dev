@@ -2,7 +2,8 @@
     constants : {
         title : "Profile"
     },
-    show: function() {
+    show: function () {
+        window.location.hash = "login=" + wam.state.currentUser.username;
         wam.showPage("profile");
     },
     init: function () {

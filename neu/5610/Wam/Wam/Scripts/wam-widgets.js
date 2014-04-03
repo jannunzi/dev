@@ -10,6 +10,9 @@
         pageId : null
     },
     show: function (pageId) {
+
+        window.location.hash = "pageId=" + pageId;
+
         if (typeof pageId != "undefined")
             this.state.pageId = pageId;
         else
