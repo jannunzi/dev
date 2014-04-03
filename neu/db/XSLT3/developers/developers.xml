@@ -4,4 +4,16 @@
 	<firstName>Alice</firstName>
 	<lastName>Wonderland</lastName>
 	<salary>225000</salary>
+	<application>
+		<name>App1</name>
+		<price>123.32</price>
+	</application>
+	<application>
+		<name>App2</name>
+		<price>123.32</price>
+	</application>
+	<application>
+		<name>App3</name>
+		<price>123.32</price>
+	</application>
 </developer>

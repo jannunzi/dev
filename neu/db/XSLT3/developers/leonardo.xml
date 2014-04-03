@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<developer>
+    <application>
+        <name>App1</name>
+        <price>123.45</price>
+    </application>
+    <application>
+        <name>App3</name>
+        <price>234.45</price>
+    </application>
+    <firstName>Leonardo</firstName>
+    <lastName>DaVinci</lastName>
+    <salary>1000000.0</salary>
+</developer>

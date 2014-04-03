@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<developer>
+    <application>
+        <name>KeyNote</name>
+        <price>0.0</price>
+    </application>
+    <application>
+        <name>Word</name>
+        <price>99.0</price>
+    </application>
+    <firstName>Alice</firstName>
+    <lastName>Wonderland</lastName>
+    <salary>225000.0</salary>
+</developer>

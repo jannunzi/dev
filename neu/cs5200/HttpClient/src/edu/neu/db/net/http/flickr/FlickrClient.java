@@ -26,6 +26,7 @@ public class FlickrClient
 			String text = term;
 			String tags = term;
 			String urlStr = "https://api.flickr.com/services/rest?text="+term+"&method="+method+"&api_key="+api_key;
+			System.out.println(urlStr);
 			URL url = new URL(urlStr);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");

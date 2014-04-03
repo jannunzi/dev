@@ -99,7 +99,7 @@ public class DeveloperMgr
 			System.out.println("Oops, developer not found");
 		}
 		
-		Developer bob = new Developer("Bob", "Marley", 123321);
+		Developer alice = new Developer("Alice", "Wonderland", 225000);
 		
 		Application keynote = new Application("KeyNote", 0.0);
 		Application word    = new Application("Word", 99.0);
@@ -108,10 +108,10 @@ public class DeveloperMgr
 		apps.add(keynote);
 		apps.add(word);
 		
-		bob.setApplication(apps);
-		mgr.createDeveloperXmlFileFromJava(bob, "developers/bob.xml");
+		alice.setApplication(apps);
+		mgr.createDeveloperXmlFileFromJava(alice, "developers/alice.xml");
 		
 		
-		mgr.convertDeveloperToDev("developers/bob.xml", "developers/roberto.xml");
+//		mgr.convertDeveloperToDev("developers/bob.xml", "developers/roberto.xml");
 	}
 }

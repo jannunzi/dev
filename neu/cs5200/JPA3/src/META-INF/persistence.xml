@@ -7,6 +7,8 @@
 		<class>edu.neu.db.jpa.books.Likes</class>
 		<class>edu.neu.db.jpa.one2many.Owner</class>
 		<class>edu.neu.db.jpa.one2many.House</class>
+		<class>edu.neu.db.jpa.books.Department</class>
+		<class>edu.neu.db.jpa.books.Employee</class>
 		<properties>
 			<property name="eclipselink.jdbc.password" value=""/>
 			<property name="eclipselink.jdbc.user" value="root"/>
