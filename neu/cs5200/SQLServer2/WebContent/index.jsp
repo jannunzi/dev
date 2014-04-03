@@ -9,13 +9,13 @@
 </head>
 <body>
 
-<form action="DatabaseExplorer.jsp">
+<form action="index.jsp">
 
 <div class="container">
 
 	<h1>Database Explorer</h1>
 	
-	<div class="row">
+	<div class="row toggable">
 		<div class="col-xs-2">
 			Database Type:
 			<select class="database form-control">
@@ -38,6 +38,7 @@
 			&nbsp;
 			<button class="btn btn-success btn-block">Connect</button>
 		</div>
+		<a href="#" class="taggle">Toggle</a>
 	</div>
 	
 	<hr/>
@@ -48,7 +49,13 @@
 				<thead>
 					<tr>
 <%
-	TableService tableService = new TableService();
+	Database db = new Database("ShareGen",
+			"com.microsoft.jdbc.sqlserver.SQLServerDriver",
+			"microsoft","sqlserver","QCSMN01","1433",
+			"semaan_app_user","qcdb01",null);
+	TableService svc = new TableService(db);
+
+	TableService tableService = new TableService(db);
 	List<Table> tables = tableService.getTables();
 %>
 						<th>Tables (<%= tables.size() %>)</th>
@@ -57,7 +64,7 @@
 				<tbody>
 <%	for(Table table : tables)
 	{%>				<tr>
-						<td><a href="database.jsp?table=<%= table.name %>"><%= table.name %></a></td>
+						<td><a href="index.jsp?table=<%= table.name %>"><%= table.name %></a></td>
 					</tr>
 <%	}%>			</tbody>
 			</table>
@@ -74,6 +81,9 @@
 						<th>Fields (<%= columns.size() %>)</th>
 						<th>Type</th>
 						<th>Size</th>
+						<th>Siterra Field</th>
+						<th>Comment</th>
+						<th>Update</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -82,6 +92,10 @@
 						<td><%= col.name %></td>
 						<td><%= col.type %></td>
 						<td><%= col.size %></td>
+						<td><input class="siterraField form-control" /></td>
+						<td><input class="fieldComment form-control" /></td>
+						<td><a href="#" class="btn btn-success">Update</a></td>
+						<td><a href="#" class="btn btn-primary">Edit</a></td>
 					</tr>
 <%		}
 	}
@@ -93,6 +107,10 @@
 </div>
 
 </form>
+
+<script src="js/jquery.js"></script>
+<script src="js/util.js"></script>
+<script src="js/atc.js"></script>
 
 </body>
 </html>
