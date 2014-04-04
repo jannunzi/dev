@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <style>
+        .page {
+            display: none;
+        }
+        .search.page {
+            display: block;
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        img {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search page">
+            <h1>Search Image</h1>
+            <input class="search form-control" value="apple" />
+            <button class="search btn btn-block btn-primary">Search</button>
+            <div class="photos"></div>
+        </div>
+        <div class="details page">
+            <h1>Image Details</h1>
+            <img class="detailPhoto" />
+        </div>
+        <a href="#search">Search Page</a>
+        <a href="#details">Details Page</a>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.ba-bbq.js"></script>
+    <script>
+        $(function () {
+            $(window).hashchange(handleHashChange);
+            $(window).hashchange();
+
+            $("button.search").click(searchAction);
+
+            $("body").on("click", "img", detailsAction);
+        });
+
+        var largeUrl = "http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg";
+        function detailsAction(event) {
+            var id = $(this).attr("id");
+            var photo = $(this).data("photo");
+            photo.details = "details";
+            $.bbq.pushState(photo, 2);
+        }
+
+        function searchAction(event) {
+            var searchTerm = $("input.search").val();
+            var state = { search: searchTerm };
+            $.bbq.pushState(state, 2);
+//            window.location.hash = "#search=" + searchTerm;
+        }
+
+        function performDetails(photoId, callback) {
+            renderDetails();
+        }
+
+        function renderDetails() {
+            showPage("details");
+            var src = new String(largeUrl);
+            src = src.replace("{farm-id}", $.bbq.getState("farm"));
+            src = src.replace("{server-id}", $.bbq.getState("server"));
+            src = src.replace("{id}", $.bbq.getState("id"));
+            src = src.replace("{secret}", $.bbq.getState("secret"));
+            $(".detailPhoto").attr("src", src);
+        }
+
+        function performSearch(searchTerm, callback) {
+            var data = {
+                method: "flickr.photos.search",
+                api_key: "5da2ddf6e55e6529b2c3211d124182ea",
+                tags: searchTerm,
+                format: "json"
+            }
+            $.ajax({
+                url: "https://www.flickr.com/services/rest",
+                data: data
+            });
+        }
+
+        function jsonFlickrApi(response) {
+            renderPhotos(response.photos.photo);
+        }
+
+        var url = "http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_s.jpg";
+        function renderPhotos(photos) {
+            showPage("search");
+            var photosDiv = $(".photos");
+            photosDiv.empty();
+            for (var p in photos) {
+                var photo = photos[p];
+                var src = new String(url);
+                src = src.replace("{farm-id}", photo.farm);
+                src = src.replace("{server-id}", photo.server);
+                src = src.replace("{id}", photo.id);
+                src = src.replace("{secret}", photo.secret);
+                var img = $("<img>")
+                    .attr("src", src)
+                    .attr("id", photo.id)
+                    .data("photo", photo);
+                photosDiv.append(img);
+            }
+        }
+
+        function handleHashChange() {
+            var hash = location.hash;
+            var search = $.bbq.getState("search");
+            var details = $.bbq.getState("details");
+            console.log(search);
+            $("input.search").val(search);
+            if (typeof search != "undefined" && search != null && search != "") {
+                performSearch(search);
+            } else if (typeof details != "undefined" && details != null && details != "") {
+                performDetails(details);
+            }
+        }
+
+        function showPage(pageName) {
+            $(".page").hide();
+            if (typeof pageName === "undefined" || pageName === "" || pageName === null) {
+                $(".search.page").show();
+            } else {
+                var pageClass = ".page."+pageName;
+                console.log(pageClass);
+                $(pageClass).show();
+            }
+        }
+
+    </script>
+</body>
+</html>

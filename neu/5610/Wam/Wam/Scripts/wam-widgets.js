@@ -46,7 +46,8 @@
         widgetTemplates: {
             TEXT: null,
             SELECT: null,
-            TEXTAREA: null
+            TEXTAREA: null,
+            IMAGE: null
         },
         init: function () {
             wam.widgets.dom.addBtn = $(".widgets.page .add.btn")
@@ -55,6 +56,8 @@
             wam.widgets.dom.itemTpl    = $(".widgets.page .list .item:first").clone();
             wam.widgets.dom.list = $(".widgets.page .list");
 
+            wam.widgets.dom.widgetTemplates.IMAGE =
+                $(".widgets.page .list .IMAGE").clone();
             wam.widgets.dom.widgetTemplates.LABEL =
                 $(".widgets.page .list .LABEL").clone();
             wam.widgets.dom.widgetTemplates.TEXT =

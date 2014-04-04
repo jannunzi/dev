@@ -170,6 +170,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="experiments\flickr\css\bootstrap.css" />
+    <Content Include="experiments\flickr\js\jquery.ba-bbq.js" />
+    <Content Include="experiments\flickr\search.html" />
+    <Content Include="experiments\flickr\js\jquery.js" />
+    <Content Include="experiments\flickr\js\jquery.ba-hashchange.js" />
     <Content Include="experiments\hash\css\bootstrap.css" />
     <Content Include="experiments\hash\hash1.html" />
     <Content Include="experiments\hash\hash2.html" />

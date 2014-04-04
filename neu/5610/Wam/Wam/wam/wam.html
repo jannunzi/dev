@@ -226,6 +226,10 @@
                         <span class='delete pull-right'>&times;</span>
                         <label class='widget'>Label</label>
                     </li>
+                    <li class="item IMAGE" data-role="image" style="height: 100px; overflow: hidden;">
+                        <span class='delete pull-right'>&times;</span>
+                        <img src="../img/default.jpg" class="widget" style="width: 100%; position: relative; top: -80px; ">
+                    </li>
                     <li class="item SELECT" data-role="select">
                         <span class='delete pull-right'>&times;</span>
                         <select class="form-control widget" name="select-1">
@@ -254,8 +258,8 @@
                     <li class="item LABEL" data-role="label">
                         <label>Label</label>
                     </li>
-                    <li class="item IMAGE" data-role="image">
-                        <img src="../img/default.jpg">
+                    <li class="item IMAGE" data-role="image" style="height: 100px; overflow: hidden;">
+                        <img src="../img/default.jpg" style="width: 100%; position: relative; top: -80px; ">
                     </li>
                     <li class="item SELECT" data-role="select">
                         <select class="form-control" name="select-1">
@@ -304,8 +308,22 @@
             </div>
         </div>
 
-        <!--
-        <div class="row widgets text page" style="display:none">
+        <div class="row widgetImageEditor page">
+            <div class="col-xs-12">
+                Name 123:
+                <img src="../img/default.jpg" style="width: 100%; position: relative; top: -80px; ">
+                <button class="btn btn-success btn-block ok">OK</button>
+                <button class="btn btn-danger btn-block cancel">Cancel</button>
+                <ul>
+                    <li>
+                        <img src="../img/default.jpg" style="width: 100%; position: relative; top: -80px; ">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!---->
+        <div class="row widgetTextEditor page" style="display:none">
             <div class="col-xs-12">
                 Name 123:
                 <input class="form-control name" placeholder="Name" />
@@ -313,7 +331,7 @@
                 <button class="btn btn-danger btn-block cancel">Cancel</button>
             </div>
         </div>
-            -->
+<!--            -->
 
     </div>
     <script src="../Scripts/wam.js"></script>
