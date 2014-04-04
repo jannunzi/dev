@@ -175,6 +175,7 @@
     <Content Include="experiments\hash\hash2.html" />
     <Content Include="experiments\hash\js\jquery-1.10.2.min.js" />
     <Content Include="experiments\hash\js\jquery.ba-hashchange.js" />
+    <Content Include="img\default.jpg" />
     <Content Include="Scripts\jquery.ba-hashchange.js" />
     <Content Include="Scripts\wam-following-search-results.js" />
     <Content Include="Scripts\wam-following.js" />
@@ -196,7 +197,7 @@
     <Content Include="social-0\social-register.js" />
     <Content Include="social-0\social.js" />
     <Content Include="wam\bootstrap.css" />
-    <Content Include="wam\hash.html" />
+    <Content Include="experiments\hash.html" />
     <Content Include="wam\wam.html" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

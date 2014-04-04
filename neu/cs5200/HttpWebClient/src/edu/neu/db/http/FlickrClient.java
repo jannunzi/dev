@@ -23,9 +23,10 @@ public class FlickrClient {
 			String api_key = "5da2ddf6e55e6529b2c3211d124182ea";
 			String user_id = "45172499@N00";
 			//String secret = "5da0519825a0cd8e";
+			term = term.replaceAll(" ", ",");
 			String text = term;
 			String tags = term;
-			String urlStr = "https://api.flickr.com/services/rest?text="+term+"&method="+method+"&api_key="+api_key;
+			String urlStr = "https://api.flickr.com/services/rest?tags="+term+"&method="+method+"&api_key="+api_key;
 			URL url = new URL(urlStr);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
