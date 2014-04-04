@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <style>
+        .page {
+            display: none;
+        }
+        .page1 {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page1 page">
+            <h1>Page 1</h1>
+            <a href="#1">Page 1</a>
+            <a href="#2">Page 2</a>
+            <a href="#3">Page 3</a>
+        </div>
+        <div class="page2 page">
+            <h1>Page 2</h1>
+            <a href="#1">Page 1</a>
+            <a href="#2">Page 2</a>
+            <a href="#3">Page 3</a>
+        </div>
+        <div class="page3 page">
+            <h1>Page 3</h1>
+            <a href="#1">Page 1</a>
+            <a href="#2">Page 2</a>
+            <a href="#3">Page 3</a>
+        </div>
+    </div>
+
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/jquery.ba-hashchange.js"></script>
+    <script>
+        $(function () {
+            $(window).hashchange(handleHashChange);
+            $(window).hashchange();
+        });
+
+        function handleHashChange() {
+            var hash = location.hash;
+            var pageNumber = hash.replace("#", "");
+            showPage(pageNumber);
+        }
+
+        function showPage(pageNumber) {
+            $(".page").hide();
+            var pageClass = ".page" + pageNumber;
+            console.log(pageClass);
+            $(pageClass).show();
+        }
+    </script>
+</body>
+</html>
