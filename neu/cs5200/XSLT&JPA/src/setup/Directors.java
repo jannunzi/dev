@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.*;
 
 @XmlRootElement
 @XmlAccessorType(value = XmlAccessType.FIELD)
-public class DirectorDatabase {
+public class Directors {
 	@XmlElement(name="director")
 	private List<Director> directors;
 
@@ -16,11 +16,11 @@ public class DirectorDatabase {
 	public void setDirectors(List<Director> directors) {
 		this.directors = directors;
 	}
-	public DirectorDatabase(List<Director> directors) {
+	public Directors(List<Director> directors) {
 		super();
 		this.directors = directors;
 	}
-	public DirectorDatabase() {
+	public Directors() {
 		super();
 	}
 }

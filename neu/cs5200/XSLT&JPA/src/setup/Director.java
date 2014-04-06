@@ -6,7 +6,9 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 
 @Entity
-@NamedQueries(value = { @NamedQuery(name = "findAllDirectors", query = "select dir from Director dir") })
+@NamedQueries(value = { @NamedQuery(
+		name = "findAllDirectors",
+		query = "select dir from Director dir") })
 @XmlRootElement
 @XmlAccessorType(value = XmlAccessType.FIELD)
 public class Director {

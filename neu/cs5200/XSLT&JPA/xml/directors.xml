@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<directorDatabase>
+<directors>
     <director id="1" firstName="Alice" lastName="Wonderland">
         <movie id="1" name="Star Wars" stars="5">
             <actor id="1" firstName="Harrison" lastName="Ford" oscars="2"/>
@@ -20,4 +20,11 @@
             <actor id="8" firstName="Actor 6" lastName="Actor 5 Last" oscars="6"/>
         </movie>
     </director>
-</directorDatabase>
+    <director id="3" firstName="Charlie" lastName="Garcia">
+        <movie id="5" name="Movie A" stars="5">
+            <actor id="9" firstName="Actor 7" lastName="asdf" oscars="2"/>
+            <actor id="10" firstName="Actor 8" lastName="sdfkgjskdfjg" oscars="4"/>
+        </movie>
+        <movie id="6" name="Movie B" stars="4"/>
+    </director>
+</directors>

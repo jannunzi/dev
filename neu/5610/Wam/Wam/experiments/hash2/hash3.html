@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .section {
+            display: none;
+        }
+        .section1 {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="section section1">
+        <h1>Section 1</h1>
+    </div>
+    <a href="#id=123&name=alice&age=34">Set State</a>
+    <a href="#" class="salary">set salary</a>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.ba-bbq.js"></script>
+<script>
+    $(function () {
+        window.onhashchange = hashHandler;
+        hashHandler();
+
+        $(".salary").click(function (event) {
+            event.preventDefault();
+            var state = {
+                salary: 225000,
+                last: "Wonderland"
+            };
+            $.bbq.pushState(state, 2);
+        });
+    });
+
+    function hashHandler() {
+        var id = $.bbq.getState("id");
+        console.log(id);
+    }
+</script>
+</body>
+</html>

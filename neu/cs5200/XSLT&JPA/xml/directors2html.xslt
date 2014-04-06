@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<ol>
-		<xsl:for-each select="directorDatabase/director">
+		<xsl:for-each select="directors/director">
 			<li>
 				<xsl:value-of select="@lastName"/>	
 				<xsl:text>, </xsl:text>

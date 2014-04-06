@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .section {
+            display: none;
+        }
+        .section1 {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="section section1">
+        <h1>Section 1</h1>
+    </div>
+    <a href="#id=123&name=alice&age=34">Set State</a>
+<script src="js/jquery.js"></script>
+<script>
+    $(function () {
+        window.onhashchange = hashHandler;
+        hashHandler();
+    });
+
+    function hashHandler() {
+        var hash = location.hash;
+        hash = hash.replace("#", "");
+        console.log(hash);
+        var params = hash.split("&");
+        console.log(params);
+        for (var p in params) {
+            var param = params[p];
+            var ps = param.split("=");
+            var paramName = ps[0];
+            var paramValue = ps[1];
+            console.log(paramName);
+            console.log(paramValue);
+        }
+    }
+</script>
+</body>
+</html>

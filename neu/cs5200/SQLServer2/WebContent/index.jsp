@@ -44,7 +44,7 @@
 	<hr/>
 	
 	<div class="row">
-		<div class="col-xs-3 scrollable">
+		<div class="col-xs-3 scrollable" style="height: 600px;overflow-y: scroll;overflow-x: hidden;">
 			<table class="table">
 				<thead>
 					<tr>
@@ -70,6 +70,7 @@
 			</table>
 		</div>
 		<div class="col-xs-9">
+			<div style="height: 600px;overflow-y: scroll;overflow-x: hidden;">
 			<table class="table">
 				<thead>
 					<tr>
@@ -102,6 +103,7 @@
 %>
 				</tbody>
 			</table>
+			</div>
 		</div>
 	</div>
 </div>
@@ -109,8 +111,8 @@
 </form>
 
 <script src="js/jquery.js"></script>
-<script src="js/util.js"></script>
-<script src="js/atc.js"></script>
+<!-- script src="js/util.js"></script>
+<script src="js/atc.js"></script-->
 
 </body>
 </html>

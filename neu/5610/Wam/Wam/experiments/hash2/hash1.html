@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .section {
+            display: none;
+        }
+        .section1 {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="section section1">
+        <h1>Section 1</h1>
+    </div>
+    <div class="section section2">
+        <h1>Section 2</h1>
+    </div>
+    <div class="section section3">
+        <h1>Section 3</h1>
+    </div>
+    <a href="#1">Goto Section 1</a>
+    <a href="#2">Goto Section 2</a>
+    <a href="#3">Goto Section 3</a>
+<script src="js/jquery.js"></script>
+<script>
+    $(function () {
+        window.onhashchange = hashHandler;
+        hashHandler();
+    });
+
+    function hashHandler() {
+        var hash = location.hash;
+        if (hash === "#1") {
+            showSection(".section1");
+        } else if (hash === "#2") {
+            showSection(".section2");
+        } else if (hash === "#3") {
+            showSection(".section3");
+        } else {
+            showSection(".section1");
+        }
+    }
+
+    function showSection(section) {
+        $(".section").hide();
+        $(section).show();
+    }
+</script>
+</body>
+</html>

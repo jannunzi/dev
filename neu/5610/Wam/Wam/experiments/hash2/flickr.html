@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <style>
+        img {
+            padding: 10px;
+        }
+        .form-control {
+            margin-bottom : 10px;
+        }
+        .section {
+            display: none;
+        }
+        .search {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row section search">
+            <div class="col-xs-12">
+                <h1>Search</h1>
+                <input class="form-control searchField" />
+                <button class="btn btn-primary btn-block searchBtn">Search</button>
+                <div class="results"></div>
+            </div>
+        </div>
+        <div class="row section details">
+            <div class="col-xs-12">
+                <h1>Details</h1>
+                <img class="detailsPhoto"/>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.ba-bbq.js"></script>
+<script>
+    $(function () {
+        window.onhashchange = hashHandler;
+        hashHandler();
+
+        $(".searchBtn").click(searchBtnClick);
+        $("body").on("click", ".smallPhoto", smallPhotoClick);
+    });
+
+    var state = {
+        currentPhoto: null
+    }
+    function smallPhotoClick() {
+        var img = $(this);
+        var photo = img.data("photo");
+        state.currentPhoto = photo;
+
+        var q = {
+            showDetails: photo.id
+        }
+        $.bbq.pushState(photo, 2);
+    }
+
+    function searchBtnClick() {
+        var state = {
+            searchString: $(".searchField").val()
+        };
+        $.bbq.pushState(state, 2);
+    }
+
+    function hashHandler() {
+        var hash = location.hash;
+        console.log(hash);
+
+        var searchString = $.bbq.getState("searchString");
+        var showDetails = $.bbq.getState("id");
+        console.log(searchString);
+        if (typeof searchString != "undefined" && searchString != "" && searchString != null) {
+            performSearch(searchString);
+        } else if (typeof showDetails != "undefined" && showDetails != "" && showDetails != null) {
+            performDetails();
+        }
+    }
+
+    function performDetails() {
+        var photo = state.currentPhoto;
+        var src = new String(detailsUrl);
+        src = src.replace("{farm-id}", $.bbq.getState("farm"));
+        src = src.replace("{server-id}", $.bbq.getState("server"));
+        src = src.replace("{id}", $.bbq.getState("id"));
+        src = src.replace("{secret}",  $.bbq.getState("secret"));
+        var img = $(".detailsPhoto")
+            .attr("src", src);
+        $(".section").hide();
+        $(".details").show();
+    }
+
+    function performSearch(searchString) {
+        var q = {
+            method: "flickr.photos.search",
+            api_key: "5da2ddf6e55e6529b2c3211d124182ea",
+            format: "json",
+            tags: searchString
+        };
+        $.ajax({
+            url: "https://api.flickr.com/services/rest",
+            data: q
+        });
+    }
+
+    function jsonFlickrApi(response) {
+        renderPhotos(response.photos.photo);
+    }
+
+    var url = "http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_s.jpg";
+    var detailsUrl = "http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_b.jpg";
+    function renderPhotos(photos) {
+        var photosDiv = $(".results");
+        photosDiv.empty();
+        for (var p in photos) {
+            var photo = photos[p];
+            var src = new String(url);
+            src = src.replace("{farm-id}", photo.farm);
+            src = src.replace("{server-id}", photo.server);
+            src = src.replace("{id}", photo.id);
+            src = src.replace("{secret}", photo.secret);
+            var img = $("<img class='smallPhoto'>")
+                .attr("src", src)
+                .attr("id", photo.id)
+                .data("photo", photo);
+            photosDiv.append(img);
+        }
+        $(".section").hide();
+        $(".search").show();
+    }
+</script>
+</body>
+</html>

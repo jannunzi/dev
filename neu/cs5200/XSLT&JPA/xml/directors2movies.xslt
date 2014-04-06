@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<ol>
-		<xsl:for-each select="directorDatabase/director/movie">
+		<xsl:for-each select="directors/director/movie">
 			<xsl:choose>
 				<xsl:when test="@stars &gt; 3">
 					<li style="background-color: green">

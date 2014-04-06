@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app>
+<head>
+    <title></title>
+    <script src="js/angular.js"></script>
+</head>
+<body>
+    <h1>Angular</h1>
+
+    1+1 = {{1+1}}
+
+    <br />
+    a = <input ng-model="a" type="number" />
+    b = <input ng-model="b" type="number" /> = 
+    {{a+b}}
+    <br/>
+
+    <p ng-controller="myCtrl">
+        {{developer.name}}
+    </p>
+
+    <script>
+        function myCtrl($scope) {
+            $scope.developer = {
+                name: 'Alice'
+            };
+        }
+    </script>
+
+</body>
+</html>

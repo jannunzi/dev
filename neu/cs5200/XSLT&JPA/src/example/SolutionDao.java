@@ -44,13 +44,13 @@ public class SolutionDao {
 		return directors;
 	}
 	
-	public void exportDirectorDatabaseToXmlFile(DirectorDatabase database, String xmlFileName) {
+	public void exportDirectorsToXmlFile(Directors directors, String xmlFileName) {
 		File xmlFile = new File(xmlFileName);
 		try {
-			JAXBContext jaxb = JAXBContext.newInstance(DirectorDatabase.class);
+			JAXBContext jaxb = JAXBContext.newInstance(Directors.class);
 			Marshaller marshaller = jaxb.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			marshaller.marshal(database, xmlFile);
+			marshaller.marshal(directors, xmlFile);
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,10 +94,10 @@ public class SolutionDao {
 //			System.out.println(dir.getFirstName());
 		}
 		
-		DirectorDatabase database = new DirectorDatabase();
-		database.setDirectors(directors);
+		Directors theDirectors = new Directors();
+		theDirectors.setDirectors(directors);
 		
-		dao.exportDirectorDatabaseToXmlFile(database, "xml/directors.xml");
+		dao.exportDirectorsToXmlFile(theDirectors, "xml/directors.xml");
 		
 		dao.convertXmlFileToOutputFile("xml/directors.xml", "xml/directors.html", "xml/directors2html.xslt");
 		dao.convertXmlFileToOutputFile("xml/directors.xml", "xml/movies.html", "xml/directors2movies.xslt");
